@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:material="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.scme.order.ui.Activityxgmm">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+
+        >
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:textColor="#ff00ddff"
+                android:id="@+id/password1"
+                android:textSize="20dp"
+                android:text="旧密码："
+                android:layout_marginTop="10dp" />
+            <MaterialEditText
+                android:id="@+id/password2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="请输入旧密码"
+                android:inputType="number"
+                android:singleLine="true"
+                android:layout_toRightOf="@id/password2"
+                android:password="true"
+                material:floatingLabel="true"
+                material:maxCharacters="50"
+
+
+                />
+            </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:textColor="#ff00ddff"
+                android:id="@+id/password3"
+                android:textSize="20dp"
+                android:text="新密码："
+                android:layout_marginTop="10dp" />
+            <MaterialEditText
+                android:id="@+id/password4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="请输入新密码"
+                android:inputType="number"
+                android:singleLine="true"
+                android:layout_toRightOf="@id/password3"
+                android:password="true"
+                material:floatingLabel="true"
+                material:maxCharacters="50"
+                />
+
+
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:textColor="#ff00ddff"
+                android:id="@+id/password5"
+                android:textSize="20dp"
+                android:text="重输新密码："
+                android:layout_marginTop="10dp" />
+            <MaterialEditText
+                android:id="@+id/password6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="请再次输入新密码"
+                android:inputType="number"
+                android:singleLine="true"
+                android:layout_toRightOf="@id/password5"
+                android:password="true"
+                material:floatingLabel="true"
+                material:maxCharacters="50"
+                />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:layout_marginLeft="30dp"
+                android:textColor="#ff00ddff"
+                android:id="@+id/activytymmxg_btn_jt"
+                android:text="确　定" />
+            <Button
+                android:id="@+id/activytymmxg_btn_can"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:layout_marginLeft="40dp"
+                android:textColor="#ff00ddff"
+                android:text="重　置"/>
+
+        </TableRow>
+
+    </TableLayout>
+</RelativeLayout>

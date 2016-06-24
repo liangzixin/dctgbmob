@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/Users/erictruong/IdeaProjects/materialedittext/lib/src/main/res/values/attrs.xml -->
+    <eat-comment/>
+    <attr format="color" name="errorColor"/>
+    <attr format="integer" name="maxCharacters"/>
+    <!-- From: file:/Users/erictruong/IdeaProjects/materialedittext/lib/src/main/res/values/colors_material.xml -->
+    <eat-comment/>
+    <color name="material_red">@color/material_red_500</color>
+    <color name="material_red_500">#f44336</color>
+    <declare-styleable name="fullwidthEditText"><attr name="errorColor"/><attr name="maxCharacters"/></declare-styleable>
+    <declare-styleable name="materialEditText"><attr format="color" name="backgroundColor"/><attr name="errorColor"/><attr format="boolean" name="floatingLabel"/><attr name="maxCharacters"/><attr format="reference" name="withIcon"/></declare-styleable>
+</resources>

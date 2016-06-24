@@ -1,0 +1,128 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EatListActivity" >
+    <RelativeLayout
+        android:id="@+id/botliang1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff6666"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        >
+
+    <TextView
+        android:id="@+id/botliang2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:background="#ff33b5e5"
+        android:layout_marginTop="0dp"
+        android:text="  序号     姓名             时间          份数     金额(元)        部门名称" />
+
+    </RelativeLayout>
+    <com.scme.order.view.XListView
+        android:id="@+id/lvEats"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="18dp"
+        />
+
+
+
+
+    <RelativeLayout
+
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:background="#ff33b5e5"
+        android:layout_marginBottom="48dp"
+        android:layout_alignParentBottom="true"
+        >
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="#000000"
+            android:onClick="eats_pages_sumbit_Event"
+            android:text="转到页码"
+            android:background="@drawable/button_zise"
+            />
+        <TextView
+            android:id="@+id/TolPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="95dp"
+            android:textColor="#000000"
+            android:textSize="17dp"
+            android:background="#ff33b5e5"
+
+            />
+        <TextView
+            android:id="@+id/NowPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="230dp"
+            android:textColor="#000000"
+            android:textSize="17dp"
+            android:background="#ff33b5e5"
+
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/botliang"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff6666"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        >
+        <TextView
+            android:id="@+id/tvFoodsOrderPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="#000000"
+            android:background="#ff6666"
+            android:text="姓名： "
+            android:textSize="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="150dp"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:background="#ff6666"
+            android:text="份数：" />
+        <EditText
+            android:id="@+id/etEatNum"
+            android:layout_width="60dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="200dp"
+            android:inputType="number"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            />
+        <Button
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="260dp"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:onClick="eats_insert_sumbit_Event"
+            android:text="确  定"/>
+    </RelativeLayout>
+    </RelativeLayout>
+
+

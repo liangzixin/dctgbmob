@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/main_sy"
+        android:showAsAction="always|withText"
+        tools:ignore="AppCompatResource"
+        android:id="@+id/app_sy"
+        >
+
+    </item>
+    <!-- 定义一个普通菜单项 -->
+    <item android:id="@+id/main_zhk"
+        android:showAsAction="always|withText"
+        android:title="@string/main_zhk"
+        tools:ignore="AppCompatResource"
+        >
+        <menu
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            >
+            <!-- 定义一组允许复选的菜单项 -->
+            <group
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                >
+
+                <!-- 定义三个菜单项 -->
+                <item
+                    android:id="@+id/zhk_qj"
+                    android:title="@string/zhk_qj"
+                    android:left="20dp"
+                    android:top="40dp"
+
+                    />
+                <item
+                    android:id="@+id/zhk_yz"
+                    android:title="@string/zhk_yz"
+                    android:left="20dp"
+                    android:top="40dp"
+                    />
+                <item
+                    android:id="@+id/zhk_bx"
+                    android:title="@string/zhk_bx"
+                    android:left="20dp"
+                    android:top="40dp"
+                    />
+            </group>
+        </menu>
+    </item>
+    <item android:title="@string/main_sbk"
+        android:showAsAction="always"
+        tools:ignore="AppCompatResource"
+        >
+        <menu>
+            <!-- 定义一组允许复选的菜单项 -->
+            <group>
+                <!-- 定义三个菜单项 -->
+                <item
+                    android:id="@+id/sbk_tx"
+                    android:title="@string/sbk_tx"/>
+                <item
+                    android:id="@+id/sbk_ys"
+                    android:title="@string/sbk_ys"/>
+
+            </group>
+        </menu>
+    </item>
+    <!--定义食堂菜单-->
+    <item android:title="@string/main_fwk"
+        android:showAsAction="always"
+        tools:ignore="AppCompatResource"
+        >
+        <menu>
+            <!-- 定义一组允许复选的菜单项 -->
+            <group>
+                <!-- 定义三个菜单项 -->
+                <item
+                    android:id="@+id/fwk_dk"
+                    android:title="@string/fwk_dk"
+                    app:showAsAction="ifRoom"
+                    />
+                <item
+                    android:id="@+id/fwk_cx"
+                    android:title="@string/fwk_cx"/>
+                <item
+                    android:id="@+id/fwk_hj"
+                    android:title="@string/fwk_hj"/>
+            </group>
+        </menu>
+    </item>
+    <!--其它菜单选项-->
+<group
+    android:width="100dp"
+    android:layout_height="wrap_content"
+
+    >
+                <item
+                    android:id="@+id/xgmm"
+                    android:title="@string/xgmm"
+                    android:width="100dp"
+                    />
+                <item
+                    android:id="@+id/pbsm"
+                    android:title="@string/pbsm"
+                    android:width="100dp"
+                    />
+                <item
+                    android:id="@+id/fwzc"
+                    android:title="@string/jszc"
+                    android:width="100dp"
+                    />
+            </group>
+
+
+</menu>

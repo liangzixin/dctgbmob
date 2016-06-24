@@ -1,0 +1,251 @@
+// Generated code from Butter Knife. Do not modify!
+package com.scme.order.ui;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+
+public class DeveloperModeActivity$$ViewInjector {
+  public static void inject(Finder finder, final com.scme.order.ui.DeveloperModeActivity target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558621, "field 'edt1' and method 'onEdt1TextChanged'");
+    target.edt1 = (android.widget.MaterialEditText) view;
+    ((android.widget.TextView) view).addTextChangedListener(
+      new android.text.TextWatcher() {
+        @Override public void onTextChanged(
+          java.lang.CharSequence p0,
+          int p1,
+          int p2,
+          int p3
+        ) {
+          target.onEdt1TextChanged(p0);
+        }
+        @Override public void beforeTextChanged(
+          java.lang.CharSequence p0,
+          int p1,
+          int p2,
+          int p3
+        ) {
+          
+        }
+        @Override public void afterTextChanged(
+          android.text.Editable p0
+        ) {
+          
+        }
+      });
+    view = finder.findRequiredView(source, 2131558624, "field 'seekTextSize'");
+    target.seekTextSize = (android.widget.SeekBar) view;
+    view = finder.findRequiredView(source, 2131558625, "field 'tvTextSize'");
+    target.tvTextSize = (android.widget.TextView) view;
+    view = finder.findRequiredView(source, 2131558627, "field 'cbxBackgroundColor' and method 'onCbxBackgroundColorChecked'");
+    target.cbxBackgroundColor = (android.widget.CheckBox) view;
+    ((android.widget.CompoundButton) view).setOnCheckedChangeListener(
+      new android.widget.CompoundButton.OnCheckedChangeListener() {
+        @Override public void onCheckedChanged(
+          android.widget.CompoundButton p0,
+          boolean p1
+        ) {
+          target.onCbxBackgroundColorChecked(p1);
+        }
+      });
+    view = finder.findRequiredView(source, 2131558629, "field 'seekBackgroundColorRed'");
+    target.seekBackgroundColorRed = (android.widget.SeekBar) view;
+    view = finder.findRequiredView(source, 2131558630, "field 'viewBackgroundColorRed'");
+    target.viewBackgroundColorRed = view;
+    view = finder.findRequiredView(source, 2131558632, "field 'seekBackgroundColorGreen'");
+    target.seekBackgroundColorGreen = (android.widget.SeekBar) view;
+    view = finder.findRequiredView(source, 2131558633, "field 'viewBackgroundColorGreen'");
+    target.viewBackgroundColorGreen = view;
+    view = finder.findRequiredView(source, 2131558635, "field 'seekBackgroundColorBlue'");
+    target.seekBackgroundColorBlue = (android.widget.SeekBar) view;
+    view = finder.findRequiredView(source, 2131558636, "field 'viewBackgroundColorBlue'");
+    target.viewBackgroundColorBlue = view;
+    view = finder.findRequiredView(source, 2131558638, "field 'cbxError' and method 'onCbxErrorChecked'");
+    target.cbxError = (android.widget.CheckBox) view;
+    ((android.widget.CompoundButton) view).setOnCheckedChangeListener(
+      new android.widget.CompoundButton.OnCheckedChangeListener() {
+        @Override public void onCheckedChanged(
+          android.widget.CompoundButton p0,
+          boolean p1
+        ) {
+          target.onCbxErrorChecked(p1);
+        }
+      });
+    view = finder.findRequiredView(source, 2131558639, "field 'edtError' and method 'onEdtErrorTextChanged'");
+    target.edtError = (android.widget.MaterialEditText) view;
+    ((android.widget.TextView) view).addTextChangedListener(
+      new android.text.TextWatcher() {
+        @Override public void onTextChanged(
+          java.lang.CharSequence p0,
+          int p1,
+          int p2,
+          int p3
+        ) {
+          target.onEdtErrorTextChanged(p0);
+        }
+        @Override public void beforeTextChanged(
+          java.lang.CharSequence p0,
+          int p1,
+          int p2,
+          int p3
+        ) {
+          
+        }
+        @Override public void afterTextChanged(
+          android.text.Editable p0
+        ) {
+          
+        }
+      });
+    view = finder.findRequiredView(source, 2131558641, "field 'cbxErrorColor' and method 'onCbxErrorColorChecked'");
+    target.cbxErrorColor = (android.widget.CheckBox) view;
+    ((android.widget.CompoundButton) view).setOnCheckedChangeListener(
+      new android.widget.CompoundButton.OnCheckedChangeListener() {
+        @Override public void onCheckedChanged(
+          android.widget.CompoundButton p0,
+          boolean p1
+        ) {
+          target.onCbxErrorColorChecked(p1);
+        }
+      });
+    view = finder.findRequiredView(source, 2131558643, "field 'seekErrorColorRed'");
+    target.seekErrorColorRed = (android.widget.SeekBar) view;
+    view = finder.findRequiredView(source, 2131558644, "field 'viewErrorColorRed'");
+    target.viewErrorColorRed = view;
+    view = finder.findRequiredView(source, 2131558646, "field 'seekErrorColorGreen'");
+    target.seekErrorColorGreen = (android.widget.SeekBar) view;
+    view = finder.findRequiredView(source, 2131558647, "field 'viewErrorColorGreen'");
+    target.viewErrorColorGreen = view;
+    view = finder.findRequiredView(source, 2131558649, "field 'seekErrorColorBlue'");
+    target.seekErrorColorBlue = (android.widget.SeekBar) view;
+    view = finder.findRequiredView(source, 2131558650, "field 'viewErrorColorBlue'");
+    target.viewErrorColorBlue = view;
+    view = finder.findRequiredView(source, 2131558652, "field 'cbxFloatingLabel' and method 'onCbxFloatingLabelChecked'");
+    target.cbxFloatingLabel = (android.widget.CheckBox) view;
+    ((android.widget.CompoundButton) view).setOnCheckedChangeListener(
+      new android.widget.CompoundButton.OnCheckedChangeListener() {
+        @Override public void onCheckedChanged(
+          android.widget.CompoundButton p0,
+          boolean p1
+        ) {
+          target.onCbxFloatingLabelChecked(p1);
+        }
+      });
+    view = finder.findRequiredView(source, 2131558653, "field 'edtFloatingLabel' and method 'onEdtFloatingLabeTextChanged'");
+    target.edtFloatingLabel = (android.widget.MaterialEditText) view;
+    ((android.widget.TextView) view).addTextChangedListener(
+      new android.text.TextWatcher() {
+        @Override public void onTextChanged(
+          java.lang.CharSequence p0,
+          int p1,
+          int p2,
+          int p3
+        ) {
+          target.onEdtFloatingLabeTextChanged(p0);
+        }
+        @Override public void beforeTextChanged(
+          java.lang.CharSequence p0,
+          int p1,
+          int p2,
+          int p3
+        ) {
+          
+        }
+        @Override public void afterTextChanged(
+          android.text.Editable p0
+        ) {
+          
+        }
+      });
+    view = finder.findRequiredView(source, 2131558655, "field 'cbxCharCounter' and method 'onCbxCharCounterChecked'");
+    target.cbxCharCounter = (android.widget.CheckBox) view;
+    ((android.widget.CompoundButton) view).setOnCheckedChangeListener(
+      new android.widget.CompoundButton.OnCheckedChangeListener() {
+        @Override public void onCheckedChanged(
+          android.widget.CompoundButton p0,
+          boolean p1
+        ) {
+          target.onCbxCharCounterChecked(p1);
+        }
+      });
+    view = finder.findRequiredView(source, 2131558657, "field 'seekMaxCharacters'");
+    target.seekMaxCharacters = (android.widget.SeekBar) view;
+    view = finder.findRequiredView(source, 2131558658, "field 'tvMaxCharacters'");
+    target.tvMaxCharacters = (android.widget.TextView) view;
+    view = finder.findRequiredView(source, 2131558659, "field 'edtResult'");
+    target.edtResult = (android.widget.FullwidthEditText) view;
+    view = finder.findRequiredView(source, 2131558626, "method 'onLinBackgroundColorClicked'");
+    view.setOnClickListener(
+      new android.view.View.OnClickListener() {
+        @Override public void onClick(
+          android.view.View p0
+        ) {
+          target.onLinBackgroundColorClicked();
+        }
+      });
+    view = finder.findRequiredView(source, 2131558637, "method 'onLinErrorClicked'");
+    view.setOnClickListener(
+      new android.view.View.OnClickListener() {
+        @Override public void onClick(
+          android.view.View p0
+        ) {
+          target.onLinErrorClicked();
+        }
+      });
+    view = finder.findRequiredView(source, 2131558640, "method 'onLinErrorColorClicked'");
+    view.setOnClickListener(
+      new android.view.View.OnClickListener() {
+        @Override public void onClick(
+          android.view.View p0
+        ) {
+          target.onLinErrorColorClicked();
+        }
+      });
+    view = finder.findRequiredView(source, 2131558651, "method 'onLinFloatingLabelClicked'");
+    view.setOnClickListener(
+      new android.view.View.OnClickListener() {
+        @Override public void onClick(
+          android.view.View p0
+        ) {
+          target.onLinFloatingLabelClicked();
+        }
+      });
+    view = finder.findRequiredView(source, 2131558654, "method 'onLinCharCounterClicked'");
+    view.setOnClickListener(
+      new android.view.View.OnClickListener() {
+        @Override public void onClick(
+          android.view.View p0
+        ) {
+          target.onLinCharCounterClicked();
+        }
+      });
+  }
+
+  public static void reset(com.scme.order.ui.DeveloperModeActivity target) {
+    target.edt1 = null;
+    target.seekTextSize = null;
+    target.tvTextSize = null;
+    target.cbxBackgroundColor = null;
+    target.seekBackgroundColorRed = null;
+    target.viewBackgroundColorRed = null;
+    target.seekBackgroundColorGreen = null;
+    target.viewBackgroundColorGreen = null;
+    target.seekBackgroundColorBlue = null;
+    target.viewBackgroundColorBlue = null;
+    target.cbxError = null;
+    target.edtError = null;
+    target.cbxErrorColor = null;
+    target.seekErrorColorRed = null;
+    target.viewErrorColorRed = null;
+    target.seekErrorColorGreen = null;
+    target.viewErrorColorGreen = null;
+    target.seekErrorColorBlue = null;
+    target.viewErrorColorBlue = null;
+    target.cbxFloatingLabel = null;
+    target.edtFloatingLabel = null;
+    target.cbxCharCounter = null;
+    target.seekMaxCharacters = null;
+    target.tvMaxCharacters = null;
+    target.edtResult = null;
+  }
+}

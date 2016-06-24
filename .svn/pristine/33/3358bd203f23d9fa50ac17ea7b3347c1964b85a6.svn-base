@@ -1,0 +1,29 @@
+// Generated code from Butter Knife. Do not modify!
+package com.scme.order.ui;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+
+public class Activityfwzc$$ViewInjector {
+  public static void inject(Finder finder, final com.scme.order.ui.Activityfwzc target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558695, "field 'tvVersion'");
+    target.tvVersion = (android.widget.TextView) view;
+    view = finder.findRequiredView(source, 2131558696, "field 'tvVersion1'");
+    target.tvVersion1 = (android.widget.TextView) view;
+    view = finder.findRequiredView(source, 2131558693, "method 'githubClicked'");
+    view.setOnClickListener(
+      new android.view.View.OnClickListener() {
+        @Override public void onClick(
+          android.view.View p0
+        ) {
+          target.githubClicked();
+        }
+      });
+  }
+
+  public static void reset(com.scme.order.ui.Activityfwzc target) {
+    target.tvVersion = null;
+    target.tvVersion1 = null;
+  }
+}

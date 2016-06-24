@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_txxxdetailmain.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\menu\\menu_txxxdetailmain.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_switch_theme.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\menu\\menu_switch_theme.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_mainlzx.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\menu\\menu_mainlzx.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\menu\\menu_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_eat_top.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\menu\\menu_eat_top.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_list_view_test.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\menu\\menu_list_view_test.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\menu\\context.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\menu\\context.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\menu\\menu_main.xml"
+    }
+]

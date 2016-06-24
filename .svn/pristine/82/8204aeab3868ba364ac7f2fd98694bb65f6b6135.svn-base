@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			 android:id="@+id/loginForm"
+			 xmlns:material="http://schemas.android.com/apk/res-auto"
+			 android:layout_width="match_parent"
+			 android:layout_height="match_parent">
+	<!-- 输入部门名称的文本框 -->
+	<TableLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="4dp"
+		android:gravity="left"
+		>
+		<MaterialEditText
+			android:id="@+id/Send_content"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:hint="短信内容"
+			android:gravity="left|top"
+			android:inputType="textMultiLine"
+			android:singleLine="true"
+			android:text="短信内容"
+			android:minLines="3"
+			android:maxLines="5"
+			android:scrollbars="vertical"
+			material:floatingLabel="true"
+			android:layout_weight="1.50"
+			android:layout_marginTop="10dp"
+			android:layout_marginRight="20dp"
+			android:layout_marginLeft="20dp" />
+
+
+
+	</TableLayout>
+
+
+	</TableLayout>
+

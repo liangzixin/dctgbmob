@@ -1,0 +1,68 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EatTotalPersionActivity" >
+
+    <TextView
+        android:id="@+id/sh"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:background="#ff33b5e5"
+        android:layout_marginTop="0dp"
+        android:textSize="16dp"
+        android:text="  序号    姓名         时间            份数    金额(元)   已交 " />
+    <ListView 
+        android:id="@+id/lvEats"
+        android:layout_width="fill_parent"
+        android:layout_height="530dp"
+        android:layout_marginTop="25dp"
+        />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:background="#ff33b5e5"
+        android:layout_marginTop="558dp"
+        >
+        <TextView
+            android:id="@+id/tvEatTol"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="4dp"
+            android:textColor="#000000"
+            android:background="#ff33b5e5"
+            android:textSize="18dp"
+            android:text="  合  计 " />
+        <TextView
+            android:id="@+id/tvEatTolNum"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="60dp"
+            android:textColor="#000000"
+            android:textSize="18dp"
+            android:background="#ff33b5e5"
+            android:text="份数：0     " />
+        <TextView
+            android:id="@+id/tvEatToltalprice"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="205dp"
+            android:textColor="#000000"
+            android:textSize="18dp"
+            android:background="#ff33b5e5"
+            android:text="金额：" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:background="@drawable/eat_bottom"
+        android:layout_marginTop="588dp"
+        >
+    </RelativeLayout>
+</RelativeLayout>

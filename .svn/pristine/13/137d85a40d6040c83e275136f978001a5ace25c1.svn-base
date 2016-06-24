@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background_floating_material_dark">#ff424242</color>
+    <color name="background_floating_material_light">#ffeeeeee</color>
+    <color name="material_divider">#31000000</color>
+    <color name="material_divider_inverse">#31ffffff</color>
+    <color name="material_light_blue">@color/material_light_blue_500</color>
+    <color name="material_light_blue_500">#03a9f4</color>
+    <color name="material_light_blue_700">#0288d1</color>
+    <color name="material_light_red">@color/material_light_red_500</color>
+    <color name="material_light_red_500">#f44336</color>
+    <color name="material_purple">@color/material_purple_500</color>
+    <color name="material_purple_500">#9c27b0</color>
+    <color name="material_purple_700">#7b1fa2</color>
+    <color name="material_text">#de000000</color>
+    <color name="material_text_disabled">#44000000</color>
+    <color name="material_text_hint">#42000000</color>
+    <color name="material_text_secondary">#8a000000</color>
+    <dimen name="activity_horizontal_margin">64dp</dimen>
+    <item name="LinearLayoutHeader" type="id"/>
+    <item name="LinearLayoutLoginForm" type="id"/>
+    <item name="btn_down" type="id"/>
+    <item name="btn_local" type="id"/>
+    <item name="btn_login" type="id"/>
+    <item name="btn_reg" type="id"/>
+    <item name="btn_start" type="id"/>
+    <item name="btn_stop" type="id"/>
+    <item name="btn_title_back" type="id"/>
+    <item name="btn_title_left" type="id"/>
+    <item name="btn_title_popmenu" type="id"/>
+    <item name="btn_title_right" type="id"/>
+    <item name="btn_up" type="id"/>
+    <item name="checkOk" type="id"/>
+    <item name="checkautologin" type="id"/>
+    <item name="edit_imei" type="id"/>
+    <item name="edit_ip" type="id"/>
+    <item name="edit_maxValue" type="id"/>
+    <item name="edit_passWord" type="id"/>
+    <item name="edit_port" type="id"/>
+    <item name="edit_userData" type="id"/>
+    <item name="edit_userName" type="id"/>
+    <item name="gridView" type="id"/>
+    <item name="gv_allgate" type="id"/>
+    <item name="headImg" type="id"/>
+    <item name="imageView" type="id"/>
+    <item name="inputQqId" type="id"/>
+    <item name="inputpassWord" type="id"/>
+    <item name="iv_alreat" type="id"/>
+    <item name="iv_emstate" type="id"/>
+    <item name="iv_gate" type="id"/>
+    <item name="iv_gridIcon" type="id"/>
+    <item name="iv_light" type="id"/>
+    <item name="layout_infobar" type="id"/>
+    <item name="listView" type="id"/>
+    <item name="ll_titlebtn" type="id"/>
+    <item name="lv_popmenu" type="id"/>
+    <item name="popup_view" type="id"/>
+    <item name="popup_view_cont" type="id"/>
+    <item name="tab_btn_dbz" type="id"/>
+    <item name="tab_btn_jsz" type="id"/>
+    <item name="tab_btn_jzz" type="id"/>
+    <item name="tab_btn_whz" type="id"/>
+    <item name="textView" type="id"/>
+    <item name="tv_appDate" type="id"/>
+    <item name="tv_appVer" type="id"/>
+    <item name="tv_downLevle" type="id"/>
+    <item name="tv_fluid" type="id"/>
+    <item name="tv_gateDownLimit" type="id"/>
+    <item name="tv_gateHeight" type="id"/>
+    <item name="tv_gateSetValue" type="id"/>
+    <item name="tv_gateUpLimit" type="id"/>
+    <item name="tv_gatename" type="id"/>
+    <item name="tv_gridTitle" type="id"/>
+    <item name="tv_headerTitle" type="id"/>
+    <item name="tv_motorDt" type="id"/>
+    <item name="tv_motorState" type="id"/>
+    <item name="tv_upLevle" type="id"/>
+    <item name="tv_value1" type="id"/>
+    <item name="tv_value2" type="id"/>
+</resources>

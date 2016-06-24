@@ -1,0 +1,113 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/material_purple"
+    tools:context=".AboutActivity">
+
+    <MaterialEditText
+        android:id="@+id/about_edt_app_name"
+        style="@style/TextAppearance.AppCompat.Display1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="@dimen/keyline_1"
+        android:layout_marginStart="@dimen/keyline_1"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:text="@string/fwzc_name"
+        android:enabled="false"
+        android:gravity="center"
+        android:textColor="@android:color/white"/>
+
+    <LinearLayout
+        android:id="@+id/about_lin_aaa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_below="@+id/about_edt_app_name"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+        <include layout="@layout/divider_horizontal_inverse"/>
+
+        <FullwidthEditText
+            android:id="@+id/about_edt_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/keyline_1"
+            android:layout_marginStart="@dimen/keyline_1"
+            android:gravity="center"
+            android:text="@string/about_txt_fwzc"
+            android:textColor="@android:color/white"
+            />
+
+        <include layout="@layout/divider_horizontal_inverse"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/about_lin_btn_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_below="@+id/about_lin_aaa"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/about_btn_github"
+            style="@style/ButtonFlat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/about_txt_fwzcwz"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/about_lin_btn_group1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_below="@+id/about_lin_btn_group"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/about_tel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:layout_below="@+id/about_lin_btn_group"
+
+
+        android:text="联系电话："
+        android:layout_gravity="left" />
+    <TextView
+        android:id="@+id/about_qq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:layout_below="@+id/about_tel"
+        android:layout_marginTop="10dp"
+
+        android:text="联系QQ："
+        android:layout_gravity="left" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tvMainUserName1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/material_purple"
+        android:textColor="#ffffff"
+        android:text="CopyRight © 2016 昆明英信科技有限公司 All Rights Reserved"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="20dip"
+        android:gravity="center"
+
+        />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/eat_bottom"
+        android:id="@+id/bottom"
+        android:layout_alignParentBottom="true"
+        >
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".YsryListActivity" >
+
+    <TextView
+        android:id="@+id/sh"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:background="#ff33b5e5"
+        android:layout_marginTop="0dp"
+        android:textSize="16dp"
+        android:text="  序号    部门名称   姓  名         身份证号       　已认证" />
+
+    <com.scme.order.view.XListView
+        android:id="@+id/lvysrys"
+        android:layout_width="fill_parent"
+        android:layout_height="510dp"
+        android:layout_marginTop="21dp"
+        />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:background="#ff33b5e5"
+        android:layout_marginTop="528dp"
+        >
+
+        <TextView
+            android:id="@+id/TolPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#000000"
+            android:textSize="17dp"
+            android:background="#ff33b5e5"
+
+            />
+        <TextView
+            android:id="@+id/NowPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="150dp"
+            android:textColor="#000000"
+            android:textSize="17dp"
+            android:background="#ff33b5e5"
+
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="270dp"
+            android:textColor="#000000"
+            android:onClick="ysry_pages_sumbit_Event"
+            android:text="转到页码"
+            android:background="@drawable/button_zise"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:background="@drawable/eat_bottom"
+        android:layout_marginTop="554dp"
+        >
+    </RelativeLayout>
+</RelativeLayout>

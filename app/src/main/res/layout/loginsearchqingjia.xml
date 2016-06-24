@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			 android:id="@+id/loginForm"
+			 xmlns:app="http://schemas.android.com/apk/res-auto"
+			 android:layout_width="match_parent"
+			 android:layout_height="match_parent">
+	<!-- 输入部门名称的文本框 -->
+	<TableLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="8dp"
+		android:gravity="left"
+		>
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+			<CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/checkBox1"
+                 />
+
+			<fr.ganfra.materialspinner.MaterialSpinner
+				android:id="@+id/spinner1"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				app:ms_arrowColor="#0000FF"
+				app:ms_arrowSize="16dp"
+				app:ms_floatingLabelColor="#00FF00"
+				app:ms_floatingLabelText="部门名称:"
+
+				app:ms_multiline="true" />
+		</TableRow>
+
+	</TableLayout>
+
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="8dp"
+		android:gravity="left"
+
+		>
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:weightSum="1">
+			<!--<FrameLayout-->
+				<!--android:layout_width="fill_parent"-->
+				<!--android:layout_height="20.0dip"-->
+				<!--android:layout_marginBottom="10.0dip"-->
+				<!--android:layout_marginTop="10.0dip"-->
+				<!--android:orientation="horizontal"-->
+				<!--android:paddingRight="5.0dip" >-->
+	<CheckBox
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text=""
+		android:id="@+id/checkBox2"
+		/>
+			<fr.ganfra.materialspinner.MaterialSpinner
+				android:id="@+id/spinner2"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				app:ms_arrowColor="#0000FF"
+				app:ms_arrowSize="16dp"
+				app:ms_floatingLabelColor="#00FF00"
+				app:ms_floatingLabelText="部门名称:"
+
+				app:ms_multiline="true" />
+
+			<fr.ganfra.materialspinner.MaterialSpinner
+				android:id="@+id/spinner3"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				app:ms_arrowColor="#0000FF"
+				app:ms_arrowSize="16dp"
+				app:ms_floatingLabelColor="#00FF00"
+				app:ms_floatingLabelText="姓  名:"
+
+				app:ms_multiline="true" />
+
+<!--</FrameLayout>-->
+	<!-- 输入用户名的文本框 -->
+</TableRow>
+		</LinearLayout>
+	<LinearLayout>
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:weightSum="1">
+			<CheckBox
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text=""
+				android:id="@+id/checkBox3"
+				/>
+			<fr.ganfra.materialspinner.MaterialSpinner
+				android:id="@+id/spinner4"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				app:ms_arrowColor="#0000FF"
+				app:ms_arrowSize="16dp"
+				app:ms_floatingLabelColor="#00FF00"
+				app:ms_floatingLabelText="请假年度:"
+
+				app:ms_multiline="true" />
+
+
+		</TableRow>
+	</LinearLayout>
+
+
+
+
+
+
+
+	</TableLayout>
+

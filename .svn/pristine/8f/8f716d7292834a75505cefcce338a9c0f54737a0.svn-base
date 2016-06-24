@@ -1,0 +1,44 @@
+// Generated code from Butter Knife. Do not modify!
+package com.scme.order.ui;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+
+public class QingjiaDetailActivity$$ViewInjector {
+  public static void inject(Finder finder, final com.scme.order.ui.QingjiaDetailActivity target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558738, "field 'qingjianame'");
+    target.qingjianame = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558736, "field 'qingjiabranch'");
+    target.qingjiabranch = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558731, "field 'etStartTime'");
+    target.etStartTime = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558732, "field 'etEndTime'");
+    target.etEndTime = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558734, "field 'qingjialongtime'");
+    target.qingjialongtime = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558740, "field 'qingjialender'");
+    target.qingjialender = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558741, "field 'qingjialender1'");
+    target.qingjialender1 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558742, "field 'qingjialender2'");
+    target.qingjialender2 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558733, "field 'qingjiacontent'");
+    target.qingjiacontent = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558735, "field 'qingjiastate'");
+    target.qingjiastate = (android.widget.MaterialEditText) view;
+  }
+
+  public static void reset(com.scme.order.ui.QingjiaDetailActivity target) {
+    target.qingjianame = null;
+    target.qingjiabranch = null;
+    target.etStartTime = null;
+    target.etEndTime = null;
+    target.qingjialongtime = null;
+    target.qingjialender = null;
+    target.qingjialender1 = null;
+    target.qingjialender2 = null;
+    target.qingjiacontent = null;
+    target.qingjiastate = null;
+  }
+}

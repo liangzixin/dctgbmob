@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <TextView
+        android:id="@+id/qingjia_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:textColor="#ff33b5e5"
+        android:text="序号"/>
+
+    <TextView
+        android:id="@+id/qingjia_bmmz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:textColor="#ff33b5e5"
+        android:text="部门名称"/>
+    <TextView
+        android:id="@+id/qingjia_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        android:textColor="#ff33b5e5"
+        android:text="姓名"/>
+    <TextView
+        android:id="@+id/qingjia_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="180dp"
+        android:textColor="#ff33b5e5"
+
+        android:text="时　间"/>
+
+    <TextView
+        android:id="@+id/qingjia_Longtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="280dp"
+        android:textColor="#ff33b5e5"
+
+        android:text="天数"/>
+    <TextView
+        android:id="@+id/qingjia_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="325dp"
+        android:textColor="#ff33b5e5"
+
+        android:text="是"/>
+    <TextView
+        android:id="@+id/qingjia_qingjiaid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="325dp"
+        android:textColor="#ff33b5e5"
+        android:visibility="invisible"
+        android:text="是"/>
+
+
+</RelativeLayout>

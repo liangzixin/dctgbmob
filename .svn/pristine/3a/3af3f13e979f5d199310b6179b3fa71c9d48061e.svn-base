@@ -1,0 +1,140 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:material="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    tools:context=".DydhDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <MaterialEditText
+                android:id="@+id/Dydh_Name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+
+                android:hint="姓　　名:"
+                android:inputType="textNoSuggestions"
+                android:singleLine="true"
+                android:text="dydh_Name"
+                material:floatingLabel="true"
+                android:editable="false"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/normal_with_input_text_icon2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+
+            <MaterialEditText
+                android:id="@+id/Dydh_Branch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:hint="支部名称:"
+
+                android:inputType="textNoSuggestions"
+               android:text="dydh_Branch"
+                material:floatingLabel="true"
+                android:editable="false"
+                android:singleLine="true"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/normal_with_input_text_icon4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <MaterialEditText
+                android:id="@+id/Dydh_Sfzh"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:hint="身份证号:"
+                android:inputType="textNoSuggestions"
+
+                android:text="身份证号:"
+                material:floatingLabel="true"
+                android:editable="false"
+                android:singleLine="true"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/normal_with_input_text_icon3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+
+            <MaterialEditText
+                android:id="@+id/Dydh_Time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="入党时间:"
+                android:inputType="textNoSuggestions"
+
+                android:text="User_Post"
+                material:floatingLabel="true"
+                android:editable="false"
+                android:singleLine="true"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/normal_with_hint_text_icon0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/img_1"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_communication_phone"
+                    tools:ignore="ContentDescription"/>
+
+                <MaterialEditText
+                    android:id="@+id/Dydh_Mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="电话号码:"
+                    android:inputType="textNoSuggestions"
+                    android:singleLine="true"
+                    android:text="User_Tel"
+                    material:floatingLabel="true"
+                    android:editable="false"
+
+                    />
+                />
+                <!--material:withIcon="@+id/img_1"-->
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

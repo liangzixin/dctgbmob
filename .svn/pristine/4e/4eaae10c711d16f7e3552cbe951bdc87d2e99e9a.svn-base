@@ -1,0 +1,582 @@
+[
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\fansuqiong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\fansuqiong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\two.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\two.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\maxinrong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\maxinrong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\liminghua.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\liminghua.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\xiaotianmei.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\xiaotianmei.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\wangya.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\wangya.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\yuanhui.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\yuanhui.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\dingbaoyuan.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\dingbaoyuan.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\ludaiguai.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\ludaiguai.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\tongyunhui.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\tongyunhui.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\wumianneng.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\wumianneng.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\niuxueyang.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\niuxueyang.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\yangyan.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\yangyan.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\zhaotao.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\zhaotao.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\lixingfu.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\lixingfu.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\liutingyan.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\liutingyan.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\lupo.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\lupo.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\xuying.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\xuying.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\xuntianrong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\xuntianrong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\xukaichao.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\xukaichao.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\zhuling.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\zhuling.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\fenshucuowu.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\fenshucuowu.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\lizhengyan.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\lizhengyan.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\taishuisheng.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\taishuisheng.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\wuwenjiang.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\wuwenjiang.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\meiping.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\meiping.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\taojing.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\taojing.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\zhucaiyun.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\zhucaiyun.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\lizhengli.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\lizhengli.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\caixiaoming.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\caixiaoming.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\zhigonghaocuowu.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\zhigonghaocuowu.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\zhongyujian.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\zhongyujian.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\duanwuwei.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\duanwuwei.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\hujianchuan.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\hujianchuan.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\zhaolianchun.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\zhaolianchun.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\lixingju.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\lixingju.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\puqiongzhu.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\puqiongzhu.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\chenxuedong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\chenxuedong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\liyong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\liyong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\zhouyumin.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\zhouyumin.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\chenyongkun.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\chenyongkun.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\luofuxing.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\luofuxing.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\wangrongbin.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\wangrongbin.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\yinpeng.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\yinpeng.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\fankaiwen.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\fankaiwen.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\heying.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\heying.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\lishukun.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\lishukun.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\qiyunxia.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\qiyunxia.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\wangyong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\wangyong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\shaoshilin.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\shaoshilin.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\luchunhong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\luchunhong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\mimacuowu.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\mimacuowu.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\wangyun.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\wangyun.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\yangchunmei.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\yangchunmei.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\wangtianrong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\wangtianrong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\yangjing.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\yangjing.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\panxinggui.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\panxinggui.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\xiaoguangfen.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\xiaoguangfen.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\wanxuemei.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\wanxuemei.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\xiaoqin.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\xiaoqin.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\liuyufen.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\liuyufen.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\zhouhong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\zhouhong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\chenxuelian.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\chenxuelian.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\xiechen.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\xiechen.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\heying1.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\heying1.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\zhangjiafu.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\zhangjiafu.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\heliping.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\heliping.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\qinli.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\qinli.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\zhaoshengqiong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\zhaoshengqiong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\liuzhengzhong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\liuzhengzhong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\wanghong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\wanghong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\chenfen.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\chenfen.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\yujie.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\yujie.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\jiangxin.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\jiangxin.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\one.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\one.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\changhuaxun.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\changhuaxun.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\dongxingrong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\dongxingrong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\yanggaoping.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\yanggaoping.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\lishuncai.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\lishuncai.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\baofurong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\baofurong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\chendongmei.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\chendongmei.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\taorong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\taorong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\aijincheng.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\aijincheng.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\maliying.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\maliying.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\wangzhongqiong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\wangzhongqiong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\wenzhijian.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\wenzhijian.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\cuowu.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\cuowu.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\panyanbin.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\panyanbin.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\liuyuxian.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\liuyuxian.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\five.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\five.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\wanghuimin.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\wanghuimin.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\lijian.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\lijian.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\pengxingmei.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\pengxingmei.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\liushihua.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\liushihua.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\weirong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\weirong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\zhaoqiu.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\zhaoqiu.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\wengjiabin.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\wengjiabin.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\zouqiong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\zouqiong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\yangjiali.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\yangjiali.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\kongluwu.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\kongluwu.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\maying.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\maying.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\tianxinghong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\tianxinghong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\liumaide.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\liumaide.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\zhengyunkun.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\zhengyunkun.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\lilong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\lilong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\gumeibo.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\gumeibo.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\xiali.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\xiali.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\hehuidan.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\hehuidan.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\tongfengming.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\tongfengming.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\zhonghuiyin.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\zhonghuiyin.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\liangzixin.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\liangzixin.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\wangshunxiang.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\wangshunxiang.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\liuwenying.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\liuwenying.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\guoyunfa.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\guoyunfa.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\three.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\three.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\xuhongkuan.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\xuhongkuan.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\xiechaohua.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\xiechaohua.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\wangshuqiong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\wangshuqiong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\liangxiaoming.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\liangxiaoming.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\yanbin.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\yanbin.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\fuqionggui.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\fuqionggui.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\songhua.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\songhua.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\subenfang.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\subenfang.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\gtm_analytics",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-analytics\\8.4.0\\res\\raw\\gtm_analytics"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\wangjimin.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\wangjimin.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\wanganhua.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\wanganhua.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\moujian.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\moujian.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\lixingxiang.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\lixingxiang.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\wangyonggang.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\wangyonggang.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\sunshunxiang.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\sunshunxiang.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\lishouying.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\lishouying.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\fanzeli.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\fanzeli.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\sujianchun.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\sujianchun.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\puzhongyun.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\puzhongyun.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\wuwenhui.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\wuwenhui.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\chendongsheng.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\chendongsheng.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\yuyamin.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\yuyamin.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\maliping.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\maliping.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\chendonglan.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\chendonglan.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\xuqidong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\xuqidong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\zhangqiong.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\zhangqiong.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\duanfengshu.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\duanfengshu.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\zhaoshunsheng.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\zhaoshunsheng.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\gaojun.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\gaojun.wav"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\raw\\four.wav",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\raw\\four.wav"
+    }
+]

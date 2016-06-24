@@ -1,0 +1,221 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:material="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    tools:context=".UserAddlActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:id="@+id/normal_with_input_text_icon2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+
+            <fr.ganfra.materialspinner.MaterialSpinner
+                android:id="@+id/User_branch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:ms_arrowColor="#0000FF"
+                app:ms_arrowSize="16dp"
+                app:ms_floatingLabelColor="#00FF00"
+                app:ms_floatingLabelText="部门名称:"
+
+                app:ms_multiline="true" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <MaterialEditText
+                android:id="@+id/User_Name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:hint="用户名:"
+                android:inputType="textNoSuggestions"
+                android:singleLine="true"
+                android:text=""
+                material:floatingLabel="true"
+                android:editable="false"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/normal_with_hint_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <MaterialEditText
+                android:id="@+id/User_Sfzh"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+
+                android:hint="身份证号:"
+                android:inputType="number"
+                android:singleLine="true"
+                android:text=""
+                material:floatingLabel="true"
+
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/normal_with_hint_text_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+            <fr.ganfra.materialspinner.MaterialSpinner
+                android:id="@+id/User_Post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:ms_arrowColor="#0000FF"
+                app:ms_arrowSize="16dp"
+                app:ms_floatingLabelColor="#00FF00"
+                app:ms_floatingLabelText="职务:"
+
+                app:ms_multiline="true" />
+
+            <fr.ganfra.materialspinner.MaterialSpinner
+                android:id="@+id/User_Sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                app:ms_arrowColor="#0000FF"
+                app:ms_arrowSize="16dp"
+                app:ms_floatingLabelColor="#00FF00"
+                app:ms_floatingLabelText="性别:"
+
+                app:ms_multiline="true" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/normal_with_input_text_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <fr.ganfra.materialspinner.MaterialSpinner
+                android:id="@+id/User_Single"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:ms_arrowColor="#0000FF"
+                app:ms_arrowSize="16dp"
+                app:ms_floatingLabelColor="#00FF00"
+                app:ms_floatingLabelText="是否单身:"
+
+                app:ms_multiline="true" />
+
+            <fr.ganfra.materialspinner.MaterialSpinner
+                android:id="@+id/User_Preview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                app:ms_arrowColor="#0000FF"
+                app:ms_arrowSize="16dp"
+                app:ms_floatingLabelColor="#00FF00"
+                app:ms_floatingLabelText="权限:"
+
+                app:ms_multiline="true" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/normal_with_input_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <MaterialEditText
+                android:id="@+id/User_Email"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:hint="电子信箱:"
+                android:inputType="textNoSuggestions"
+                android:singleLine="true"
+                android:text=""
+                material:floatingLabel="true"
+                android:editable="false"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <MaterialEditText
+                android:id="@+id/User_Address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:hint="地  址:"
+                android:inputType="textNoSuggestions"
+                android:singleLine="true"
+                android:text=""
+                material:floatingLabel="true"
+                android:editable="false"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/normal_with_hint_text_icon0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/img_1"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_communication_phone"
+                    tools:ignore="ContentDescription"/>
+
+                <MaterialEditText
+                    android:id="@+id/User_Tel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="电话号码:"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:text=""
+                    material:floatingLabel="true"
+                    android:editable="false"
+                    />
+                   />
+                <!--material:withIcon="@+id/img_1"-->
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+
+
+
+</LinearLayout>
+
+</ScrollView>

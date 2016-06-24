@@ -1,0 +1,59 @@
+// Generated code from Butter Knife. Do not modify!
+package com.scme.order.ui;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+
+public class TxxxDetailSearchActivity$$ViewInjector {
+  public static void inject(Finder finder, final com.scme.order.ui.TxxxDetailSearchActivity target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558666, "field 'img1'");
+    target.img1 = (android.widget.ImageView) view;
+    view = finder.findRequiredView(source, 2131558768, "field 'img2'");
+    target.img2 = (android.widget.ImageView) view;
+    view = finder.findRequiredView(source, 2131558798, "field 'img3'");
+    target.img3 = (android.widget.ImageView) view;
+    view = finder.findRequiredView(source, 2131558789, "field 'bmmc'");
+    target.bmmc = (android.widget.TextView) view;
+    view = finder.findRequiredView(source, 2131558790, "field 'grbh'");
+    target.grbh = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558791, "field 'name'");
+    target.name = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558792, "field 'sfzh'");
+    target.sfzh = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558793, "field 'hkdz'");
+    target.hkdz = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558795, "field 'czdz'");
+    target.czdz = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558796, "field 'lxdh1'");
+    target.lxdh1 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558797, "field 'lxdh2'");
+    target.lxdh2 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558799, "field 'lxdh3'");
+    target.lxdh3 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558802, "field 'rz13sj'");
+    target.rz13sj = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558803, "field 'rz13zb'");
+    target.rz13zb = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558804, "field 'rz13dd'");
+    target.rz13dd = (android.widget.MaterialEditText) view;
+  }
+
+  public static void reset(com.scme.order.ui.TxxxDetailSearchActivity target) {
+    target.img1 = null;
+    target.img2 = null;
+    target.img3 = null;
+    target.bmmc = null;
+    target.grbh = null;
+    target.name = null;
+    target.sfzh = null;
+    target.hkdz = null;
+    target.czdz = null;
+    target.lxdh1 = null;
+    target.lxdh2 = null;
+    target.lxdh3 = null;
+    target.rz13sj = null;
+    target.rz13zb = null;
+    target.rz13dd = null;
+  }
+}

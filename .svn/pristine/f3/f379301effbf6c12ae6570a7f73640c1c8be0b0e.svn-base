@@ -1,0 +1,23 @@
+// Generated code from Butter Knife. Do not modify!
+package com.scme.order.ui;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+
+public class EatsAddActivity$$ViewInjector {
+  public static void inject(Finder finder, final com.scme.order.ui.EatsAddActivity target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558682, "field 'etStartTime'");
+    target.etStartTime = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558684, "field 'operator'");
+    target.operator = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558683, "field 'eatnumber'");
+    target.eatnumber = (fr.ganfra.materialspinner.MaterialSpinner) view;
+  }
+
+  public static void reset(com.scme.order.ui.EatsAddActivity target) {
+    target.etStartTime = null;
+    target.operator = null;
+    target.eatnumber = null;
+  }
+}

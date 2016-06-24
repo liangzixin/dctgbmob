@@ -1,0 +1,32 @@
+// Generated code from Butter Knife. Do not modify!
+package com.scme.order.ui;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+
+public class PlacardDetailActivity$$ViewInjector {
+  public static void inject(Finder finder, final com.scme.order.ui.PlacardDetailActivity target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558724, "field 'placardname'");
+    target.placardname = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558725, "field 'placarddate'");
+    target.placarddate = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558728, "field 'content'");
+    target.content = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558727, "field 'subject'");
+    target.subject = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558729, "field 'placardlxdh'");
+    target.placardlxdh = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558666, "field 'img1'");
+    target.img1 = (android.widget.ImageView) view;
+  }
+
+  public static void reset(com.scme.order.ui.PlacardDetailActivity target) {
+    target.placardname = null;
+    target.placarddate = null;
+    target.content = null;
+    target.subject = null;
+    target.placardlxdh = null;
+    target.img1 = null;
+  }
+}

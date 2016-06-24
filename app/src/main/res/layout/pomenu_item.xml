@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="false"
+    android:focusableInTouchMode="false"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_pop_item"
+        android:textColor="@color/popup_menu_text"
+        android:clickable="false"
+
+        android:gravity="center_vertical"
+        android:drawablePadding="20dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="5.0dip"
+        android:paddingBottom="15.0dip"
+
+        android:text="@string/about"
+        android:textSize="17.0sp"
+        android:focusable="false"
+        />
+
+</LinearLayout>

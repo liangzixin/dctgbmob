@@ -1,0 +1,98 @@
+// Generated code from Butter Knife. Do not modify!
+package com.scme.order.ui;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+
+public class YsryAddActivity$$ViewInjector {
+  public static void inject(Finder finder, final com.scme.order.ui.YsryAddActivity target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558666, "field 'img1'");
+    target.img1 = (android.widget.ImageView) view;
+    view = finder.findRequiredView(source, 2131558768, "field 'img2'");
+    target.img2 = (android.widget.ImageView) view;
+    view = finder.findRequiredView(source, 2131558798, "field 'img3'");
+    target.img3 = (android.widget.ImageView) view;
+    view = finder.findRequiredView(source, 2131558831, "field 'a3'");
+    target.a3 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558830, "field 'a2'");
+    target.a2 = (fr.ganfra.materialspinner.MaterialSpinner) view;
+    view = finder.findRequiredView(source, 2131558832, "field 'a4'");
+    target.a4 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558834, "field 'a5'");
+    target.a5 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558836, "field 'a6'");
+    target.a6 = (fr.ganfra.materialspinner.MaterialSpinner) view;
+    view = finder.findRequiredView(source, 2131558838, "field 'a7'");
+    target.a7 = (fr.ganfra.materialspinner.MaterialSpinner) view;
+    view = finder.findRequiredView(source, 2131558840, "field 'a8'");
+    target.a8 = (fr.ganfra.materialspinner.MaterialSpinner) view;
+    view = finder.findRequiredView(source, 2131558842, "field 'a9'");
+    target.a9 = (fr.ganfra.materialspinner.MaterialSpinner) view;
+    view = finder.findRequiredView(source, 2131558844, "field 'a10'");
+    target.a10 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558846, "field 'a11'");
+    target.a11 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558847, "field 'a12'");
+    target.a12 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558848, "field 'a13'");
+    target.a13 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558849, "field 'a14'");
+    target.a14 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558858, "field 'a15'");
+    target.a15 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558850, "field 'a160'");
+    target.a160 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558851, "field 'a161'");
+    target.a161 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558852, "field 'a162'");
+    target.a162 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558854, "field 'a18'");
+    target.a18 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558856, "field 'a19'");
+    target.a19 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558860, "field 'a20'");
+    target.a20 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558862, "field 'a21'");
+    target.a21 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558864, "field 'a22'");
+    target.a22 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558866, "field 'a23'");
+    target.a23 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558868, "field 'a24'");
+    target.a24 = (fr.ganfra.materialspinner.MaterialSpinner) view;
+    view = finder.findRequiredView(source, 2131558870, "field 'a30'");
+    target.a30 = (android.widget.MaterialEditText) view;
+  }
+
+  public static void reset(com.scme.order.ui.YsryAddActivity target) {
+    target.img1 = null;
+    target.img2 = null;
+    target.img3 = null;
+    target.a3 = null;
+    target.a2 = null;
+    target.a4 = null;
+    target.a5 = null;
+    target.a6 = null;
+    target.a7 = null;
+    target.a8 = null;
+    target.a9 = null;
+    target.a10 = null;
+    target.a11 = null;
+    target.a12 = null;
+    target.a13 = null;
+    target.a14 = null;
+    target.a15 = null;
+    target.a160 = null;
+    target.a161 = null;
+    target.a162 = null;
+    target.a18 = null;
+    target.a19 = null;
+    target.a20 = null;
+    target.a21 = null;
+    target.a22 = null;
+    target.a23 = null;
+    target.a24 = null;
+    target.a30 = null;
+  }
+}

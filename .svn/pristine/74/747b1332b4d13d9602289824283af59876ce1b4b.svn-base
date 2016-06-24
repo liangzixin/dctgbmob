@@ -1,0 +1,32 @@
+// Generated code from Butter Knife. Do not modify!
+package com.scme.order.ui;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+
+public class DydhDetailActivity$$ViewInjector {
+  public static void inject(Finder finder, final com.scme.order.ui.DydhDetailActivity target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558660, "field 'dydhname'");
+    target.dydhname = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558661, "field 'dydhbranch'");
+    target.dydhbranch = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558664, "field 'dydhtime'");
+    target.dydhtime = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558667, "field 'dydhmobile'");
+    target.dydhmobile = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558663, "field 'dydhsfzh'");
+    target.dydhsfzh = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558666, "field 'img1'");
+    target.img1 = (android.widget.ImageView) view;
+  }
+
+  public static void reset(com.scme.order.ui.DydhDetailActivity target) {
+    target.dydhname = null;
+    target.dydhbranch = null;
+    target.dydhtime = null;
+    target.dydhmobile = null;
+    target.dydhsfzh = null;
+    target.img1 = null;
+  }
+}

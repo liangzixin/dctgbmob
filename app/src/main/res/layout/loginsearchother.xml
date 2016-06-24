@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			 android:id="@+id/loginForm"
+			 android:layout_width="match_parent"
+			 android:layout_height="match_parent">
+	<TableLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="8dp"
+		android:gravity="left"
+		>
+
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+			<CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/checkBox1"
+                 />
+
+			<Spinner
+                android:id="@+id/spinner1"
+                android:spinnerMode="dropdown"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+
+                android:singleLine="true"
+                android:overlapAnchor="false"
+
+                style="@style/spinnerstyle"
+				 />
+		</TableRow>
+
+		<!-- 输入用户名的文本框 -->
+
+	</TableLayout>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="8dp"
+		android:gravity="left"
+
+		>
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:weightSum="1">
+	<CheckBox
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text=""
+		android:id="@+id/checkBox2"
+		/>
+		<Spinner
+			android:id="@+id/spinner2"
+			android:spinnerMode="dropdown"
+			android:layout_width="115dp"
+			android:layout_height="40dip"
+			android:animationCache="true"
+			android:drawSelectorOnTop="false"
+
+			android:singleLine="true"
+			android:overlapAnchor="false"
+
+			style="@style/spinnerstyle" />
+
+		<EditText
+			android:id="@+id/textview"
+			android:layout_height="fill_parent"
+			android:layout_width="fill_parent"
+			android:layout_marginLeft="10dip"
+			android:layout_marginRight="10dip"
+			android:scrollHorizontally="true"
+
+			android:capitalize="none"
+			android:gravity="fill_horizontal"
+
+			android:singleLine="true"
+			android:layout_weight="0.80" />
+
+
+	<!-- 输入用户名的文本框 -->
+</TableRow>
+	</LinearLayout>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="8dp"
+		android:orientation="horizontal"
+		android:layout_gravity="center"
+		android:gravity="center"
+		>
+
+
+
+		<CheckBox
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text=""
+			android:id="@+id/checkBox3"
+/>
+
+		<RadioGroup
+			android:layout_width="match_parent"
+			android:layout_height="100px"
+            android:id="@+id/radioGroup"
+			android:orientation="vertical"
+			android:paddingTop="15px">
+
+			<RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="60px"
+
+            android:text="已认证"
+            android:id="@+id/radioButton1" />
+
+			<RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="60px"
+				android:layout_marginLeft="220px"
+
+				android:text="未认证"
+            android:id="@+id/radioButton2"
+				android:layout_marginTop="-60px" />
+
+			<RadioButton
+    android:layout_width="wrap_content"
+    android:layout_height="60px"
+				android:layout_marginLeft="440px"
+
+    android:text="死亡"
+    android:id="@+id/radioButton3"
+
+				android:layout_marginTop="-60px" />
+
+		</RadioGroup>
+		</LinearLayout>
+
+
+
+
+
+</TableLayout>
+

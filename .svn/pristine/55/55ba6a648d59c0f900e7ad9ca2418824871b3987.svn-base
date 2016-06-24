@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFCECE"
+    tools:context=".FoodsDetailedActivity" >
+
+    <TextView 
+        android:id="@+id/tvFoodDetaName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:background="#ff6666"
+        android:text="菜名iyuiyui" />
+    <ImageView 
+        android:id="@+id/ivFoodsDetaPic"
+        android:layout_width="250dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="5dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/foods_image_loding"/>
+    <TextView 
+        android:id="@+id/tvEatTotalId"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="280dp"
+        android:textSize="15dp"
+        android:textColor="#ff6666"
+        android:text="类别" />
+    <TextView 
+        android:id="@+id/tvEatTotalName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="280dp"
+        android:textSize="15dp"
+        android:textColor="#ff6666"
+        android:text="价格" />
+    <TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="240dp"
+        android:layout_marginLeft="160dp"
+        android:textSize="18dp"
+        android:textColor="#ff6666"
+        android:text="菜品简介" />
+    <TextView 
+        android:id="@+id/tvEatTotalNumber"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="270dp"
+        android:textSize="15dp"
+        android:textColor="#ff6666"
+        android:text="          菜品简介" />
+
+</RelativeLayout>

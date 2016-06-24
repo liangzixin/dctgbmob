@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/table_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffcccc"
+    android:orientation="vertical" >
+
+    <TextView 
+        android:id="@+id/tvTableId"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="30dp"
+        android:textColor="#ff6666"
+        android:text="1" />
+    <TextView
+        android:id="@+id/tvTableName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="70dp"
+        android:textSize="20dp"
+        android:textColor="#ff33b5e5"
+        android:text="餐桌名称" />
+
+    <TextView
+        android:id="@+id/tvPersonNum"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="40dp"
+        android:text="人数"
+        android:textColor="#ff33b5e5"
+        android:textSize="15dp" />
+
+    <TextView 
+        android:id="@+id/tvTableStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="200dp"
+        android:textSize="20dp"
+        android:textColor="#ff33b5e5"
+        android:text="状态"/>
+    <TextView 
+        android:id="@+id/tvTableDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="200dp"
+        android:textSize="15dp"
+        android:textColor="#ff33b5e5"
+        android:text="备注"/>
+
+</RelativeLayout>

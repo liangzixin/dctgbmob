@@ -1,0 +1,41 @@
+// Generated code from Butter Knife. Do not modify!
+package com.scme.order.ui;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+
+public class Activityxgmm$$ViewInjector {
+  public static void inject(Finder finder, final com.scme.order.ui.Activityxgmm target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558822, "field 'password2'");
+    target.password2 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558824, "field 'password4'");
+    target.password4 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558826, "field 'password6'");
+    target.password6 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558827, "method 'activitybtnjt'");
+    view.setOnClickListener(
+      new android.view.View.OnClickListener() {
+        @Override public void onClick(
+          android.view.View p0
+        ) {
+          target.activitybtnjt();
+        }
+      });
+    view = finder.findRequiredView(source, 2131558828, "method 'activitybtncan'");
+    view.setOnClickListener(
+      new android.view.View.OnClickListener() {
+        @Override public void onClick(
+          android.view.View p0
+        ) {
+          target.activitybtncan();
+        }
+      });
+  }
+
+  public static void reset(com.scme.order.ui.Activityxgmm target) {
+    target.password2 = null;
+    target.password4 = null;
+    target.password6 = null;
+  }
+}

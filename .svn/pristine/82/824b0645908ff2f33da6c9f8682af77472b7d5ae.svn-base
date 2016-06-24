@@ -1,0 +1,47 @@
+// Generated code from Butter Knife. Do not modify!
+package com.scme.order.ui;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+
+public class ChuchaiDetailActivity$$ViewInjector {
+  public static void inject(Finder finder, final com.scme.order.ui.ChuchaiDetailActivity target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558594, "field 'etStartTime'");
+    target.etStartTime = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558596, "field 'etEndTime'");
+    target.etEndTime = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558603, "field 'chuchailongtime'");
+    target.chuchailongtime = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558616, "field 'chuchaileader0'");
+    target.chuchaileader0 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558611, "field 'chuchaileader'");
+    target.chuchaileader = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558613, "field 'chuchaileader1'");
+    target.chuchaileader1 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558614, "field 'chuchaileader2'");
+    target.chuchaileader2 = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558601, "field 'chuchaicontent'");
+    target.chuchaicontent = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558609, "field 'chuchaistate'");
+    target.chuchaistate = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558598, "field 'chuchaid'");
+    target.chuchaid = (fr.ganfra.materialspinner.MaterialSpinner) view;
+    view = finder.findRequiredView(source, 2131558599, "field 'chuchaidriver'");
+    target.chuchaidriver = (fr.ganfra.materialspinner.MaterialSpinner) view;
+  }
+
+  public static void reset(com.scme.order.ui.ChuchaiDetailActivity target) {
+    target.etStartTime = null;
+    target.etEndTime = null;
+    target.chuchailongtime = null;
+    target.chuchaileader0 = null;
+    target.chuchaileader = null;
+    target.chuchaileader1 = null;
+    target.chuchaileader2 = null;
+    target.chuchaicontent = null;
+    target.chuchaistate = null;
+    target.chuchaid = null;
+    target.chuchaidriver = null;
+  }
+}

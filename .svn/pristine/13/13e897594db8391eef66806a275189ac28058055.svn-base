@@ -1,0 +1,29 @@
+// Generated code from Butter Knife. Do not modify!
+package com.scme.order.ui;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+
+public class QingjiaAddlActivity$$ViewInjector {
+  public static void inject(Finder finder, final com.scme.order.ui.QingjiaAddlActivity target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558731, "field 'etStartTime'");
+    target.etStartTime = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558732, "field 'etEndTime'");
+    target.etEndTime = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558734, "field 'qingjialongtime'");
+    target.qingjialongtime = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558733, "field 'qingjiacontent'");
+    target.qingjiacontent = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558598, "field 'qingjiatype'");
+    target.qingjiatype = (fr.ganfra.materialspinner.MaterialSpinner) view;
+  }
+
+  public static void reset(com.scme.order.ui.QingjiaAddlActivity target) {
+    target.etStartTime = null;
+    target.etEndTime = null;
+    target.qingjialongtime = null;
+    target.qingjiacontent = null;
+    target.qingjiatype = null;
+  }
+}

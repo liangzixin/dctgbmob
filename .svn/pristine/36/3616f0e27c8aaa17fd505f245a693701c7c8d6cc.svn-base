@@ -1,0 +1,372 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:material="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    tools:context=".TxxxDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="部门名称"/>
+
+            <EditText
+                android:id="@+id/bmmc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="Hint text"
+                android:inputType="textNoSuggestions"
+                android:singleLine="true"
+                android:enabled="false"
+                android:text="Input text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/normal_with_hint_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="个人编号"/>
+
+            <MaterialEditText
+                android:id="@+id/grbh"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5.05"
+                android:hint="Hint text"
+                android:enabled="false"
+                android:inputType="textNoSuggestions"
+                android:singleLine="true"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/normal_with_input_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="0.30"
+                android:text="姓名"/>
+
+            <MaterialEditText
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3.75"
+                android:hint="Single Line Input Label"
+                android:inputType="textNoSuggestions"
+                android:singleLine="true"
+                android:text="Input text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="身份证号"/>
+
+            <MaterialEditText
+                android:id="@+id/sfzh"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="Hint text"
+                android:inputType="textNoSuggestions"
+                android:singleLine="true"
+                android:text="Input text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/disabled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="78dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="户口地址"/>
+
+            <MaterialEditText
+                android:id="@+id/hkdz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="Hint text"
+                android:inputType="textNoSuggestions|textMultiLine"
+                android:singleLine="true"
+                android:text="Input text"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/disabled1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="78dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="居住地址"
+                />
+
+            <MaterialEditText
+                android:id="@+id/czdz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+
+                android:hint="Hint text"
+                android:inputType="textNoSuggestions|textMultiLine"
+                android:singleLine="true"
+                android:text="Input text"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/normal_with_hint_text_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="手机号码1"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/img_1"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_communication_phone"
+                    tools:ignore="ContentDescription"/>
+
+                <MaterialEditText
+                    android:id="@+id/lxdh1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone"
+                    android:inputType="textNoSuggestions"
+                    android:singleLine="true"
+                    material:withIcon="@+id/img_1"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/normal_with_input_text_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="手机号码2"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/img_2"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_communication_phone"
+                    tools:ignore="ContentDescription"/>
+
+                <MaterialEditText
+                    android:id="@+id/lxdh2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone"
+                    android:inputType="textNoSuggestions"
+                    android:singleLine="true"
+                    android:text="650-555-1234"
+                    material:withIcon="@+id/img_2"
+                    material:maxCharacters="11"
+
+                    />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/normal_with_input_text_icon1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="固定电话"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/img_3"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_communication_phone"
+                    tools:ignore="ContentDescription"/>
+
+                <MaterialEditText
+                    android:id="@+id/lxdh3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone"
+                    android:inputType="textNoSuggestions"
+                    android:singleLine="true"
+                    android:text="650-555-1234"
+                    material:withIcon="@+id/img_3"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/normal_with_input_text_label_multi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="78dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="认证方式"/>
+
+            <Spinner
+                android:id="@+id/rzjk"
+
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_weight="0.45"
+                android:animationCache="true"
+                android:drawSelectorOnTop="true"
+
+              />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/normal_with_input_text_label_multi1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="78dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="认证时间"/>
+
+            <MaterialEditText
+                android:id="@+id/rzsj"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+
+                android:inputType="textNoSuggestions"
+                android:enabled="false"
+                material:maxCharacters="50"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/character_counter_exceeding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="经办人"/>
+
+            <MaterialEditText
+                android:id="@+id/rzzb"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+
+                android:inputType="textNoSuggestions"
+                android:enabled="false"
+                material:maxCharacters="50"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/character_counter_multi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="认证地点"/>
+
+            <MaterialEditText
+                android:id="@+id/rzdd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:enabled="false"
+                android:inputType="textNoSuggestions|textMultiLine"
+
+                material:maxCharacters="120"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.scme.order"
+    android:versionCode="1"
+    android:versionName="1.7" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="23" />
+
+    <!-- Include required permissions for Google Mobile Ads to run -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+ <!-- Permissions required for GCM -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+ <!-- Optional permission for App measurement to run. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:name="com.scme.order.util.MyAppVariable"
+        android:allowBackup="true"
+        android:icon="@drawable/icon_laucher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme.Light.DarkActionBar" >
+        <activity
+            android:name="com.scme.order.ui.LoginActivity"
+            android:theme="@style/AppLoginTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.scme.order.ui.MainActivity"
+            android:label="@string/title_activity_about" />
+        <activity
+            android:name="com.scme.order.ui.ItemActivity"
+            android:label="@string/title_mainmenuactivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.scme.order.ui.ListViewTestActivity"
+            android:label="@string/title_mainmenuactivity" >
+        </activity>
+        <activity
+            android:name="com.scme.order.ui.MainMenuActivity"
+            android:label="@string/title_mainmenuactivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar" />
+        <activity
+            android:name="com.scme.order.ui.EatListActivity"
+            android:label="@string/title_eatlistactivity"
+            android:parentActivityName="com.scme.order.ui.MainMenuActivity" />
+        <activity
+            android:name="com.scme.order.ui.EatsAddActivity"
+            android:label="@string/title_eataddactivity"
+            android:parentActivityName="com.scme.order.ui.EatListActivity" />
+        <activity
+            android:name="com.scme.order.ui.EatDeleteDetailActivity"
+            android:label="@string/title_eatdeletedetail"
+            android:parentActivityName="com.scme.order.ui.EatListActivity" />
+        <activity
+            android:name="com.scme.order.ui.QingjiaListActivity"
+            android:label="请假列表"
+            android:parentActivityName="com.scme.order.ui.MainMenuActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="com.scme.order.ui.QingjiaAddlActivity"
+            android:label="添加请假"
+            android:parentActivityName="com.scme.order.ui.QingjiaListActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="com.scme.order.ui.QingjiaDetailActivity"
+            android:label="@string/qingjia_detail"
+            android:parentActivityName="com.scme.order.ui.QingjiaListActivity" />
+        <activity
+            android:name="com.scme.order.ui.ChuchaiListActivity"
+            android:label="派车记录"
+            android:parentActivityName="com.scme.order.ui.MainMenuActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="com.scme.order.ui.ChuchaiDetailActivity"
+            android:label="@string/chuchai_detail"
+            android:parentActivityName="com.scme.order.ui.QingjiaListActivity" />
+        <activity
+            android:name="com.scme.order.ui.ChuchaiAddlActivity"
+            android:label="@string/chuchai_add"
+            android:parentActivityName="com.scme.order.ui.QingjiaListActivity" />
+        <activity
+            android:name="com.scme.order.ui.UserListActivity"
+            android:label="职工列表"
+            android:parentActivityName="com.scme.order.ui.MainMenuActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="com.scme.order.ui.UserDetailActivity"
+            android:label="职工信息"
+            android:parentActivityName="com.scme.order.ui.UserListActivity" />
+        <activity
+            android:name="com.scme.order.ui.UserAddlActivity"
+            android:label="添加职工"
+            android:parentActivityName="com.scme.order.ui.UserListActivity" />
+        <activity
+            android:name="com.scme.order.ui.DydhDetailActivity"
+            android:label="党员信息"
+            android:parentActivityName="com.scme.order.ui.MainMenuActivity" />
+        <activity
+            android:name="com.scme.order.ui.PlacardListActivity"
+            android:label="短信记录"
+            android:parentActivityName="com.scme.order.ui.MainMenuActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="com.scme.order.ui.PlacardDetailActivity"
+            android:label="短信信息"
+            android:parentActivityName="com.scme.order.ui.MainMenuActivity" />
+        <activity
+            android:name="com.scme.order.ui.EatTotalPersionActivity"
+            android:label="@string/title_eattotalpersionactivity"
+            android:parentActivityName="com.scme.order.ui.MainMenuActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="com.scme.order.ui.EatAllActivity"
+            android:label="@string/title_eatall"
+            android:parentActivityName="com.scme.order.ui.MainMenuActivity" />
+        <activity
+            android:name="com.scme.order.ui.EatTotalDetailActivity"
+            android:label="@string/title_eattotaldetailactivity"
+            android:parentActivityName="com.scme.order.ui.EatTotalPersionActivity" />
+        <activity
+            android:name="com.scme.order.ui.EatTotalActivity"
+            android:label="@string/title_eattotalActivity"
+            android:parentActivityName="com.scme.order.ui.MainMenuActivity" />
+        <activity
+            android:name="com.scme.order.ui.DeveloperModeActivity"
+            android:label="@string/title_activity_developer_mode"
+            android:parentActivityName="com.scme.order.ui.MainActivity" />
+        <activity
+            android:name="com.scme.order.ui.LicensesActivity"
+            android:label="@string/title_activity_licenses"
+            android:parentActivityName="com.scme.order.ui.MainActivity" />
+        <activity
+            android:name="com.scme.order.ui.TxxxListFyActivity"
+            android:label="@string/title_activity_txxx"
+            android:parentActivityName="com.scme.order.ui.MainMenuActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="com.scme.order.ui.TxxxDetailActivity"
+            android:label="@string/title_activity_txxxdetail"
+            android:parentActivityName="com.scme.order.ui.TxxxListFyActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="com.scme.order.ui.YsryListActivity"
+            android:label="@string/title_activity_ysry"
+            android:parentActivityName="com.scme.order.ui.MainMenuActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="com.scme.order.ui.YsryDetailActivity"
+            android:label="@string/title_activity_ysrydetail"
+            android:parentActivityName="com.scme.order.ui.YsryListActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="com.scme.order.ui.YsryAddActivity"
+            android:label="@string/title_activity_ysryadd"
+            android:parentActivityName="com.scme.order.ui.YsryListActivity" />
+
+        <meta-data
+            android:name="android.app.default_searchable"
+            android:value=".TxxxListFyActivity" />
+
+        <!-- <activity -->
+        <!-- android:name=".DialogPageActivity" -->
+        <!-- android:label="@string/title_activity_dialog_page"/> -->
+        <activity
+            android:name="com.scme.order.ui.AboutActivity"
+            android:label="@string/pbsm"
+            android:parentActivityName="com.scme.order.ui.MainMenuActivity" >
+        </activity>
+        <activity
+            android:name="com.scme.order.ui.Activityxgmm"
+            android:label="@string/xgmm"
+            android:parentActivityName="com.scme.order.ui.MainMenuActivity" >
+        </activity>
+        <activity
+            android:name="com.scme.order.ui.Activityfwzc"
+            android:label="@string/jszc"
+            android:parentActivityName="com.scme.order.ui.MainMenuActivity" >
+        </activity>
+        <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent" />
+        <activity
+            android:name="com.google.android.gms.ads.purchase.InAppPurchaseActivity"
+            android:theme="@style/Theme.IAPTheme" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name="com.google.android.gms.appinvite.PreviewActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppInvite.Preview" >
+            <intent-filter>
+                <action android:name="com.google.android.gms.appinvite.ACTION_PREVIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!--
+Service handling Google Sign-In user revocation. For apps that do not integrate with
+            Google Sign-In, this service will never be started.
+        -->
+        <service
+            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+            android:exported="true"
+            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" />
+
+        <provider
+            android:name="com.google.android.gms.measurement.AppMeasurementContentProvider"
+            android:authorities="com.scme.order.google_measurement_service"
+            android:exported="false" />
+
+        <receiver
+            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="com.google.android.gms.measurement.UPLOAD" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.google.android.gms.measurement.AppMeasurementService"
+            android:enabled="true"
+            android:exported="false" />
+    </application>
+
+</manifest>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <ImageView 
+        android:id="@+id/imgv_tables"
+        android:layout_width="150px"
+        android:layout_height="150px"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/tables_kongxian"/>
+    <TextView 
+        android:id="@+id/tv_tablesName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="37dp"
+        android:textColor="#ff00ddff"
+        android:text="101"/>
+    <TextView 
+        android:id="@+id/tv_tablesId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:visibility="gone"
+        android:text="餐桌Id"/>
+</LinearLayout>

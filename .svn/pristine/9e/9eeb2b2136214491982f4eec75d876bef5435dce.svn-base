@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/loginForm"
+              android:weightSum="1">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+<TableRow
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New"
+            android:id="@+id/checkBox1"/>
+
+        <Spinner
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner1"
+
+            android:layout_gravity="center_horizontal"/>
+</TableRow>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:weightSum="1">
+        <TableRow
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New"
+            android:id="@+id/checkBox2"/>
+
+        <Spinner
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner2"/>
+
+            <EditText
+                android:id="@+id/textview"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:textSize="20dp"
+                android:textColor="#ff00ddff"
+                android:text="NewNew"
+                />
+        </TableRow>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal">
+        <TableRow
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="认证"
+            android:id="@+id/checkBox3"/>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/radioGroup"
+            >
+
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已认证"
+            android:id="@+id/radioButton1"
+            android:layout_gravity="right"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="未认证"
+                android:id="@+id/radioButton2"
+                android:layout_gravity="right"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="死亡"
+                android:id="@+id/radioButton3"
+                android:layout_gravity="right"/>
+
+        </RadioGroup>
+
+        </TableRow>
+    </LinearLayout>
+</LinearLayout>

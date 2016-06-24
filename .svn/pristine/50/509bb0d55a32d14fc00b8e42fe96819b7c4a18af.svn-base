@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/header"
+    >
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="30dp"
+        android:id="@+id/imageView2"
+        android:src="@drawable/icon_laucher"
+        android:layout_marginLeft="2dip"
+
+        />
+
+    <Button
+        android:id="@+id/btn_title1"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="@drawable/mm_title_btn_right"
+        android:focusable="true"
+        android:gravity="center"
+        android:minWidth="58.0dip"
+        android:text="@string/main_sy"
+        android:textColor="@color/btn_text_title" />
+
+    <Button
+        android:id="@+id/btn_title2"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="@drawable/mm_title_btn_right"
+        android:focusable="true"
+        android:gravity="center"
+        android:minWidth="70.0dip"
+        android:text="@string/main_zhk"
+        android:textColor="@color/btn_text_title" />
+    <Button
+        android:id="@+id/btn_title3"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="@drawable/mm_title_btn_right"
+        android:focusable="true"
+        android:gravity="center"
+        android:minWidth="30.0dip"
+        android:text="@string/main_sbk"
+        android:textColor="@color/btn_text_title" />
+
+    <Button
+        android:id="@+id/btn_title4"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="@drawable/mm_title_btn_right"
+        android:focusable="true"
+        android:gravity="center"
+        android:minWidth="70.0dip"
+        android:text="@string/main_fwk"
+        android:textColor="@color/btn_text_title" />
+    <Button
+        android:id="@+id/btn_title5"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="@drawable/mm_title_btn_right"
+        android:focusable="true"
+        android:gravity="center"
+        android:minWidth="58.0dip"
+        android:text="@string/main_qt"
+        android:textColor="@color/btn_text_title" />
+
+</LinearLayout>

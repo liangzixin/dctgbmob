@@ -1,0 +1,20 @@
+// Generated code from Butter Knife. Do not modify!
+package com.scme.order.ui;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+
+public class QingjiaListActivity$$ViewInjector {
+  public static void inject(Finder finder, final com.scme.order.ui.QingjiaListActivity target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558619, "field 'tolpage'");
+    target.tolpage = (android.widget.TextView) view;
+    view = finder.findRequiredView(source, 2131558620, "field 'nowpage'");
+    target.nowpage = (android.widget.TextView) view;
+  }
+
+  public static void reset(com.scme.order.ui.QingjiaListActivity target) {
+    target.tolpage = null;
+    target.nowpage = null;
+  }
+}

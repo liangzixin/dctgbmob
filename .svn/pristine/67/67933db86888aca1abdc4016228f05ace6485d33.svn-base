@@ -1,0 +1,35 @@
+// Generated code from Butter Knife. Do not modify!
+package com.scme.order.ui;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+
+public class EatDeleteDetailActivity$$ViewInjector {
+  public static void inject(Finder finder, final com.scme.order.ui.EatDeleteDetailActivity target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558674, "field 'tvEatTotalName'");
+    target.tvEatTotalName = (android.widget.TextView) view;
+    view = finder.findRequiredView(source, 2131558676, "field 'tvEatTotalYmonth'");
+    target.tvEatTotalYmonth = (android.widget.TextView) view;
+    view = finder.findRequiredView(source, 2131558675, "field 'tvEatTotalNumber'");
+    target.tvEatTotalNumber = (android.widget.TextView) view;
+    view = finder.findRequiredView(source, 2131558677, "field 'tvEatTotalPrice'");
+    target.tvEatTotalPrice = (android.widget.TextView) view;
+    view = finder.findRequiredView(source, 2131558678, "field 'tvEatTotalUnclear'");
+    target.tvEatTotalUnclear = (android.widget.TextView) view;
+    view = finder.findRequiredView(source, 2131558679, "field 'tvdjr'");
+    target.tvdjr = (android.widget.TextView) view;
+    view = finder.findRequiredView(source, 2131558680, "field 'ivEatTotalPic'");
+    target.ivEatTotalPic = (android.widget.ImageView) view;
+  }
+
+  public static void reset(com.scme.order.ui.EatDeleteDetailActivity target) {
+    target.tvEatTotalName = null;
+    target.tvEatTotalYmonth = null;
+    target.tvEatTotalNumber = null;
+    target.tvEatTotalPrice = null;
+    target.tvEatTotalUnclear = null;
+    target.tvdjr = null;
+    target.ivEatTotalPic = null;
+  }
+}

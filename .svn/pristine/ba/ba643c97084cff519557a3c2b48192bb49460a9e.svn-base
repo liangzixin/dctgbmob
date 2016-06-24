@@ -1,0 +1,622 @@
+[
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_user_list.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_user_list.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_eatdelete_detailed.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_eatdelete_detailed.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\qingjia_fooder.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\qingjia_fooder.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_item_powered_by_google.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_item_powered_by_google.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_layout.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\mr_media_route_list_item.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\23.0.0\\res\\layout\\mr_media_route_list_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media_narrow.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_chuchai_list.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_chuchai_list.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\header2.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\header2.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_eattotalpersion_list.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_eattotalpersion_list.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\main_dialog.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\main_dialog.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\orders_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\orders_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_dydh_detailed.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_dydh_detailed.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_material.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\layout.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\layout.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_login1.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_login1.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_category.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_category.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\card_headline_body1_material.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\card_headline_body1_material.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_button_bar_material.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_placard_list.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_placard_list.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_eattotal_list.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_eattotal_list.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_tables_list.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_tables_list.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\view7_padding.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\view7_padding.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_txxx_list.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_txxx_list.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_table_detailed.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_table_detailed.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\notification_template_media.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\divider_horizontal.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\divider_horizontal.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\loginsearchother2.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\loginsearchother2.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_select_dialog_material.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main2.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_main2.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_orders_list.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_orders_list.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\header.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\header.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\view6.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\view6.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\tables_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\tables_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\recycler_view.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\recycler_view.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_fwzc.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_fwzc.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\simple_spinner_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\simple_spinner_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_close_item_material.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\qingjialist_item1.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\qingjialist_item1.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_multichoice_material.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\divider_horizontal_inverse.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\divider_horizontal_inverse.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_txxx_detailed.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_txxx_detailed.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_user_detailed.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_user_detailed.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_mainlzx_list.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_mainlzx_list.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_item_prediction.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_item_prediction.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\foods_orders_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\foods_orders_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\foods_selet_type_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\foods_selet_type_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_view_list_nav_layout.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\qingjialist_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\qingjialist_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_chuchai_detailadd.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_chuchai_detailadd.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_eat_all.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_eat_all.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\tile_list_divider_material_inverse.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\tile_list_divider_material_inverse.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\tile_list_divider_material.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\tile_list_divider_material.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\loginsearchqingjia.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\loginsearchqingjia.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\date_time_dialog.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\date_time_dialog.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\loginsearchuser.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\loginsearchuser.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\loginsearchsend.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\loginsearchsend.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_radio.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\view5.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\view5.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\eats_dk_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\eats_dk_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\notification_template_big_media.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_select_orders_foods_list.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_select_orders_foods_list.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ysrydetail.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_ysrydetail.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\foods_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\foods_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_content_include.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_screen_content_include.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\list_itemfy.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\list_itemfy.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\loginsearchother.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\loginsearchother.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\main.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\main.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\support_simple_spinner_dropdown_item.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\support_simple_spinner_dropdown_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\users_birthday_list7.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\users_birthday_list7.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\placardlist_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\placardlist_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\eatstotal_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\eatstotal_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_item_layout.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\users_birthday_list.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\users_birthday_list.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\view4.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\view4.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_chuchai_detailrepare.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_chuchai_detailrepare.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\percent_sc_sw.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\percent_sc_sw.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_eats_detailadd.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_eats_detailadd.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_progress.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_progress.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_qingjia_list.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_qingjia_list.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\eatstotalpersion_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\eatstotalpersion_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_lines.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\notification_template_lines.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\loginsearchchuchai.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\loginsearchchuchai.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_foods_detailed.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_foods_detailed.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\eats_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\eats_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_txxx_detailsearch.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_txxx_detailsearch.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\item_category.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\item_category.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ysryadd.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_ysryadd.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_list_view_test.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_list_view_test.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\xlistview_header.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\xlistview_header.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_eat_list.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_eat_list.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\popmenu.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\popmenu.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_eattotal_detailed.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_eattotal_detailed.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_screen_simple.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_bar.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_item_material.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\select_dialog_item_material.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\popmenu2.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\popmenu2.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\view2.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\view2.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\view3.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\view3.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_developer_mode.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_developer_mode.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\pomenu_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\pomenu_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\mr_media_route_chooser_dialog.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\23.0.0\\res\\layout\\mr_media_route_chooser_dialog.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\xlistview_footer.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\xlistview_footer.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\mr_media_route_controller_material_dialog_b.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\23.0.0\\res\\layout\\mr_media_route_controller_material_dialog_b.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\detailed_tables_foods_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\detailed_tables_foods_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_expanded_menu_layout.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\txxxlist_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\txxxlist_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_up_container.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\view1.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\view1.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\dialogpage.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\dialogpage.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_search_view.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_layout.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\userlist_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\userlist_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_dropdown_item_icons_2line.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\mainfy.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\mainfy.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_developer_mode_inverse.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_developer_mode_inverse.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\mainlzx_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\mainlzx_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_cancel_action.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_singlechoice_material.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_bmmz_user.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_bmmz_user.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_icon.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_xgmm.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_xgmm.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_about.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_about.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_action.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\notification_media_action.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\apptheme_tab_indicator_holo.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\apptheme_tab_indicator_holo.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_fragment.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_fragment.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_settl_count.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_settl_count.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ysry_list.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_ysry_list.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_dialog_title_material.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\chuchailist_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\chuchailist_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\item_music_list.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\item_music_list.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_user_add.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_user_add.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_xgmm_list.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_xgmm_list.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_txxxdetail.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_txxxdetail.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_checkbox.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_item_layout.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_placard_detailed.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_placard_detailed.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_qingjia_detailrepare.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_qingjia_detailrepare.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\dydh_birthday_list.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\dydh_birthday_list.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_all_tables.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_all_tables.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_login.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\list_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\list_item.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_into_tables.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_into_tables.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_foods_list.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_foods_list.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_toolbar.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_qingjia_detailadd.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\activity_qingjia_detailadd.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
+        "source": "D:\\dctgbmob\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.0\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "D:\\dctgbmob\\app\\build\\intermediates\\res\\merged\\debug\\layout\\ysrylist_item.xml",
+        "source": "D:\\dctgbmob\\app\\src\\main\\res\\layout\\ysrylist_item.xml"
+    }
+]

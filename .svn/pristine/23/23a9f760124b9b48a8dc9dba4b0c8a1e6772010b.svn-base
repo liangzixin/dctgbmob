@@ -1,0 +1,16 @@
+int attr backgroundColor 0x7f010002
+int attr errorColor 0x7f010000
+int attr floatingLabel 0x7f010003
+int attr maxCharacters 0x7f010001
+int attr withIcon 0x7f010004
+int color material_red 0x7f020000
+int color material_red_500 0x7f020001
+int[] styleable fullwidthEditText { 0x7f010000, 0x7f010001 }
+int styleable fullwidthEditText_errorColor 0
+int styleable fullwidthEditText_maxCharacters 1
+int[] styleable materialEditText { 0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003, 0x7f010004 }
+int styleable materialEditText_backgroundColor 2
+int styleable materialEditText_errorColor 0
+int styleable materialEditText_floatingLabel 3
+int styleable materialEditText_maxCharacters 1
+int styleable materialEditText_withIcon 4

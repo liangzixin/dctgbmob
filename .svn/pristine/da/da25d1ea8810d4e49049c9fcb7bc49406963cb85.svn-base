@@ -1,0 +1,47 @@
+// Generated code from Butter Knife. Do not modify!
+package com.scme.order.ui;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+
+public class UserAddlActivity$$ViewInjector {
+  public static void inject(Finder finder, final com.scme.order.ui.UserAddlActivity target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558806, "field 'username'");
+    target.username = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558812, "field 'useremail'");
+    target.useremail = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558813, "field 'useradress'");
+    target.useradress = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558814, "field 'usertel'");
+    target.usertel = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558811, "field 'userpreview'");
+    target.userpreview = (fr.ganfra.materialspinner.MaterialSpinner) view;
+    view = finder.findRequiredView(source, 2131558805, "field 'userbranch'");
+    target.userbranch = (fr.ganfra.materialspinner.MaterialSpinner) view;
+    view = finder.findRequiredView(source, 2131558808, "field 'userpost'");
+    target.userpost = (fr.ganfra.materialspinner.MaterialSpinner) view;
+    view = finder.findRequiredView(source, 2131558809, "field 'usersex'");
+    target.usersex = (fr.ganfra.materialspinner.MaterialSpinner) view;
+    view = finder.findRequiredView(source, 2131558810, "field 'usersingle'");
+    target.usersingle = (fr.ganfra.materialspinner.MaterialSpinner) view;
+    view = finder.findRequiredView(source, 2131558807, "field 'usersfzh'");
+    target.usersfzh = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558666, "field 'img1'");
+    target.img1 = (android.widget.ImageView) view;
+  }
+
+  public static void reset(com.scme.order.ui.UserAddlActivity target) {
+    target.username = null;
+    target.useremail = null;
+    target.useradress = null;
+    target.usertel = null;
+    target.userpreview = null;
+    target.userbranch = null;
+    target.userpost = null;
+    target.usersex = null;
+    target.usersingle = null;
+    target.usersfzh = null;
+    target.img1 = null;
+  }
+}

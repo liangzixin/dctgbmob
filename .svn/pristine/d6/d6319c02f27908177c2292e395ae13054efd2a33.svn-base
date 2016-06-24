@@ -1,0 +1,23 @@
+// Generated code from Butter Knife. Do not modify!
+package com.scme.order.card;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+
+public class HeadlineBodyCard$ViewHolder$$ViewInjector {
+  public static void inject(Finder finder, final com.scme.order.card.HeadlineBodyCard.ViewHolder target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558871, "field 'tvHeadline'");
+    target.tvHeadline = (android.widget.TextView) view;
+    view = finder.findRequiredView(source, 2131558873, "field 'tvBody1'");
+    target.tvBody1 = (android.widget.TextView) view;
+    view = finder.findRequiredView(source, 2131558872, "field 'spaceHeadlineBody1'");
+    target.spaceHeadlineBody1 = view;
+  }
+
+  public static void reset(com.scme.order.card.HeadlineBodyCard.ViewHolder target) {
+    target.tvHeadline = null;
+    target.tvBody1 = null;
+    target.spaceHeadlineBody1 = null;
+  }
+}

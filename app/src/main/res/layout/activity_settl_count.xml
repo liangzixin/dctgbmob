@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettlCountActivity" >
+
+    <TextView
+        android:id="@+id/tvMainUserName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff00ddff"
+        android:textColor="#ffffff"
+        android:text="选择餐桌" />
+    <GridView 
+        android:id="@+id/settl_count_tables_gridview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:numColumns="4"
+        ></GridView>
+
+</RelativeLayout>

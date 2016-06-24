@@ -1,0 +1,59 @@
+// Generated code from Butter Knife. Do not modify!
+package com.scme.order.ui;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+
+public class UserDetailActivity$$ViewInjector {
+  public static void inject(Finder finder, final com.scme.order.ui.UserDetailActivity target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558806, "field 'username'");
+    target.username = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558816, "field 'userbirthday'");
+    target.userbirthday = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558812, "field 'useremail'");
+    target.useremail = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558813, "field 'useradress'");
+    target.useradress = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558814, "field 'usertel'");
+    target.usertel = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558811, "field 'userpreview'");
+    target.userpreview = (fr.ganfra.materialspinner.MaterialSpinner) view;
+    view = finder.findRequiredView(source, 2131558805, "field 'userbranch'");
+    target.userbranch = (fr.ganfra.materialspinner.MaterialSpinner) view;
+    view = finder.findRequiredView(source, 2131558808, "field 'userpost'");
+    target.userpost = (fr.ganfra.materialspinner.MaterialSpinner) view;
+    view = finder.findRequiredView(source, 2131558809, "field 'usersex'");
+    target.usersex = (fr.ganfra.materialspinner.MaterialSpinner) view;
+    view = finder.findRequiredView(source, 2131558810, "field 'usersingle'");
+    target.usersingle = (fr.ganfra.materialspinner.MaterialSpinner) view;
+    view = finder.findRequiredView(source, 2131558807, "field 'usersfzh'");
+    target.usersfzh = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558818, "field 'usersid'");
+    target.usersid = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558819, "field 'userspwd'");
+    target.userspwd = (android.widget.MaterialEditText) view;
+    view = finder.findRequiredView(source, 2131558666, "field 'img1'");
+    target.img1 = (android.widget.ImageView) view;
+    view = finder.findRequiredView(source, 2131558817, "field 'llayout'");
+    target.llayout = (android.widget.LinearLayout) view;
+  }
+
+  public static void reset(com.scme.order.ui.UserDetailActivity target) {
+    target.username = null;
+    target.userbirthday = null;
+    target.useremail = null;
+    target.useradress = null;
+    target.usertel = null;
+    target.userpreview = null;
+    target.userbranch = null;
+    target.userpost = null;
+    target.usersex = null;
+    target.usersingle = null;
+    target.usersfzh = null;
+    target.usersid = null;
+    target.userspwd = null;
+    target.img1 = null;
+    target.llayout = null;
+  }
+}
