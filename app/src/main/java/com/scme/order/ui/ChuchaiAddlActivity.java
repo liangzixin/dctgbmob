@@ -200,6 +200,7 @@ public class ChuchaiAddlActivity extends BaseActivity implements View.OnTouchLis
                 map.put("djr", user.getName());
                 map.put("chuarea",chuchaicontent.getText().toString());
                 map.put("job",user.getJob()+"");
+                map.put("leader", user.getName());
          if(chuchaidriver.getSelectedItemId()==0) {
              map.put("driver", "");
          }

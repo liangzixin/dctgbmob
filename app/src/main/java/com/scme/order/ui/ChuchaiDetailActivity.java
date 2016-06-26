@@ -65,7 +65,7 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
     private MyAppVariable myAppVariable;
     private GetDate getDate = new GetDate();
     private Handler testHandler;
-    private int state=0;
+    private int state0=0;
     private static final String[] m={"请选择出差地点","昆明","汤丹","殡仪馆","其它"};
     private static final String[] m1={"请选择司机","翁家彬","吕春红","王安华","李守仪"};
     private Spinner spinbranch = null;  //省级（省、直辖市）
@@ -207,20 +207,20 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
       if(chuchai.getChuchaid().equals("殡仪馆")&&!chuchai.getLeader().equals("")){
           menu.getItem(3).setTitle("派车签字");
           menu.getItem(3).setVisible(true);
-          state=4;
+          state0=4;
       }else {
           if ((user.getId() == 5 || user.getId() == 7) && chuchai.getLeader0().equals("") && !chuchai.getLeader().equals("") && chuchai.getState() == 0 && !chuchai.getLeader1().equals("") && !chuchai.getLeader2().equals("")) {
               menu.getItem(3).setTitle("派车签字");
               menu.getItem(3).setVisible(true);
-              state = 4;
+              state0 = 4;
           } else if (chuchai.getLeader1().equals("") && chuchai.getBranch().getLeader() == user.getId() && chuchai.getLeader0().equals("") && !chuchai.getLeader().equals("")) {
               menu.getItem(3).setTitle("分管签字");
               menu.getItem(3).setVisible(true);
-              state = 2;
+              state0 = 2;
           } else if (branchleader2 && user.getJob() == 1 && !chuchai.getLeader().equals("") && chuchai.getLeader0().equals("")) {
               menu.getItem(3).setTitle("主任签字");
               menu.getItem(3).setVisible(true);
-              state = 3;
+              state0 = 3;
           }
       }
         return super.onCreateOptionsMenu(menu);
@@ -249,7 +249,7 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
                 Toast.makeText(this, "错误！结束时间在开始时间之前", Toast.LENGTH_SHORT).show();
                 return false;
             }
-            if(user.getId()==5||user.getId()==7) {
+            if((user.getId()==5||user.getId()==7)&&chuchaistate.getText().toString().equals("是")) {
                 if (chuchaidriver.getSelectedItem().toString().equals("请选择司机")) {
                     Toast.makeText(this, "请选择司机！！！", Toast.LENGTH_SHORT).show();
                     return false;
@@ -364,7 +364,7 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
                         map.put("userid",user.getId()+"");
                         map.put("job",user.getJob()+"");
                         map.put("name",user.getName());
-                        map.put("state",state+"");
+                        map.put("state0",state0+"");
                         map.put("chuarea", chuchaicontent.getText().toString());
                         if(user.getId()==5||user.getId()==7) map.put("driver", chuchaidriver.getSelectedItem().toString());
 
@@ -580,7 +580,7 @@ public String IsSate(int state) {
                 android.R.layout.simple_spinner_item,listbmmz);
 //
        spinbranch.setAdapter(branchAdapter);
-        spinbranch.setSelection(chuchai.getDepartmentid()-1);  //设置默认选中项，此处为默认选中第4个值
+        setSpinnerItemSelectedByValue(spinbranch,chuchai.getBranch().getName());
         try {
             UserService userService=new UserService();
 //
@@ -594,7 +594,7 @@ public String IsSate(int state) {
                 android.R.layout.simple_spinner_item,listuser);
         spinname.setAdapter(nameAdapter);
 
-        setSpinnerItemSelectedByValue(spinname,chuchai.getName1());  //默认选中第0个
+       // setSpinnerItemSelectedByValue(spinname,chuchai.getName1());  //默认选中第0个
 
 
 
