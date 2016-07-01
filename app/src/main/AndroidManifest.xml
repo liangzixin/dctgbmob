@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme.Light.DarkActionBar"
         >
         <activity
-            android:name=".LoginActivity"
+            android:name=".LoginXinActivity"
             android:theme="@style/AppLoginTheme"
             >
             <intent-filter>
