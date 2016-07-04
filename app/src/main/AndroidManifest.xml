@@ -1,256 +1,269 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest package="com.scme.order.ui"
           xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+       <application
+           android:allowBackup="true"
+           android:icon="@drawable/ic_launcher"
+           android:label="@string/app_name"
+           android:supportsRtl="true"
+           android:theme="@style/AppThemeXin">
+           <activity android:name=".LoginXinActivity">
+               <intent-filter>
+                   <action android:name="android.intent.action.MAIN"/>
 
-    <application
-        android:name="com.scme.order.util.MyAppVariable"
-        android:allowBackup="true"
-        android:icon="@drawable/icon_laucher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme.Light.DarkActionBar"
-        >
-        <activity
-            android:name=".LoginXinActivity"
-            android:theme="@style/AppLoginTheme"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                   <category android:name="android.intent.category.LAUNCHER"/>
+               </intent-filter>
+           </activity>
+       </application>
+        -->
+       <application
+           android:name="com.scme.order.util.MyAppVariable"
+           android:allowBackup="true"
+           android:icon="@drawable/icon_laucher"
+           android:label="@string/app_name"
+           android:theme="@style/AppTheme.Light.DarkActionBar"
+           >
+           <activity
+               android:name=".LoginActivity"
+               android:theme="@style/AppLoginTheme"
+               >
+               <intent-filter>
+                   <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_about"/>
-        <activity
-            android:name=".ItemActivity"
-            android:label="@string/title_mainmenuactivity"
-            android:theme="@android:style/Theme.Black.NoTitleBar"
-            >
-        </activity>
-        <activity
-            android:name=".ListViewTestActivity"
-            android:label="@string/title_mainmenuactivity" >
-        </activity>
-        <activity
-            android:name=".MainMenuActivity"
-            android:label="@string/title_mainmenuactivity"
-            android:theme="@android:style/Theme.Black.NoTitleBar"
+                   <category android:name="android.intent.category.LAUNCHER"/>
+               </intent-filter>
+           </activity>
+           <activity
+               android:name=".MainActivity"
+               android:label="@string/title_activity_about"/>
+           <activity
+               android:name=".ItemActivity"
+               android:label="@string/title_mainmenuactivity"
+               android:theme="@android:style/Theme.Black.NoTitleBar"
+               >
+           </activity>
+           <activity
+               android:name=".ListViewTestActivity"
+               android:label="@string/title_mainmenuactivity" >
+           </activity>
+           <activity
+               android:name=".MainMenuActivity"
+               android:label="@string/title_mainmenuactivity"
+               android:theme="@android:style/Theme.Black.NoTitleBar"
 
-            />
-        <activity
-            android:name=".EatListActivity"
-            android:label="@string/title_eatlistactivity"
-            android:parentActivityName=".MainMenuActivity"/>
-        <activity
-            android:name=".EatsAddActivity"
-            android:label="@string/title_eataddactivity"
-            android:parentActivityName=".EatListActivity"/>
-        <activity
-            android:name=".EatDeleteDetailActivity"
-            android:label="@string/title_eatdeletedetail"
-            android:parentActivityName=".EatListActivity"/>
-        <activity
-            android:name=".QingjiaListActivity"
-            android:label="请假列表"
-            android:parentActivityName="MainMenuActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
-            </intent-filter>
+               />
+           <activity
+               android:name=".EatListActivity"
+               android:label="@string/title_eatlistactivity"
+               android:parentActivityName=".MainMenuActivity"/>
+           <activity
+               android:name=".EatsAddActivity"
+               android:label="@string/title_eataddactivity"
+               android:parentActivityName=".EatListActivity"/>
+           <activity
+               android:name=".EatDeleteDetailActivity"
+               android:label="@string/title_eatdeletedetail"
+               android:parentActivityName=".EatListActivity"/>
+           <activity
+               android:name=".QingjiaListActivity"
+               android:label="请假列表"
+               android:parentActivityName="MainMenuActivity">
+               <intent-filter>
+                   <action android:name="android.intent.action.SEARCH"/>
+               </intent-filter>
 
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
+               <meta-data
+                   android:name="android.app.searchable"
+                   android:resource="@xml/searchable"/>
 
-        </activity>
-        <activity
-            android:name=".QingjiaAddlActivity"
-            android:label="添加请假"
-            android:parentActivityName=".QingjiaListActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.SEARCH"/>
-        </intent-filter>
+           </activity>
+           <activity
+               android:name=".QingjiaAddlActivity"
+               android:label="添加请假"
+               android:parentActivityName=".QingjiaListActivity">
+           <intent-filter>
+               <action android:name="android.intent.action.SEARCH"/>
+           </intent-filter>
 
-        <meta-data
-            android:name="android.app.searchable"
-            android:resource="@xml/searchable"/>
-        </activity>
-        <activity
-            android:name=".QingjiaDetailActivity"
-            android:label="@string/qingjia_detail"
-            android:parentActivityName=".QingjiaListActivity"/>
-        <activity
-            android:name=".ChuchaiListActivity"
-            android:label="派车记录"
-            android:parentActivityName="MainMenuActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
-            </intent-filter>
+           <meta-data
+               android:name="android.app.searchable"
+               android:resource="@xml/searchable"/>
+           </activity>
+           <activity
+               android:name=".QingjiaDetailActivity"
+               android:label="@string/qingjia_detail"
+               android:parentActivityName=".QingjiaListActivity"/>
+           <activity
+               android:name=".ChuchaiListActivity"
+               android:label="派车记录"
+               android:parentActivityName="MainMenuActivity">
+               <intent-filter>
+                   <action android:name="android.intent.action.SEARCH"/>
+               </intent-filter>
 
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
+               <meta-data
+                   android:name="android.app.searchable"
+                   android:resource="@xml/searchable"/>
 
-        </activity>
-        <activity
-            android:name=".ChuchaiDetailActivity"
-            android:label="@string/chuchai_detail"
-            android:parentActivityName=".QingjiaListActivity"/>
-        <activity
-            android:name=".ChuchaiAddlActivity"
-            android:label="@string/chuchai_add"
-            android:parentActivityName=".QingjiaListActivity"/>
-        <activity
-            android:name=".UserListActivity"
-            android:label="职工列表"
-            android:parentActivityName="MainMenuActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
-            </intent-filter>
+           </activity>
+           <activity
+               android:name=".ChuchaiDetailActivity"
+               android:label="@string/chuchai_detail"
+               android:parentActivityName=".QingjiaListActivity"/>
+           <activity
+               android:name=".ChuchaiAddlActivity"
+               android:label="@string/chuchai_add"
+               android:parentActivityName=".QingjiaListActivity"/>
+           <activity
+               android:name=".UserListActivity"
+               android:label="职工列表"
+               android:parentActivityName="MainMenuActivity">
+               <intent-filter>
+                   <action android:name="android.intent.action.SEARCH"/>
+               </intent-filter>
 
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
+               <meta-data
+                   android:name="android.app.searchable"
+                   android:resource="@xml/searchable"/>
 
-        </activity>
-        <activity
-            android:name=".UserDetailActivity"
-            android:label="职工信息"
-            android:parentActivityName=".UserListActivity"/>
-        <activity
-            android:name=".UserAddlActivity"
-            android:label="添加职工"
-            android:parentActivityName=".UserListActivity"/>
-        <activity
-            android:name=".DydhDetailActivity"
-            android:label="党员信息"
-            android:parentActivityName=".MainMenuActivity"/>
-        <activity
-            android:name=".PlacardListActivity"
-            android:label="短信记录"
-            android:parentActivityName=".MainMenuActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
-            </intent-filter>
+           </activity>
+           <activity
+               android:name=".UserDetailActivity"
+               android:label="职工信息"
+               android:parentActivityName=".UserListActivity"/>
+           <activity
+               android:name=".UserAddlActivity"
+               android:label="添加职工"
+               android:parentActivityName=".UserListActivity"/>
+           <activity
+               android:name=".DydhDetailActivity"
+               android:label="党员信息"
+               android:parentActivityName=".MainMenuActivity"/>
+           <activity
+               android:name=".PlacardListActivity"
+               android:label="短信记录"
+               android:parentActivityName=".MainMenuActivity">
+               <intent-filter>
+                   <action android:name="android.intent.action.SEARCH"/>
+               </intent-filter>
 
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
-        </activity>
-        <activity
-            android:name=".PlacardDetailActivity"
-            android:label="短信信息"
-            android:parentActivityName=".MainMenuActivity"/>
-        <activity
-            android:name=".EatTotalPersionActivity"
-            android:label="@string/title_eattotalpersionactivity"
-            android:parentActivityName=".MainMenuActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.SEARCH"/>
-        </intent-filter>
+               <meta-data
+                   android:name="android.app.searchable"
+                   android:resource="@xml/searchable"/>
+           </activity>
+           <activity
+               android:name=".PlacardDetailActivity"
+               android:label="短信信息"
+               android:parentActivityName=".MainMenuActivity"/>
+           <activity
+               android:name=".EatTotalPersionActivity"
+               android:label="@string/title_eattotalpersionactivity"
+               android:parentActivityName=".MainMenuActivity">
+           <intent-filter>
+               <action android:name="android.intent.action.SEARCH"/>
+           </intent-filter>
 
-        <meta-data
-            android:name="android.app.searchable"
-            android:resource="@xml/searchable"/>
-        </activity>
-        <activity
-            android:name=".EatAllActivity"
-            android:label="@string/title_eatall"
-            android:parentActivityName=".MainMenuActivity"/>
-        <activity
-            android:name=".EatTotalDetailActivity"
-            android:label="@string/title_eattotaldetailactivity"
-            android:parentActivityName=".EatTotalPersionActivity"/>
-        <activity
-            android:name=".EatTotalActivity"
-            android:label="@string/title_eattotalActivity"
-            android:parentActivityName=".MainMenuActivity"/>
-        <activity
-            android:name=".DeveloperModeActivity"
-            android:label="@string/title_activity_developer_mode"
-            android:parentActivityName=".MainActivity"/>
-        <activity
-            android:name=".LicensesActivity"
-            android:label="@string/title_activity_licenses"
-            android:parentActivityName=".MainActivity"/>
-        <activity
-            android:name=".TxxxListFyActivity"
-            android:label="@string/title_activity_txxx"
-            android:parentActivityName=".MainMenuActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
-            </intent-filter>
+           <meta-data
+               android:name="android.app.searchable"
+               android:resource="@xml/searchable"/>
+           </activity>
+           <activity
+               android:name=".EatAllActivity"
+               android:label="@string/title_eatall"
+               android:parentActivityName=".MainMenuActivity"/>
+           <activity
+               android:name=".EatTotalDetailActivity"
+               android:label="@string/title_eattotaldetailactivity"
+               android:parentActivityName=".EatTotalPersionActivity"/>
+           <activity
+               android:name=".EatTotalActivity"
+               android:label="@string/title_eattotalActivity"
+               android:parentActivityName=".MainMenuActivity"/>
+           <activity
+               android:name=".DeveloperModeActivity"
+               android:label="@string/title_activity_developer_mode"
+               android:parentActivityName=".MainActivity"/>
+           <activity
+               android:name=".LicensesActivity"
+               android:label="@string/title_activity_licenses"
+               android:parentActivityName=".MainActivity"/>
+           <activity
+               android:name=".TxxxListFyActivity"
+               android:label="@string/title_activity_txxx"
+               android:parentActivityName=".MainMenuActivity">
+               <intent-filter>
+                   <action android:name="android.intent.action.SEARCH"/>
+               </intent-filter>
 
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
-        </activity>
-        <activity
-            android:name=".TxxxDetailActivity"
-            android:label="@string/title_activity_txxxdetail"
-            android:parentActivityName=".TxxxListFyActivity">
+               <meta-data
+                   android:name="android.app.searchable"
+                   android:resource="@xml/searchable"/>
+           </activity>
+           <activity
+               android:name=".TxxxDetailActivity"
+               android:label="@string/title_activity_txxxdetail"
+               android:parentActivityName=".TxxxListFyActivity">
 
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
-            </intent-filter>
+               <intent-filter>
+                   <action android:name="android.intent.action.SEARCH"/>
+               </intent-filter>
 
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
-        </activity>
+               <meta-data
+                   android:name="android.app.searchable"
+                   android:resource="@xml/searchable"/>
+           </activity>
 
-        <activity
-            android:name=".YsryListActivity"
-            android:label="@string/title_activity_ysry"
-            android:parentActivityName=".MainMenuActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
-            </intent-filter>
+           <activity
+               android:name=".YsryListActivity"
+               android:label="@string/title_activity_ysry"
+               android:parentActivityName=".MainMenuActivity">
+               <intent-filter>
+                   <action android:name="android.intent.action.SEARCH"/>
+               </intent-filter>
 
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
-        </activity>
-        <activity
-            android:name=".YsryDetailActivity"
-            android:label="@string/title_activity_ysrydetail"
-            android:parentActivityName=".YsryListActivity">
+               <meta-data
+                   android:name="android.app.searchable"
+                   android:resource="@xml/searchable"/>
+           </activity>
+           <activity
+               android:name=".YsryDetailActivity"
+               android:label="@string/title_activity_ysrydetail"
+               android:parentActivityName=".YsryListActivity">
 
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
-            </intent-filter>
+               <intent-filter>
+                   <action android:name="android.intent.action.SEARCH"/>
+               </intent-filter>
 
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
-        </activity>
-        <activity
-            android:name=".YsryAddActivity"
-            android:label="@string/title_activity_ysryadd"
-            android:parentActivityName=".YsryListActivity"/>
-        <meta-data
-            android:name="android.app.default_searchable"
-            android:value=".TxxxListFyActivity"/>
+               <meta-data
+                   android:name="android.app.searchable"
+                   android:resource="@xml/searchable"/>
+           </activity>
+           <activity
+               android:name=".YsryAddActivity"
+               android:label="@string/title_activity_ysryadd"
+               android:parentActivityName=".YsryListActivity"/>
+           <meta-data
+               android:name="android.app.default_searchable"
+               android:value=".TxxxListFyActivity"/>
 
-        <!--<activity-->
-            <!--android:name=".DialogPageActivity"-->
-            <!--android:label="@string/title_activity_dialog_page"/>-->
-        <activity
-            android:name=".AboutActivity"
-            android:label="@string/pbsm"
-            android:parentActivityName=".MainMenuActivity"
-            >
-        </activity>
-        <activity android:name=".Activityxgmm"
-                  android:label="@string/xgmm"
-                  android:parentActivityName=".MainMenuActivity"
-            >
-        </activity>
-        <activity android:name=".Activityfwzc"
-                  android:label="@string/jszc"
-                  android:parentActivityName=".MainMenuActivity"
-            >
-        </activity>
-    </application>
+
+           <activity
+               android:name=".AboutActivity"
+               android:label="@string/pbsm"
+               android:parentActivityName=".MainMenuActivity"
+               >
+           </activity>
+           <activity android:name=".Activityxgmm"
+                     android:label="@string/xgmm"
+                     android:parentActivityName=".MainMenuActivity"
+               >
+           </activity>
+           <activity android:name=".Activityfwzc"
+                     android:label="@string/jszc"
+                     android:parentActivityName=".MainMenuActivity"
+               >
+           </activity>
+       </application>
 
 </manifest>

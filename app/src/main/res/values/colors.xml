@@ -8,4 +8,7 @@
     <color name="floating_label">#17492E</color>
     <color name="palegreen">#b3c289</color>b3c289
     <color name="lightgreen">#8eb037</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
 </resources>

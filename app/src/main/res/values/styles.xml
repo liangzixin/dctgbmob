@@ -93,4 +93,5 @@
         <item name="android:layout_height">fill_parent</item>
         <item name="android:minWidth">75.0dip</item>
     </style>
+
 </resources>

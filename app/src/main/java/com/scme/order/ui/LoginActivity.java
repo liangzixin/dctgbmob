@@ -24,6 +24,7 @@ import org.json.JSONTokener;
 
 import com.scme.order.model.Tusers;
 import com.scme.order.service.UserService;
+import com.scme.order.tq.view.OwlView;
 import com.scme.order.util.MyAppVariable;
 
 import android.app.ActionBar;
@@ -74,6 +75,7 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
 	private ActionBar actionBar;
 	private MyAppVariable myAppVariable;
 	private TextView tvBtnReg,loginButton;
+	private OwlView mOwlView;
 //	private Button loginButton1;
 
 //	@SuppressLint("NewApi")
@@ -111,6 +113,18 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
 		tvBtnReg.setOnClickListener(btnClickListener);
 		TextView textView = (TextView) findViewById(R.id.tv_headerTitle);
 		textView.setText("登录系统");
+		mOwlView= (OwlView) findViewById(R.id.owl_view);
+		etPwd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if(hasFocus){
+					mOwlView.open();
+
+				}else{
+					mOwlView.close();
+				}
+			}
+		});
 
 //		loginButton1.setOnClickListener(new OnClickListener() {
 //
