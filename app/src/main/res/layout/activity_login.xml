@@ -3,20 +3,19 @@
               style="@style/mainConter"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-
               android:clipToPadding="true"
 
     >
+    <!--
+        <include
+            android:id="@+id/LinearLayoutHeader"
+            layout="@layout/header" />
 
-    <include
-        android:id="@+id/LinearLayoutHeader"
-        layout="@layout/header" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-    android:background="@drawable/logo"
-        android:orientation="vertical" > <!--android:background="@drawable/login_bg"-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+        android:background="@drawable/logo"
+            android:orientation="vertical" > android:background="@drawable/login_bg"-->
 
         <LinearLayout
             android:id="@+id/LinearLayoutLoginForm"
@@ -177,7 +176,7 @@
             android:layout_width="175dp"
             android:layout_height="107dp"
             android:layout_centerHorizontal="true"/>
-    </LinearLayout>
+   <!-- </LinearLayout>-->
 
     <LinearLayout
         android:layout_width="fill_parent"
