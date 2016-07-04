@@ -187,7 +187,7 @@ public class QingjiaAddlActivity extends BaseActivity implements View.OnTouchLis
                 return false;
             }
             if (qingjiatype.getSelectedItemPosition() == 0) {
-                Toast.makeText(this, "错误！请选择请假事由", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "错误！请选择请假类型", Toast.LENGTH_SHORT).show();
                 return false;
             }
             if (qingjiacontent.getText().toString().equals("")) {

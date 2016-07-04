@@ -31,6 +31,7 @@ import android.widget.MaterialEditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -83,6 +84,7 @@ public class QingjiaDetailActivity extends BaseActivity implements View.OnTouchL
     @InjectView(R.id.qingjia_leader2) MaterialEditText qingjialender2;
     @InjectView(R.id.Qingjia_Content) MaterialEditText qingjiacontent;
     @InjectView(R.id.qingjia_state) MaterialEditText qingjiastate;
+    @InjectView(R.id.Qingjia_leixing)  MaterialSpinner qingjialeixing;
 //    @InjectView(R.id.Menu_Replay) MenuItem menureplay;
 
 
@@ -115,6 +117,11 @@ public class QingjiaDetailActivity extends BaseActivity implements View.OnTouchL
                     e.printStackTrace();
                 }
             mThread.start();
+            //获得绑定参数
+            ArrayAdapter  adapter= new ArrayAdapter<String>(this,
+                    android.R.layout.simple_spinner_item,m);
+            qingjialeixing.setAdapter(adapter);
+
         }
 
     }
@@ -538,11 +545,11 @@ public class QingjiaDetailActivity extends BaseActivity implements View.OnTouchL
         }
         qingjialongtime.setText(lg2+" 天");
 
-
+        setSpinnerItemSelectedByValue(qingjialeixing,IsLeixing(qingjia.getType1()));
     }
 
     /**
-     * 数据加载完之后消除Loding对话框
+     * 数据加载完之后消除Loding对话框(
      * */
     private Handler myHandler = new Handler(){
         @Override
@@ -564,6 +571,52 @@ public String IsSate(int state) {
         }
         return str;
         }
+    public String IsLeixing(int state) {
+        String str = "";
 
+        switch (state) {
+            case 1:
+                str ="事  假";
+                break;
+            case 2:
+                str ="病  假";
+                break;
+            case 3:
+                str ="公休假";
+                break;
+            case 4:
+                str = "探亲假";
+                break;
+            case 5:
+                str = "婚丧假";
+                break;
+            case 6:
+                str ="生育假";
+                break;
+            case 7:
+                str ="哺乳假";
+                break;
+            case 8:
+                str ="其  它";
+                break;
 
+        }
+        return str;
+    }
+    /**
+     * 根据值, 设置spinner默认选中:
+     * @param spinner
+     * @param value
+     */
+    public static void setSpinnerItemSelectedByValue(Spinner spinner,String value){
+        SpinnerAdapter apsAdapter= spinner.getAdapter(); //得到SpinnerAdapter对象
+        int k= apsAdapter.getCount();
+        for(int i=0;i<k;i++){
+            if(value.equals(apsAdapter.getItem(i).toString())){
+                spinner.setSelection(i,true);// 默认选中项
+//                System.out.println("默认:"+i);
+                break;
+            }
+        }
+    }
 }

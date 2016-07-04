@@ -580,7 +580,7 @@ public String IsSate(int state) {
                 android.R.layout.simple_spinner_item,listbmmz);
 //
        spinbranch.setAdapter(branchAdapter);
-        setSpinnerItemSelectedByValue(spinbranch,chuchai.getBranch().getName());
+     setSpinnerItemSelectedByValue(spinbranch,chuchai.getBranch().getName());
         try {
             UserService userService=new UserService();
 //
@@ -594,7 +594,7 @@ public String IsSate(int state) {
                 android.R.layout.simple_spinner_item,listuser);
         spinname.setAdapter(nameAdapter);
 
-       // setSpinnerItemSelectedByValue(spinname,chuchai.getName1());  //默认选中第0个
+       setSpinnerItemSelectedByValue(spinname,chuchai.getName1());  //默认选中第0个
 
 
 
@@ -625,7 +625,7 @@ public String IsSate(int state) {
 
                 spinname.setAdapter(nameAdapter);
 
-                setSpinnerItemSelectedByValue(spinname,chuchai.getName1());
+            //    setSpinnerItemSelectedByValue(spinname,chuchai.getName1());
 //                provincePosition = position;    //记录当前省级序号，留给下面修改县级适配器时用
             }
 
