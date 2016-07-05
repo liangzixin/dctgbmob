@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              style="@style/mainConter"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:clipToPadding="true"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+    android:background="#eeeeee"
 
     >
-    <!--
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="2">
         <include
             android:id="@+id/LinearLayoutHeader"
             layout="@layout/header" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-        android:background="@drawable/logo"
-            android:orientation="vertical" > android:background="@drawable/login_bg"-->
+            android:background="@drawable/logoxin"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
         <LinearLayout
             android:id="@+id/LinearLayoutLoginForm"
@@ -25,7 +33,9 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_centerInParent="true"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:background="@drawable/round_corner_bg"
+            >
 
             <RelativeLayout
                 android:layout_width="fill_parent"
@@ -40,27 +50,26 @@
 
                 <EditText
                     android:id="@+id/etUserName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="35.0dip"
-                    android:layout_alignTop="@id/headImg"
-                    android:layout_marginLeft="5.299988dip"
-                    android:layout_toRightOf="@id/headImg"
+                    android:layout_marginTop="10dip"
+                    android:layout_marginLeft="80dip"
+                    android:layout_marginRight="15dip"
                     android:background="@drawable/login_input_bg"
                     android:hint="@string/num_hint"
                     android:inputType="text"
-                    android:maxLength="24"
+                    android:maxLength="16"
                     android:paddingLeft="45.0dip"
                     android:singleLine="true"
                     android:textColor="#ff333333"
                     android:textColorHint="#ffbbbbbb"
                     android:textSize="15.0dip" />
-
                 <TextView
                     android:id="@+id/inputQqId"
                     android:layout_width="wrap_content"
                     android:layout_height="35.0dip"
                     android:layout_alignLeft="@id/etUserName"
-                    android:layout_alignTop="@id/headImg"
+                    android:layout_alignTop="@id/etUserName"
                     android:gravity="center_vertical"
                     android:paddingLeft="8.0dip"
                     android:text="@string/text_id"
@@ -71,9 +80,9 @@
                     android:id="@+id/etPwd"
                     android:layout_width="wrap_content"
                     android:layout_height="35.0dip"
-                    android:layout_alignBottom="@id/headImg"
-                    android:layout_marginLeft="5.299988dip"
-                    android:layout_toRightOf="@id/headImg"
+                    android:layout_marginTop="55dip"
+                    android:layout_marginLeft="80dip"
+                    android:layout_marginRight="15dip"
                     android:background="@drawable/login_input_bg"
                     android:hint="@string/password_hint"
                     android:inputType="textPassword"
@@ -89,7 +98,7 @@
                     android:id="@+id/inputpassWord"
                     android:layout_width="wrap_content"
                     android:layout_height="35.0dip"
-                    android:layout_alignBottom="@id/headImg"
+                    android:layout_marginTop="55dip"
                     android:layout_alignLeft="@id/etPwd"
                     android:layout_gravity="center_vertical"
                     android:gravity="center"
@@ -167,59 +176,54 @@
 
             </LinearLayout>
 
+        </LinearLayout>
+
+
+               <com.scme.order.tq.view.OwlView
+                   android:id="@+id/owl_view"
+                   android:layout_above="@id/LinearLayoutLoginForm"
+                   android:layout_width="175dp"
+                   android:layout_height="107dp"
+                   android:layout_centerHorizontal="true"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:orientation="vertical"
+            android:layout_marginTop="0dip"
+            android:layout_alignParentBottom="true"
+            >
+
+
+
+            <TextView
+                android:id="@+id/btnLogin1"
+
+                android:layout_width="match_parent"
+                android:layout_height="18.0dip"
+                android:layout_marginLeft="0dip"
+                android:layout_marginTop="0dip"
+                android:gravity="center"
+                android:text="CopyRight © 2016 昆明英信科技有限公司 All Rights"
+                android:textSize="15.0sp"
+                android:textColor="#ffffff"
+                android:background="@color/colorPrimary"
+                />
+
+            <TextView
+                android:id="@+id/btnExit1"
+
+                android:layout_width="match_parent"
+                android:layout_height="21.0dip"
+                android:layout_marginLeft="0dip"
+
+                android:layout_marginTop="1dip"
+
+                android:background="@drawable/eat_bottom"
+                />
 
         </LinearLayout>
 
-        <com.scme.order.tq.view.OwlView
-            android:id="@+id/owl_view"
-            android:layout_above="@id/LinearLayoutLoginForm"
-            android:layout_width="175dp"
-            android:layout_height="107dp"
-            android:layout_centerHorizontal="true"/>
-   <!-- </LinearLayout>-->
+</RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:orientation="vertical"
-        android:layout_marginTop="0dip"
-        >
-
-
-
-        <TextView
-            android:id="@+id/btnLogin1"
-
-            android:layout_width="match_parent"
-            android:layout_height="18.0dip"
-            android:layout_marginLeft="1dip"
-            android:layout_marginTop="0dip"
-            android:gravity="center"
-            android:text="CopyRight © 2016 昆明英信科技有限公司 All Rights"
-            android:textSize="15.0sp"
-            android:textColor="#ffffff"
-
-            />
-
-        <TextView
-            android:id="@+id/btnExit1"
-
-            android:layout_width="match_parent"
-            android:layout_height="21.0dip"
-            android:layout_marginLeft="0dip"
-
-            android:layout_marginTop="1dip"
-
-            android:background="@drawable/eat_bottom"
-            />
-
-    </LinearLayout>
-    <!--<RelativeLayout-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:background="@drawable/eat_bottom"-->
-        <!--android:layout_marginTop="15dp"-->
-        <!-->-->
-    <!--</RelativeLayout>-->
-</LinearLayout>
 

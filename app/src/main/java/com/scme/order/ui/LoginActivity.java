@@ -112,7 +112,7 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
 		tvBtnReg = (TextView) findViewById(R.id.btnExit);
 		tvBtnReg.setOnClickListener(btnClickListener);
 		TextView textView = (TextView) findViewById(R.id.tv_headerTitle);
-		textView.setText("登录系统");
+		textView.setText("区退管办移动OA系统");
 		mOwlView= (OwlView) findViewById(R.id.owl_view);
 		etPwd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 			@Override
