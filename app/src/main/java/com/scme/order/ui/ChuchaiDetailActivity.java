@@ -136,6 +136,21 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
             }
             mThread.start();
         }
+
+        ArrayAdapter  adapte0= new ArrayAdapter<String>(ChuchaiDetailActivity.this,
+                android.R.layout.simple_spinner_item,m);
+        chuchaid.setAdapter(adapte0);
+        ArrayAdapter  adapte1= new ArrayAdapter<String>(ChuchaiDetailActivity.this,
+                android.R.layout.simple_spinner_item,m1);
+        chuchaidriver.setAdapter(adapte1);
+        if(user.getBranch().getId()==1&&(user.getJob()==4||user.getJob()==5)) {
+            chuchaidriver.setEnabled(true);
+        }else{
+            chuchaidriver.setEnabled(false);
+        }
+
+        etStartTime.setOnTouchListener(ChuchaiDetailActivity.this);
+        etEndTime.setOnTouchListener(ChuchaiDetailActivity.this);
     }
 
     private Thread mThread = new Thread() {
@@ -143,32 +158,23 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
             Log.d("TAG", "mThread run");
             Looper.prepare();
             testHandler = new Handler() {
+
                 public void handleMessage(Message msg) {
                     Log.d("TAG", "worker thread:" + Thread.currentThread().getName());
                     System.out.println("我的线程："+msg.what);
+                    progressDialog.dismiss();
                     switch (msg.what) {
                         //handle message here
                         case 1:
-                            ArrayAdapter  adapte0= new ArrayAdapter<String>(ChuchaiDetailActivity.this,
-                                    android.R.layout.simple_spinner_item,m);
-                            chuchaid.setAdapter(adapte0);
-                            ArrayAdapter  adapte1= new ArrayAdapter<String>(ChuchaiDetailActivity.this,
-                                    android.R.layout.simple_spinner_item,m1);
-                            chuchaidriver.setAdapter(adapte1);
-                            if(user.getBranch().getId()==1&&(user.getJob()==4||user.getJob()==5)) {
-                                chuchaidriver.setEnabled(true);
-                            }else{
-                                chuchaidriver.setEnabled(false);
-                            }
+
                             showView(chuchai);
-                            etStartTime.setOnTouchListener(ChuchaiDetailActivity.this);
-                            etEndTime.setOnTouchListener(ChuchaiDetailActivity.this);
+
                             break;
                         case 2:
                             break;
 
                     }
-                    progressDialog.dismiss();
+
                 }
             };
             testHandler.sendEmptyMessage(1);
