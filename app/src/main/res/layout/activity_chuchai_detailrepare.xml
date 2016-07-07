@@ -128,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
                 android:hint="出差事由:"
-                android:inputType="textNoSuggestions"
+                android:inputType="textMultiLine"
                 android:singleLine="true"
 
                 material:floatingLabel="true"
