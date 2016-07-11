@@ -136,6 +136,10 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
             }
             mThread.start();
         }
+
+
+       etStartTime.setOnTouchListener(ChuchaiDetailActivity.this);
+        etEndTime.setOnTouchListener(ChuchaiDetailActivity.this);
     }
 
     private Thread mThread = new Thread() {
@@ -161,8 +165,8 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
                                 chuchaidriver.setEnabled(false);
                             }
                             showView(chuchai);
-                            etStartTime.setOnTouchListener(ChuchaiDetailActivity.this);
-                            etEndTime.setOnTouchListener(ChuchaiDetailActivity.this);
+                            setSpinner();
+
                             break;
                         case 2:
                             break;
@@ -501,8 +505,8 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
         chuchaicontent.setText(chuchai.getChuarea());
 
      setSpinnerItemSelectedByValue(chuchaid, chuchai.getChuchaid());
-     setSpinnerItemSelectedByValue(chuchaidriver, chuchai.getDriver());
-      setSpinner();
+        setSpinnerItemSelectedByValue(chuchaidriver, chuchai.getDriver());
+
     }
 
     /**
@@ -642,7 +646,7 @@ public String IsSate(int state) {
      * @param spinner
      * @param value
      */
-    public static void setSpinnerItemSelectedByValue(Spinner spinner,String value){
+    public  void setSpinnerItemSelectedByValue(Spinner spinner,String value){
         SpinnerAdapter apsAdapter= spinner.getAdapter(); //得到SpinnerAdapter对象
         int k= apsAdapter.getCount();
         for(int i=0;i<k;i++){
