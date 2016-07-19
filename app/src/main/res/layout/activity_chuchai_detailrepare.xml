@@ -129,7 +129,7 @@
                 android:layout_weight="5"
                 android:hint="出差事由:"
                 android:inputType="textMultiLine"
-                android:singleLine="false"
+                android:singleLine="true"
 
                 material:floatingLabel="true"
 
