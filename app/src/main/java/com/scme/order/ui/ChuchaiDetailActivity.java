@@ -56,7 +56,7 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
     private  int branchid;
     private  String mytitel="";
     private  String mytitel1="";
-    private Spinner spinner;
+   // private Spinner spinner;
    private  int str=0;
     private boolean str1=false;
    private   Map<String, String> map;
@@ -596,11 +596,11 @@ public String IsSate(int state) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        nameAdapter = new ArrayAdapter<String>(ChuchaiDetailActivity.this,
-                android.R.layout.simple_spinner_item,listuser);
+       nameAdapter = new ArrayAdapter<String>(ChuchaiDetailActivity.this,
+              android.R.layout.simple_spinner_item,listuser);
         spinname.setAdapter(nameAdapter);
 
-       setSpinnerItemSelectedByValue(spinname,chuchai.getName1());  //默认选中第0个
+      setSpinnerItemSelectedByValue(spinname,chuchai.getName1());  //默认选中第0个
 
 
 
@@ -631,7 +631,7 @@ public String IsSate(int state) {
 
                 spinname.setAdapter(nameAdapter);
 
-            //    setSpinnerItemSelectedByValue(spinname,chuchai.getName1());
+          //      setSpinnerItemSelectedByValue(spinname,chuchai.getName1());
 //                provincePosition = position;    //记录当前省级序号，留给下面修改县级适配器时用
             }
 
@@ -648,7 +648,7 @@ public String IsSate(int state) {
      * @param spinner
      * @param value
      */
-    public static void setSpinnerItemSelectedByValue(Spinner spinner,String value){
+    public  void setSpinnerItemSelectedByValue(Spinner spinner,String value){
         SpinnerAdapter apsAdapter= spinner.getAdapter(); //得到SpinnerAdapter对象
         int k= apsAdapter.getCount();
         for(int i=0;i<k;i++){
