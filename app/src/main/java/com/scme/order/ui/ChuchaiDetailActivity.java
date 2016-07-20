@@ -56,7 +56,7 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
     private  int branchid;
     private  String mytitel="";
     private  String mytitel1="";
-    private Spinner spinner;
+   // private Spinner spinner;
    private  int str=0;
     private boolean str1=false;
    private   Map<String, String> map;
@@ -137,8 +137,19 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
             mThread.start();
         }
 
+        ArrayAdapter  adapte0= new ArrayAdapter<String>(ChuchaiDetailActivity.this,
+                android.R.layout.simple_spinner_item,m);
+        chuchaid.setAdapter(adapte0);
+        ArrayAdapter  adapte1= new ArrayAdapter<String>(ChuchaiDetailActivity.this,
+                android.R.layout.simple_spinner_item,m1);
+        chuchaidriver.setAdapter(adapte1);
+        if(user.getBranch().getId()==1&&(user.getJob()==4||user.getJob()==5)) {
+            chuchaidriver.setEnabled(true);
+        }else{
+            chuchaidriver.setEnabled(false);
+        }
 
-       etStartTime.setOnTouchListener(ChuchaiDetailActivity.this);
+        etStartTime.setOnTouchListener(ChuchaiDetailActivity.this);
         etEndTime.setOnTouchListener(ChuchaiDetailActivity.this);
     }
 
@@ -147,32 +158,23 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
             Log.d("TAG", "mThread run");
             Looper.prepare();
             testHandler = new Handler() {
+
                 public void handleMessage(Message msg) {
                     Log.d("TAG", "worker thread:" + Thread.currentThread().getName());
                     System.out.println("我的线程："+msg.what);
+                    progressDialog.dismiss();
                     switch (msg.what) {
                         //handle message here
                         case 1:
-                            ArrayAdapter  adapte0= new ArrayAdapter<String>(ChuchaiDetailActivity.this,
-                                    android.R.layout.simple_spinner_item,m);
-                            chuchaid.setAdapter(adapte0);
-                            ArrayAdapter  adapte1= new ArrayAdapter<String>(ChuchaiDetailActivity.this,
-                                    android.R.layout.simple_spinner_item,m1);
-                            chuchaidriver.setAdapter(adapte1);
-                            if(user.getBranch().getId()==1&&(user.getJob()==4||user.getJob()==5)) {
-                                chuchaidriver.setEnabled(true);
-                            }else{
-                                chuchaidriver.setEnabled(false);
-                            }
+
                             showView(chuchai);
-                            setSpinner();
 
                             break;
                         case 2:
                             break;
 
                     }
-                    progressDialog.dismiss();
+
                 }
             };
             testHandler.sendEmptyMessage(1);
@@ -505,8 +507,8 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
         chuchaicontent.setText(chuchai.getChuarea());
 
      setSpinnerItemSelectedByValue(chuchaid, chuchai.getChuchaid());
-        setSpinnerItemSelectedByValue(chuchaidriver, chuchai.getDriver());
-
+     setSpinnerItemSelectedByValue(chuchaidriver, chuchai.getDriver());
+      setSpinner();
     }
 
     /**
@@ -594,11 +596,11 @@ public String IsSate(int state) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        nameAdapter = new ArrayAdapter<String>(ChuchaiDetailActivity.this,
-                android.R.layout.simple_spinner_item,listuser);
+       nameAdapter = new ArrayAdapter<String>(ChuchaiDetailActivity.this,
+              android.R.layout.simple_spinner_item,listuser);
         spinname.setAdapter(nameAdapter);
 
-       setSpinnerItemSelectedByValue(spinname,chuchai.getName1());  //默认选中第0个
+      setSpinnerItemSelectedByValue(spinname,chuchai.getName1());  //默认选中第0个
 
 
 
@@ -629,7 +631,7 @@ public String IsSate(int state) {
 
                 spinname.setAdapter(nameAdapter);
 
-            //    setSpinnerItemSelectedByValue(spinname,chuchai.getName1());
+          //      setSpinnerItemSelectedByValue(spinname,chuchai.getName1());
 //                provincePosition = position;    //记录当前省级序号，留给下面修改县级适配器时用
             }
 

@@ -18,34 +18,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
-        <fr.ganfra.materialspinner.MaterialSpinner
-            android:id="@+id/spin_branch"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            app:ms_arrowColor="#0000FF"
-            app:ms_arrowSize="16dp"
-            app:ms_floatingLabelColor="#00FF00"
-            app:ms_floatingLabelText="部门名称:"
-
-            app:ms_multiline="true" />
+            <MaterialEditText
+                android:id="@+id/chuchai_bmmz"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:hint="部门名称:"
+                android:inputType="textNoSuggestions"
+                android:singleLine="true"
+                android:text="部门名称:"
+                material:floatingLabel="true"
+                android:enabled="false"
+                />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/normal_with_input_text_icon2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical">
-
-
-        <fr.ganfra.materialspinner.MaterialSpinner
-            android:id="@+id/spin_name"
-            android:layout_width="fill_parent"
+        <MaterialEditText
+            android:id="@+id/chuchai_name"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:ms_arrowColor="#0000FF"
-            app:ms_arrowSize="16dp"
-            app:ms_floatingLabelColor="#00FF00"
-            app:ms_floatingLabelText="姓      名:"
-
-            app:ms_multiline="true" />
+            android:layout_weight="5"
+            android:hint="出差人:"
+            android:inputType="textNoSuggestions"
+            android:singleLine="true"
+            android:text="出差人:"
+            material:floatingLabel="true"
+            android:enabled="false"
+            />
 
 
 
