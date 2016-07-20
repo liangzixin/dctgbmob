@@ -56,7 +56,7 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
     private  int branchid;
     private  String mytitel="";
     private  String mytitel1="";
-   // private Spinner spinner;
+   // private Spinner spinner; 2.5
    private  int str=0;
     private boolean str1=false;
    private   Map<String, String> map;
@@ -72,6 +72,7 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
     private Spinner spinname = null;     //地级市
     ArrayAdapter<String>  branchAdapter = null;  //省级适配器
     ArrayAdapter<String>  nameAdapter = null;  //省级适配器
+   // static int provincePosition = 3;
 
     @InjectView(R.id.Chuchai_Time1) MaterialEditText etStartTime;
     @InjectView(R.id.Chuchai_Time2) MaterialEditText etEndTime;
@@ -82,6 +83,8 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
     @InjectView(R.id.chuchai_leader2) MaterialEditText chuchaileader2;
     @InjectView(R.id.Chuchai_Content) MaterialEditText chuchaicontent;
     @InjectView(R.id.chuchai_state) MaterialEditText chuchaistate;
+    @InjectView(R.id.chuchai_bmmz) MaterialEditText chuchaibmmz;
+    @InjectView(R.id.chuchai_name) MaterialEditText chuchainame;
     @InjectView(R.id.spin_type1) MaterialSpinner chuchaid;
     @InjectView(R.id.spin_driver) MaterialSpinner chuchaidriver;
 
@@ -505,10 +508,12 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
         chuchaileader1.setText(chuchai.getLeader1());
         chuchaileader2.setText(chuchai.getLeader2());
         chuchaicontent.setText(chuchai.getChuarea());
+        chuchaibmmz.setText(chuchai.getBranch().getName());
+        chuchainame.setText(chuchai.getName1());
 
      setSpinnerItemSelectedByValue(chuchaid, chuchai.getChuchaid());
      setSpinnerItemSelectedByValue(chuchaidriver, chuchai.getDriver());
-      setSpinner();
+    //  setSpinner();
     }
 
     /**
@@ -575,7 +580,7 @@ public String IsSate(int state) {
         }
     /*
      * 设置下拉框
-     */
+
     private void setSpinner() {
         spinbranch= ( MaterialSpinner) findViewById(R.id.spin_branch);
         spinname = ( MaterialSpinner) findViewById(R.id.spin_name);
@@ -586,7 +591,8 @@ public String IsSate(int state) {
                 android.R.layout.simple_spinner_item,listbmmz);
 //
        spinbranch.setAdapter(branchAdapter);
-     setSpinnerItemSelectedByValue(spinbranch,chuchai.getBranch().getName());
+  //   setSpinnerItemSelectedByValue(spinbranch,chuchai.getBranch().getName());
+        spinbranch.setSelection(chuchai.getDepartmentid()-1);  //设置默认选中项，此处为默认选中第4个值
         try {
             UserService userService=new UserService();
 //
@@ -600,7 +606,7 @@ public String IsSate(int state) {
               android.R.layout.simple_spinner_item,listuser);
         spinname.setAdapter(nameAdapter);
 
-      setSpinnerItemSelectedByValue(spinname,chuchai.getName1());  //默认选中第0个
+     setSpinnerItemSelectedByValue(spinname,chuchai.getName1());  //默认选中第0个
 
 
 
@@ -631,8 +637,8 @@ public String IsSate(int state) {
 
                 spinname.setAdapter(nameAdapter);
 
-          //      setSpinnerItemSelectedByValue(spinname,chuchai.getName1());
-//                provincePosition = position;    //记录当前省级序号，留给下面修改县级适配器时用
+           setSpinnerItemSelectedByValue(spinname,chuchai.getName1());
+        //    provincePosition = position;    //记录当前省级序号，留给下面修改县级适配器时用
             }
 
             @Override
@@ -643,7 +649,7 @@ public String IsSate(int state) {
         });
 
     }
-    /**
+
      * 根据值, 设置spinner默认选中:
      * @param spinner
      * @param value
