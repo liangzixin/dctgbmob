@@ -179,7 +179,7 @@ public class QingjiaDetailActivity extends BaseActivity implements View.OnTouchL
         boolean branchleader10=false;
         boolean branchleader2=false;
        double days=getDate.dateDiff(qingjia.getTime1(),qingjia.getTime2());
-
+     /*
 
         if(user.getName().equals("梁晓明")&&(qingjia.getBmbh()==1||qingjia.getBmbh()==5)||qingjia.getBmbh()==8){
             branchleader1=true;
@@ -192,6 +192,7 @@ public class QingjiaDetailActivity extends BaseActivity implements View.OnTouchL
         }if(user.getName().equals("蔡晓明")&&(qingjia.getBmbh()==3||qingjia.getBmbh()==9)){
             branchleader1=true;
         }
+
         if(days>0&&qingjia.getState()==0&&(user.getBranchid()==qingjia.getBmbh())&&qingjia.getLeader().equals("")&&(user.getJob()>3&&user.getJob()<9)){
             branchleader=true;
         }
@@ -201,14 +202,14 @@ public class QingjiaDetailActivity extends BaseActivity implements View.OnTouchL
         if((days>=3)&&qingjia.getState()==0&&qingjia.getLeader2().equals("")&&!qingjia.getLeader().equals("")&&!qingjia.getLeader1().equals("")){
             branchleader2=true;
         }
-
-        if(branchleader&&((user.getJob()>4||user.getId()==7))){
+   */
+        if((user.getJob()>=4&&user.getJob()<=8)&&user.getBranchid()==qingjia.getBmbh()&&(qingjia.getLeader().equals(""))){
             menu.getItem(3).setTitle("部门签字");
             menu.getItem(3).setVisible(true);
-        }else if (branchleader10){
+        }else if (user.getId()==qingjia.getBranch().getLeader()&&qingjia.getLeader1().equals("")&&!qingjia.getLeader().equals("")&&qingjia.getCountd()>=2){
             menu.getItem(3).setTitle("分管签字");
             menu.getItem(3).setVisible(true);
-        }else if(branchleader2&&user.getJob()==1){
+        }else if((user.getJob()==1)&&(qingjia.getLeader2().equals("")&&!qingjia.getLeader().equals("")&&!qingjia.getLeader1().equals(""))&&qingjia.getCountd()>=3){
             menu.getItem(3).setTitle("主任签字");
             menu.getItem(3).setVisible(true);
         }
