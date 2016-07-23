@@ -67,7 +67,7 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
     private Handler testHandler;
     private int state0=0;
     private static final String[] m={"请选择出差地点","昆明","汤丹","殡仪馆","其它"};
-    private static final String[] m1={"请选择司机","翁家彬","吕春红","王安华","李守仪"};
+    private static final String[] m1={"请选择司机","翁家彬","吕春红","王安华","李守应"};
     private Spinner spinbranch = null;  //省级（省、直辖市）
     private Spinner spinname = null;     //地级市
     ArrayAdapter<String>  branchAdapter = null;  //省级适配器
@@ -281,8 +281,8 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
                         } else{
                             map.put("driver", chuchaidriver.getSelectedItem().toString());
                         }
-                        map.put("name1",spinname.getSelectedItem().toString());
-                        map.put("departmentid",(spinbranch.getSelectedItemPosition()+1)+"");
+                  //      map.put("name1",spinname.getSelectedItem().toString());
+                  //      map.put("departmentid",(spinbranch.getSelectedItemPosition()+1)+"");
 
                         map.put("leader0",chuchaileader0.getText().toString());
                         map.put("leader",chuchaileader.getText().toString());
@@ -508,7 +508,7 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
 
      setSpinnerItemSelectedByValue(chuchaid, chuchai.getChuchaid());
      setSpinnerItemSelectedByValue(chuchaidriver, chuchai.getDriver());
-      setSpinner();
+    //  setSpinner();
     }
 
     /**
@@ -577,8 +577,8 @@ public String IsSate(int state) {
      * 设置下拉框
      */
     private void setSpinner() {
-        spinbranch= ( MaterialSpinner) findViewById(R.id.spin_branch);
-        spinname = ( MaterialSpinner) findViewById(R.id.spin_name);
+      //  spinbranch= ( MaterialSpinner) findViewById(R.id.spin_branch);
+      //  spinname = ( MaterialSpinner) findViewById(R.id.spin_name);
 //        countySpinner = (Spinner) findViewById(R.id.spin_county);
 
         //绑定适配器和值
