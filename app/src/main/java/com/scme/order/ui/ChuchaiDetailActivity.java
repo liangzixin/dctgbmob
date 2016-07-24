@@ -82,6 +82,8 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
     @InjectView(R.id.chuchai_leader2) MaterialEditText chuchaileader2;
     @InjectView(R.id.Chuchai_Content) MaterialEditText chuchaicontent;
     @InjectView(R.id.chuchai_state) MaterialEditText chuchaistate;
+    @InjectView(R.id.chuchai_bmmz) MaterialEditText chuchaibmmz;
+    @InjectView(R.id.chuchai_name) MaterialEditText chuchainame;
     @InjectView(R.id.spin_type1) MaterialSpinner chuchaid;
     @InjectView(R.id.spin_driver) MaterialSpinner chuchaidriver;
 
@@ -505,7 +507,8 @@ public class ChuchaiDetailActivity extends BaseActivity implements View.OnTouchL
         chuchaileader1.setText(chuchai.getLeader1());
         chuchaileader2.setText(chuchai.getLeader2());
         chuchaicontent.setText(chuchai.getChuarea());
-
+        chuchaibmmz.setText(chuchai.getBranch().getName());
+        chuchainame.setText(chuchai.getName1());
      setSpinnerItemSelectedByValue(chuchaid, chuchai.getChuchaid());
      setSpinnerItemSelectedByValue(chuchaidriver, chuchai.getDriver());
     //  setSpinner();
