@@ -12,6 +12,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -26,8 +27,10 @@ import com.scme.order.model.Tusers;
 import com.scme.order.service.UserService;
 import com.scme.order.tq.view.OwlView;
 import com.scme.order.util.MyAppVariable;
+import com.scme.order.util.Pictures;
 
 import android.app.ActionBar;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -174,32 +177,33 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
 					try {
 					 //转中文乱码
 					 struserName = URLEncoder.encode(userName, "utf-8");
-					 final UserService userService=new UserService();
-
-					  progressDialog = new ProgressDialog(LoginActivity.this);
-				      progressDialog.setMessage("登录中  请稍后...");
-				      progressDialog.show();
-				      new Thread(new Runnable() {
-				      @Override
-				      public void run() {
-				      try {
-				    	  user=userService.login(struserName, userPwd);//在线程中完成数据请求
-				      } catch (InterruptedException e) {
-				      e.printStackTrace();
-				       } catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				      myHandler.sendMessage(myHandler.obtainMessage());
-				      }
-				      }).start();
-//						System.out.println("用户名0：");
-//				System.out.println("用户名："+user.getUserName());
+//					 final UserService userService=new UserService();
+//
+//					  progressDialog = new ProgressDialog(LoginActivity.this);
+//				      progressDialog.setMessage("登录中  请稍后...");
+//				      progressDialog.show();
+//						Thread th= new Thread(new Runnable() {
+//				      @Override
+//				      public void run() {
+////				      try {
+//				    	  user=userService.login(struserName, userPwd);//在线程中完成数据请求
+////				      } catch (InterruptedException e) {
+////				      e.printStackTrace();
+////				       } catch (Exception e) {
+////						// TODO Auto-generated catch block
+////						e.printStackTrace();
+////					}
+//				      myHandler.sendMessage(myHandler.obtainMessage());
+//				      }
+//				      }).start();
+////						System.out.println("用户名0：");
+////				System.out.println("用户名："+user.getUserName());
 				}
 				catch (Exception e)
 				{
 					e.printStackTrace();
 				}
+					btn_app_sy();
 					break;
 			}
 
@@ -209,6 +213,30 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
 			}
 		}
 	};
+	public void btn_app_sy() {
+		progressDialog = new ProgressDialog(this);
+		progressDialog.setMessage("数据加载中  请稍后...");
+		progressDialog.show();
+		Thread t = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					final UserService userService=new UserService();
+					user=userService.login(struserName, userPwd);//在线程中完成数据请求
+					Thread.sleep(800);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				myHandler.sendMessage(myHandler.obtainMessage());
+				//		myHandler.sendMessage(myHandler.obtainMessage());
+			}
+		});
+		t.start();
+
+
+
+	}
 	/**
 	 * 保存密码
 	 */
