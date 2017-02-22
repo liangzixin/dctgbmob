@@ -10,8 +10,10 @@ android {
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
-        versionName "2.9"
+        versionName "3.1"
+        multiDexEnabled true
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -58,4 +60,6 @@ dependencies {
     compile files('src/main/libs/json-lib-2.2.3-jdk15.jar')
     compile files('src/main/libs/org.apache.http.legacy.jar')
     compile files('src/main/libs/xUtils.jar')
+    compile 'com.android.support:multidex:1.0.0'
+
 }

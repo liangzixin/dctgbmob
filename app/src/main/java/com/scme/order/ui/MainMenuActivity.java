@@ -345,7 +345,7 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 					users = userService.queryTodayBirthday();
 					users7 = userService.queryToday7Birthday();
 					dydhs = dydhService.queryTodayBirthday();
-
+//					Thread.sleep(500);
 					if (users.size() > 0) {
 //						mainTextView=(TextView)findViewById(R.id.tvUserDay);
 ////						mainTextView.setText("日");

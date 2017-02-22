@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.reflect.TypeToken;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.HttpHandler;
@@ -27,10 +28,14 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.scme.order.model.Tusers;
+import com.scme.order.service.BaseService;
 import com.scme.order.service.UserService;
 import com.scme.order.tq.view.OwlView;
 import com.scme.order.util.HttpUtil;
 import com.scme.order.util.MyAppVariable;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 //import org.ksoap2.SoapEnvelope;
 //import org.ksoap2.serialization.SoapObject;
@@ -207,7 +212,7 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
 				try {
 					final UserService userService=new UserService();
 					user=userService.login(struserName, userPwd);//在线程中完成数据请求
-					Thread.sleep(800);
+//					Thread.sleep(500);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -300,6 +305,9 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
     };
 
 	private void login(String zhanghao,String password) {
+		progressDialog = new ProgressDialog(this);
+		progressDialog.setMessage("正在登录  请稍后...");
+		progressDialog.show();
 //        ThreadPoolUtils.execute(new HttpPostThread(this, zhanghao, password, hand));
 		httpUtils = new HttpUtils();
 		url= HttpUtil.BASE_URL + "user!login.action?userName=" + userName + "&userPwd=" + userPwd + "";
@@ -307,10 +315,30 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
 		handler = httpUtils.send(HttpRequest.HttpMethod.GET, url, new RequestCallBack<String>() {
 			@Override
 			public void onSuccess(ResponseInfo<String> responseInfo) {
-				if (responseInfo.result != null) {
-//                    SharedPreferencesUtil.saveData(LoginActivity.this, url, responseInfo.result);
-//                    paserData(1, responseInfo.result);
-					Toast.makeText(LoginActivity.this, "登陆成功,恭喜你回家!!!", Toast.LENGTH_SHORT).show();
+				progressDialog.dismiss();
+				if (responseInfo.result !="0") {
+
+					SharedPreferences.Editor editor=sharedPreferences.edit();
+					editor.putString("userName", etUserName.getText().toString());
+					editor.putString("password", etPwd.getText().toString());
+					//使用commit方法提交修个的数据
+					if(cbSaveUser.isChecked())
+					{
+						//提交数据
+						editor.commit();
+					}
+					String result = responseInfo.result;
+
+						user = BaseService.getGson().fromJson(responseInfo.result, new TypeToken<Tusers>() {
+						}.getType());
+
+					titleUserName=user.getUserName();
+					titleUserId=user.getId();
+					myAppVariable=(MyAppVariable)getApplication(); //获得自定义的应用程序MyAppVariable
+
+					myAppVariable.setTusers(user);
+					Intent intentmy=new Intent(LoginActivity.this, MainMenuActivity.class);
+					startActivity(intentmy);
 					finish();
 //					overridePendingTransition(R.anim.left_to_right_in, R.anim.left_to_right_out);
 				}
