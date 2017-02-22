@@ -10,7 +10,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
-        versionName "2.8"
+        versionName "2.9"
     }
     buildTypes {
         release {
@@ -53,4 +53,9 @@ dependencies {
     compile 'com.github.ganfra:material-spinner:1.1.1'
     //    compile 'com.android.support:appcompat-v7:24.0.0-alpha2'
     compile files('src/main/libs/pinyin4j-1.1.0.jar')
+    compile files('libs/httpmime-4.2.5.jar')
+    compile files('src/main/libs/httpmime-4.2.5.jar')
+    compile files('src/main/libs/json-lib-2.2.3-jdk15.jar')
+    compile files('src/main/libs/org.apache.http.legacy.jar')
+    compile files('src/main/libs/xUtils.jar')
 }

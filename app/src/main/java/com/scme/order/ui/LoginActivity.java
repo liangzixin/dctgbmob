@@ -1,61 +1,41 @@
 package com.scme.order.ui;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import org.json.JSONObject;
-import org.json.JSONTokener;
-//import org.ksoap2.SoapEnvelope;
-//import org.ksoap2.serialization.SoapObject;
-//import org.ksoap2.serialization.SoapSerializationEnvelope;
-//import org.ksoap2.transport.HttpTransportSE;
-
-
-import com.scme.order.model.Tusers;
-import com.scme.order.service.UserService;
-import com.scme.order.tq.view.OwlView;
-import com.scme.order.util.MyAppVariable;
-import com.scme.order.util.Pictures;
-
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
-import android.graphics.Bitmap;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.StrictMode;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.Application;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
-import android.widget.HorizontalScrollView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.HttpHandler;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+import com.scme.order.model.Tusers;
+import com.scme.order.service.UserService;
+import com.scme.order.tq.view.OwlView;
+import com.scme.order.util.HttpUtil;
+import com.scme.order.util.MyAppVariable;
+
+//import org.ksoap2.SoapEnvelope;
+//import org.ksoap2.serialization.SoapObject;
+//import org.ksoap2.serialization.SoapSerializationEnvelope;
+//import org.ksoap2.transport.HttpTransportSE;
 
 public class LoginActivity extends Activity implements OnCheckedChangeListener {
 
@@ -79,6 +59,9 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
 	private MyAppVariable myAppVariable;
 	private TextView tvBtnReg,loginButton;
 	private OwlView mOwlView;
+	private HttpUtils httpUtils;
+	private String url=null;
+	private HttpHandler<String> handler;
 //	private Button loginButton1;
 
 //	@SuppressLint("NewApi")
@@ -173,10 +156,11 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
 			switch (v.getId()) {
 				case R.id.btnLogin : { // 点击登录按钮
 					userName=etUserName.getText().toString();
-				userPwd=etPwd.getText().toString();
-					try {
-					 //转中文乱码
-					 struserName = URLEncoder.encode(userName, "utf-8");
+				    userPwd=etPwd.getText().toString();
+					login(userName,userPwd);
+//					try {
+//					 //转中文乱码
+//					 struserName = URLEncoder.encode(userName, "utf-8");
 //					 final UserService userService=new UserService();
 //
 //					  progressDialog = new ProgressDialog(LoginActivity.this);
@@ -198,12 +182,12 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
 //				      }).start();
 ////						System.out.println("用户名0：");
 ////				System.out.println("用户名："+user.getUserName());
-				}
-				catch (Exception e)
-				{
-					e.printStackTrace();
-				}
-					btn_app_sy();
+//				}
+//				catch (Exception e)
+//				{
+//					e.printStackTrace();
+//				}
+//					btn_app_sy();
 					break;
 			}
 
@@ -314,5 +298,29 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
             super.handleMessage(msg);
         } 
     };
+
+	private void login(String zhanghao,String password) {
+//        ThreadPoolUtils.execute(new HttpPostThread(this, zhanghao, password, hand));
+		httpUtils = new HttpUtils();
+		url= HttpUtil.BASE_URL + "user!login.action?userName=" + userName + "&userPwd=" + userPwd + "";
+
+		handler = httpUtils.send(HttpRequest.HttpMethod.GET, url, new RequestCallBack<String>() {
+			@Override
+			public void onSuccess(ResponseInfo<String> responseInfo) {
+				if (responseInfo.result != null) {
+//                    SharedPreferencesUtil.saveData(LoginActivity.this, url, responseInfo.result);
+//                    paserData(1, responseInfo.result);
+					Toast.makeText(LoginActivity.this, "登陆成功,恭喜你回家!!!", Toast.LENGTH_SHORT).show();
+					finish();
+//					overridePendingTransition(R.anim.left_to_right_in, R.anim.left_to_right_out);
+				}
+			}
+
+			@Override
+			public void onFailure(HttpException e, String s) {
+				Toast.makeText(LoginActivity.this, "数据请求失败", Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
 
 }

@@ -16,7 +16,8 @@
                </intent-filter>
            </activity>
        </application>
-        -->
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>  -->
        <application
            android:name="com.scme.order.util.MyAppVariable"
            android:allowBackup="true"
