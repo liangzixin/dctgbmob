@@ -1,11 +1,8 @@
 package com.scme.order.ui;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,31 +10,31 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.internal.view.SupportMenuItem;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-//
-//import  android.support.v4.view.MenuItemCompat.OnActionExpandListener;
-import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.MaterialEditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Toast;
 
+import com.scme.order.holder.PhotoHolder;
+import com.scme.order.model.Photo;
 import com.scme.order.model.Tusers;
 import com.scme.order.model.Txxx;
-import com.scme.order.service.EatsService;
 import com.scme.order.service.TxxxService;
 import com.scme.order.util.MyAppVariable;
+import com.twiceyuan.commonadapter.library.adapter.MultiTypeAdapter;
 
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +42,9 @@ import java.util.Map;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+
+//
+//import  android.support.v4.view.MenuItemCompat.OnActionExpandListener;
 
 public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedListener{
     private ProgressDialog progressDialog;
@@ -58,6 +58,8 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
     private ArrayAdapter<String> adapter;
     private ArrayAdapter<String> adapter1;
     private MyAppVariable myAppVariable;
+    MultiTypeAdapter adapterlzx;
+//    private RecyclerView recyclerView;
 
     private static final String[] m={"请选择认证方式","填表认证","本人认证","代认证"};
     private static final String[] m1={"请选择认证时间","201602","201603","201604","201605"};
@@ -78,7 +80,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
     @InjectView(R.id.rzsj) MaterialEditText rz13sj;
     @InjectView(R.id.rzzb) MaterialEditText rz13zb;
     @InjectView(R.id.rzdd) MaterialEditText rz13dd;
-//    @InjectView(R.id.action_txxxdetail_mainrz) TextView  rz;
+    @InjectView(R.id.recyclerView) RecyclerView   recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +102,10 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
 
         spinner.setAdapter(adapter);
 
+        assert recyclerView != null;
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        adapterlzx = new MultiTypeAdapter(this);
+        adapterlzx.registerViewType(Photo.class, PhotoHolder.class);
         spinner.setOnItemSelectedListener(this);
 
         progressDialog = new ProgressDialog(this);

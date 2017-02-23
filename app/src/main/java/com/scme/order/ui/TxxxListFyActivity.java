@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,30 +23,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.Switch;
-import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.DialogInterface.OnClickListener;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import com.scme.order.card.HeadlineBodyCard;
 import com.scme.order.model.Txxx;
-import com.scme.order.service.EatsService;
-import com.scme.order.service.OrdersService;
 import com.scme.order.service.TxxxService;
 import com.scme.order.util.MyAppVariable;
 import com.scme.order.view.XListView;
 import com.scme.order.view.XListView.IXListViewListener;
-import android.widget.AdapterView.OnItemSelectedListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -589,7 +585,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 //				grbh.setText(txxx.getGrbh());
 				name.setText(txxx.getName());
 				sfzh.setText(txxx.getSfzh());
-				rz.setText(IsCheckOut(txxx.getRz13jk()));
+				rz.setText(IsCheckOut(txxx.getRz14jk()));
 
 			} else {
 
