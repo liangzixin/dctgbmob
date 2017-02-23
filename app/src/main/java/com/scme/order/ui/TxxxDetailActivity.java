@@ -80,7 +80,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
     @InjectView(R.id.rzsj) MaterialEditText rz13sj;
     @InjectView(R.id.rzzb) MaterialEditText rz13zb;
     @InjectView(R.id.rzdd) MaterialEditText rz13dd;
-    @InjectView(R.id.recyclerView) RecyclerView   recyclerView;
+   @InjectView(R.id.recyclerView) RecyclerView   recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,10 +102,10 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
 
         spinner.setAdapter(adapter);
 
-        assert recyclerView != null;
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        adapterlzx = new MultiTypeAdapter(this);
-        adapterlzx.registerViewType(Photo.class, PhotoHolder.class);
+//        assert recyclerView != null;
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+//        adapterlzx = new MultiTypeAdapter(this);
+//        adapterlzx.registerViewType(Photo.class, PhotoHolder.class);
         spinner.setOnItemSelectedListener(this);
 
         progressDialog = new ProgressDialog(this);
