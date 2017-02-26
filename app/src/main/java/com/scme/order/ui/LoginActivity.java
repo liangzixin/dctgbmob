@@ -347,6 +347,7 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
 			@Override
 			public void onFailure(HttpException e, String s) {
 				Toast.makeText(LoginActivity.this, "数据请求失败", Toast.LENGTH_SHORT).show();
+				progressDialog.dismiss();
 			}
 		});
 	}

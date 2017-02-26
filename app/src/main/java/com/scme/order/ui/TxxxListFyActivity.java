@@ -74,7 +74,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 	private Spinner spinner2;
 	private static final String[] m={"上大院管理服务站","下大院管理服务站","桂苑街管理服务站","落雪大院管理服务站","腊利大院管理服务站"};
 	private static final String[] m1={"姓名","个人编号","身份证号","经办人","认证地点","认证日期","居住地","联系电话1","联系电话2"};
-	private static final String[] m2={"name","grbh","sfzh","rz13zb","rz13dd","rzrj","czdz","lxdh1","lzdh2"};
+	private static final String[] m2={"name","grbh","sfzh","rz14zb","rz14dd","rzrj","czdz","lxdh1","lzdh2"};
 	private String bmmz0="";
 	private String name0="";
 	private String rzjk0="";

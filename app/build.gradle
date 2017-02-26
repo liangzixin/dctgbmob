@@ -10,8 +10,8 @@ android {
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
-        versionName "3.2"
-        multiDexEnabled true
+        versionName "3.3"
+          multiDexEnabled true
     }
 
     buildTypes {
@@ -43,7 +43,9 @@ dependencies {
     //    compile files('src/main/lib/android-support-v7-recyclerview.jar')
     //    compile 'com.squareup:android-times-square:1.6.5@aar'
     compile 'com.android.support:support-v4:23.0.1'
-    compile 'com.google.android.gms:play-services:8.4.0'
+//    compile 'com.google.android.gms:play-services:8.4.0'
+    compile 'com.google.android.gms:play-services-maps:8.4.0'
+    compile 'com.google.android.gms:play-services-plus:8.4.0'
     compile 'com.jakewharton:butterknife:5.1.1'
     compile 'fr.erictruong:materialedittext:0.2.0'
     compile 'com.google.code.gson:gson:2.2.4'
@@ -62,7 +64,8 @@ dependencies {
     compile files('src/main/libs/json-lib-2.2.3-jdk15.jar')
     compile files('src/main/libs/org.apache.http.legacy.jar')
     compile files('src/main/libs/xUtils.jar')
-    compile 'com.android.support:multidex:1.0.0'
+      compile 'com.android.support:multidex:1.0.0'
     compile 'com.github.twiceyuan:CommonAdapter:0.5.3'
     compile 'com.android.support:cardview-v7:23.2.0'
+    compile 'com.github.sd6352051:android-image-picker:v1.0.1'
 }

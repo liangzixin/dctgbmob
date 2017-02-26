@@ -28,14 +28,19 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.scme.order.adpater.ChooseAdapter;
 import com.scme.order.holder.PhotoHolder;
 import com.scme.order.model.Photo;
+import com.scme.order.model.Photoimage;
 import com.scme.order.model.Tusers;
 import com.scme.order.model.Txxx;
 import com.scme.order.service.TxxxService;
 import com.scme.order.util.MyAppVariable;
 import com.twiceyuan.commonadapter.library.adapter.MultiTypeAdapter;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,10 +64,13 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
     private ArrayAdapter<String> adapter1;
     private MyAppVariable myAppVariable;
     MultiTypeAdapter adapterlzx;
+    private List<Photoimage> potolist;
+    private ChooseAdapter mAdapter;
+
 //    private RecyclerView recyclerView;
 
-    private static final String[] m={"请选择认证方式","填表认证","本人认证","代认证"};
-    private static final String[] m1={"请选择认证时间","201602","201603","201604","201605"};
+    private static final String[] m={"请选择认证方式","填表认证","本人认证","代认证","入户认证","视频认证"};
+    private static final String[] m1={"请选择认证时间","201703","201704","201705","201706","201707"};
 
     @InjectView(R.id.img_1) ImageView img1;
     @InjectView(R.id.img_2) ImageView img2;
@@ -81,7 +89,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
     @InjectView(R.id.rzzb) MaterialEditText rz13zb;
     @InjectView(R.id.rzdd) MaterialEditText rz13dd;
    @InjectView(R.id.recyclerView) RecyclerView   recyclerView;
-
+    @InjectView(R.id.photo_image) ImageView   photoImageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,10 +110,11 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
 
         spinner.setAdapter(adapter);
 
-//        assert recyclerView != null;
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-//        adapterlzx = new MultiTypeAdapter(this);
-//        adapterlzx.registerViewType(Photo.class, PhotoHolder.class);
+        assert recyclerView != null;
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        adapterlzx = new MultiTypeAdapter(this);
+        adapterlzx.registerViewType(Photo.class, PhotoHolder.class);
+        recyclerView.setAdapter(adapterlzx);
         spinner.setOnItemSelectedListener(this);
 
         progressDialog = new ProgressDialog(this);
@@ -133,7 +142,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
                 mThread.start();
 
             }
-
+        showView(txxx);
 
     }
 
@@ -161,7 +170,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
                 img2.setImageResource(R.drawable.ic_phone_white_24dp);
                 img3.setImageResource(R.drawable.ic_phone_white_24dp);
             }
-         showView(txxx);
+//         showView(txxx);
 
         progressDialog.dismiss();
         //send message here
@@ -196,21 +205,86 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
         lxdh2.setText(txxx.getLxdh2());
         lxdh3.setText(txxx.getLxdh3());
 //        rz13jk.setText(txxx.getRz13jk());
-       rz13sj.setText(txxx.getRz13sj());
-        rz13zb.setText(txxx.getRz13zb());
-       rz13dd.setText(txxx.getRz13dd());
-        if(txxx.getRz13jk().equals("")){
+       rz13sj.setText(txxx.getRz14sj());
+        rz13zb.setText(txxx.getRz14zb());
+       rz13dd.setText(txxx.getRz14dd());
+        if(txxx.getRz14jk().equals("")){
             spinner.setSelection(0);
-        }else if(txxx.getRz13jk().equals("填表认证")){
+        }else if(txxx.getRz14jk().equals("填表认证")){
             spinner.setSelection(1);
-        }else if(txxx.getRz13jk().equals("本人认证")){
+        }else if(txxx.getRz14jk().equals("本人认证")){
             spinner.setSelection(2);
-        }else if(txxx.getRz13jk().equals("代认证")){
+        }else if(txxx.getRz14jk().equals("代认证")){
             spinner.setSelection(3);
+        }
+        Glide.with(TxxxDetailActivity.this)
+                .load(new File("/storage/emulated/0/ImageSelector/CropImage/ImageSelector_20170226_214833.JPEG"))
+                .into(photoImageView);
+
+        potolist= new ArrayList<>();
+        int i=0;
+        if(!txxx.getPhoto().equals("")){
+            Photoimage photoimage=new Photoimage();
+            i=i+1;
+            photoimage.setId(i);
+            photoimage.setPath(txxx.getPhoto());
+            photoimage.setSubject("退休人员头像");
+            potolist.add(photoimage);
+        }
+        if(!txxx.getSfzzm().equals("")){
+            Photoimage photoimage=new Photoimage();
+            i=i+1;
+            photoimage.setId(i);
+            photoimage.setPath(txxx.getSfzzm());
+            photoimage.setSubject("身份证正面");
+            potolist.add(photoimage);
+        }
+        if(!txxx.getSfzfm().equals("")){
+            Photoimage photoimage=new Photoimage();
+            i=i+1;
+            photoimage.setId(i);
+            photoimage.setPath(txxx.getSfzfm());
+            photoimage.setSubject("身份证反面");
+            potolist.add(photoimage);
+        }
+        if(!txxx.getTbsm().equals("")){
+            Photoimage photoimage=new Photoimage();
+            i=i+1;
+            photoimage.setId(i);
+            photoimage.setPath(txxx.getTbsm());
+            photoimage.setSubject("填表认证扫描图");
+            potolist.add(photoimage);
+        }
+        if(!txxx.getSfzfyj().equals("")){
+            Photoimage photoimage=new Photoimage();
+            i=i+1;
+            photoimage.setId(i);
+            photoimage.setPath(txxx.getSfzfyj());
+            photoimage.setSubject("身份证复印件扫描图");
+            potolist.add(photoimage);
+        }
+        if(!txxx.getSbjt().equals("")){
+            Photoimage photoimage=new Photoimage();
+            i=i+1;
+            photoimage.setId(i);
+            photoimage.setPath(txxx.getSbjt());
+            photoimage.setSubject("视频认证截图");
+            potolist.add(photoimage);
+        }
+
+        for (int j = 0; j <potolist.size(); j++) {
+
+            adapterlzx.add(mockPhoto(j));
         }
 
     }
-
+    public Photo mockPhoto(int seed) {
+        Photo photo = new Photo();
+        photo.path=potolist.get(seed).getPath();
+       photo.photoId =seed;
+        photo.description =potolist.get(seed).getSubject();
+        return photo;
+    }
     /**
      * 数据加载完之后消除Loding对话框
      * */
@@ -232,7 +306,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
 //        Toast.makeText(TxxxDetailActivity.this, tusers.getPurview()+"与"+txxx.getRz13jk(), Toast.LENGTH_SHORT).show();
 
         if(tusers.getPurview().equals("社保")||tusers.getPurview().equals("系统")){
-            if(txxx.getRz13jk().equals("")) {
+            if(txxx.getRz14jk().equals("")) {
                 menu.getItem(1).setEnabled(true);
             }else{  menu.getItem(1).setVisible(true);}
 //            Toast.makeText(this,"0", Toast.LENGTH_SHORT).show();

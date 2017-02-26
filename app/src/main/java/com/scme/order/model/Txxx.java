@@ -34,6 +34,13 @@ public class Txxx implements java.io.Serializable {
 	private Branch branch;
 	private String sendok;
 	private int count;
+	private String photo="";
+	private String sfzzm="";
+	private String sfzfm="";
+	private String sbjt="";
+	private String tbsm="";
+	private String sfzfyj="";
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -230,5 +237,53 @@ public class Txxx implements java.io.Serializable {
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
+	public String getSfzzm() {
+		return sfzzm;
+	}
+
+	public void setSfzzm(String sfzzm) {
+		this.sfzzm = sfzzm;
+	}
+
+	public String getSfzfm() {
+		return sfzfm;
+	}
+
+	public void setSfzfm(String sfzfm) {
+		this.sfzfm = sfzfm;
+	}
+
+	public String getSbjt() {
+		return sbjt;
+	}
+
+	public void setSbjt(String sbjt) {
+		this.sbjt = sbjt;
+	}
+
+	public String getTbsm() {
+		return tbsm;
+	}
+
+	public void setTbsm(String tbsm) {
+		this.tbsm = tbsm;
+	}
+
+	public String getSfzfyj() {
+		return sfzfyj;
+	}
+
+	public void setSfzfyj(String sfzfyj) {
+		this.sfzfyj = sfzfyj;
 	}
 }

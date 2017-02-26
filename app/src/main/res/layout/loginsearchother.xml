@@ -107,34 +107,34 @@
 			android:layout_width="match_parent"
 			android:layout_height="100px"
             android:id="@+id/radioGroup"
-			android:orientation="vertical"
-			android:paddingTop="15px">
+			android:orientation="horizontal"
+			android:paddingTop="15px"
+
+			>
 
 			<RadioButton
             android:layout_width="wrap_content"
             android:layout_height="60px"
-
+            android:layout_weight="1"
             android:text="已认证"
             android:id="@+id/radioButton1" />
 
 			<RadioButton
             android:layout_width="wrap_content"
             android:layout_height="60px"
-				android:layout_marginLeft="220px"
 
+				android:layout_weight="1"
 				android:text="未认证"
             android:id="@+id/radioButton2"
-				android:layout_marginTop="-60px" />
+			 />
 
 			<RadioButton
     android:layout_width="wrap_content"
     android:layout_height="60px"
-				android:layout_marginLeft="440px"
-
+	android:layout_weight="1"
     android:text="死亡"
     android:id="@+id/radioButton3"
-
-				android:layout_marginTop="-60px" />
+				/>
 
 		</RadioGroup>
 		</LinearLayout>

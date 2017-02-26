@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -366,13 +366,21 @@
                 android:inputType="textNoSuggestions|textMultiLine"
 
                 material:maxCharacters="120"/>
+
+
         </LinearLayout>
+        <ImageView
+            android:id="@+id/photo_image"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:src="@drawable/culate"
+            />
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
                 />
     </LinearLayout>
 
