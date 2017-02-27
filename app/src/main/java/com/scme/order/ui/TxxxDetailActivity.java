@@ -12,9 +12,12 @@ import android.os.Looper;
 import android.os.Message;
 import android.support.v4.internal.view.SupportMenuItem;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,7 +33,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.scme.order.adpater.ChooseAdapter;
+import com.scme.order.adpater.MyAdapter;
+import com.scme.order.common.T;
 import com.scme.order.holder.PhotoHolder;
+import com.scme.order.interfaces.ItemClickListener;
 import com.scme.order.model.Photo;
 import com.scme.order.model.Photoimage;
 import com.scme.order.model.Tusers;
@@ -48,10 +54,15 @@ import java.util.Map;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
+import static android.support.v7.widget.RecyclerView.SCROLL_STATE_DRAGGING;
+import static android.support.v7.widget.RecyclerView.SCROLL_STATE_IDLE;
+import static android.support.v7.widget.RecyclerView.SCROLL_STATE_SETTLING;
+
 //
 //import  android.support.v4.view.MenuItemCompat.OnActionExpandListener;
 
 public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedListener{
+    Context context =TxxxDetailActivity.this;
     private ProgressDialog progressDialog;
     private Txxx txxx;
     private List<Txxx> txxxs;
@@ -66,8 +77,13 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
     MultiTypeAdapter adapterlzx;
     private List<Photoimage> potolist;
     private ChooseAdapter mAdapter;
-
+    private int type = 0;
 //    private RecyclerView recyclerView;
+
+    private MyAdapter myadapter;
+    private LinearLayoutManager layoutManager;
+    private GridLayoutManager gridLayoutManager;
+    private StaggeredGridLayoutManager StaggeredGridLayoutManager;
 
     private static final String[] m={"请选择认证方式","填表认证","本人认证","代认证","入户认证","视频认证"};
     private static final String[] m1={"请选择认证时间","201703","201704","201705","201706","201707"};
@@ -89,7 +105,9 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
     @InjectView(R.id.rzzb) MaterialEditText rz13zb;
     @InjectView(R.id.rzdd) MaterialEditText rz13dd;
    @InjectView(R.id.recyclerView) RecyclerView   recyclerView;
+    @InjectView(R.id.recyclerViewlzx) RecyclerView   recyclerViewlzx;
     @InjectView(R.id.photo_image) ImageView   photoImageView;
+    @InjectView(R.id.tv) TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,11 +128,11 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
 
         spinner.setAdapter(adapter);
 
-        assert recyclerView != null;
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        assert recyclerViewlzx != null;
+        recyclerViewlzx.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         adapterlzx = new MultiTypeAdapter(this);
         adapterlzx.registerViewType(Photo.class, PhotoHolder.class);
-        recyclerView.setAdapter(adapterlzx);
+        recyclerViewlzx.setAdapter(adapterlzx);
         spinner.setOnItemSelectedListener(this);
 
         progressDialog = new ProgressDialog(this);
@@ -143,7 +161,119 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
 
             }
         showView(txxx);
+        setGridLayoutRecyclerView();
+//        setLinstener();
+    }
+    private void setGridLayoutRecyclerView() {
 
+        gridLayoutManager = new GridLayoutManager(this, 3,
+                GridLayoutManager.VERTICAL, false);
+        // 设置布局管理器
+        recyclerView.setLayoutManager(gridLayoutManager);
+        // 创建数据集
+        List<Photoimage> listData = new ArrayList<Photoimage>();
+        for (int i = 0; i < 6; ++i) {
+           Photoimage uBean = new Photoimage();
+            switch (i){
+                case 0:  uBean.setPath("退休人员头像"); break;
+                case 1:  uBean.setPath("身份证正面"); break;
+                case 2:  uBean.setPath("身份证反面"); break;
+                case 3:  uBean.setPath("填表扫描图"); break;
+                case 4:  uBean.setPath("复印件描图"); break;
+                case 5:  uBean.setPath("视频认证截图"); break;
+                default :  break;
+            }
+
+            listData.add(uBean);
+        }
+        // 使用RecyclerView提供的默认的动画效果
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        // 为Item添加分割线
+        recyclerView.addItemDecoration(new ItemDecorationDivider(context,
+                R.drawable.item_divider, LinearLayoutManager.VERTICAL));
+        recyclerView.addItemDecoration(new ItemDecorationDivider(context,
+                R.drawable.item_divider, LinearLayoutManager.HORIZONTAL));
+        // recyclerView.addItemDecoration(new
+        // DividerItemDecoration(context,oritation));
+
+        // 创建Adapter，并指定数据集
+        myadapter = new MyAdapter(context, listData);
+        // 为Item具体实例点击3种事件
+        myadapter.setItemClickListener(new ItemClickListener() {
+
+            @Override
+            public void onItemSubViewClick(View view, int postion) {
+                T.showShort(context, "亲，你点击了Image" + postion);
+
+            }
+
+            @Override
+            public void onItemLongClick(View view, int postion) {
+                T.showShort(context, "亲，你长按了Item" + postion);
+
+            }
+
+            @Override
+            public void onItemClick(View view, int postion) {
+                T.showShort(context, "亲，你点击了Item" + postion);
+
+            }
+        });
+        // 设置Adapter
+        recyclerView.setAdapter(myadapter);
+    }
+    protected void setLinstener() {
+
+        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView,
+                                             int scrollState) {
+                updateState(scrollState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+                String s = "";
+                if (type == 0) {
+                    s = "可见Item数量：" + layoutManager.getChildCount() + "\n"
+                            + "可见Item第一个Position："
+                            + layoutManager.findFirstVisibleItemPosition()
+                            + "\n" + "可见Item最后一个Position："
+                            + layoutManager.findLastVisibleItemPosition();
+
+                } else if (type == 1) {
+                    s = "可见Item数量：" + gridLayoutManager.getChildCount() + "\n"
+                            + "可见Item第一个Position："
+                            + gridLayoutManager.findFirstVisibleItemPosition()
+                            + "\n" + "可见Item最后一个Position："
+                            + gridLayoutManager.findLastVisibleItemPosition();
+                } else {
+                    s = "可见Item数量："
+                            + StaggeredGridLayoutManager.getChildCount();
+
+                }
+                tv.setText(s);
+            }
+        });
+
+    }
+    private void updateState(int scrollState) {
+        String stateName = "Undefined";
+        switch (scrollState) {
+            case SCROLL_STATE_IDLE:
+                stateName = "Idle";
+                break;
+
+            case SCROLL_STATE_DRAGGING:
+                stateName = "Dragging";
+                break;
+
+            case SCROLL_STATE_SETTLING:
+                stateName = "Flinging";
+                break;
+        }
+
+//        tv_state.setText("滑动状态：" + stateName);
     }
 
    private Thread mThread = new Thread() {
