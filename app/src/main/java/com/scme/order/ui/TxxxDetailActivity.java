@@ -32,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.litao.android.lib.Utils.GridSpacingItemDecoration;
 import com.scme.order.adpater.ChooseAdapter;
 import com.scme.order.adpater.MyAdapter;
 import com.scme.order.common.T;
@@ -44,6 +45,8 @@ import com.scme.order.model.Txxx;
 import com.scme.order.service.TxxxService;
 import com.scme.order.util.MyAppVariable;
 import com.twiceyuan.commonadapter.library.adapter.MultiTypeAdapter;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -170,6 +173,12 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
                 GridLayoutManager.VERTICAL, false);
         // 设置布局管理器
         recyclerView.setLayoutManager(gridLayoutManager);
+
+
+//        mAdapter = new ChooseAdapter(this);
+//        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 5));
+//        mRecyclerView.setAdapter(mAdapter);
+//        mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(5, 2, true));
         // 创建数据集
         List<Photoimage> listData = new ArrayList<Photoimage>();
         for (int i = 0; i < 6; ++i) {
@@ -204,7 +213,9 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
             @Override
             public void onItemSubViewClick(View view, int postion) {
                 T.showShort(context, "亲，你点击了Image" + postion);
-
+//                mAdapter = new ChooseAdapter(context);
+                startActivity(new Intent(TxxxDetailActivity.this, PhotosActivity.class));
+//                EventBus.getDefault().postSticky(new EventEntry(mAdapter.getData(),EventEntry.SELECTED_PHOTOS_ID));
             }
 
             @Override

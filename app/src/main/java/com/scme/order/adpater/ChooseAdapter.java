@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import com.scme.order.model.Photoimage;
+//import com.scme.order.model.Photoimage;
 
 import com.bumptech.glide.Glide;
 import com.litao.android.lib.entity.PhotoEntry;
@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder> {
 
-    private List<Photoimage> list = new ArrayList<Photoimage>();
+    private List<PhotoEntry> list = new ArrayList<PhotoEntry>();
 
     private Context mContext;
 
@@ -43,7 +43,7 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
         list.add(createAddEntry());
     }
 
-    public void reloadList(List<Photoimage> data) {
+    public void reloadList(List<PhotoEntry> data) {
         if (data != null) {
             list.clear();
             list.addAll(data);
@@ -55,7 +55,7 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
 
     }
 
-    public void appendList(List<Photoimage> data) {
+    public void appendList(List<PhotoEntry> data) {
         if (data != null) {
             list.addAll(list.size()-1,data);
         } else {
@@ -66,22 +66,22 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
     }
 
 
-    public void appendPhoto(Photoimage entry) {
+    public void appendPhoto(PhotoEntry entry) {
         if (entry != null) {
             list.add(list.size()-1,entry);
         }
         notifyDataSetChanged();
     }
 
-    public List<Photoimage> getData(){
+    public List<PhotoEntry> getData(){
         return list.subList(0,list.size()-1);
     }
-    public Photoimage getEntry(int position) {
+    public PhotoEntry getEntry(int position) {
         return list.get(position);
     }
 
-    private Photoimage createAddEntry(){
-        return new Photoimage();
+    private PhotoEntry createAddEntry(){
+        return new PhotoEntry();
     }
 
     @Override
@@ -101,7 +101,7 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
         if (i==list.size()-1){
             viewHolder.mImageView.setImageResource(R.drawable.add);
         }else {
-            Photoimage entry = list.get(i);
+            PhotoEntry entry = list.get(i);
             Glide.with(mContext)
                     .load(new File(entry.getPath()))
                     .centerCrop()
