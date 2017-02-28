@@ -79,11 +79,11 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
     private MyAppVariable myAppVariable;
     MultiTypeAdapter adapterlzx;
     private List<Photoimage> potolist;
-    private ChooseAdapter mAdapter;
+    private ChooseAdapter mPhotoAdapter;
     private int type = 0;
 //    private RecyclerView recyclerView;
 
-    private MyAdapter myadapter;
+//    private MyAdapter myadapter;
     private LinearLayoutManager layoutManager;
     private GridLayoutManager gridLayoutManager;
     private StaggeredGridLayoutManager StaggeredGridLayoutManager;
@@ -175,14 +175,15 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
         recyclerView.setLayoutManager(gridLayoutManager);
 
 
-//        mAdapter = new ChooseAdapter(this);
+//        mPhotoAdapter = new ChooseAdapter(this);
 //        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 5));
-//        mRecyclerView.setAdapter(mAdapter);
+//        mRecyclerView.setAdapter(mPhotoAdapter);
 //        mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(5, 2, true));
         // 创建数据集
         List<Photoimage> listData = new ArrayList<Photoimage>();
         for (int i = 0; i < 6; ++i) {
            Photoimage uBean = new Photoimage();
+
             switch (i){
                 case 0:  uBean.setPath("退休人员头像"); break;
                 case 1:  uBean.setPath("身份证正面"); break;
@@ -206,17 +207,17 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
         // DividerItemDecoration(context,oritation));
 
         // 创建Adapter，并指定数据集
-        myadapter = new MyAdapter(context, listData);
+        mPhotoAdapter = new ChooseAdapter(context, listData);
         // 为Item具体实例点击3种事件
-        myadapter.setItemClickListener(new ItemClickListener() {
+        mPhotoAdapter.setItemClickListener(new ItemClickListener() {
 
             @Override
             public void onItemSubViewClick(View view, int postion) {
                 T.showShort(context, "亲，你点击了Image" + postion);
-//                mAdapter = new ChooseAdapter(context);
+//                mPhotoAdapter = new ChooseAdapter(context);
                 startActivity(new Intent(TxxxDetailActivity.this, PhotosActivity.class));
 
-//                EventBus.getDefault().postSticky(new EventEntry(mAdapter.getData(),EventEntry.SELECTED_PHOTOS_ID));
+//                EventBus.getDefault().postSticky(new EventEntry(mPhotoAdapter.getData(),EventEntry.SELECTED_PHOTOS_ID));
 //                EventBus.getDefault().postSticky(new EventEntry(myadapter.g,EventEntry.SELECTED_PHOTOS_ID));
 //                Intent in = new Intent();
 //                in.putExtra( "text", tv.getText() );
@@ -237,7 +238,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
             }
         });
         // 设置Adapter
-        recyclerView.setAdapter(myadapter);
+        recyclerView.setAdapter(mPhotoAdapter);
     }
     protected void setLinstener() {
 
@@ -630,7 +631,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void photosMessageEvent(EventEntry entries){
         if (entries.id == EventEntry.RECEIVED_PHOTOS_ID) {
-//            mAdapter.reloadList(entries.photos);
+//            mPhotoAdapter.reloadList(entries.photos);
 //            mSelectedPhotos=entries.photos;
             T.showShort(context, "亲，返回来了" );
         }

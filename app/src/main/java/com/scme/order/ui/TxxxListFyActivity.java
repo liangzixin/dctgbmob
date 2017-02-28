@@ -53,7 +53,7 @@ import butterknife.InjectView;
 
 public class TxxxListFyActivity extends BaseActivity implements IXListViewListener,AdapterView.OnItemClickListener,OnItemSelectedListener {
 	private XListView mListView;
-	private ArrayAdapter<String> mAdapter;
+//	private ArrayAdapter<String> mAdapter;
 	//	private ArrayList<String> items = new ArrayList<String>();
 	private List<HashMap<String, Object>> txxxMapList = new ArrayList<HashMap<String, Object>>();
 	private Handler mHandler;
