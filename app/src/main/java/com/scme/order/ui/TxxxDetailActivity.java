@@ -32,7 +32,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.litao.android.lib.Utils.GridSpacingItemDecoration;
 import com.scme.order.adpater.ChooseAdapter;
 import com.scme.order.adpater.MyAdapter;
 import com.scme.order.common.T;
@@ -46,7 +45,8 @@ import com.scme.order.service.TxxxService;
 import com.scme.order.util.MyAppVariable;
 import com.twiceyuan.commonadapter.library.adapter.MultiTypeAdapter;
 
-import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -215,7 +215,13 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
                 T.showShort(context, "亲，你点击了Image" + postion);
 //                mAdapter = new ChooseAdapter(context);
                 startActivity(new Intent(TxxxDetailActivity.this, PhotosActivity.class));
+
 //                EventBus.getDefault().postSticky(new EventEntry(mAdapter.getData(),EventEntry.SELECTED_PHOTOS_ID));
+//                EventBus.getDefault().postSticky(new EventEntry(myadapter.g,EventEntry.SELECTED_PHOTOS_ID));
+//                Intent in = new Intent();
+//                in.putExtra( "text", tv.getText() );
+//                in.setClassName( getApplicationContext(), "PhotosActivity.class" );
+//                startActivityForResult( in, 0 );
             }
 
             @Override
@@ -619,6 +625,29 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
               }
           }).show();
       }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void photosMessageEvent(EventEntry entries){
+        if (entries.id == EventEntry.RECEIVED_PHOTOS_ID) {
+//            mAdapter.reloadList(entries.photos);
+//            mSelectedPhotos=entries.photos;
+            T.showShort(context, "亲，返回来了" );
+        }
+    }
+    @Override
+    protected void onActivityResult( int requestCode, int resultCode, Intent data )
+    {
+        switch ( resultCode ) {
+            case RESULT_OK :
+//                System.out.println(data.getExtras().getString( "result" ));
+//                tv1.setText( data.getExtras().getString( "result" ));
+                T.showShort(context, "亲，返回来了" );
+                break;
+            default :
+                break;
+        }
+
     }
 
 }

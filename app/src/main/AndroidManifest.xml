@@ -18,6 +18,9 @@
        </application>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>  -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
        <application
            android:name="com.scme.order.util.MyAppVariable"
            android:allowBackup="true"

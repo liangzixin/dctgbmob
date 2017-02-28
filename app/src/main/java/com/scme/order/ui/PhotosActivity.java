@@ -102,7 +102,7 @@ public class PhotosActivity extends BaseGalleryActivity implements View.OnClickL
                 .setCheckBoxColor(0xFF3F51B5)
                 .setDialogHeight(Configuration.DIALOG_HALF)
                 .setDialogMode(Configuration.DIALOG_GRID)
-                .setMaximum(9)
+                .setMaximum(1)
                 .setTip(null)
                 .setAblumsTitle(null)
                 .build();
