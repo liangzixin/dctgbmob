@@ -8,25 +8,25 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.scme.order.interfaces.ItemClickListener;
-import com.scme.order.model.Photoimage;
-
 import com.bumptech.glide.Glide;
-//import com.litao.android.lib.entity.PhotoEntry;
+import com.litao.android.lib.entity.PhotoEntry;
+import com.scme.order.interfaces.ItemClickListener;
 import com.scme.order.ui.R;
-//import com.litao.android.lib.entity.Photoimage;
-//import com.xiangmu.lzx.R;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+//import com.scme.order.model.Photoimage;
+//import com.litao.android.lib.entity.Photoimage;
+//import com.xiangmu.lzx.R;
 
 /**
  * Created by 李涛 on 16/4/30.
  */
 public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.MViewHolder> {
 
-    private List<Photoimage> list = new ArrayList<Photoimage>();
+    private List<PhotoEntry> list = new ArrayList<PhotoEntry>();
 
     private Context mContext;
 
@@ -39,17 +39,36 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.MViewHolde
         void onItemClicked(int position);
 
     }
+//    public interface ItemClickListener {
+//    /**
+//     * Item 普通点击
+//     */
+//
+//    void onItemClick(View view, int postion);
+//
+//    /**
+//     * Item 长按
+//     */
+//
+//    void onItemLongClick(View view, int postion);
+//
+//    /**
+//     * Item 内部View点击
+//     */
+//
+//     void onItemSubViewClick(View view, int postion);
+//}
 
-    public ChooseAdapter(Context mContext, List<Photoimage> mList) {
+    public ChooseAdapter(Context mContext, List<PhotoEntry> mList) {
         this.mContext = mContext;
         this.list=mList;
 //        mlistener = (OnItmeClickListener) mContext;
-        mItemClickListener= (ItemClickListener) mContext;
-        mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        mItemClickListener= (ItemClickListener) mContext;
+//        mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 //        list.add(createAddEntry());
     }
 
-    public void reloadList(List<Photoimage> data) {
+    public void reloadList(List<PhotoEntry> data) {
         if (data != null) {
             list.clear();
             list.addAll(data);
@@ -61,7 +80,7 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.MViewHolde
 
     }
 
-    public void appendList(List<Photoimage> data) {
+    public void appendList(List<PhotoEntry> data) {
         if (data != null) {
             list.addAll(list.size()-1,data);
         } else {
@@ -75,22 +94,22 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.MViewHolde
         this.mItemClickListener = mItemClickListener;
     }
 
-    public void appendPhoto(Photoimage entry) {
+    public void appendPhoto(PhotoEntry entry) {
         if (entry != null) {
             list.add(list.size()-1,entry);
         }
         notifyDataSetChanged();
     }
 
-    public List<Photoimage> getData(){
+    public List<PhotoEntry> getData(){
         return list.subList(0,list.size()-1);
     }
-    public Photoimage getEntry(int position) {
+    public PhotoEntry getEntry(int position) {
         return list.get(position);
     }
 
-    private Photoimage createAddEntry(){
-        return new Photoimage();
+    private PhotoEntry createAddEntry(){
+        return new PhotoEntry();
     }
 
     @Override
@@ -166,6 +185,14 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.MViewHolde
                 if (null != mItemClickListener) {
                     mItemClickListener.onItemSubViewClick(mViewHolder.image,
                             postion);
+
+        PhotoEntry entry = list.get(postion);
+                    Glide.with(mContext)
+                            .load(new File("/storage/emulated/0/ImageSelector/CropImage/ImageSelector_20170226_214833.JPEG"))
+                            .centerCrop()
+                            .placeholder(com.litao.android.lib.R.mipmap.default_image)
+                            .into(mViewHolder.image);
+
                 }
 
             }

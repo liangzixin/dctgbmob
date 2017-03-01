@@ -32,8 +32,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.litao.android.lib.entity.PhotoEntry;
 import com.scme.order.adpater.ChooseAdapter;
-import com.scme.order.adpater.MyAdapter;
 import com.scme.order.common.T;
 import com.scme.order.holder.PhotoHolder;
 import com.scme.order.interfaces.ItemClickListener;
@@ -45,6 +45,7 @@ import com.scme.order.service.TxxxService;
 import com.scme.order.util.MyAppVariable;
 import com.twiceyuan.commonadapter.library.adapter.MultiTypeAdapter;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -116,6 +117,8 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_txxxdetail);
 
+        EventBus.getDefault().register(this);
+
         ButterKnife.inject(this);
 
         //获得绑定参数
@@ -167,6 +170,11 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
         setGridLayoutRecyclerView();
 //        setLinstener();
     }
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+    }
     private void setGridLayoutRecyclerView() {
 
         gridLayoutManager = new GridLayoutManager(this, 3,
@@ -180,9 +188,9 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
 //        mRecyclerView.setAdapter(mPhotoAdapter);
 //        mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(5, 2, true));
         // 创建数据集
-        List<Photoimage> listData = new ArrayList<Photoimage>();
+        List<PhotoEntry> listData = new ArrayList<PhotoEntry>();
         for (int i = 0; i < 6; ++i) {
-           Photoimage uBean = new Photoimage();
+            PhotoEntry uBean = new PhotoEntry();
 
             switch (i){
                 case 0:  uBean.setPath("退休人员头像"); break;
@@ -217,7 +225,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
 //                mPhotoAdapter = new ChooseAdapter(context);
                 startActivity(new Intent(TxxxDetailActivity.this, PhotosActivity.class));
 
-//                EventBus.getDefault().postSticky(new EventEntry(mPhotoAdapter.getData(),EventEntry.SELECTED_PHOTOS_ID));
+                EventBus.getDefault().postSticky(new EventEntry(mPhotoAdapter.getData(),EventEntry.SELECTED_PHOTOS_ID));
 //                EventBus.getDefault().postSticky(new EventEntry(myadapter.g,EventEntry.SELECTED_PHOTOS_ID));
 //                Intent in = new Intent();
 //                in.putExtra( "text", tv.getText() );
@@ -650,5 +658,6 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
         }
 
     }
+
 
 }
