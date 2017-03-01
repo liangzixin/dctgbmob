@@ -639,7 +639,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void photosMessageEvent(EventEntry entries){
         if (entries.id == EventEntry.RECEIVED_PHOTOS_ID) {
-//            mPhotoAdapter.reloadList(entries.photos);
+            mPhotoAdapter.reloadList(entries.photos);
 //            mSelectedPhotos=entries.photos;
             T.showShort(context, "亲，返回来了" );
         }
