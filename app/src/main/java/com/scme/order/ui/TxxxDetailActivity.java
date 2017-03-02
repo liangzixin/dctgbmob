@@ -82,6 +82,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
     private List<Photoimage> potolist;
     private ChooseAdapter mPhotoAdapter;
     private int type = 0;
+    private int photoposition=0;
 //    private RecyclerView recyclerView;
 
 //    private MyAdapter myadapter;
@@ -191,16 +192,16 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
         List<PhotoEntry> listData = new ArrayList<PhotoEntry>();
         for (int i = 0; i < 6; ++i) {
             PhotoEntry uBean = new PhotoEntry();
-
-            switch (i){
-                case 0:  uBean.setPath("退休人员头像"); break;
-                case 1:  uBean.setPath("身份证正面"); break;
-                case 2:  uBean.setPath("身份证反面"); break;
-                case 3:  uBean.setPath("填表扫描图"); break;
-                case 4:  uBean.setPath("复印件描图"); break;
-                case 5:  uBean.setPath("视频认证截图"); break;
-                default :  break;
-            }
+                       uBean.setImageId(i);
+//            switch (i){
+//                case 0:  uBean.setPath("退休人员头像"); break;
+//                case 1:  uBean.setPath("身份证正面"); break;
+//                case 2:  uBean.setPath("身份证反面"); break;
+//                case 3:  uBean.setPath("填表扫描图"); break;
+//                case 4:  uBean.setPath("复印件描图"); break;
+//                case 5:  uBean.setPath("视频认证截图"); break;
+//                default :  break;
+//            }
 
             listData.add(uBean);
         }
@@ -222,11 +223,13 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
             @Override
             public void onItemSubViewClick(View view, int postion) {
                 T.showShort(context, "亲，你点击了Image" + postion);
+                photoposition=postion;
 //                mPhotoAdapter = new ChooseAdapter(context);
                 startActivity(new Intent(TxxxDetailActivity.this, PhotosActivity.class));
 
-                EventBus.getDefault().postSticky(new EventEntry(mPhotoAdapter.getData(),EventEntry.SELECTED_PHOTOS_ID));
-//                EventBus.getDefault().postSticky(new EventEntry(myadapter.g,EventEntry.SELECTED_PHOTOS_ID));
+//                T.showShort(context, "亲格还运行呢？？？？" + postion);
+                //   EventBus.getDefault().postSticky(new EventEntry(mPhotoAdapter.getData(),EventEntry.SELECTED_PHOTOS_ID));
+                //       EventBus.getDefault().postSticky(new EventEntry(myadapter.g,EventEntry.SELECTED_PHOTOS_ID));
 //                Intent in = new Intent();
 //                in.putExtra( "text", tv.getText() );
 //                in.setClassName( getApplicationContext(), "PhotosActivity.class" );
@@ -637,10 +640,20 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void photosMessageEvent(EventEntry entries){
+    public void photosMessageEvent(EventEntry entries) {
         if (entries.id == EventEntry.RECEIVED_PHOTOS_ID) {
-            mPhotoAdapter.reloadList(entries.photos);
+//            mPhotoAdapter.reloadList(entries.photos);
 //            mSelectedPhotos=entries.photos;
+//            PhotoEntry entry = entries.photos.get(0);
+//            Glide.with(context)
+//                    .load(new File(entry.getPath()))
+//                    .centerCrop()
+//                    .placeholder(com.litao.android.lib.R.mipmap.default_image)
+//                    .into(mPhotoAdapter.MViewHolder.image);
+//            mPhotoAdapter(context,entries.photos);
+//              mPhotoAdapter.mPhotoAdapter();
+               entries.photos.get(0).setImageId(photoposition);
+            mPhotoAdapter.reloaddata(entries.photos.get(0));
             T.showShort(context, "亲，返回来了" );
         }
     }

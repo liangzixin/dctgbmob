@@ -79,7 +79,19 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.MViewHolde
         notifyDataSetChanged();
 
     }
+    public void reloaddata(PhotoEntry data) {
+        if (data != null) {
+        list.get(data.getImageId()).setPath(data.getPath());
+//            list.clear();
+//            list.addAll(data);
+//            list.add(createAddEntry());
+        } else {
+            list.clear();
+        }
 
+        notifyDataSetChanged();
+
+    }
     public void appendList(List<PhotoEntry> data) {
         if (data != null) {
             list.addAll(list.size()-1,data);
@@ -175,8 +187,46 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.MViewHolde
     public void onBindViewHolder(final MViewHolder mViewHolder,
                                  final int postion) {
 
-        mViewHolder.mTextView.setText(list.get(postion).getPath());
-        mViewHolder.image.setBackgroundResource(R.drawable.add);
+//        mViewHolder.mTextView.setText(list.get(postion).getPath());
+
+                    switch (postion){
+                case 0:
+                    mViewHolder.mTextView.setText("退休人员头像");
+
+                    break;
+                case 1:
+                    mViewHolder.mTextView.setText("身份证正面");
+
+                    break;
+                case 2:
+                    mViewHolder.mTextView.setText("身份证反面");
+
+                    break;
+                case 3:
+                    mViewHolder.mTextView.setText("填表扫描图");
+
+                    break;
+                case 4:
+                    mViewHolder.mTextView.setText("复印件描图");
+
+                    break;
+                case 5:
+                    mViewHolder.mTextView.setText("视频认证截图");
+
+                    break;
+                default :  break;
+            }
+        if (list.get(postion).getPath() != null){
+            mViewHolder.image.setBackgroundResource(0);
+            Glide.with(mContext)
+                    .load(new File(list.get(postion).getPath()))
+                    .into(mViewHolder.image);
+        }else{
+                    mViewHolder.image.setBackgroundResource(R.drawable.add);
+        }
+
+
+
         // 为image添加监听回调
         mViewHolder.image.setOnClickListener(new View.OnClickListener() {
 
@@ -186,16 +236,9 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.MViewHolde
                     mItemClickListener.onItemSubViewClick(mViewHolder.image,
                             postion);
 
-        PhotoEntry entry = list.get(postion);
-                    Glide.with(mContext)
-                            .load(new File("/storage/emulated/0/ImageSelector/CropImage/ImageSelector_20170226_214833.JPEG"))
-                            .centerCrop()
-                            .placeholder(com.litao.android.lib.R.mipmap.default_image)
-                            .into(mViewHolder.image);
 
                 }
-
-            }
+                }
 
         });
 

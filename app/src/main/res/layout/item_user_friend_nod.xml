@@ -1,10 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="match_parent" >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/selector_item_action"
         android:orientation="vertical"
         >
@@ -23,13 +23,13 @@
 
         <ImageView
             android:id="@+id/img_friend_avatar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginBottom="4dip"
-            android:layout_marginLeft="4dip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="20dip"
-            android:background="@drawable/ic_launcher" />
+            android:background="@drawable/ic_launcher"
+            android:layout_centerHorizontal="true"
+
+            />
     </RelativeLayout>
 
     <!-- 可以添加以下代码为Item之间设置分隔线  
