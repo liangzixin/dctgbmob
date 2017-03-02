@@ -1,11 +1,13 @@
 package com.scme.order.adpater;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -222,7 +224,14 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.MViewHolde
                     .load(new File(list.get(postion).getPath()))
                     .into(mViewHolder.image);
         }else{
-                    mViewHolder.image.setBackgroundResource(R.drawable.add);
+
+//            mViewHolder.image.setPadding(15,15,15,15);
+//            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//            lp.setMargins(15,15,15,15);
+//            mViewHolder.image.setLayoutParams(lp);
+            mViewHolder.image.setBackgroundResource(R.drawable.add);
+//            mViewHolder.image.setLayoutParams(lp);
+//            mViewHolder.image.setLayoutParams(params);
         }
 
 

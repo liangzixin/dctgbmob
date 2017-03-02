@@ -111,8 +111,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
     @InjectView(R.id.rzdd) MaterialEditText rz13dd;
    @InjectView(R.id.recyclerView) RecyclerView   recyclerView;
     @InjectView(R.id.recyclerViewlzx) RecyclerView   recyclerViewlzx;
-    @InjectView(R.id.photo_image) ImageView   photoImageView;
-    @InjectView(R.id.tv) TextView tv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -251,41 +250,41 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
         // 设置Adapter
         recyclerView.setAdapter(mPhotoAdapter);
     }
-    protected void setLinstener() {
+//    protected void setLinstener() {
+//
+//        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(RecyclerView recyclerView,
+//                                             int scrollState) {
+//                updateState(scrollState);
+//            }
 
-        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView,
-                                             int scrollState) {
-                updateState(scrollState);
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
-                String s = "";
-                if (type == 0) {
-                    s = "可见Item数量：" + layoutManager.getChildCount() + "\n"
-                            + "可见Item第一个Position："
-                            + layoutManager.findFirstVisibleItemPosition()
-                            + "\n" + "可见Item最后一个Position："
-                            + layoutManager.findLastVisibleItemPosition();
-
-                } else if (type == 1) {
-                    s = "可见Item数量：" + gridLayoutManager.getChildCount() + "\n"
-                            + "可见Item第一个Position："
-                            + gridLayoutManager.findFirstVisibleItemPosition()
-                            + "\n" + "可见Item最后一个Position："
-                            + gridLayoutManager.findLastVisibleItemPosition();
-                } else {
-                    s = "可见Item数量："
-                            + StaggeredGridLayoutManager.getChildCount();
-
-                }
-                tv.setText(s);
-            }
-        });
-
-    }
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+//                String s = "";
+//                if (type == 0) {
+//                    s = "可见Item数量：" + layoutManager.getChildCount() + "\n"
+//                            + "可见Item第一个Position："
+//                            + layoutManager.findFirstVisibleItemPosition()
+//                            + "\n" + "可见Item最后一个Position："
+//                            + layoutManager.findLastVisibleItemPosition();
+//
+//                } else if (type == 1) {
+//                    s = "可见Item数量：" + gridLayoutManager.getChildCount() + "\n"
+//                            + "可见Item第一个Position："
+//                            + gridLayoutManager.findFirstVisibleItemPosition()
+//                            + "\n" + "可见Item最后一个Position："
+//                            + gridLayoutManager.findLastVisibleItemPosition();
+//                } else {
+//                    s = "可见Item数量："
+//                            + StaggeredGridLayoutManager.getChildCount();
+//
+//                }
+//                tv.setText(s);
+//            }
+//        });
+//
+//    }
     private void updateState(int scrollState) {
         String stateName = "Undefined";
         switch (scrollState) {
@@ -376,9 +375,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
         }else if(txxx.getRz14jk().equals("代认证")){
             spinner.setSelection(3);
         }
-        Glide.with(TxxxDetailActivity.this)
-                .load(new File("/storage/emulated/0/ImageSelector/CropImage/ImageSelector_20170226_214833.JPEG"))
-                .into(photoImageView);
+
 
         potolist= new ArrayList<>();
         int i=0;
@@ -654,7 +651,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
 //              mPhotoAdapter.mPhotoAdapter();
                entries.photos.get(0).setImageId(photoposition);
             mPhotoAdapter.reloaddata(entries.photos.get(0));
-            T.showShort(context, "亲，返回来了" );
+//            T.showShort(context, "亲，返回来了" );
         }
     }
     @Override
