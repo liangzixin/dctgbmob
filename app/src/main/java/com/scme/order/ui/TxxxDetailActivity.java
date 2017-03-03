@@ -31,7 +31,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.HttpHandler;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 import com.litao.android.lib.entity.PhotoEntry;
 import com.scme.order.adpater.ChooseAdapter;
 import com.scme.order.common.T;
@@ -42,6 +48,7 @@ import com.scme.order.model.Photoimage;
 import com.scme.order.model.Tusers;
 import com.scme.order.model.Txxx;
 import com.scme.order.service.TxxxService;
+import com.scme.order.util.HttpUtil;
 import com.scme.order.util.MyAppVariable;
 import com.twiceyuan.commonadapter.library.adapter.MultiTypeAdapter;
 
@@ -50,6 +57,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -83,6 +91,12 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
     private ChooseAdapter mPhotoAdapter;
     private int type = 0;
     private int photoposition=0;
+    private List<PhotoEntry> mSelectedPhotos=new ArrayList<PhotoEntry>();
+    private String filepath;
+    private List<String> imgstmppath=new ArrayList<String>();
+    private List<File> list=new ArrayList<>();
+    private HttpUtils httpUtils;
+    private HttpHandler<String> handler;
 //    private RecyclerView recyclerView;
 
 //    private MyAdapter myadapter;
@@ -461,14 +475,14 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
         menu.getItem(2).setVisible(false);
 //        Toast.makeText(TxxxDetailActivity.this, tusers.getPurview()+"与"+txxx.getRz13jk(), Toast.LENGTH_SHORT).show();
 
-        if(tusers.getPurview().equals("社保")||tusers.getPurview().equals("系统")){
-            if(txxx.getRz14jk().equals("")) {
+        if(tusers.getPurview().equals("社保")||tusers.getPurview().equals("系统")) {
+            if (txxx.getRz14jk().equals("")) {
                 menu.getItem(1).setEnabled(true);
-            }else{  menu.getItem(1).setVisible(true);}
-//            Toast.makeText(this,"0", Toast.LENGTH_SHORT).show();
-        }else{
-            menu.getItem(1).setEnabled(false);
-            menu.getItem(1).setVisible(false);
+                menu.getItem(1).setVisible(true);
+            } else {
+                menu.getItem(1).setEnabled(false);
+                menu.getItem(1).setVisible(false);
+            }
         }
         SupportMenuItem searchItem = (SupportMenuItem) menu
                 .findItem(R.id.action_search);
@@ -506,8 +520,55 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
+        String url = HttpUtil.BASE_URL+"txxx!updateTxxxId.action";//获得详细页面的url      //分享用
         if (id == R.id.action_txxxdetail_mainrz) {
+//            progressDialog = new ProgressDialog(this);
+//            progressDialog.setMessage("认证提交中  请稍后...");
+//            progressDialog.show();
+//            if (!url.equals("")) {
+//            filepath= Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator;
+//
+//            FileInputStream fis = null;//文件输入流
+//            try {
+//                fis = new FileInputStream(new File(filepath));
+//            } catch (FileNotFoundException e) {
+//                e.printStackTrace();
+//            }
+                httpUtils = new HttpUtils();
+
+//          mSelectedPhotos=Entries.photos;
+                RequestParams params = new RequestParams();
+//            }
+
+            mSelectedPhotos=mPhotoAdapter.getData();
+//            String tmepName1 = null;
+                for (int i = 0; i < mSelectedPhotos.size(); i++) {
+                    Log.i("F", filepath + "a0" + i + "jpg");
+
+                    String tmepName = null;
+                    if(mSelectedPhotos.get(i).getPath()!=null) {
+                        try {
+                            tmepName = PictureUtil.bitmapToPath(mSelectedPhotos.get(i).getPath());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+//                        tmepName1 =tmepName;
+                                imgstmppath.add(tmepName);
+                    list.add(new File(tmepName));
+//                        params.addBodyParameter("upload[" + i + "]", new File(tmepName));
+//                    }else{
+//                        params.addBodyParameter("upload[" + i + "]",new File(tmepName1));
+                    }
+
+                }
+
+//
+                for (int j = 0;j< list.size(); j++) {
+                    params.addBodyParameter("upload[" + j + "]", list.get(j),"image/png");
+                }
+
+
+
 
             if (spinner.getSelectedItemPosition() == 0) {
                 Toast.makeText(this, "请选择认证方式！！！", Toast.LENGTH_SHORT).show();
@@ -525,62 +586,96 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
                 Toast.makeText(this, "电话号码2错误！！！" + lxdh2.length(), Toast.LENGTH_SHORT).show();
                 return false;
             }
-            progressDialog = new ProgressDialog(this);
-            progressDialog.setMessage("认证提交中  请稍后...");
-            progressDialog.show();
-            Thread t = new Thread(new Runnable() {
+            params.addQueryStringParameter("name",name.getText().toString());
+            params.addQueryStringParameter("sfzh",sfzh.getText().toString());
+            params.addQueryStringParameter("hkdz",hkdz.getText().toString());
+            params.addQueryStringParameter("czdz",czdz.getText().toString());
+            params.addQueryStringParameter("lxdh1",lxdh1.getText().toString());
+            params.addQueryStringParameter("lxdh2",lxdh2.getText().toString());
+            params.addQueryStringParameter("lxdh3",lxdh3.getText().toString());
+            params.addQueryStringParameter("rzjk",spinner.getSelectedItem().toString());
+            params.addQueryStringParameter("rzzb",tusers.getUserName());
+            params.addQueryStringParameter("rzdd", tusers.getBranch().getName());
+
+
+
+            // params.addQueryStringParameter("product.gsdz","东川");
+            handler = httpUtils.send(HttpRequest.HttpMethod.GET, url, params,new RequestCallBack<String>() {
                 @Override
-                public void run() {
-                    try {
-//                            String name="";
-                        String rzjk = "";
-                        String rzzb = "";
-                        String rzdd = "";
-//
-                        rzjk = spinner.getSelectedItem().toString();
-//                            rzsj=spinner1.getSelectedItem().toString();
-                        rzzb = tusers.getUserName();
-                        rzdd = tusers.getBranch().getName();
-                        Map<String, String> map = new HashMap<String, String>();
-                        map.put("name", name.getText().toString());
-                        map.put("sfzh", sfzh.getText().toString());
-                        map.put("hkdz", hkdz.getText().toString());
-                        map.put("czdz", czdz.getText().toString());
-                        map.put("lxdh1", lxdh1.getText().toString());
-                        map.put("lxdh2", lxdh2.getText().toString());
-                        map.put("lxdh3", lxdh3.getText().toString());
-                        map.put("rzjk", rzjk);
-//
-                        map.put("rzzb", rzzb);
-                        map.put("rzdd", rzdd);
+                public void onSuccess(ResponseInfo<String> responseInfo) {
 
-                       TxxxService txxxService = new TxxxService();
+                    if (responseInfo.result != null) {
+                        Toast.makeText(TxxxDetailActivity.this, "认证成功！", Toast.LENGTH_SHORT).show();
+                        //    SharedPreferencesUtil.saveData(ProductinfoAddActivity.this, url, responseInfo.result);
+                        PictureUtil.deleteImgTmp(imgstmppath);
+                        Intent intent = new Intent();
+                        intent.setClass(TxxxDetailActivity.this,TxxxDetailActivity.class);
 
-                        txxxService.updateTxxxId(map);
-//
-                    } catch (Exception e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
+                        startActivity(intent);
+//                        setResult(RESULT_CODE, intent);
+                        finish();
+
                     }
-                    myHandler.sendMessage(myHandler.obtainMessage());
+                }
+
+                @Override
+                public void onFailure(HttpException e, String s) {
+                    Toast.makeText(TxxxDetailActivity.this, "认证失败！", Toast.LENGTH_SHORT).show();
                 }
             });
-            t.start();
-//                Toast.makeText(this,"认证成功", Toast.LENGTH_SHORT).show();
-//                return true;
-            new AlertDialog.Builder(this).setTitle("认证提交成功！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    // TODO Auto-generated method stub
-                    Intent intent = new Intent();
-                    //	intent.setClass(SelectEatsFoodsListActivity.this, MainActivity.class);
-                    //	intent.setClass(EatListActivity.this, MainActivity.class);
-                    intent.setClass(TxxxDetailActivity.this, TxxxDetailActivity.class);
-                    startActivity(intent);
-                }
-            }).show();
-
+//            Thread t = new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    try {
+////                            String name="";
+//                        String rzjk = "";
+//                        String rzzb = "";
+//                        String rzdd = "";
+////
+//                        rzjk = spinner.getSelectedItem().toString();
+////                            rzsj=spinner1.getSelectedItem().toString();
+//                        rzzb = tusers.getUserName();
+//                        rzdd = tusers.getBranch().getName();
+//                        Map<String, String> map = new HashMap<String, String>();
+//                        map.put("name", name.getText().toString());
+//                        map.put("sfzh", sfzh.getText().toString());
+//                        map.put("hkdz", hkdz.getText().toString());
+//                        map.put("czdz", czdz.getText().toString());
+//                        map.put("lxdh1", lxdh1.getText().toString());
+//                        map.put("lxdh2", lxdh2.getText().toString());
+//                        map.put("lxdh3", lxdh3.getText().toString());
+//                        map.put("rzjk", rzjk);
+////
+//                        map.put("rzzb", rzzb);
+//                        map.put("rzdd", rzdd);
+//
+//                       TxxxService txxxService = new TxxxService();
+//
+//                        txxxService.updateTxxxId(map);
+////
+//                    } catch (Exception e) {
+//                        // TODO Auto-generated catch block
+//                        e.printStackTrace();
+//                    }
+//                    myHandler.sendMessage(myHandler.obtainMessage());
+//                }
+//            });
+//            t.start();
+////                Toast.makeText(this,"认证成功", Toast.LENGTH_SHORT).show();
+////                return true;
+//            new AlertDialog.Builder(this).setTitle("认证提交成功！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    // TODO Auto-generated method stub
+//                    Intent intent = new Intent();
+//                    //	intent.setClass(SelectEatsFoodsListActivity.this, MainActivity.class);
+//                    //	intent.setClass(EatListActivity.this, MainActivity.class);
+//                    intent.setClass(TxxxDetailActivity.this, TxxxDetailActivity.class);
+//                    startActivity(intent);
+//                }
+//            }).show();
+//
         }
 
 
@@ -639,35 +734,26 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void photosMessageEvent(EventEntry entries) {
         if (entries.id == EventEntry.RECEIVED_PHOTOS_ID) {
-//            mPhotoAdapter.reloadList(entries.photos);
-//            mSelectedPhotos=entries.photos;
-//            PhotoEntry entry = entries.photos.get(0);
-//            Glide.with(context)
-//                    .load(new File(entry.getPath()))
-//                    .centerCrop()
-//                    .placeholder(com.litao.android.lib.R.mipmap.default_image)
-//                    .into(mPhotoAdapter.MViewHolder.image);
-//            mPhotoAdapter(context,entries.photos);
-//              mPhotoAdapter.mPhotoAdapter();
+
                entries.photos.get(0).setImageId(photoposition);
             mPhotoAdapter.reloaddata(entries.photos.get(0));
-//            T.showShort(context, "亲，返回来了" );
-        }
-    }
-    @Override
-    protected void onActivityResult( int requestCode, int resultCode, Intent data )
-    {
-        switch ( resultCode ) {
-            case RESULT_OK :
-//                System.out.println(data.getExtras().getString( "result" ));
-//                tv1.setText( data.getExtras().getString( "result" ));
-                T.showShort(context, "亲，返回来了" );
-                break;
-            default :
-                break;
-        }
 
+        }
     }
+//    @Override
+//    protected void onActivityResult( int requestCode, int resultCode, Intent data )
+//    {
+//        switch ( resultCode ) {
+//            case RESULT_OK :
+////                System.out.println(data.getExtras().getString( "result" ));
+////                tv1.setText( data.getExtras().getString( "result" ));
+//                T.showShort(context, "亲，返回来了" );
+//                break;
+//            default :
+//                break;
+//        }
+//
+//    }
 
 
 }
