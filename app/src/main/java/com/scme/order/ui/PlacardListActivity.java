@@ -38,17 +38,31 @@ import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.reflect.TypeToken;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.HttpHandler;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 import com.scme.order.card.HeadlineBodyCard;
 import com.scme.order.model.Placard;
 
 import com.scme.order.model.Tusers;
+import com.scme.order.model.Txxx;
+import com.scme.order.service.BaseService;
 import com.scme.order.service.BranchService;
 import com.scme.order.service.PlacardService;
 import com.scme.order.service.UserService;
 import com.scme.order.util.GetDate;
+import com.scme.order.util.HttpUtil;
 import com.scme.order.util.MyAppVariable;
 import com.scme.order.view.XListView;
 import com.scme.order.view.XListView.IXListViewListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -109,6 +123,10 @@ public class PlacardListActivity extends BaseActivity implements IXListViewListe
 	private TextView placardfoodid;
 	int checkedcount = 0; //计数器，用于统计选中的个数
 	double lg5=0.0;
+	private HttpHandler<String> handler;
+	private HttpUtils httpUtils= new HttpUtils();
+	private    String url=null;
+	private RequestParams params;
 
 	RadioGroup mRadioGroup; //RadioGroup对象，用于显示答案
 	 RadioButton mRadioButton_1; //RadioButton对象，用于显示选项1
@@ -138,80 +156,148 @@ public class PlacardListActivity extends BaseActivity implements IXListViewListe
 		progressDialog.setMessage("数据加载中  请稍后...");
 		progressDialog.show();
 
-		if(Thread.State.NEW == mThread.getState()) {
+		Intent intent = getIntent();
+		if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+				String query = intent.getStringExtra(SearchManager.QUERY);
+				try {
+					doSearching(query);
+					myAppVariable.setOtherquery(true);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else{
+//				geneTxxxItems();
+				myAppVariable.setOtherquery(false);
+				geneTplacardsItems();
 
+			}
 
-					Intent intent = getIntent();
-					if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-						String query = intent.getStringExtra(SearchManager.QUERY);
-						try {
-						doSearching(query);
-						myAppVariable.setOtherquery(true);
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					} else {
-						myAppVariable.setOtherquery(false);
-						geneTplacardsItems();
-
-						count = geneTplacardsItemsCount();
-					}
-
-			mThread.start();
-
-		}
+//		}
+//		if(Thread.State.NEW == mThread.getState()) {
+//					Intent intent = getIntent();
+//					if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+//						String query = intent.getStringExtra(SearchManager.QUERY);
+//						try {
+//						doSearching(query);
+//						myAppVariable.setOtherquery(true);
+//						} catch (Exception e) {
+//							// TODO Auto-generated catch block
+//							e.printStackTrace();
+//						}
+//					} else {
+//						myAppVariable.setOtherquery(false);
+//						geneTplacardsItems();
+//
+//						count = geneTplacardsItemsCount();
+//					}
+//
+//			mThread.start();
+//
+//		}
 
 
 	}
-	private Thread mThread = new Thread() {
-		public void run() {
-//			Log.d("TAG", "mThread run");
-			Looper.prepare();
 
-			testHandler = new Handler() {
-				public void handleMessage(Message msg) {
-//					Log.d("TAG", "worker thread:" + Thread.currentThread().getName());
-//					System.out.println("我的线程："+msg.what);
+	private void mThreadmy() {
 
-					switch (msg.what) {
-						//handle message here
-						case 1:
-							pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
+		handler = httpUtils.send(HttpRequest.HttpMethod.GET, url, params,new RequestCallBack<String>() {
+			@Override
+			public void onSuccess(ResponseInfo<String> responseInfo) {
 
-							tolpage.setText("记录数："+count);
-							nowpage.setText("页码："+(intFirst+1)+"/"+pages);
-
-							if(count>recPerPage*(intFirst+1)) {
-								mListView.setPullLoadEnable(true);
-							}else{
-								mListView.setPullLoadEnable(false);
-							}
-
-							myAdapter = new MyAdapter(placardList, 1);
-
-							mListView.setAdapter(myAdapter);
-
-							mListView.setXListViewListener(PlacardListActivity.this);
-							mListView.setOnItemClickListener(PlacardListActivity.this);
-
-
-							break;
-						//send message here
-						case 2:
-
-							break;
-					}
+				if (responseInfo.result != null) {
 					progressDialog.dismiss();
+					JSONObject myobject =null;
+					String listArray=null;
+					try {
+
+						myobject = new JSONObject(responseInfo.result);
+						count=myobject.getInt("count");
+						listArray=myobject.getString("placardList");
+						placardList= BaseService.getGson().fromJson(listArray, new TypeToken<List<Placard>>() {}.getType());
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+
+
+					pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
+
+					tolpage.setText("记录数："+count);
+					nowpage.setText("页码："+(intFirst+1)+"/"+pages);
+
+					if(count>recPerPage) {
+						mListView.setPullLoadEnable(true);
+					}else{
+						mListView.setPullLoadEnable(false);
+					}
+
+					myAdapter = new MyAdapter(placardList, 1);
+
+					mListView.setAdapter(myAdapter);
+
+					mListView.setXListViewListener(PlacardListActivity.this);
+					mListView.setOnItemClickListener(PlacardListActivity.this);
+
 				}
-			};
+			}
 
-			testHandler.sendEmptyMessage(1);
-			Looper.loop();
+			@Override
+			public void onFailure(HttpException e, String s) {
+				progressDialog.dismiss();
+				Toast.makeText(PlacardListActivity.this, "数据加载失败！！！", Toast.LENGTH_SHORT).show();
+			}
+		});
 
-		}
+	}
 
-	};
+//	private Thread mThread = new Thread() {
+//		public void run() {
+////			Log.d("TAG", "mThread run");
+//			Looper.prepare();
+//
+//			testHandler = new Handler() {
+//				public void handleMessage(Message msg) {
+////					Log.d("TAG", "worker thread:" + Thread.currentThread().getName());
+////					System.out.println("我的线程："+msg.what);
+//
+//					switch (msg.what) {
+//						//handle message here
+//						case 1:
+//							pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
+//
+//							tolpage.setText("记录数："+count);
+//							nowpage.setText("页码："+(intFirst+1)+"/"+pages);
+//
+//							if(count>recPerPage*(intFirst+1)) {
+//								mListView.setPullLoadEnable(true);
+//							}else{
+//								mListView.setPullLoadEnable(false);
+//							}
+//
+//							myAdapter = new MyAdapter(placardList, 1);
+//
+//							mListView.setAdapter(myAdapter);
+//
+//							mListView.setXListViewListener(PlacardListActivity.this);
+//							mListView.setOnItemClickListener(PlacardListActivity.this);
+//
+//
+//							break;
+//						//send message here
+//						case 2:
+//
+//							break;
+//					}
+//					progressDialog.dismiss();
+//				}
+//			};
+//
+//			testHandler.sendEmptyMessage(1);
+//			Looper.loop();
+//
+//		}
+//
+//	};
 
 /*
 创建菜单项
@@ -454,12 +540,17 @@ public class PlacardListActivity extends BaseActivity implements IXListViewListe
 	*转到另外页面
 	 */
 	private void geneTplacardsItems() {
-		try {
-			 PlacardService placardService = new PlacardService();
-			placardList = placardService.QueryAllPlacard(intFirst, recPerPage);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		url= HttpUtil.BASE_URL+"placard!queryAllPlacard.action";
+		params = new RequestParams();
+		params.addQueryStringParameter("intFirst",intFirst+"");
+		params.addQueryStringParameter("recPerPage",recPerPage+"");
+		mThreadmy();
+//		try {
+//			 PlacardService placardService = new PlacardService();
+//			placardList = placardService.QueryAllPlacard(intFirst, recPerPage);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 	/*
 *根据查询条件转到另外页面
@@ -496,41 +587,32 @@ public class PlacardListActivity extends BaseActivity implements IXListViewListe
 
 	@Override
 	public void onRefresh() {
-		testHandler.sendEmptyMessage(2);
-				start = ++refreshCnt;
-				if (intFirst >= 1&&pages!=1) {
-					intFirst--;
-					geneTplacardsItems();
-					nowpage.setText("页码：" + (intFirst + 1) + "/" + pages);
-					myAdapter = new MyAdapter(placardList, 1);
-					mListView.setAdapter(myAdapter);
-					mListView.setPullLoadEnable(true);
-					onLoad();
-				}else{
-					mListView.setPullLoadEnable(false);
-				}
-
+		params = new RequestParams();
+		if (intFirst >= 1) {
+			intFirst--;
+			params.addQueryStringParameter("intFirst",intFirst+"");
+			params.addQueryStringParameter("recPerPage",recPerPage+"");
+			mThreadmy();
+			onLoad();
+		} else {
+//			intFirst = pages;
+			mListView.setPullLoadEnable(false);
+		}
 	}
 
 	@Override
 	public void onLoadMore() {
-		testHandler.sendEmptyMessage(2);
-				if ((intFirst+1) < pages&&pages!=1) {
-					intFirst++;
-					if (myAppVariable.getOtherquery()){
-						geneTplacardsOther();
-					} else {
-						geneTplacardsItems();
-					}
-					nowpage.setText("页码：" + (intFirst + 1) + "/" + pages);
-					myAdapter = new MyAdapter(placardList, 1);
-					mListView.setAdapter(myAdapter);
-					mListView.setPullLoadEnable(true);
-					onLoad();
-				} else {
-					intFirst = pages;
-					mListView.setPullLoadEnable(false);
-				}
+		params = new RequestParams();
+		if (intFirst < pages) {
+			intFirst++;
+			params.addQueryStringParameter("intFirst",intFirst+"");
+			params.addQueryStringParameter("recPerPage",recPerPage+"");
+			mThreadmy();
+		} else {
+			intFirst = pages;
+			mListView.setPullLoadEnable(false);
+		}
+
 
 	}
 
@@ -797,4 +879,5 @@ public class PlacardListActivity extends BaseActivity implements IXListViewListe
 			}
 		}
 	}
+
 }

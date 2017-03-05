@@ -522,9 +522,9 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
         int id = item.getItemId();
         String url = HttpUtil.BASE_URL+"txxx!updateTxxxId.action";//获得详细页面的url      //分享用
         if (id == R.id.action_txxxdetail_mainrz) {
-//            progressDialog = new ProgressDialog(this);
-//            progressDialog.setMessage("认证提交中  请稍后...");
-//            progressDialog.show();
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("认证提交中  请稍后...");
+            progressDialog.show();
 //            if (!url.equals("")) {
 //            filepath= Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator;
 //
@@ -535,6 +535,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
 //                e.printStackTrace();
 //            }
                 httpUtils = new HttpUtils();
+//            httpUtils.SetRequestHeader("Content-Type","text/xml; charset=utf-8");
 
 //          mSelectedPhotos=Entries.photos;
                 RequestParams params = new RequestParams();
@@ -555,7 +556,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
 //                        tmepName1 =tmepName;
                                 imgstmppath.add(tmepName);
                     list.add(new File(tmepName));
-//                        params.addBodyParameter("upload[" + i + "]", new File(tmepName));
+                        params.addBodyParameter("upload[" + i + "]", new File(tmepName));
 //                    }else{
 //                        params.addBodyParameter("upload[" + i + "]",new File(tmepName1));
                     }
@@ -563,9 +564,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
                 }
 
 //
-                for (int j = 0;j< list.size(); j++) {
-                    params.addBodyParameter("upload[" + j + "]", list.get(j),"image/png");
-                }
+
 
 
 
@@ -605,6 +604,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
                 public void onSuccess(ResponseInfo<String> responseInfo) {
 
                     if (responseInfo.result != null) {
+                        progressDialog.dismiss();
                         Toast.makeText(TxxxDetailActivity.this, "认证成功！", Toast.LENGTH_SHORT).show();
                         //    SharedPreferencesUtil.saveData(ProductinfoAddActivity.this, url, responseInfo.result);
                         PictureUtil.deleteImgTmp(imgstmppath);
@@ -620,6 +620,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
 
                 @Override
                 public void onFailure(HttpException e, String s) {
+                    progressDialog.dismiss();
                     Toast.makeText(TxxxDetailActivity.this, "认证失败！", Toast.LENGTH_SHORT).show();
                 }
             });
