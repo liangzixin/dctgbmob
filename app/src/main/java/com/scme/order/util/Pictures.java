@@ -30,7 +30,7 @@ import android.util.Log;
 
 public class Pictures {
 	
-	public static final String PIC_URL = HttpUtil.BASE_URL + "images/";
+	public static final String PIC_URL = HttpUtil.BASE_URL + "Images/";
 	public static final String PIC_LOCAL_PATH = Environment.getExternalStorageDirectory().getAbsoluteFile() + File.separator + "foods" + File.separator;
 
 	private static Resources res;
