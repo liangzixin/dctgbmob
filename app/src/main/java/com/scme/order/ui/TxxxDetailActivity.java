@@ -476,13 +476,13 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
 //        Toast.makeText(TxxxDetailActivity.this, tusers.getPurview()+"与"+txxx.getRz13jk(), Toast.LENGTH_SHORT).show();
 
         if(tusers.getPurview().equals("社保")||tusers.getPurview().equals("系统")) {
-            if (txxx.getRz14jk().equals("")) {
+        //    if (txxx.getRz14jk().equals("")) {
                 menu.getItem(1).setEnabled(true);
                 menu.getItem(1).setVisible(true);
-            } else {
-                menu.getItem(1).setEnabled(false);
-                menu.getItem(1).setVisible(false);
-            }
+        //    } else {
+          //      menu.getItem(1).setEnabled(false);
+          //      menu.getItem(1).setVisible(false);
+         //   }
         }
         SupportMenuItem searchItem = (SupportMenuItem) menu
                 .findItem(R.id.action_search);

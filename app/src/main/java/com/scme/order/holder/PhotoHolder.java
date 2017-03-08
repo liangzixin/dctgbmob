@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.scme.order.model.Photo;
 import com.scme.order.ui.R;
+import com.scme.order.util.HttpUtil;
 import com.scme.order.util.XutilsGetData;
 import com.twiceyuan.commonadapter.library.LayoutId;
 import com.twiceyuan.commonadapter.library.ViewId;
@@ -28,7 +29,8 @@ public class PhotoHolder extends CommonHolder<Photo> {
     @Override public void bindData(Photo photo) {
         Context context = getItemView().getContext();
      //   imagePicture.setImageDrawable(ContextCompat.getDrawable(context, photo.photoId));
-        XutilsGetData.xUtilsImageiv( imagePicture, "http://www.dctgb.com:8086/upload/"+photo.path,context,false);
+        XutilsGetData.xUtilsImageiv( imagePicture, HttpUtil.BASE_URL+"upload/"+photo.path,context,false);
+//        XutilsGetData.xUtilsImageiv( imagePicture, "http://www.dctgb.com:8086/upload/"+photo.path,context,false);
 //        XutilsGetData.xUtilsImageiv( imagePicture,photo.path,context,false);
       //  imagePicture=photo.imagePicture;
         textDesc.setText(photo.description);
