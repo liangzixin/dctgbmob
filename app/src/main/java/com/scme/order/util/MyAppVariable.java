@@ -19,6 +19,8 @@ public class MyAppVariable extends Application {
     private List<Placard> listplacard;
     private List list;
     private List<Qingjia> qingjias;
+    private Txxx txxx;
+
     public List<Placard> getListplacard() {
         return listplacard;
     }
@@ -163,4 +165,14 @@ public class MyAppVariable extends Application {
         super.onCreate();
 //        setLabel("Welcome!"); //初始化全局变量
     }
+
+    public Txxx getTxxx() {
+        return txxx;
+    }
+
+    public void setTxxx(Txxx txxx) {
+        this.txxx = txxx;
+    }
+
+
 }

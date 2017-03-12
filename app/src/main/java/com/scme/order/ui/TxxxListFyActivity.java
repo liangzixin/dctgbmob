@@ -9,12 +9,9 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.support.v4.internal.view.SupportMenuItem;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -53,7 +50,6 @@ import com.scme.order.util.MyAppVariable;
 import com.scme.order.view.XListView;
 import com.scme.order.view.XListView.IXListViewListener;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -105,7 +101,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 	private CheckBox mCheckBox3;
 	int checkedcount = 0; //计数器，用于统计选中的个数
 	private HttpHandler<String> handler;
-	private HttpUtils httpUtils= new HttpUtils();
+//	private HttpUtils httpUtils= new HttpUtils();
 	private    String url=null;
 	private 	RequestParams params;
 
@@ -130,6 +126,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 		setContentView(R.layout.activity_txxx_list);
 		ButterKnife.inject(this);
 		myAppVariable=(MyAppVariable)getApplication(); //获得自定义的应用程序MyAppVariable
+        otherquery=myAppVariable.getOtherquery();
 		mListView = (XListView) findViewById(R.id.lvtxxxs);
 		progressDialog = new ProgressDialog(this);
 		progressDialog.setMessage("数据加载中  请稍后...");
@@ -138,9 +135,18 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 //		if(Thread.State.NEW == mThread.getState()) {
 		Intent intent = getIntent();
 		if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+			myAppVariable.setOtherquery(true);
+//			if (Intent.ACTION_SEARCH.equals(intent.getAction())||) {
 			String query = intent.getStringExtra(SearchManager.QUERY);
+			myAppVariable.setQuery(query);
 			doSearching(query);
+		}else if(otherquery){
+
+			myAppVariable.setOtherquery(true);
+			String query =myAppVariable.getQuery();
+					doSearching(query);
 		}else{
+			myAppVariable.setOtherquery(false);
 			geneTxxxItems();
 		}
 
@@ -148,8 +154,11 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 
 	}
 	private void mThreadmy() {
-
-			handler = httpUtils.send(HttpRequest.HttpMethod.GET, url, params,new RequestCallBack<String>() {
+//	 HttpHandler<String> handler;
+	 HttpUtils httpUtils= new HttpUtils();
+		// 不缓存，设置缓存0秒。
+		httpUtils.configCurrentHttpCacheExpiry(0*1000);
+		handler= httpUtils.send(HttpRequest.HttpMethod.GET, url, params,new RequestCallBack<String>() {
 				@Override
 				public void onSuccess(ResponseInfo<String> responseInfo) {
 
@@ -610,8 +619,10 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		//
 		int ii= new Long(id).intValue();
-		myAppVariable.setTxxxid(ii);
-
+		myAppVariable.setTxxx(new Txxx());
+		myAppVariable.setTxxx((Txxx)txxxList.get(position-1));
+//		myAppVariable.setTxxxid(ii);
+//        Txxx txxx=;
 		Intent intent = new Intent();
 
 		intent.setClass(this, TxxxDetailActivity.class);
@@ -732,9 +743,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 	}
 
 	private void doSearching(String query) {
-//		progressDialog = new ProgressDialog(this);
-//		progressDialog.setMessage("数据加载中  请稍后...");
-//		progressDialog.show();
+
 		intFirst=0;
 		recPerPage=20;
 		url=HttpUtil.BASE_URL+"txxx!queryTxxxName.action";
@@ -742,41 +751,10 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 		params.addQueryStringParameter("name",query);
 		params.addQueryStringParameter("intFirst",intFirst+"");
 		params.addQueryStringParameter("recPerPage",recPerPage+"");
-
+		otherquery=true;
 		mThreadmy();
 
-//		TxxxService txxxService = new TxxxService();
-//		Map<String, String> map = new HashMap<String, String>();
-//		map.put("name", query);
-//		map.put("intFirst",intFirst+"");
-//		map.put("recPerPage",recPerPage+"");
-//
-//		try {
-//			count=txxxService.queryTxxxOtherCount(map);
-//			txxxList = txxxService.queryTxxxName(map);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//
-//		if(txxxList!=null) {
-//
-//			myAppVariable.setTxxxs(txxxList);
-//
-//
-//		} else{
-//			new AlertDialog.Builder(this).setTitle("查无此人！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//
-//				@Override
-//				public void onClick(DialogInterface dialog, int which) {
-//					// TODO Auto-generated method stub
-//					Intent intent = new Intent();
-//
-//					intent.setClass(TxxxListFyActivity.this, TxxxListFyActivity.class);
-//					startActivity(intent);
-//
-//				}
-//			}).show();
-//		}
+
 
 	}
 	/*

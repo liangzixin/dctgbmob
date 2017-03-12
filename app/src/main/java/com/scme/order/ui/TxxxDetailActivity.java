@@ -1,22 +1,16 @@
 package com.scme.order.ui;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.app.SearchManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.support.v4.internal.view.SupportMenuItem;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.Menu;
@@ -31,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.reflect.TypeToken;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.HttpHandler;
@@ -47,7 +42,7 @@ import com.scme.order.model.Photo;
 import com.scme.order.model.Photoimage;
 import com.scme.order.model.Tusers;
 import com.scme.order.model.Txxx;
-import com.scme.order.service.TxxxService;
+import com.scme.order.service.BaseService;
 import com.scme.order.util.HttpUtil;
 import com.scme.order.util.MyAppVariable;
 import com.twiceyuan.commonadapter.library.adapter.MultiTypeAdapter;
@@ -55,13 +50,12 @@ import com.twiceyuan.commonadapter.library.adapter.MultiTypeAdapter;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -95,9 +89,14 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
     private String filepath;
     private List<String> imgstmppath=new ArrayList<String>();
     private List<File> list=new ArrayList<>();
-    private HttpUtils httpUtils;
-    private HttpHandler<String> handler;
+//    private HttpUtils httpUtils;
+//    private HttpHandler<String> handler;
+    private  Boolean otherquery=false;
 //    private RecyclerView recyclerView;
+private HttpHandler<String> handler;
+    private HttpUtils httpUtils= new HttpUtils();
+    private    String url=null;
+    private 	RequestParams params;
 
 //    private MyAdapter myadapter;
     private LinearLayoutManager layoutManager;
@@ -158,32 +157,48 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("数据加载中  请稍后...");
         progressDialog.show();
-        if(Thread.State.NEW == mThread.getState()) {
+//        Intent intent = getIntent();
 
-           Intent intent = getIntent();
-             if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            doSearching(query);
-
-               }else {
-                 try{
-                 //获取餐桌列表数据
-                 TxxxService txxxService = new TxxxService();
-
-                 txxx = txxxService.queryTxxxId(txxxid);
-
-                    } catch (Exception e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-             }
-                mThread.start();
-
-            }
+//            doSearching(txxxid);
+       txxx=myAppVariable.getTxxx();
         showView(txxx);
         setGridLayoutRecyclerView();
-//        setLinstener();
+        progressDialog.dismiss();
     }
+    private void mThreadmy() {
+
+        handler = httpUtils.send(HttpRequest.HttpMethod.GET, url, params,new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+
+                if (responseInfo.result != null) {
+                    progressDialog.dismiss();
+                    JSONObject myobject =null;
+                    String listArray=null;
+//                    try {
+
+//                        myobject = new JSONObject(responseInfo.result);
+//                        listArray=myobject.getString("txxx");
+                        txxx= BaseService.getGson().fromJson(responseInfo.result.toString(), new TypeToken<Txxx>() {}.getType());
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                progressDialog.dismiss();
+                Toast.makeText(TxxxDetailActivity.this, "数据加载失败！！！", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+
     @Override
     protected void onDestroy() {
         EventBus.getDefault().unregister(this);
@@ -472,6 +487,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.menu_txxxdetailmain, menu);
+        menu.getItem(0).setVisible(false);
         menu.getItem(2).setVisible(false);
 //        Toast.makeText(TxxxDetailActivity.this, tusers.getPurview()+"与"+txxx.getRz13jk(), Toast.LENGTH_SHORT).show();
 
@@ -484,34 +500,34 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
           //      menu.getItem(1).setVisible(false);
          //   }
         }
-        SupportMenuItem searchItem = (SupportMenuItem) menu
-                .findItem(R.id.action_search);
-
-        SearchView searchView = (SearchView) MenuItemCompat
-                .getActionView(searchItem);
-
-        SearchManager searchManager = (SearchManager)TxxxDetailActivity.this
-                .getSystemService(Context.SEARCH_SERVICE);
-        searchView.setSearchableInfo(searchManager
-                .getSearchableInfo(TxxxDetailActivity.this.getComponentName()));
-
-        searchItem
-                .setSupportOnActionExpandListener(new MenuItemCompat.OnActionExpandListener() {
-
-                    @Override
-                    public boolean onMenuItemActionExpand(MenuItem item) {
-//                        Toast.makeText(TxxxDetailActivity.this, "扩张了", Toast.LENGTH_SHORT).show();
-//                        System.out.println("扩张了");
-                        return true;
-                    }
-
-                    @Override
-                    public boolean onMenuItemActionCollapse(MenuItem item) {
-//                        Toast.makeText(TxxxDetailActivity.this, "收缩了", Toast.LENGTH_SHORT).show();
-//                        System.out.println("收缩了");
-                        return true;
-                    }
-                });
+//        SupportMenuItem searchItem = (SupportMenuItem) menu
+//                .findItem(R.id.action_search);
+//
+//        SearchView searchView = (SearchView) MenuItemCompat
+//                .getActionView(searchItem);
+//
+//        SearchManager searchManager = (SearchManager)TxxxDetailActivity.this
+//                .getSystemService(Context.SEARCH_SERVICE);
+//        searchView.setSearchableInfo(searchManager
+//                .getSearchableInfo(TxxxDetailActivity.this.getComponentName()));
+//
+//        searchItem
+//                .setSupportOnActionExpandListener(new MenuItemCompat.OnActionExpandListener() {
+//
+//                    @Override
+//                    public boolean onMenuItemActionExpand(MenuItem item) {
+////                        Toast.makeText(TxxxDetailActivity.this, "扩张了", Toast.LENGTH_SHORT).show();
+////                        System.out.println("扩张了");
+//                        return true;
+//                    }
+//
+//                    @Override
+//                    public boolean onMenuItemActionCollapse(MenuItem item) {
+////                        Toast.makeText(TxxxDetailActivity.this, "收缩了", Toast.LENGTH_SHORT).show();
+////                        System.out.println("收缩了");
+//                        return true;
+//                    }
+//                });
 
         return super.onCreateOptionsMenu(menu);
 //        return  true;
@@ -585,6 +601,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
                 Toast.makeText(this, "电话号码2错误！！！" + lxdh2.length(), Toast.LENGTH_SHORT).show();
                 return false;
             }
+            params.addQueryStringParameter("id",txxx.getId()+"");
             params.addQueryStringParameter("name",name.getText().toString());
             params.addQueryStringParameter("sfzh",sfzh.getText().toString());
             params.addQueryStringParameter("hkdz",hkdz.getText().toString());
@@ -608,6 +625,9 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
                         Toast.makeText(TxxxDetailActivity.this, "认证成功！", Toast.LENGTH_SHORT).show();
                         //    SharedPreferencesUtil.saveData(ProductinfoAddActivity.this, url, responseInfo.result);
                         PictureUtil.deleteImgTmp(imgstmppath);
+                        txxx= BaseService.getGson().fromJson(responseInfo.result.toString(), new TypeToken<Txxx>() {}.getType());
+                        myAppVariable.setTxxx(new Txxx());
+                        myAppVariable.setTxxx(txxx);
                         Intent intent = new Intent();
                         intent.setClass(TxxxDetailActivity.this,TxxxDetailActivity.class);
 
@@ -694,42 +714,15 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-    private void doSearching(String query) {
+    private void doSearching(int id) {
 
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("name", query);
-        try {
-            //获取餐桌列表数据
-            TxxxService txxxService = new TxxxService();
 
-//                        Toast.makeText(this,"aa", Toast.LENGTH_SHORT).show();
-            txxxs = txxxService.queryTxxxName(map);
+        url=HttpUtil.BASE_URL+"txxx!queryTxxxId.action";
+        params = new RequestParams();
+        params.addQueryStringParameter("id",id+"");
 
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-      if(txxxs!=null) {
-//          myAppVariable.setTxxxs(txxxs);
-          txxx=txxxs.get(0);
-
-          showView(txxx);
-
-//        Toast.makeText(this, query, Toast.LENGTH_SHORT).show();
-      } else{
-          new AlertDialog.Builder(this).setTitle("查无此人！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-
-              @Override
-              public void onClick(DialogInterface dialog, int which) {
-                  // TODO Auto-generated method stub
-                  Intent intent = new Intent();
-
-                  intent.setClass(TxxxDetailActivity.this, TxxxDetailActivity.class);
-                  startActivity(intent);
-              }
-          }).show();
-      }
+        otherquery=true;
+        mThreadmy();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -741,6 +734,7 @@ public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedLi
 
         }
     }
+
 //    @Override
 //    protected void onActivityResult( int requestCode, int resultCode, Intent data )
 //    {

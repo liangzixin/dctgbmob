@@ -1,42 +1,19 @@
 package com.scme.order.ui;
 
-import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
-import android.os.RecoverySystem;
-import android.support.v7.widget.RecyclerView.ViewHolder;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.InflateException;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.GridView;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-
-import com.scme.order.card.HeadlineBodyCard;
 import com.scme.order.model.Dydh;
 import com.scme.order.model.Tusers;
 import com.scme.order.service.DydhService;
@@ -48,11 +25,9 @@ import com.scme.order.util.MyAppVariable;
 import com.scme.order.util.Pictures;
 import com.scme.order.view.PopMenu;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -240,7 +215,7 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 						switch (position) {
 							case 0:
-
+								myAppVariable.setOtherquery(false);
 								startActivity(new Intent(MainMenuActivity.this, TxxxListFyActivity.class));
 
 								break;
