@@ -49,6 +49,7 @@
     <string name="title_eattotalActivity">合计</string>
     <string name="title_activity_tables_list">餐桌列表</string>
     <string name="title_activity_txxx">退休信息</string>
+    <string name="title_activity_checkinout">打卡信息</string>
     <string name="title_activity_txxxdetail">详细信息</string>
     <string name="title_activity_ysry">遗属信息</string>
     <string name="title_activity_ysrydetail">遗属详细信息</string>
@@ -135,6 +136,7 @@
     <string name="menu_leader1">分管签字</string>
     <string name="chuchai_detail">派车信息</string>
     <string name="chuchai_add">添加派车</string>
+    <string name="checkinout_list">打卡记录</string>
     <!--<item name="LinearLayoutLoginForm" type="id"></item>-->
     <!--<item name="LinearLayoutHeader" type="id"></item>-->
     <!--<item name="headImg" type="id"></item>-->

@@ -284,4 +284,10 @@ public class GetDate{
 
         return   day;
     }
+    //格式化日期时间为“年-月-日 时：分：秒”的格式
+    public String DtoC1(Date date){
+        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String str=format.format(date);
+        return str;
+    }
 }

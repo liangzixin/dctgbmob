@@ -176,7 +176,7 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 //
 			} else if (v.getId() == R.id.btn_title2) { // 弹出式菜单
 				System.out.println("综合科");
-				String[] str2 = new String[]{getString(R.string.zhk_qj), getString(R.string.zhk_yz), getString(R.string.zhk_bx), getString(R.string.zhk_dx)};
+				String[] str2 = new String[]{getString(R.string.checkinout_list),getString(R.string.zhk_qj), getString(R.string.zhk_yz), getString(R.string.zhk_bx), getString(R.string.zhk_dx)};
 				String str = "0";
 				popMenu = new PopMenu(context, str);
 				popMenu.addItems(str2);
@@ -185,17 +185,21 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 						switch (position) {
 							case 0:
-								startActivity(new Intent(MainMenuActivity.this, QingjiaListActivity.class));
+								startActivity(new Intent(MainMenuActivity.this, CheckinoutListFyActivity.class));
 //								System.out.println("请假");
 								break;
 							case 1:
+								startActivity(new Intent(MainMenuActivity.this, QingjiaListActivity.class));
+//								System.out.println("请假");
+								break;
+							case 2:
 								startActivity(new Intent(MainMenuActivity.this, ChuchaiListActivity.class));
 								popMenu.dismiss();
 								break;
-							case 2:
+							case 3:
 								startActivity(new Intent(MainMenuActivity.this, UserListActivity.class));
 								break;
-							case 3:
+							case 4:
 								startActivity(new Intent(MainMenuActivity.this, PlacardListActivity.class));
 								break;
 						}

@@ -2,6 +2,7 @@ package com.scme.order.util;
 
 import android.app.Application;
 
+import com.scme.order.model.Checkinout;
 import com.scme.order.model.Chuchai;
 import com.scme.order.model.Placard;
 import com.scme.order.model.Qingjia;
@@ -20,6 +21,7 @@ public class MyAppVariable extends Application {
     private List list;
     private List<Qingjia> qingjias;
     private Txxx txxx;
+    private Checkinout checkinout;
 
     public List<Placard> getListplacard() {
         return listplacard;
@@ -175,4 +177,11 @@ public class MyAppVariable extends Application {
     }
 
 
+    public Checkinout getCheckinout() {
+        return checkinout;
+    }
+
+    public void setCheckinout(Checkinout checkinout) {
+        this.checkinout = checkinout;
+    }
 }

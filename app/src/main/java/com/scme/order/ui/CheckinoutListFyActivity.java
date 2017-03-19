@@ -42,9 +42,11 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.scme.order.card.HeadlineBodyCard;
+import com.scme.order.model.Checkinout;
 import com.scme.order.model.Txxx;
 import com.scme.order.service.BaseService;
 import com.scme.order.service.TxxxService;
+import com.scme.order.util.GetDate;
 import com.scme.order.util.HttpUtil;
 import com.scme.order.util.MyAppVariable;
 import com.scme.order.view.XListView;
@@ -61,7 +63,7 @@ import java.util.Map;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class TxxxListFyActivity extends BaseActivity implements IXListViewListener,AdapterView.OnItemClickListener,OnItemSelectedListener {
+public class CheckinoutListFyActivity extends BaseActivity implements IXListViewListener,AdapterView.OnItemClickListener,OnItemSelectedListener {
 	private XListView mListView;
 //	private ArrayAdapter<String> mAdapter;
 	//	private ArrayList<String> items = new ArrayList<String>();
@@ -76,7 +78,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 	private int intFirst = 0;
 	private int recPerPage = 20;
 	private int count=0;
-	private Txxx txxx;
+	private Checkinout checkinout;
 	private ProgressDialog progressDialog;
 	private int pages;
 	private EditText   textpage;
@@ -93,7 +95,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 	private  Boolean otherquery=false;
 	private  boolean jump=false;
 
-	private List txxxList;
+	private List checkinoutList;
 	private MyAppVariable myAppVariable;
 	private TextView mTextView;
 	private CheckBox mCheckBox1;
@@ -104,6 +106,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 //	private HttpUtils httpUtils= new HttpUtils();
 	private    String url=null;
 	private 	RequestParams params;
+	private GetDate getDate=new GetDate();
 
 
 	RadioGroup mRadioGroup; //RadioGroup对象，用于显示答案
@@ -123,11 +126,11 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_txxx_list);
+		setContentView(R.layout.activity_checkinout_list);
 		ButterKnife.inject(this);
 		myAppVariable=(MyAppVariable)getApplication(); //获得自定义的应用程序MyAppVariable
         otherquery=myAppVariable.getOtherquery();
-		mListView = (XListView) findViewById(R.id.lvtxxxs);
+		mListView = (XListView) findViewById(R.id.lvcheckinouts);
 		progressDialog = new ProgressDialog(this);
 		progressDialog.setMessage("数据加载中  请稍后...");
 		progressDialog.show();
@@ -147,7 +150,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 					doSearching(query);
 		}else{
 			myAppVariable.setOtherquery(false);
-			geneTxxxItems();
+			geneCheckinoutItems();
 		}
 
 //		}
@@ -170,9 +173,9 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 
 							myobject = new JSONObject(responseInfo.result);
 							count=myobject.getInt("count");
-							listArray=myobject.getString("txxxlist");
-							txxxList= BaseService.getGson().fromJson(listArray, new TypeToken<List<Txxx>>() {}.getType());
-							System.out.println(txxxList.size());
+							listArray=myobject.getString("checkinoutlist");
+							checkinoutList= BaseService.getGson().fromJson(listArray, new TypeToken<List<Checkinout>>() {}.getType());
+						 System.out.println(checkinoutList.size());
 						} catch (JSONException e) {
 							e.printStackTrace();
 						}
@@ -189,12 +192,12 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 							mListView.setPullLoadEnable(false);
 						}
 
-						myAdapter = new MyAdapter(txxxList, 1);
+						myAdapter = new MyAdapter(checkinoutList, 1);
 
 						mListView.setAdapter(myAdapter);
 
-						mListView.setXListViewListener(TxxxListFyActivity.this);
-						mListView.setOnItemClickListener(TxxxListFyActivity.this);
+						mListView.setXListViewListener(CheckinoutListFyActivity.this);
+						mListView.setOnItemClickListener(CheckinoutListFyActivity.this);
 
 					}
 				}
@@ -202,61 +205,14 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 				@Override
 				public void onFailure(HttpException e, String s) {
 					progressDialog.dismiss();
-					Toast.makeText(TxxxListFyActivity.this, "数据加载失败！！！", Toast.LENGTH_SHORT).show();
+					Toast.makeText(CheckinoutListFyActivity.this, "数据加载失败！！！", Toast.LENGTH_SHORT).show();
 				}
 			});
 
 		}
 
 
-//	private Thread mThread = new Thread() {
-//		public void run() {
-//			Log.d("TAG", "mThread run");
-//			Looper.prepare();
-//
-//			testHandler = new Handler() {
-//				public void handleMessage(Message msg) {
-//					Log.d("TAG", "worker thread:" + Thread.currentThread().getName());
-////					System.out.println("我的线程："+msg.what);
-//
-//					switch (msg.what) {
-//						//handle message here
-//						case 1:
-//							pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
-//
-//							tolpage.setText("记录数："+count);
-//							nowpage.setText("页码："+(intFirst+1)+"/"+pages);
-//
-//							if(count>recPerPage) {
-//								mListView.setPullLoadEnable(true);
-//							}else{
-//								mListView.setPullLoadEnable(false);
-//							}
-//
-//							myAdapter = new MyAdapter(txxxList, 1);
-//
-//							mListView.setAdapter(myAdapter);
-//
-//							mListView.setXListViewListener(TxxxListFyActivity.this);
-//							mListView.setOnItemClickListener(TxxxListFyActivity.this);
-//						case 2:
-//
-//							//send message here
-//
-//					}
-//					progressDialog.dismiss();
-//				}
-//			};
-//
-//			testHandler.sendEmptyMessage(1);
-//			Looper.loop();
-//
-//		}
-//
-//	};
-	/*
-创建菜单项
- */
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
@@ -271,10 +227,10 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 		SearchView searchView = (SearchView) MenuItemCompat
 				.getActionView(searchItem);
 
-		SearchManager searchManager = (SearchManager) TxxxListFyActivity.this
+		SearchManager searchManager = (SearchManager) CheckinoutListFyActivity.this
 				.getSystemService(Context.SEARCH_SERVICE);
 		searchView.setSearchableInfo(searchManager
-				.getSearchableInfo(TxxxListFyActivity.this.getComponentName()));
+				.getSearchableInfo(CheckinoutListFyActivity.this.getComponentName()));
 
 		searchItem
 				.setSupportOnActionExpandListener(new MenuItemCompat.OnActionExpandListener() {
@@ -306,7 +262,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 		if (id == R.id.search_other) {
 
 
-			LayoutInflater factory = LayoutInflater.from(TxxxListFyActivity.this);
+			LayoutInflater factory = LayoutInflater.from(CheckinoutListFyActivity.this);
 			final View loginForm = factory.inflate(R.layout.loginsearchother, null);
 //			TableLayout loginForm = (TableLayout)getLayoutInflater(getActivity())
 //					.inflate( R.layout.loginsearchother, null);
@@ -387,7 +343,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 						@Override
 						public void onClick(DialogInterface dialog,
 											int which) {
-							url=HttpUtil.BASE_URL+"txxx!queryTxxxOther.action";
+							url=HttpUtil.BASE_URL+"checkinout!queryTxxxOther.action";
 							params = new RequestParams();
 							params.addQueryStringParameter("intFirst",intFirst+"");
 							params.addQueryStringParameter("recPerPage",recPerPage+"");
@@ -415,69 +371,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 							}
 							otherquery=true;
 							mThreadmy();
-//							map= new HashMap<String, Object>();
-//
-//							if (mCheckBox1.isChecked()) {
-//
-//								map.put("branchname", spinner1.getSelectedItem().toString());
-//							}else{
-//
-//								map.put("branchname", "");
-//							}
-//
-//							if (mCheckBox2.isChecked()) {
-//                                  map.put("name0",m2[spinner2.getSelectedItemPosition()].toString());
-//								  map.put("name1",mTextView.getText().toString());
-//
-//
-//
-//							}else{
-//								map.put("name0", "");
-//								map.put("name", "");
-//							}
-//
-//							if (mCheckBox3.isChecked()) {
-//								int spin1 = mRadioGroup.getCheckedRadioButtonId();
-////								RadioButton radioButton = （RadioButton）findViewById（mradioGroup.getCheckedRadioButtonId()）;
-////
-////								System.out.println("-------------->"+text);
-//								switch (spin1) {
-//									case R.id.radioButton1:
-//										map.put("rzjk0", "已认证");
-//										break;
-//									case R.id.radioButton2:
-//										map.put("rzjk0", "未认证");
-//										break;
-//									case R.id.radioButton3:
-//										map.put("swsj", "死亡");
-//										break;
-//								}
-//							}else{
-//								map.put("rzjk0", "");
-//								map.put("swsj", "");
-//							}
-//
-//
-//							try {
-//
-//								TxxxService txxxService = new TxxxService();
-//								count= txxxService.queryTxxxOtherCount(map);
-//								txxxList = txxxService.queryTxxxOther(map);
-//							} catch (Exception e) {
-//								// TODO: handle exception
-//
-//							}
-//
-//							otherquery=true;
-//							pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
-//
-//							tolpage.setText("记录数："+count);
-//								nowpage.setText("页码：" + (intFirst+1)+ "/" + pages);
-//								myAdapter = new MyAdapter(txxxList, 1);
-//								mListView.setAdapter(myAdapter);
-//								mListView.setPullLoadEnable(true);
-//								onLoad();
-//
+
 						}
 					})
 					// 为对话框设置一个“取消”按钮
@@ -504,69 +398,27 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 	/*
 	*转到另外页面
 	 */
-	private void geneTxxxItems() {
-		url= HttpUtil.BASE_URL+"txxx!queryTxxxAll.action";
+	private void geneCheckinoutItems() {
+		url= HttpUtil.BASE_URL+"checkinout!queryCheckinoutAll.action";
 		params = new RequestParams();
+		params.addQueryStringParameter("purview",myAppVariable.getTusers().getPurview());
+
+		params.addQueryStringParameter("deptid",myAppVariable.getTusers().getDeptid()+"");
 		params.addQueryStringParameter("intFirst",intFirst+"");
 		params.addQueryStringParameter("recPerPage",recPerPage+"");
 		mThreadmy();
-//		handler = httpUtils.send(HttpRequest.HttpMethod.GET, url, params,new RequestCallBack<String>() {
-//			@Override
-//			public void onSuccess(ResponseInfo<String> responseInfo) {
-//
-//				if (responseInfo.result != null) {
-//					progressDialog.dismiss();
-//					JSONObject myobject =null;
-//					String listArray=null;
-//					try {
-//
-//						 myobject = new JSONObject(responseInfo.result);
-//						count=myobject.getInt("count");
-//						 listArray=myobject.getString("txxxlist");
-//						txxxList= BaseService.getGson().fromJson(listArray, new TypeToken<List<Txxx>>() {}.getType());
-//					} catch (JSONException e) {
-//						e.printStackTrace();
-//					}
-//
-//
-//					pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
-//
-//					tolpage.setText("记录数："+count);
-//					nowpage.setText("页码："+(intFirst+1)+"/"+pages);
-//
-//					if(count>recPerPage) {
-//						mListView.setPullLoadEnable(true);
-//					}else{
-//						mListView.setPullLoadEnable(false);
-//					}
-//
-//					myAdapter = new MyAdapter(txxxList, 1);
-//
-//					mListView.setAdapter(myAdapter);
-//
-//					mListView.setXListViewListener(TxxxListFyActivity.this);
-//					mListView.setOnItemClickListener(TxxxListFyActivity.this);
-//
-//				}
-//			}
-//
-//			@Override
-//			public void onFailure(HttpException e, String s) {
-//				progressDialog.dismiss();
-//				Toast.makeText(TxxxListFyActivity.this, "数据加载失败！！！", Toast.LENGTH_SHORT).show();
-//			}
-//		});
+
 
 	}
 	/*
 *根据查询条件转到另外页面
  */
-	private void geneTxxxOther() {
+	private void geneCheckinoutOther() {
 		map.put("inFirst",intFirst);
 		map.put("pages",pages);
 		try {
 			TxxxService txxxService = new TxxxService();
-			txxxList = txxxService.queryTxxxOther(map);
+			checkinoutList = txxxService.queryTxxxOther(map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -620,10 +472,10 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		//
 		int ii= new Long(id).intValue();
-		myAppVariable.setTxxx(new Txxx());
-		myAppVariable.setTxxx((Txxx)txxxList.get(position-1));
+		myAppVariable.setCheckinout(new Checkinout());
+		myAppVariable.setCheckinout((Checkinout)checkinoutList.get(position-1));
 //		myAppVariable.setTxxxid(ii);
-//        Txxx txxx=;
+//        Checkinout checkinout=;
 		Intent intent = new Intent();
 
 		intent.setClass(this, TxxxDetailActivity.class);
@@ -646,32 +498,32 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 	 */
 	class MyAdapter extends BaseAdapter {
 
-		public List<Txxx> txxxs;//数据源
+		public List<Checkinout> checkinouts;//数据源
 		public int layoutId;//样式布局文件
 
-		public MyAdapter(List<Txxx> txxxs, int layoutId) {//构造函数
-			this.txxxs = txxxs;
+		public MyAdapter(List<Checkinout> checkinouts, int layoutId) {//构造函数
+			this.checkinouts = checkinouts;
 			this.layoutId = layoutId;
 		}
 
-		public void setTxxxs(List<Txxx> txxxs) {
-			this.txxxs = txxxs;
+		public void setCheckinouts(List<Checkinout> checkinouts) {
+			this.checkinouts = checkinouts;
 		}
 
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return txxxs.size();//返回个数
+			return checkinouts.size();//返回个数
 		}
 
 		@Override
 		public Object getItem(int position) {
-			return txxxs.get(position);
+			return checkinouts.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			return txxxs.get(position).getId();
+			return checkinouts.get(position).getUserID();
 		}
 
 		@Override
@@ -679,11 +531,11 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 			// TODO Auto-generated method stub
 			HeadlineBodyCard.ViewHolder vh;
 			if (convertView == null) {
-				convertView = getLayoutInflater().inflate(R.layout.txxxlist_item, null);
+				convertView = getLayoutInflater().inflate(R.layout.checkinoutlist_item, null);
 				Display display =getWindowManager().getDefaultDisplay();
 				int width = display.getWidth();
 				int height=display.getHeight();
-				Txxx txxx = txxxs.get(position);
+				Checkinout checkinout = checkinouts.get(position);
 				if (position % 2 == 0) {//奇偶行背景色
 					convertView.setBackgroundColor(convertView.getResources().getColor(R.color.palegreen));
 				}else {
@@ -693,37 +545,38 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 				TextView id = (TextView) convertView.findViewById(R.id.id);
 				TextView name = (TextView) convertView.findViewById(R.id.name);
 				TextView bmmz = (TextView) convertView.findViewById(R.id.bmmz);
-				TextView sfzh = (TextView) convertView.findViewById(R.id.sfzh);
+				TextView checktime= (TextView) convertView.findViewById(R.id.checktime);
 				TextView rz = (TextView) convertView.findViewById(R.id.rz);
 
 				id.setGravity(Gravity.CENTER);
 				name.setGravity(Gravity.CENTER);
 				bmmz.setGravity(Gravity.CENTER);
-				sfzh.setGravity(Gravity.CENTER);
+				checktime.setGravity(Gravity.CENTER);
 				rz.setGravity(Gravity.CENTER);
 
 				id.setWidth((int)(width*0.12));
 				name.setWidth((int)(width*0.15));
 				bmmz.setWidth((int)(width*0.2));
-				sfzh.setWidth((int)(width*0.43));
+				checktime.setWidth((int)(width*0.43));
 				rz.setWidth((int)(width*0.1));
 //				state.setWidth((int) (width * 0.1));
 
 				id.setHeight((int)(height*0.04));
 				name.setHeight((int)(height*0.04));
 				bmmz.setHeight((int)(height*0.04));
-				sfzh.setHeight((int)(height*0.04));
+				checktime.setHeight((int)(height*0.04));
 				rz.setHeight((int)(height*0.04));
 //				state.setHeight((int) (height * 0.04));
 
 
 
 				id.setText((intFirst*recPerPage)+position+1 + "");
-				bmmz.setText(txxx.getSubname1(4));
-//				grbh.setText(txxx.getGrbh());
-				name.setText(txxx.getName());
-				sfzh.setText(txxx.getSfzh());
-				rz.setText(IsCheckOut(txxx.getRz14jk()));
+				bmmz.setText("aaaa");
+				//bmmz.setText(checkinout.getUserinfo().getDepartments().getSubname1(4));
+				//name.setText(checkinout.getUserinfo().getName());
+				checktime.setText("bbbb");
+				//checktime.setText(getDate.DtoC1(checkinout.getCheckTime()));
+				rz.setText("");
 
 			} else {
 
@@ -747,7 +600,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 
 		intFirst=0;
 		recPerPage=20;
-		url=HttpUtil.BASE_URL+"txxx!queryTxxxName.action";
+		url=HttpUtil.BASE_URL+"checkinout!queryTxxxName.action";
 		params = new RequestParams();
 		params.addQueryStringParameter("name",query);
 		params.addQueryStringParameter("intFirst",intFirst+"");
@@ -771,12 +624,12 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 
 
 				nowpage.setText("页码："+(intFirst+1)+"/"+pages);
-				myAdapter = new MyAdapter(txxxList, 1);
+				myAdapter = new MyAdapter(checkinoutList, 1);
 				mListView.setAdapter(myAdapter);
 				mListView.setPullLoadEnable(true);
 
-				mListView.setXListViewListener(TxxxListFyActivity.this);
-				mListView.setOnItemClickListener(TxxxListFyActivity.this);
+				mListView.setXListViewListener(CheckinoutListFyActivity.this);
+				mListView.setOnItemClickListener(CheckinoutListFyActivity.this);
 
 				onLoad();
 			}
@@ -788,69 +641,20 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 	public void txxx_pages_sumbit_Event(View view) throws Exception
 	{
 
-//		System.out.println("workerid"+workerid);
-//		progressDialog2 = new ProgressDialog(this);
-//		progressDialog2.setMessage("订单提交中  请稍后...");
-//		progressDialog2.show();
-//		Thread t2=new Thread(new Runnable() {
-//			@Override
-//			public void run() {
-//				try {
-//					EatsService os=new EatsService();
-//					//EatsDetailsService ods=new EatsDetailsService();
-//					String strEatNum=etEatNum.getText().toString();
-//					Integer eatNum=Integer.parseInt(strEatNum);
-//					os.addEats(workerid, eatNum);//添加订单
-//
-//				} catch (Exception e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//				myHandler2.sendMessage(myHandler2.obtainMessage());
-//				//		myHandler.sendMessage(myHandler.obtainMessage());
-//			}
-//		});
-//		t2.start();
-		//t.join();
 
-//		new AlertDialog.Builder(this).setTitle("转到页码！").setView(textpage).setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//
-//			@Override
-//			public void onClick(DialogInterface dialog, int which) {
-//				// TODO Auto-generated method stub
-//				mHandler.postDelayed(new Runnable() {
-//					@Override
-//					public void run() {
-//						if (intFirst < pages) {
-//
-//							intFirst=this.getEditText();
-//							geneTxxxItems();
-//							nowpage.setText("页码：" + intFirst+ "/" + pages);
-//							myAdapter = new MyAdapter(txxxList, 1);
-//							mListView.setAdapter(myAdapter);
-//							mListView.setPullLoadEnable(true);
-//							onLoad();
-//						} else {
-//							intFirst = pages;
-//							mListView.setPullLoadEnable(false);
-//						}
-//					}
-//				}, 2000);
-//			}
-//		}).show();
-		LayoutInflater factory = LayoutInflater.from(TxxxListFyActivity.this);
+		LayoutInflater factory = LayoutInflater.from(CheckinoutListFyActivity.this);
 		final View textEntryView = factory.inflate(R.layout.dialogpage, null);
-		AlertDialog dlg = new AlertDialog.Builder(TxxxListFyActivity.this)
+		AlertDialog dlg = new AlertDialog.Builder(CheckinoutListFyActivity.this)
 
 				.setTitle("页码跳转页面！！！")
 				.setView(textEntryView)
-				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+				.setPositiveButton("确定", new OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
 
 						System.out.println("-------------->6");
 						EditText dialognum= (EditText) textEntryView.findViewById(R.id.username_edit);
 						String page0=dialognum.getText().toString();
-						Toast.makeText(TxxxListFyActivity.this, "页码: " + page0, Toast.LENGTH_SHORT).show();
+						Toast.makeText(CheckinoutListFyActivity.this, "页码: " + page0, Toast.LENGTH_SHORT).show();
 							try {
 							//if ((heighText.getText().toString())!=null)
 							intFirst=Integer.parseInt(page0)-1;
@@ -867,12 +671,12 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 //						tv.setText(inputPwd);
 						if (intFirst < pages) {
 							if(otherquery){
-								geneTxxxOther();
+								geneCheckinoutOther();
 							}else {
-								geneTxxxItems();
+								geneCheckinoutItems();
 							}
 							nowpage.setText("页码：" + (intFirst+1)+ "/" + pages);
-							myAdapter = new MyAdapter(txxxList, 1);
+							myAdapter = new MyAdapter(checkinoutList, 1);
 							mListView.setAdapter(myAdapter);
 							mListView.setPullLoadEnable(true);
 							onLoad();
@@ -885,7 +689,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 					}
 
 				})
-				.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+				.setNegativeButton("取消", new OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
 						System.out.println("-------------->2");
 

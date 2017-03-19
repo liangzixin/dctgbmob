@@ -215,6 +215,18 @@
                    android:resource="@xml/searchable"/>
            </activity>
            <activity
+               android:name=".CheckinoutListFyActivity"
+               android:label="@string/title_activity_checkinout"
+               android:parentActivityName=".MainMenuActivity">
+               <intent-filter>
+                   <action android:name="android.intent.action.SEARCH"/>
+               </intent-filter>
+
+               <meta-data
+                   android:name="android.app.searchable"
+                   android:resource="@xml/searchable"/>
+           </activity>
+           <activity
                android:name=".TxxxDetailActivity"
                android:label="@string/title_activity_txxxdetail"
                android:parentActivityName=".TxxxListFyActivity">

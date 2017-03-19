@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <TextView
+        android:id="@+id/id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:textColor="#000000"
+        android:text="序号"/>
+
+    <TextView
+        android:id="@+id/bmmz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:textColor="#000000"
+        android:text="部门名称"/>
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        android:textColor="#000000"
+        android:text="姓名"/>
+
+    <TextView
+        android:id="@+id/checktime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="180dp"
+        android:textColor="#000000"
+
+        android:text="打卡时间"/>
+
+    <TextView
+        android:id="@+id/rz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="335dp"
+        android:textColor="#000000"
+
+        android:text="认证"/>
+
+
+</RelativeLayout>

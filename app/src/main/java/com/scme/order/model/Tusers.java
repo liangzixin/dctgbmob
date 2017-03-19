@@ -35,6 +35,7 @@ public class Tusers implements java.io.Serializable {
 	private String picName;
 
 	private Branch branch;
+	private int deptid;
 //	GetDate getDate=new GetDate();
 	// Constructors
 
@@ -230,5 +231,11 @@ public class Tusers implements java.io.Serializable {
 	}
 
 
+	public int getDeptid() {
+		return deptid;
+	}
 
+	public void setDeptid(int deptid) {
+		this.deptid = deptid;
+	}
 }
