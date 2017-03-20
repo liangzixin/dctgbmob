@@ -216,8 +216,13 @@ private 	RequestParams params;
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 		getMenuInflater().inflate(R.menu.menu_txxxdetailmain, menu);
-
-		menu.getItem(1).setVisible(false);
+		if(myAppVariable.getTusers().getPurview().equals("系统")) {
+			menu.getItem(1).setEnabled(true);
+			menu.getItem(1).setVisible(true);
+			menu.getItem(1).setTitle(R.string.add);
+		}else {
+			menu.getItem(1).setVisible(false);
+		}
 		menu.getItem(3).setVisible(false);
 		menu.getItem(4).setVisible(true);
 		SupportMenuItem searchItem = (SupportMenuItem) menu
@@ -257,7 +262,11 @@ private 	RequestParams params;
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
-
+		if (id == R.id.action_txxxdetail_mainrz) {
+			Intent intent = new Intent();
+			intent.setClass(this, CheckinoutAddActivity.class);
+			startActivity(intent);
+		}
 		if (id == R.id.search_other) {
 
 
