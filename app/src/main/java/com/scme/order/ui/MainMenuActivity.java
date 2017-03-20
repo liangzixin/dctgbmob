@@ -185,6 +185,7 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 						switch (position) {
 							case 0:
+								myAppVariable.setOtherquery(false);
 								startActivity(new Intent(MainMenuActivity.this, CheckinoutListFyActivity.class));
 //								System.out.println("请假");
 								break;

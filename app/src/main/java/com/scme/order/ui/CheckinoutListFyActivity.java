@@ -43,7 +43,6 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.scme.order.card.HeadlineBodyCard;
 import com.scme.order.model.Checkinout;
-import com.scme.order.model.Txxx;
 import com.scme.order.service.BaseService;
 import com.scme.order.service.TxxxService;
 import com.scme.order.util.GetDate;
@@ -105,7 +104,7 @@ public class CheckinoutListFyActivity extends BaseActivity implements IXListView
 	private HttpHandler<String> handler;
 //	private HttpUtils httpUtils= new HttpUtils();
 	private    String url=null;
-	private 	RequestParams params;
+private 	RequestParams params;
 	private GetDate getDate=new GetDate();
 
 
@@ -344,7 +343,7 @@ public class CheckinoutListFyActivity extends BaseActivity implements IXListView
 						public void onClick(DialogInterface dialog,
 											int which) {
 							url=HttpUtil.BASE_URL+"checkinout!queryTxxxOther.action";
-							params = new RequestParams();
+							RequestParams params = new RequestParams();
 							params.addQueryStringParameter("intFirst",intFirst+"");
 							params.addQueryStringParameter("recPerPage",recPerPage+"");
 							if (mCheckBox1.isChecked()) {
@@ -400,9 +399,11 @@ public class CheckinoutListFyActivity extends BaseActivity implements IXListView
 	 */
 	private void geneCheckinoutItems() {
 		url= HttpUtil.BASE_URL+"checkinout!queryCheckinoutAll.action";
-		params = new RequestParams();
+	    params= new RequestParams();
 		params.addQueryStringParameter("purview",myAppVariable.getTusers().getPurview());
-
+		params.addQueryStringParameter("name","");
+		params.addQueryStringParameter("queryname","0");
+	//	System.out.println(myAppVariable.getTusers().getPurview());
 		params.addQueryStringParameter("deptid",myAppVariable.getTusers().getDeptid()+"");
 		params.addQueryStringParameter("intFirst",intFirst+"");
 		params.addQueryStringParameter("recPerPage",recPerPage+"");
@@ -434,7 +435,7 @@ public class CheckinoutListFyActivity extends BaseActivity implements IXListView
 
 	@Override
 	public void onRefresh() {
-		params = new RequestParams();
+		params= new RequestParams();
 		if (intFirst >= 1) {
 			intFirst--;
 			params.addQueryStringParameter("intFirst",intFirst+"");
@@ -453,7 +454,7 @@ public class CheckinoutListFyActivity extends BaseActivity implements IXListView
 	public void onLoadMore() {
 
 
-		params = new RequestParams();
+		 params= new RequestParams();
 		if (intFirst < pages) {
 			intFirst++;
 			params.addQueryStringParameter("intFirst",intFirst+"");
@@ -571,11 +572,14 @@ public class CheckinoutListFyActivity extends BaseActivity implements IXListView
 
 
 				id.setText((intFirst*recPerPage)+position+1 + "");
-				bmmz.setText("aaaa");
-				//bmmz.setText(checkinout.getUserinfo().getDepartments().getSubname1(4));
-				//name.setText(checkinout.getUserinfo().getName());
-				checktime.setText("bbbb");
-				//checktime.setText(getDate.DtoC1(checkinout.getCheckTime()));
+			//	bmmz.setText("aaaa");
+			//	System.out.println(checkinout.getUserinfo().getDepartments().getDeptname());
+				bmmz.setText(checkinout.getUserinfo().getDepartments().getSubname1(4));
+
+				name.setText(checkinout.getUserinfo().getName());
+				//checktime.setText("bbbb");
+			//	System.out.println(checkinout.getCheckTime());
+				checktime.setText(checkinout.getCheckTime());
 				rz.setText("");
 
 			} else {
@@ -600,9 +604,12 @@ public class CheckinoutListFyActivity extends BaseActivity implements IXListView
 
 		intFirst=0;
 		recPerPage=20;
-		url=HttpUtil.BASE_URL+"checkinout!queryTxxxName.action";
-		params = new RequestParams();
+		url=HttpUtil.BASE_URL+"checkinout!queryCheckinoutAll.action";
+	params= new RequestParams();
 		params.addQueryStringParameter("name",query);
+		params.addQueryStringParameter("purview",myAppVariable.getTusers().getPurview());
+		params.addQueryStringParameter("deptid",myAppVariable.getTusers().getDeptid()+"");
+		params.addQueryStringParameter("queryname","1");
 		params.addQueryStringParameter("intFirst",intFirst+"");
 		params.addQueryStringParameter("recPerPage",recPerPage+"");
 		otherquery=true;

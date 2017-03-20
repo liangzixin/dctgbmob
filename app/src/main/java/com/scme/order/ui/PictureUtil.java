@@ -45,7 +45,7 @@ public class PictureUtil {
 	 * @param srcPath  图片路径
 	 * @return
 	 */
-	private static Bitmap getimage(String srcPath) {
+	private static Bitmap getimage(String srcPath,int i) {
 		BitmapFactory.Options newOpts = new BitmapFactory.Options();
 		//开始读入图片，此时把options.inJustDecodeBounds 设回true了
 		newOpts.inJustDecodeBounds = true;
@@ -78,7 +78,7 @@ public class PictureUtil {
 		/**
 		 * 把图片旋转为正的方向
 		 */
-		bitmap = rotaingImageView(degree, bitmap);
+		if(degree==90) bitmap = rotaingImageView(-180, bitmap);
 		//进行 质量压缩
 		return compressImage(bitmap);//压缩好比例大小后再进行质量压缩
 	}
@@ -90,13 +90,13 @@ public class PictureUtil {
 	 * @return
 	 * @throws IOException 
 	 */
-	public static String bitmapToPath(String filePath) throws IOException {
+	public static String bitmapToPath(String filePath,int i) throws IOException {
 
-		Bitmap bm = getimage(filePath);
+		Bitmap bm = getimage(filePath,i);
 
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		bm.compress(Bitmap.CompressFormat.JPEG, 40, baos);
-		
+
 		//得到文件名
 		String imgName=getfilepath(filePath);
 		//得到存放路径

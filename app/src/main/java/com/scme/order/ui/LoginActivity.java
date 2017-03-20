@@ -34,9 +34,6 @@ import com.scme.order.tq.view.OwlView;
 import com.scme.order.util.HttpUtil;
 import com.scme.order.util.MyAppVariable;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 //import org.ksoap2.SoapEnvelope;
 //import org.ksoap2.serialization.SoapObject;
 //import org.ksoap2.serialization.SoapSerializationEnvelope;
@@ -271,6 +268,7 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
 				  myAppVariable=(MyAppVariable)getApplication(); //获得自定义的应用程序MyAppVariable
 //				 myAppVariable.getTusers().setPurview(user.getPurview());
 //				 myAppVariable.setPurview(user.getPurview());
+				 myAppVariable.setTusers(new Tusers());
 				 myAppVariable.setTusers(user);
 //				 Tusers tusers0=new Tusers();
 //				 tusers0=user;

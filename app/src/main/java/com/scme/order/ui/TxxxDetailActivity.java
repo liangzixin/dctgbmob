@@ -565,7 +565,7 @@ private HttpHandler<String> handler;
                     String tmepName = null;
                     if(mSelectedPhotos.get(i).getPath()!=null) {
                         try {
-                            tmepName = PictureUtil.bitmapToPath(mSelectedPhotos.get(i).getPath());
+                            tmepName = PictureUtil.bitmapToPath(mSelectedPhotos.get(i).getPath(),i);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -735,20 +735,6 @@ private HttpHandler<String> handler;
         }
     }
 
-//    @Override
-//    protected void onActivityResult( int requestCode, int resultCode, Intent data )
-//    {
-//        switch ( resultCode ) {
-//            case RESULT_OK :
-////                System.out.println(data.getExtras().getString( "result" ));
-////                tv1.setText( data.getExtras().getString( "result" ));
-//                T.showShort(context, "亲，返回来了" );
-//                break;
-//            default :
-//                break;
-//        }
-//
-//    }
 
 
 }

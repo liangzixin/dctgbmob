@@ -1,18 +1,12 @@
 package com.scme.order.model;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-
-
-
 /**
  * ?????????
  *
  */
 public class Checkinout  implements java.io.Serializable{
 ;
-private int UserID;                
+private int userID;
  private String checkTime;
    private String CheckType="I";      
    private int VerifyCode=1;           
@@ -21,13 +15,13 @@ private int UserID;
    private String SN;          
    private int UserExtFmt;
    private String  tel;
-  // private Userinfo userinfo;
+ private Userinfo userinfo;
    
 public int getUserID() {
-	return UserID;
+	return userID;
 }
 public void setUserID(int userID) {
-	UserID = userID;
+	this.userID = userID;
 }
 
 public String getCheckType() {
@@ -82,4 +76,11 @@ public void setWorkCode(String workCode) {
 		this.checkTime = checkTime;
 	}
 
+	public Userinfo getUserinfo() {
+		return userinfo;
+	}
+
+	public void setUserinfo(Userinfo userinfo) {
+		this.userinfo = userinfo;
+	}
 }

@@ -1,8 +1,6 @@
 package com.scme.order.model;
 
 
-import java.util.Date;
-
 /**
  * �û��־û���
  *
@@ -12,7 +10,7 @@ public class Userinfo  implements java.io.Serializable{
 	private int UserID	;
 	 private String	BadgeNumber	;
 	 private String	SSN	;
-	 private String	Name;
+	 private String	name;
 	 private String	Gender;
 	 private String	Title;
 	 private String Pager;	
@@ -68,10 +66,10 @@ public class Userinfo  implements java.io.Serializable{
 		SSN = sSN;
 	}
 	public String getName() {
-		return Name;
+		return name;
 	}
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 	public String getGender() {
 		return Gender;

@@ -5,8 +5,8 @@ public class Departments  implements java.io.Serializable{
 	
 
 	
-	private int Deptid;
-	private String Deptname;
+	private int deptid;
+	private String deptname;
 	private int SupDeptid;
 	private int InheritParentSch;
 	private int InheritDeptSch;
@@ -21,16 +21,16 @@ public class Departments  implements java.io.Serializable{
 	private int Holiday;
 	private int OverTime;
 	public int getDeptid() {
-		return Deptid;
+		return deptid;
 	}
 	public void setDeptid(int deptid) {
-		Deptid = deptid;
+		this.deptid = deptid;
 	}
 	public String getDeptname() {
-		return Deptname;
+		return deptname;
 	}
 	public void setDeptname(String deptname) {
-		Deptname = deptname;
+		this.deptname = deptname;
 	}
 	public int getSupDeptid() {
 		return SupDeptid;
