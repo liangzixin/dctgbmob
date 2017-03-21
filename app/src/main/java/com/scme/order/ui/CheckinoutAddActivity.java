@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.text.InputType;
 import android.view.Menu;
@@ -23,7 +22,6 @@ import android.widget.SpinnerAdapter;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.google.gson.reflect.TypeToken;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.HttpHandler;
@@ -32,19 +30,12 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.scme.order.model.Checkinout;
-import com.scme.order.model.Departments;
-import com.scme.order.model.Qingjia;
 import com.scme.order.model.Tusers;
-import com.scme.order.service.BaseService;
-import com.scme.order.service.BranchService;
 import com.scme.order.service.QingjiaService;
 import com.scme.order.service.UserService;
 import com.scme.order.util.GetDate;
 import com.scme.order.util.HttpUtil;
 import com.scme.order.util.MyAppVariable;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -102,10 +93,27 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("数据加载中  请稍后...");
         progressDialog.show();
+        Thread t=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+//                    BranchService branchService=new BranchService();
+////
+//                    listbmmz=branchService.QueryBranch();
 
-        getDepartments();
+                    getDepartments();
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                myHandler.sendMessage(myHandler.obtainMessage());
+            }
+        });
+        t.start();
 
+//        getDepartments();
 
+      //  System.out.println("长度:"+listbmmz.size());
 
 
         //获得绑定参数
@@ -116,39 +124,49 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
         user=myAppVariable.getTusers();
         setSpinner();
     }
+    /**
+     * 数据加载完之后消除Loding对话框
+     * */
+    private Handler myHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            progressDialog.dismiss(); //消除Loding对话框
+//            System.out.println("地址:" + chuchai.getAddress());
+//            System.out.println("电子信息:" + chuchai.getEmail());
+//            showView();
+            etStartTime.setOnTouchListener(CheckinoutAddActivity.this);
 
+            setSpinner();
+            super.handleMessage(msg);
+        }
+    };
     private void mThreadmy() {
 //	 HttpHandler<String> handler;
         HttpUtils httpUtils= new HttpUtils();
         // 不缓存，设置缓存0秒。
-        httpUtils.configCurrentHttpCacheExpiry(0*1000);
+    //    httpUtils.configCurrentHttpCacheExpiry(0*1000);
         handler= httpUtils.send(HttpRequest.HttpMethod.GET, url, params,new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
 
                 if (responseInfo.result != null) {
-                    progressDialog.dismiss();
-//                    if(lzx) {
-                        JSONObject myobject = null;
-                        String listArray = null;
-                        try {
-
-                            myobject = new JSONObject(responseInfo.result);
-
-                            listArray = myobject.getString("departmentslist");
-                            listbmmz = BaseService.getGson().fromJson(listArray, new TypeToken<List>() {
-                            }.getType());
-                            System.out.println(listbmmz.size());
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                   // progressDialog.dismiss();
+                    Toast.makeText(CheckinoutAddActivity.this, "数据加载成功！！！", Toast.LENGTH_SHORT).show();
+////                    if(lzx) {
+//                        JSONObject myobject = null;
+//                        String listArray = null;
+//                        try {
+//
+//                            myobject = new JSONObject(responseInfo.result);
+//
+//                            listArray = myobject.getString("departmentslist");
+//                            listbmmz = BaseService.getGson().fromJson(listArray, new TypeToken<List>() {
+//                            }.getType());
+//                            System.out.println(listbmmz.size());
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
                     }
-
-
-
-
-
-
                 }
 //            }
 
@@ -164,9 +182,10 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
 获取部门名称
  */
 private void getDepartments() {
-    url = HttpUtil.BASE_URL + "departments!queryDepartments.action";
+ //   url = HttpUtil.BASE_URL + "departments!queryDepartments.action";
+    url= HttpUtil.BASE_URL+"txxx!queryTxxxAll.action";
     params = new RequestParams();
-
+    params.addQueryStringParameter("name","");
     mThreadmy();
 }
     /*
@@ -290,14 +309,14 @@ public String IsSingle(String status) {
             timePicker.setCurrentHour(cal.get(Calendar.HOUR_OF_DAY));
             timePicker.setCurrentMinute(Calendar.MINUTE);
 
-            if (v.getId() == R.id.Qingjia_Time1) {
+            if (v.getId() == R.id.Checkinout_Time1) {
                 final int inType = etStartTime.getInputType();
                 etStartTime.setInputType(InputType.TYPE_NULL);
                 etStartTime.onTouchEvent(event);
                 etStartTime.setInputType(inType);
                 etStartTime.setSelection(etStartTime.getText().length());
 
-                builder.setTitle("选取起始时间");
+                builder.setTitle("选取打卡时间");
                 builder.setPositiveButton("确  定", new DialogInterface.OnClickListener() {
 
                     @Override
@@ -314,11 +333,11 @@ public String IsSingle(String status) {
 
                         etStartTime.setText(sb);
 
-                        double lg2=0;
-
-
-
-                        dialog.cancel();
+//                        double lg2=0;
+//
+//
+//
+//                        dialog.cancel();
                     }
                 });
 
@@ -344,7 +363,7 @@ public String IsSingle(String status) {
 
 
 //
-                       dialog.cancel();
+                  //     dialog.cancel();
                     }
                 });
             }
@@ -360,8 +379,8 @@ public String IsSingle(String status) {
    * 设置下拉框
    */
     private void setSpinner() {
-        provinceSpinner = ( MaterialSpinner) findViewById(R.id.spin_province);
-       citySpinner = ( MaterialSpinner) findViewById(R.id.spin_city);
+        provinceSpinner = ( MaterialSpinner) findViewById(R.id.spin_bmmz);
+       citySpinner = ( MaterialSpinner) findViewById(R.id.spin_xm);
 //        countySpinner = (Spinner) findViewById(R.id.spin_county);
 
         //绑定适配器和值

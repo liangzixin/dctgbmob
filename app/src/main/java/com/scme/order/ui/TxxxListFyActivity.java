@@ -209,51 +209,6 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 		}
 
 
-//	private Thread mThread = new Thread() {
-//		public void run() {
-//			Log.d("TAG", "mThread run");
-//			Looper.prepare();
-//
-//			testHandler = new Handler() {
-//				public void handleMessage(Message msg) {
-//					Log.d("TAG", "worker thread:" + Thread.currentThread().getName());
-////					System.out.println("我的线程："+msg.what);
-//
-//					switch (msg.what) {
-//						//handle message here
-//						case 1:
-//							pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
-//
-//							tolpage.setText("记录数："+count);
-//							nowpage.setText("页码："+(intFirst+1)+"/"+pages);
-//
-//							if(count>recPerPage) {
-//								mListView.setPullLoadEnable(true);
-//							}else{
-//								mListView.setPullLoadEnable(false);
-//							}
-//
-//							myAdapter = new MyAdapter(txxxList, 1);
-//
-//							mListView.setAdapter(myAdapter);
-//
-//							mListView.setXListViewListener(TxxxListFyActivity.this);
-//							mListView.setOnItemClickListener(TxxxListFyActivity.this);
-//						case 2:
-//
-//							//send message here
-//
-//					}
-//					progressDialog.dismiss();
-//				}
-//			};
-//
-//			testHandler.sendEmptyMessage(1);
-//			Looper.loop();
-//
-//		}
-//
-//	};
 	/*
 创建菜单项
  */
