@@ -35,6 +35,7 @@ import com.scme.order.util.GetDate;
 import com.scme.order.util.HttpUtil;
 import com.scme.order.util.MyAppVariable;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -58,9 +59,9 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
     private int branchid;
     private boolean str=false;
     private HttpHandler<String> handler;
-    private ArrayAdapter<String> adapter;
-    private ArrayAdapter<String> adapter1;
+    private ArrayAdapter<String> adapter;    private ArrayAdapter<String> adapter1;
     private MyAppVariable myAppVariable;
+
     private GetDate getDate=new GetDate();
     private static final String[] m={"请选择打卡类型","早上上班卡","早上下班卡","下午上班卡","下午下班卡"};
    private static final String[] listbmmz={"综合科","财务科","管理服务科","社会保险科","信访科","上大院管理服务站","腊利大院管理服务站","落雪大院管理服务站","下大院管理服务站","桂苑街管理服务站","驻昆办事处"};
@@ -124,19 +125,19 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
     /**
      * 数据加载完之后消除Loding对话框
      * */
-    private Handler myHandler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            progressDialog.dismiss(); //消除Loding对话框
-//            System.out.println("地址:" + chuchai.getAddress());
-//            System.out.println("电子信息:" + chuchai.getEmail());
-//            showView();
-      //      etStartTime.setOnTouchListener(CheckinoutAddActivity.this);
-
-        //    setSpinner();
-            super.handleMessage(msg);
-        }
-    };
+//    private Handler myHandler = new Handler(){
+//        @Override
+//        public void handleMessage(Message msg) {
+//            progressDialog.dismiss(); //消除Loding对话框
+////            System.out.println("地址:" + chuchai.getAddress());
+////            System.out.println("电子信息:" + chuchai.getEmail());
+////            showView();
+//      //      etStartTime.setOnTouchListener(CheckinoutAddActivity.this);
+//
+//        //    setSpinner();
+//            super.handleMessage(msg);
+//        }
+//    };
     private void mThreadmy() {
 //	 HttpHandler<String> handler;
         HttpUtils httpUtils= new HttpUtils();
@@ -147,8 +148,10 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
             public void onSuccess(ResponseInfo<String> responseInfo) {
 
                 if (responseInfo.result != null) {
-                   // progressDialog.dismiss();
-                    Toast.makeText(CheckinoutAddActivity.this, "数据加载成功！！！", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                    Toast.makeText(CheckinoutAddActivity.this, "打卡添加成功！！！", Toast.LENGTH_SHORT).show();
+                    finish();
+
 ////                    if(lzx) {
 //                        JSONObject myobject = null;
 //                        String listArray = null;
@@ -170,7 +173,7 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
             @Override
             public void onFailure(HttpException e, String s) {
                 progressDialog.dismiss();
-                Toast.makeText(CheckinoutAddActivity.this, "数据加载失败！！！", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CheckinoutAddActivity.this, "打卡添加失败！！！", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -180,10 +183,10 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
  */
 private void getDepartments() {
  //   url = HttpUtil.BASE_URL + "departments!queryDepartments.action";
-    url= HttpUtil.BASE_URL+"txxx!queryTxxxAll.action";
-    params = new RequestParams();
-    params.addQueryStringParameter("name","");
-    mThreadmy();
+//    url= HttpUtil.BASE_URL+"txxx!queryTxxxAll.action";
+//    params = new RequestParams();
+//    params.addQueryStringParameter("name","");
+//    mThreadmy();
 }
     /*
 创建菜单项
@@ -249,8 +252,8 @@ private void getDepartments() {
             e.printStackTrace();
         }
         params.addQueryStringParameter("userid",userid+"");
-        params.addQueryStringParameter("checkinoutTime", etStartTime.getText().toString());
-        url="checkinout!checkinoutAdd.action";
+        params.addQueryStringParameter("checkinouttime", etStartTime.getText().toString());
+        url = HttpUtil.BASE_URL+"checkinout!checkinoutAdd.action";
         mThreadmy();
 //        if(str) {
 //            new AlertDialog.Builder(this).setTitle("请假添加成功！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -384,19 +387,19 @@ public String IsSingle(String status) {
                 android.R.layout.simple_spinner_item,listbmmz);
 //
         provinceSpinner.setAdapter(provinceAdapter);
-        provinceSpinner.setSelection(user.getBranchid()-1);  //设置默认选中项，此处为默认选中第4个值
-        try {
-            UserService userService=new UserService();
-//
-            listuser=userService.QueryUserBranchId(user.getBranchid());
-//
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        cityAdapter = new ArrayAdapter<String>(CheckinoutAddActivity.this,
-                android.R.layout.simple_spinner_item,listuser);
-        citySpinner.setAdapter(cityAdapter);
+        provinceSpinner.setSelection(0);  //设置默认选中项，此处为默认选中第4个值
+//        try {
+//            UserService userService=new UserService();
+////
+//            listuser=userService.QueryUserBranchId(user.getBranchid());
+////
+//        } catch (Exception e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//        cityAdapter = new ArrayAdapter<String>(CheckinoutAddActivity.this,
+//                android.R.layout.simple_spinner_item,listuser);
+//        citySpinner.setAdapter(cityAdapter);
 
     //    setSpinnerItemSelectedByValue(citySpinner,user.getName());  //默认选中第0个
 
@@ -421,7 +424,7 @@ public String IsSingle(String status) {
                     e.printStackTrace();
                 }
                 if(listuser0.size()>0) {
-                  listuser.clear();
+                  listuser=new ArrayList<String>();
                     for (int k = 0; k < listuser0.size(); k++) {
                         listuser.add(listuser0.get(k).getName());
                     }

@@ -722,4 +722,9 @@ private 	RequestParams params;
 		mToast.setGravity(Gravity.TOP, 0, 450);
 		mToast.show();
 	}
+	public void onresume(){
+		Toast.makeText(CheckinoutListFyActivity.this, "返回上层了！！！", Toast.LENGTH_SHORT).show();
+		myAppVariable.setOtherquery(false);
+		geneCheckinoutItems();
+	}
 }

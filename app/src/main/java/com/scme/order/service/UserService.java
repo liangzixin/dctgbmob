@@ -334,7 +334,30 @@ public class UserService extends BaseService {
         }
         return list1;
     }
-
+    public List<Tusers> QueryUserBranchIdOther(int branchid) throws Exception {
+        String path = HttpUtil.BASE_URL + "user!queryUserBranchIdOther.action?branchid=" + branchid + "";
+        URL url;
+        try {
+            url = new URL(path);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(5000);
+            conn.setRequestMethod("POST");
+            if (200 == conn.getResponseCode()) {
+                //获取输入流
+                InputStream is = conn.getInputStream();
+                ToolsHandler toolsHandler = new ToolsHandler();
+                byte[] data = toolsHandler.InputStreamToByte(is);
+                json = new String(data);
+                System.out.println(json);
+                users = getGson().fromJson(json, new TypeToken<List<Tusers>>() {
+                }.getType());
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return users;
+    }
     /**
      * 根据其它条件查询职工的信息
      *

@@ -36,6 +36,7 @@ public class Tusers implements java.io.Serializable {
 
 	private Branch branch;
 	private int deptid;
+	private int userinfoid;
 //	GetDate getDate=new GetDate();
 	// Constructors
 
@@ -237,5 +238,13 @@ public class Tusers implements java.io.Serializable {
 
 	public void setDeptid(int deptid) {
 		this.deptid = deptid;
+	}
+
+	public int getUserinfoid() {
+		return userinfoid;
+	}
+
+	public void setUserinfoid(int userinfoid) {
+		this.userinfoid = userinfoid;
 	}
 }
