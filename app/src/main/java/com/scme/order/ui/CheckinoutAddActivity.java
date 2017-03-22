@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -31,16 +30,13 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.scme.order.model.Checkinout;
 import com.scme.order.model.Tusers;
-import com.scme.order.service.QingjiaService;
 import com.scme.order.service.UserService;
 import com.scme.order.util.GetDate;
 import com.scme.order.util.HttpUtil;
 import com.scme.order.util.MyAppVariable;
 
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -56,7 +52,8 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
     private int qingjiaid;
     private Spinner spinner;
     private Tusers user;
-    private List listbmmz;
+// private List listbmmz;
+   private List<Tusers> listuser0;
     private List listuser;
     private int branchid;
     private boolean str=false;
@@ -66,6 +63,7 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
     private MyAppVariable myAppVariable;
     private GetDate getDate=new GetDate();
     private static final String[] m={"请选择打卡类型","早上上班卡","早上下班卡","下午上班卡","下午下班卡"};
+   private static final String[] listbmmz={"综合科","财务科","管理服务科","社会保险科","信访科","上大院管理服务站","腊利大院管理服务站","落雪大院管理服务站","下大院管理服务站","桂苑街管理服务站","驻昆办事处"};
     private Spinner provinceSpinner = null;  //省级（省、直辖市）
     private Spinner citySpinner = null;     //地级市
     private 	RequestParams params;
@@ -81,7 +79,7 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
 
     @InjectView(R.id.Checkinout_Time1) MaterialEditText  etStartTime;
 
-  @InjectView(R.id.spin_type1)  MaterialSpinner checkinouttype;
+
 
 
     @Override
@@ -90,26 +88,26 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
         setContentView(R.layout.activity_checkinout_add);
         ButterKnife.inject(this);
 
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("数据加载中  请稍后...");
-        progressDialog.show();
-        Thread t=new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-//                    BranchService branchService=new BranchService();
-////
-//                    listbmmz=branchService.QueryBranch();
-
-                    getDepartments();
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                myHandler.sendMessage(myHandler.obtainMessage());
-            }
-        });
-        t.start();
+//            progressDialog = new ProgressDialog(this);
+//            progressDialog.setMessage("数据加载中  请稍后...");
+//            progressDialog.show();
+//        Thread t=new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+////                    BranchService branchService=new BranchService();
+//////
+////                    listbmmz=branchService.QueryBranch();
+//
+//                    getDepartments();
+//                } catch (Exception e) {
+//                    // TODO Auto-generated catch block
+//                    e.printStackTrace();
+//                }
+//                myHandler.sendMessage(myHandler.obtainMessage());
+//            }
+//        });
+//        t.start();
 
 //        getDepartments();
 
@@ -117,12 +115,11 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
 
 
         //获得绑定参数
-        ArrayAdapter  adapter= new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item,m);
-       checkinouttype.setAdapter(adapter);
+
         myAppVariable=(MyAppVariable)getApplication(); //获得自定义的应用程序MyAppVariable
         user=myAppVariable.getTusers();
         setSpinner();
+        etStartTime.setOnTouchListener(CheckinoutAddActivity.this);
     }
     /**
      * 数据加载完之后消除Loding对话框
@@ -134,9 +131,9 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
 //            System.out.println("地址:" + chuchai.getAddress());
 //            System.out.println("电子信息:" + chuchai.getEmail());
 //            showView();
-            etStartTime.setOnTouchListener(CheckinoutAddActivity.this);
+      //      etStartTime.setOnTouchListener(CheckinoutAddActivity.this);
 
-            setSpinner();
+        //    setSpinner();
             super.handleMessage(msg);
         }
     };
@@ -220,12 +217,9 @@ private void getDepartments() {
             }
 
 
-            if (checkinouttype.getSelectedItemPosition() == 0) {
-                Toast.makeText(this, "错误！请选择请假类型", Toast.LENGTH_SHORT).show();
-                return false;
-            }
 
-              addqingjia();
+
+              addCheckinout();
 
         }
 
@@ -238,38 +232,40 @@ private void getDepartments() {
      * 添加请假
      *
      * */
-    public void addqingjia() {
+    public void addCheckinout() {
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("添加提交中  请稍后...");
         progressDialog.show();
-        testHandler.sendEmptyMessage(2);
+        params = new RequestParams();
+        int userid=0;
+//        testHandler.sendEmptyMessage(2);
         try {
-            Map<String, String> map = new HashMap<String, String>();
-            map.put("name1", citySpinner.getSelectedItem().toString());
-            map.put("time1", etStartTime.getText().toString());
+           userid=listuser0.get(citySpinner.getSelectedItemPosition()).getUserinfoid();
 
-//
-            QingjiaService qingjiaService = new QingjiaService();
+            System.out.println("个人序号:"+userid);
 
-            str = qingjiaService.AddQingjia(map);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        if(str) {
-            new AlertDialog.Builder(this).setTitle("请假添加成功！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    // TODO Auto-generated method stub
-
-                    startActivity(new Intent(CheckinoutAddActivity.this,QingjiaListActivity.class));
-
-                }
-            }).show();
-        }else{
-            Toast.makeText(this, "请假添加失败！！！", Toast.LENGTH_SHORT).show();
-        }
+        params.addQueryStringParameter("userid",userid+"");
+        params.addQueryStringParameter("checkinoutTime", etStartTime.getText().toString());
+        url="checkinout!checkinoutAdd.action";
+        mThreadmy();
+//        if(str) {
+//            new AlertDialog.Builder(this).setTitle("请假添加成功！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    // TODO Auto-generated method stub
+//
+//                    startActivity(new Intent(CheckinoutAddActivity.this,QingjiaListActivity.class));
+//
+//                }
+//            }).show();
+//        }else{
+//            Toast.makeText(this, "请假添加失败！！！", Toast.LENGTH_SHORT).show();
+//        }
 
     }
 
@@ -402,7 +398,7 @@ public String IsSingle(String status) {
                 android.R.layout.simple_spinner_item,listuser);
         citySpinner.setAdapter(cityAdapter);
 
-        setSpinnerItemSelectedByValue(citySpinner,user.getName());  //默认选中第0个
+    //    setSpinnerItemSelectedByValue(citySpinner,user.getName());  //默认选中第0个
 
 
 
@@ -417,14 +413,19 @@ public String IsSingle(String status) {
                 branchid=position+1;
                 try {
                     UserService userService=new UserService();
-//
-                    listuser=userService.QueryUserBranchId(branchid);
+
+                    listuser0=userService.QueryUserBranchIdOther(branchid);
 //
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-
+                if(listuser0.size()>0) {
+                  listuser.clear();
+                    for (int k = 0; k < listuser0.size(); k++) {
+                        listuser.add(listuser0.get(k).getName());
+                    }
+                }
                 //将地级适配器的值改变为city[position]中的值
                 cityAdapter = new ArrayAdapter<String>(
                         CheckinoutAddActivity.this, android.R.layout.simple_spinner_item,  listuser);
@@ -433,8 +434,9 @@ public String IsSingle(String status) {
 
                 citySpinner.setAdapter(cityAdapter);
 
-                setSpinnerItemSelectedByValue(citySpinner, user.getName());
+           //     setSpinnerItemSelectedByValue(citySpinner, user.getName());
                 provincePosition = position;    //记录当前省级序号，留给下面修改县级适配器时用
+             //   int userid=(Tusers)(listuser.get(provincePosition)).g
             }
 
             @Override
@@ -456,7 +458,7 @@ public String IsSingle(String status) {
         for(int i=0;i<k;i++){
             if(value.equals(apsAdapter.getItem(i).toString())){
                 spinner.setSelection(i,true);// 默认选中项
-//                System.out.println("默认:"+i);
+                System.out.println("默认:"+i);
                 break;
             }
         }
