@@ -4,9 +4,9 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -76,7 +76,7 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
     ArrayAdapter<String> cityAdapter = null;    //地级适配器
     ArrayAdapter<String> countyAdapter = null;    //县级适配器
     static int provincePosition = 3;
-
+    public static final int RESULT_CODE = 0;
 
     @InjectView(R.id.Checkinout_Time1) MaterialEditText  etStartTime;
 
@@ -150,6 +150,9 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
                 if (responseInfo.result != null) {
                     progressDialog.dismiss();
                     Toast.makeText(CheckinoutAddActivity.this, "打卡添加成功！！！", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent();
+                   // intent.putExtra("result", txtContent.getText().toString());
+                    setResult(RESULT_CODE, intent);// 设置resultCode，onActivityResult()中能获取到
                     finish();
 
 ////                    if(lzx) {

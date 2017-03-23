@@ -265,7 +265,7 @@ private 	RequestParams params;
 		if (id == R.id.action_txxxdetail_mainrz) {
 			Intent intent = new Intent();
 			intent.setClass(this, CheckinoutAddActivity.class);
-			startActivity(intent);
+			startActivityForResult(intent, 1);
 		}
 		if (id == R.id.search_other) {
 
@@ -722,9 +722,16 @@ private 	RequestParams params;
 		mToast.setGravity(Gravity.TOP, 0, 450);
 		mToast.show();
 	}
-	public void onresume(){
-		Toast.makeText(CheckinoutListFyActivity.this, "返回上层了！！！", Toast.LENGTH_SHORT).show();
-		myAppVariable.setOtherquery(false);
-		geneCheckinoutItems();
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+// 当otherActivity中返回数据的时候，会响应此方法
+// requestCode和resultCode必须与请求startActivityForResult()和返回setResult()的时候传入的值一致。
+		if (requestCode == 1 && resultCode ==CheckinoutAddActivity.RESULT_CODE) {
+//			Bundle bundle = data.getExtras();
+//			String strResult = bundle.getString("result");
+//			Log.i(TAG,"onActivityResult: "+ strResult);
+//			Toast.makeText(CheckinoutListFyActivity.this, strResult, Toast.LENGTH_LONG).show();
+			geneCheckinoutItems();
+		}
 	}
 }

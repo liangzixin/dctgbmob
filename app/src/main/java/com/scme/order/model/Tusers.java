@@ -1,7 +1,5 @@
 package com.scme.order.model;
 
-import com.scme.order.util.GetDate;
-
 //import java.util.Date;
 
 public class Tusers implements java.io.Serializable {
