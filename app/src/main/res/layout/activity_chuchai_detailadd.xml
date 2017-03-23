@@ -20,16 +20,17 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical">
 
-            <fr.ganfra.materialspinner.MaterialSpinner
-                android:id="@+id/spin_province"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                app:ms_arrowColor="#0000FF"
-                app:ms_arrowSize="16dp"
-                app:ms_floatingLabelColor="#00FF00"
-                app:ms_floatingLabelText="部门名称:"
+        <fr.ganfra.materialspinner.MaterialSpinner
+            android:id="@+id/spin_province"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            app:ms_arrowColor="#0000FF"
+            app:ms_arrowSize="16dp"
+            app:ms_floatingLabelColor="#00FF00"
+            app:ms_floatingLabelText="部门名称:"
 
-                app:ms_multiline="true" />
+            app:ms_multiline="true" />
+
         </LinearLayout>
         <LinearLayout
             android:id="@+id/normal_with_input_text_icon2"

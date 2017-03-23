@@ -18,7 +18,9 @@
         android:id="@+id/normal_with_input_text_icon1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical">
+        android:orientation="horizontal"
+
+        >
 
             <fr.ganfra.materialspinner.MaterialSpinner
                 android:id="@+id/spin_bmmz"
@@ -30,7 +32,16 @@
                 app:ms_floatingLabelText="部门名称:"
 
                 app:ms_multiline="true" />
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="整个部门"
+                android:id="@+id/checkBox"
+                android:layout_marginLeft="20dp"
+                android:textSize="16dp"
+                />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/normal_with_input_text_icon2"
             android:layout_width="wrap_content"

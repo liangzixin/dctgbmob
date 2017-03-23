@@ -14,8 +14,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.MaterialEditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TimePicker;
@@ -72,6 +75,7 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
 
 
 
+
     ArrayAdapter<String> provinceAdapter = null;  //省级适配器
     ArrayAdapter<String> cityAdapter = null;    //地级适配器
     ArrayAdapter<String> countyAdapter = null;    //县级适配器
@@ -80,7 +84,7 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
 
     @InjectView(R.id.Checkinout_Time1) MaterialEditText  etStartTime;
 
-
+   @InjectView(R.id.checkBox) CheckBox mCheckBox;
 
 
     @Override
@@ -121,6 +125,17 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
         user=myAppVariable.getTusers();
         setSpinner();
         etStartTime.setOnTouchListener(CheckinoutAddActivity.this);
+        //选项1事件监听
+        mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+              if(isChecked){
+                  Toast.makeText(CheckinoutAddActivity.this, "选中了！！！", Toast.LENGTH_SHORT).show();
+//                  citySpinner.
+              }else{
+                  Toast.makeText(CheckinoutAddActivity.this, "没有选中！！！", Toast.LENGTH_SHORT).show();
+              }
+            }
+        });
     }
     /**
      * 数据加载完之后消除Loding对话框
