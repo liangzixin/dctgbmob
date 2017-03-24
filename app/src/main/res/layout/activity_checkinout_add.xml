@@ -83,28 +83,30 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/normal_with_input_text_icon7"
-            android:layout_width="wrap_content"
+            android:id="@+id/normal_with_input_text_icon4"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical">
+            android:orientation="vertical"
 
-            <fr.ganfra.materialspinner.MaterialSpinner
-                android:id="@+id/spin_type1"
+            >
+            <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                app:ms_arrowColor="#0000FF"
-                app:ms_arrowSize="16dp"
-                app:ms_floatingLabelColor="#00FF00"
-                app:ms_floatingLabelText="打卡类型:"
-
-                material:floatingLabel="true"
-                app:ms_multiline="true" />
+                android:text="继续添加人员"
+                android:id="@+id/button"
+                android:layout_marginTop="12dp"
+                android:textSize="16dp"
+                />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="同一时间人员"
+                android:id="@+id/listname"
+                android:lineSpacingExtra="12dp"
+                android:layout_marginTop="12dp"
+                android:textSize="16dp"
+                />
         </LinearLayout>
-
-
-
-
-
 
 </LinearLayout>
 

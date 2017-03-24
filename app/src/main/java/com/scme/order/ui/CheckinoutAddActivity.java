@@ -14,13 +14,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.MaterialEditText;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -59,10 +60,12 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
 // private List listbmmz;
    private List<Tusers> listuser0;
     private List listuser;
+    private List<Tusers> listuser1=new ArrayList<Tusers>();;
     private int branchid;
     private boolean str=false;
     private HttpHandler<String> handler;
-    private ArrayAdapter<String> adapter;    private ArrayAdapter<String> adapter1;
+    private ArrayAdapter<String> adapter;
+    private ArrayAdapter<String> adapter1;
     private MyAppVariable myAppVariable;
 
     private GetDate getDate=new GetDate();
@@ -72,7 +75,9 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
     private Spinner citySpinner = null;     //地级市
     private 	RequestParams params;
     private String url;
-
+    private int allbranchid=0;
+    private int zgbranch=0;
+    private String aa=" ";
 
 
 
@@ -83,8 +88,9 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
     public static final int RESULT_CODE = 0;
 
     @InjectView(R.id.Checkinout_Time1) MaterialEditText  etStartTime;
-
-   @InjectView(R.id.checkBox) CheckBox mCheckBox;
+    @InjectView(R.id.checkBox) CheckBox mCheckBox;
+    @InjectView(R.id.button)    Button button;
+    @InjectView(R.id.listname)   TextView listname;
 
 
     @Override
@@ -130,10 +136,29 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
               if(isChecked){
                   Toast.makeText(CheckinoutAddActivity.this, "选中了！！！", Toast.LENGTH_SHORT).show();
-//                  citySpinner.
+                 citySpinner.setEnabled(false);
+                  button.setEnabled(false);
+                  allbranchid=provincePosition+1;
+                  zgbranch=1;
+
               }else{
                   Toast.makeText(CheckinoutAddActivity.this, "没有选中！！！", Toast.LENGTH_SHORT).show();
+                  citySpinner.setEnabled(true);
+                  button.setEnabled(true);
               }
+            }
+        });
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               zgbranch=2;
+                aa="";
+            listuser1.add(listuser0.get(citySpinner.getSelectedItemPosition()));
+                 for(int i=0;i<listuser1.size();i++)  {
+                     Tusers tusers=listuser1.get(i);
+                     aa=aa+"  "+tusers.getName();
+                 }
+                listname.setText(aa);
             }
         });
     }
@@ -258,19 +283,34 @@ private void getDepartments() {
         progressDialog.setMessage("添加提交中  请稍后...");
         progressDialog.show();
         params = new RequestParams();
-        int userid=0;
+        if(zgbranch==0) {
+            int userid = 0;
 //        testHandler.sendEmptyMessage(2);
-        try {
-           userid=listuser0.get(citySpinner.getSelectedItemPosition()).getUserinfoid();
+            try {
+                userid = listuser0.get(citySpinner.getSelectedItemPosition()).getUserinfoid();
 
-            System.out.println("个人序号:"+userid);
+                System.out.println("个人序号:" + userid);
 
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            params.addQueryStringParameter("userid", userid + "");
+        }else if(zgbranch==2){
+            if(listuser1.size()>0){
+                for(int i=0;i<listuser1.size();i++){
+                    Tusers tusers=listuser1.get(i);
+                    System.out.println("开始----" +tusers.getUserinfoid());
+                  //  params.addBodyParameter("listuseridl[" + i + "]",tusers.getUserinfoid()+"");
+                    params.addQueryStringParameter("listuseridl[" + i + "]",tusers.getUserinfoid()+"");
+                }
+            }
         }
-        params.addQueryStringParameter("userid",userid+"");
+
+
         params.addQueryStringParameter("checkinouttime", etStartTime.getText().toString());
+        params.addQueryStringParameter("allbranchid",allbranchid+"");
+        params.addQueryStringParameter("zgbranch",zgbranch+"");
         url = HttpUtil.BASE_URL+"checkinout!checkinoutAdd.action";
         mThreadmy();
 //        if(str) {
