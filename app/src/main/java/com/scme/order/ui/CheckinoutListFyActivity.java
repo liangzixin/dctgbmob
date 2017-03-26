@@ -86,9 +86,10 @@ public class CheckinoutListFyActivity extends BaseActivity implements IXListView
 	private static final String[] m={"上大院管理服务站","下大院管理服务站","桂苑街管理服务站","落雪大院管理服务站","腊利大院管理服务站"};
 	private static final String[] m1={"姓名","个人编号","身份证号","经办人","认证地点","认证日期","居住地","联系电话1","联系电话2"};
 	private static final String[] m2={"name","grbh","sfzh","rz14zb","rz14dd","rzrj","czdz","lxdh1","lzdh2"};
-	private String bmmz0="";
-	private String name0="";
-	private String rzjk0="";
+//	private String bmmz0="";
+//	private String name0="";
+//	private String rzjk0="";
+//	private int userid=0;
 //	private Map param;
 	Map<String, Object> map ;
 	private  Boolean otherquery=false;
@@ -482,15 +483,20 @@ private 	RequestParams params;
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		//
 		int ii= new Long(id).intValue();
-		myAppVariable.setCheckinout(new Checkinout());
-		myAppVariable.setCheckinout((Checkinout)checkinoutList.get(position-1));
+//		myAppVariable.setCheckinout(new Checkinout());
+		Checkinout checkinout=(Checkinout)checkinoutList.get(position-1);
 //		myAppVariable.setTxxxid(ii);
 //        Checkinout checkinout=;
+//		String bmmc="aaa";
+//		String name="aaa";
+//		String checktime="aaa";
 		Intent intent = new Intent();
-
-		intent.setClass(this, TxxxDetailActivity.class);
-
-		startActivity(intent);
+		intent.putExtra("bmmc",checkinout.getUserinfo().getDepartments().getDeptname());//也可以绑定数组
+		intent.putExtra("name",checkinout.getUserinfo().getName());
+		intent.putExtra("checktime",checkinout.getCheckTime());
+		intent.putExtra("userid",checkinout.getUSERID()+"");
+		intent.setClass(this, CheckinoutDetailActivity.class);
+		startActivityForResult(intent,1);
 	}
 
 	@Override
@@ -533,7 +539,7 @@ private 	RequestParams params;
 
 		@Override
 		public long getItemId(int position) {
-			return checkinouts.get(position).getUserID();
+			return checkinouts.get(position).getUSERID();
 		}
 
 		@Override
@@ -726,11 +732,8 @@ private 	RequestParams params;
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 // 当otherActivity中返回数据的时候，会响应此方法
 // requestCode和resultCode必须与请求startActivityForResult()和返回setResult()的时候传入的值一致。
-		if (requestCode == 1 && resultCode ==CheckinoutAddActivity.RESULT_CODE) {
-//			Bundle bundle = data.getExtras();
-//			String strResult = bundle.getString("result");
-//			Log.i(TAG,"onActivityResult: "+ strResult);
-//			Toast.makeText(CheckinoutListFyActivity.this, strResult, Toast.LENGTH_LONG).show();
+		if (requestCode == 1 &&(resultCode ==CheckinoutAddActivity.RESULT_CODE||resultCode ==CheckinoutDetailActivity.RESULT_CODE)) {
+
 			geneCheckinoutItems();
 		}
 	}

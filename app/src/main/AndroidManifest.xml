@@ -231,6 +231,10 @@
                android:label="添加打卡记录"
                android:parentActivityName=".CheckinoutListFyActivity"/>
            <activity
+               android:name=".CheckinoutDetailActivity"
+               android:label="打卡记录信息"
+               android:parentActivityName=".CheckinoutListFyActivity"/>
+           <activity
                android:name=".TxxxDetailActivity"
                android:label="@string/title_activity_txxxdetail"
                android:parentActivityName=".TxxxListFyActivity">

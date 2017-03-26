@@ -6,7 +6,7 @@ package com.scme.order.model;
  */
 public class Checkinout  implements java.io.Serializable{
 ;
-private int userID;
+private int USERID;
  private String checkTime;
    private String CheckType="I";      
    private int VerifyCode=1;           
@@ -17,11 +17,11 @@ private int userID;
    private String  tel;
  private Userinfo userinfo;
    
-public int getUserID() {
-	return userID;
+public int getUSERID() {
+	return USERID;
 }
-public void setUserID(int userID) {
-	this.userID = userID;
+public void setUSERID(int userID) {
+	this.USERID = userID;
 }
 
 public String getCheckType() {
