@@ -30,6 +30,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,8 +44,12 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.scme.order.card.HeadlineBodyCard;
 import com.scme.order.model.Checkinout;
+import com.scme.order.model.Tusers;
 import com.scme.order.service.BaseService;
+import com.scme.order.service.BranchService;
+import com.scme.order.service.QingjiaService;
 import com.scme.order.service.TxxxService;
+import com.scme.order.service.UserService;
 import com.scme.order.util.GetDate;
 import com.scme.order.util.HttpUtil;
 import com.scme.order.util.MyAppVariable;
@@ -71,7 +76,11 @@ public class CheckinoutListFyActivity extends BaseActivity implements IXListView
 	private Handler testHandler;
 	private int start = 0;
 	private static int refreshCnt = 0;
-
+	private List listbmmz;
+	private List listuser;
+	private int branchid;
+	private Tusers user;
+	private static final String[] m = {"2017", "2016", "2015"};
 	private MyAdapter myAdapter;
 	private ArrayAdapter<String> adapter;
 	private int intFirst = 0;
@@ -83,9 +92,13 @@ public class CheckinoutListFyActivity extends BaseActivity implements IXListView
 	private EditText   textpage;
 	private Spinner spinner1;
 	private Spinner spinner2;
-	private static final String[] m={"上大院管理服务站","下大院管理服务站","桂苑街管理服务站","落雪大院管理服务站","腊利大院管理服务站"};
-	private static final String[] m1={"姓名","个人编号","身份证号","经办人","认证地点","认证日期","居住地","联系电话1","联系电话2"};
-	private static final String[] m2={"name","grbh","sfzh","rz14zb","rz14dd","rzrj","czdz","lxdh1","lzdh2"};
+	private Spinner spinner3;
+	private Spinner spinner4;
+	private Spinner spinner5;
+	//private static final String[] m={"上大院管理服务站","下大院管理服务站","桂苑街管理服务站","落雪大院管理服务站","腊利大院管理服务站"};
+	//private static final String[] m1={"姓名","个人编号","身份证号","经办人","认证地点","认证日期","居住地","联系电话1","联系电话2"};
+	//private static final String[] m2={"name","grbh","sfzh","rz14zb","rz14dd","rzrj","czdz","lxdh1","lzdh2"};
+	private static final String[] m3={"第一周","第二周","第三周","第四周","第五周","第六周","第七周","第八周","第九周","第十周","第十一周","第十二周","第十三周","第十四周","第十五周","第十六周","第十七周","第十八周","第十九周"};
 //	private String bmmz0="";
 //	private String name0="";
 //	private String rzjk0="";
@@ -101,6 +114,7 @@ public class CheckinoutListFyActivity extends BaseActivity implements IXListView
 	private CheckBox mCheckBox1;
 	private CheckBox mCheckBox2;
 	private CheckBox mCheckBox3;
+	private CheckBox mCheckBox4;
 	int checkedcount = 0; //计数器，用于统计选中的个数
 	private HttpHandler<String> handler;
 //	private HttpUtils httpUtils= new HttpUtils();
@@ -142,11 +156,13 @@ private 	RequestParams params;
 //			if (Intent.ACTION_SEARCH.equals(intent.getAction())||) {
 			String query = intent.getStringExtra(SearchManager.QUERY);
 			myAppVariable.setQuery(query);
+
 			doSearching(query);
 		}else if(otherquery){
 
 			myAppVariable.setOtherquery(true);
 			String query =myAppVariable.getQuery();
+
 					doSearching(query);
 		}else{
 			myAppVariable.setOtherquery(false);
@@ -267,79 +283,114 @@ private 	RequestParams params;
 			Intent intent = new Intent();
 			intent.setClass(this, CheckinoutAddActivity.class);
 			startActivityForResult(intent, 1);
-		}
-		if (id == R.id.search_other) {
-
-
+		}else if(id == R.id.search_other) {
 			LayoutInflater factory = LayoutInflater.from(CheckinoutListFyActivity.this);
-			final View loginForm = factory.inflate(R.layout.loginsearchother, null);
-//			TableLayout loginForm = (TableLayout)getLayoutInflater(getActivity())
-//					.inflate( R.layout.loginsearchother, null);
+			final View loginForm = factory.inflate(R.layout.loginsearchcheckinout, null);
+
 			spinner1 = (Spinner) loginForm.findViewById(R.id.spinner1);
-             spinner1.setDropDownWidth(-2);
+			spinner1.setDropDownWidth(-2);
 //			//		//将可选内容与ArrayAdapter连接起来
-//			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,m);
-           adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,m);
+			try {
+				BranchService branchService = new BranchService();
+//
+				listbmmz = branchService.QueryBranch();
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+//			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,listbmmz);
+			adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listbmmz);
 //		//设置下拉列表的风格
 //			adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 ////        adapter1.setDropDownViewResource(android.R.layout.simple_list_item_multiple_choice);
 //		//将adapter 添加到spinner中
-		spinner1.setAdapter(adapter);
+			spinner1.setAdapter(adapter);
 			spinner2 = (Spinner) loginForm.findViewById(R.id.spinner2);
 			spinner2.setDropDownWidth(-2);
-
+//
 //			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,m1);
-			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,m1);
-//		//设置下拉列表的风格
 //			adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			spinner2.setAdapter(adapter);
+			spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+				// 表示选项被改变的时候触发此方法，主要实现办法：动态改变地级适配器的绑定值
+				@Override
+				public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
+					//position为当前省级选中的值的序号
+					branchid = position + 1;
+					try {
+						UserService userService = new UserService();
+
+						listuser = userService.QueryUserBranchId(branchid);
+
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+					//将地级适配器的值改变为city[position]中的值
+					spinner3 = (Spinner) loginForm.findViewById(R.id.spinner3);
+					adapter = new ArrayAdapter<String>(CheckinoutListFyActivity.this, android.R.layout.simple_spinner_item, listuser);
+//
+					// 设置二级下拉列表的选项内容适配器
+
+					spinner3.setAdapter(adapter);
+
+			//		setSpinnerItemSelectedByValue(spinner3, user.getName());
+//					provincePosition = position;    //记录当前省级序号，留给下面修改县级适配器时用
+				}
+
+				@Override
+				public void onNothingSelected(AdapterView<?> parent) {
+				}
+
+			});
+
+
+			adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, m);
+			spinner4 = (Spinner) loginForm.findViewById(R.id.spinner4);
+			spinner4.setAdapter(adapter);
+			spinner4.setDropDownWidth(-2);
+
+			adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, m3);
+			spinner5 = (Spinner) loginForm.findViewById(R.id.spinner5);
+			spinner5.setAdapter(adapter);
+			spinner5.setDropDownWidth(-2);
 			//加载控件
-			 mTextView = (TextView) loginForm.findViewById(R.id.textview);
-			 mCheckBox1 = (CheckBox) loginForm.findViewById(R.id.checkBox1);
-			 mCheckBox2 = (CheckBox) loginForm.findViewById(R.id.checkBox2);
-			 mCheckBox3 = (CheckBox) loginForm.findViewById(R.id.checkBox3);
-
-			 mRadioGroup = (RadioGroup) loginForm.findViewById(R.id.radioGroup);
-			 mRadioButton_1 = (RadioButton) loginForm.findViewById(R.id.radioButton1);
-			mRadioButton_2 = (RadioButton) loginForm.findViewById(R.id.radioButton2);
-			mRadioButton_3 = (RadioButton) loginForm.findViewById(R.id.radioButton3);
-
+//			 mTextView = (TextView) loginForm.findViewById(R.id.textview);
+			mCheckBox1 = (CheckBox) loginForm.findViewById(R.id.checkBox1);
+			mCheckBox2 = (CheckBox) loginForm.findViewById(R.id.checkBox2);
+			mCheckBox3 = (CheckBox) loginForm.findViewById(R.id.checkBox3);
+			mCheckBox4 = (CheckBox) loginForm.findViewById(R.id.checkBox4);
 			//选项1事件监听
 			mCheckBox1.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//
+				}
+			});
 
-					}
-				});
-
-			 //选项2事件监听
+			//选项2事件监听
 			mCheckBox2.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-					}
-				});
+				}
+			});
 
 			//选项3事件监听
 			mCheckBox3.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-				 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//					if (mCheckBox3.isChecked()) {
-//						 checkedcount++;
-//						DisplayToast("你选择了认证：" + mCheckBox3.getText());
-//						 } else {
-//						 checkedcount--;
-//						 }
-					 }
-				 });
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-			//设置事件监听
-			 mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-				 public void onCheckedChanged(RadioGroup group, int checkedId) {
+				}
+			});
+			//选项3事件监听
+			mCheckBox4.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-					 }
-				 });
+				}
+			});
 
-
-
-		new AlertDialog.Builder(this)
+			new AlertDialog.Builder(this)
 					// 设置对话框的图标
 					.setIcon(R.drawable.icon_laucher)
 					// 设置对话框的标题
@@ -352,44 +403,51 @@ private 	RequestParams params;
 						@Override
 						public void onClick(DialogInterface dialog,
 											int which) {
-							url=HttpUtil.BASE_URL+"checkinout!queryTxxxOther.action";
-							RequestParams params = new RequestParams();
-							params.addQueryStringParameter("intFirst",intFirst+"");
-							params.addQueryStringParameter("recPerPage",recPerPage+"");
-							if (mCheckBox1.isChecked()) {
-									params.addQueryStringParameter("branchname",spinner1.getSelectedItem().toString());
-							}
-							if (mCheckBox2.isChecked()) {
-								params.addQueryStringParameter("name0",m2[spinner2.getSelectedItemPosition()].toString());
-								params.addQueryStringParameter("name1",mTextView.getText().toString());
-                          }
-							if (mCheckBox3.isChecked()) {
-								int spin1 = mRadioGroup.getCheckedRadioButtonId();
+					//		map = new HashMap<String, String>();
+                     doSearchingOther();
 
-								switch (spin1) {
-									case R.id.radioButton1:
-										params.addQueryStringParameter("rzjk0", "已认证");
-										break;
-									case R.id.radioButton2:
-								     	params.addQueryStringParameter("rzjk0", "未认证");
-                                        break;
-									case R.id.radioButton3:
-										params.addQueryStringParameter("swsj", "死亡");
-								        break;
-								}
-							}
-							otherquery=true;
-							mThreadmy();
 
+//
+//							try {
+//								intFirst = 0;
+//								map.put("intFirst", intFirst + "");
+//								QingjiaService qingjiaService = new QingjiaService();
+//								Map map1 = qingjiaService.queryOtherCount(map);
+//								count = (int) map1.get("count");
+//								qingjiacountday = (double) map1.get("countday");
+////								qingjiacountday=qingjiacount.getCountday();
+//								qingjiaList = qingjiaService.queryQingjiaOther(map);
+//							} catch (Exception e) {
+//								// TODO: handle exception
+//
+//							}
+//
+//							myAppVariable.setOtherquery(true);
+//							myAppVariable.setMap(map);
+//							pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
+//
+//							tolpage.setText("记录数：" + count);
+//							nowpage.setText("页码：" + (intFirst + 1) + "/" + pages);
+//							myAdapter = new MyAdapter(qingjiaList, 1);
+//							mListView.setAdapter(myAdapter);
+//							mListView.setPullLoadEnable(true);
+//							mListView.setOnItemClickListener(QingjiaListActivity.this);
+							onLoad();
+//							} else {
+//								intFirst = pages;
+//								mListView.setPullLoadEnable(false);
+//							}
+//输入的内容会在页面上显示来因为是做来测试，所以功能不是很全，只写了username没有学password
+//						}, 2000);
+
+							// 此处可执行登录处理
 						}
 					})
 					// 为对话框设置一个“取消”按钮
-					.setNegativeButton("取消", new OnClickListener()
-					{
+					.setNegativeButton("取消", new OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog,
-											int which)
-						{
+											int which) {
 							// 取消登录，不做任何事情
 						}
 					})
@@ -619,7 +677,7 @@ private 	RequestParams params;
 
 		intFirst=0;
 		recPerPage=20;
-		url=HttpUtil.BASE_URL+"checkinout!queryCheckinoutAll.action";
+	url=HttpUtil.BASE_URL+"checkinout!queryCheckinoutAll.action";
 	params= new RequestParams();
 		params.addQueryStringParameter("name",query);
 		params.addQueryStringParameter("purview",myAppVariable.getTusers().getPurview());
@@ -629,9 +687,44 @@ private 	RequestParams params;
 		params.addQueryStringParameter("recPerPage",recPerPage+"");
 		otherquery=true;
 		mThreadmy();
+	}
+	private void doSearchingOther() {
 
+		intFirst=0;
+		recPerPage=20;
+		url=HttpUtil.BASE_URL+"checkinout!queryCheckinoutAll.action";
+		params= new RequestParams();
+		if (mCheckBox1.isChecked()) {
+			params.addQueryStringParameter("branchid",spinner1.getSelectedItemPosition()+"");
+		//	map.put("branchid", spinner1.getSelectedItemPosition()+"");
+		} else {
 
+			map.put("branchid", "0");
+		}
 
+		if (mCheckBox2.isChecked()) {
+			map.put("name", spinner3.getSelectedItem().toString());
+		} else {
+			map.put("name", "");
+		}
+
+		if (mCheckBox3.isChecked()) {
+			map.put("searchnd", spinner4.getSelectedItem().toString());
+		} else {
+			map.put("searchnd", "0");
+		}
+		if (mCheckBox4.isChecked()) {
+			map.put("weekl",spinner5.getSelectedItemPosition()+"");
+		} else {
+			map.put("weekl", "-1");
+		}
+		params.addQueryStringParameter("purview",myAppVariable.getTusers().getPurview());
+		params.addQueryStringParameter("deptid",myAppVariable.getTusers().getDeptid()+"");
+		params.addQueryStringParameter("queryname","1");
+		params.addQueryStringParameter("intFirst",intFirst+"");
+		params.addQueryStringParameter("recPerPage",recPerPage+"");
+		otherquery=true;
+		mThreadmy();
 	}
 	/*
 	若是查询
@@ -735,6 +828,22 @@ private 	RequestParams params;
 		if (requestCode == 1 &&(resultCode ==CheckinoutAddActivity.RESULT_CODE||resultCode ==CheckinoutDetailActivity.RESULT_CODE)) {
 
 			geneCheckinoutItems();
+		}
+	}
+	/**
+	 * 根据值, 设置spinner默认选中:
+	 * @param spinner
+	 * @param value
+	 */
+	public static void setSpinnerItemSelectedByValue(Spinner spinner,String value){
+		SpinnerAdapter apsAdapter= spinner.getAdapter(); //得到SpinnerAdapter对象
+		int k= apsAdapter.getCount();
+		for(int i=0;i<k;i++){
+			if(value.equals(apsAdapter.getItem(i).toString())){
+				spinner.setSelection(i,true);// 默认选中项
+//                System.out.println("默认:"+i);
+				break;
+			}
 		}
 	}
 }
