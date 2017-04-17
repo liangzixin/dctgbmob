@@ -75,7 +75,8 @@ public class CheckinoutListFyActivity extends BaseActivity implements IXListView
 	private Handler testHandler;
 	private int start = 0;
 	private static int refreshCnt = 0;
-	private List listbmmz;
+	private List listbmmz = new ArrayList<String>() ;
+	private List listbmmz0;
 	private List listuser;
 	private int branchid;
 	private Tusers user;
@@ -233,7 +234,7 @@ private 	RequestParams params;
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 		getMenuInflater().inflate(R.menu.menu_txxxdetailmain, menu);
-		if(myAppVariable.getTusers().getPurview().equals("系统")) {
+		if(user.getPurview().equals("系统")) {
 			menu.getItem(1).setEnabled(true);
 			menu.getItem(1).setVisible(true);
 			menu.getItem(1).setTitle(R.string.add);
@@ -293,12 +294,23 @@ private 	RequestParams params;
 			try {
 				BranchService branchService = new BranchService();
 //
-				listbmmz = branchService.QueryBranch();
+				listbmmz0 = branchService.QueryBranch();
 
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+					if(listbmmz0.size()>0) {
+			for(int i=0;i<listbmmz0.size();i++){
+				int ll=listbmmz0.get(i).toString().length();
+				String ss=listbmmz0.get(i).toString();
+				if(ll>5) {
+				listbmmz.add(ss.substring(0,5));
+					}else{
+					listbmmz.add(ss);
+					}
+			}
+		}
 //			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,listbmmz);
 			adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listbmmz);
 //		//设置下拉列表的风格
@@ -468,11 +480,11 @@ private 	RequestParams params;
 	private void geneCheckinoutItems() {
 		url= HttpUtil.BASE_URL+"checkinout!queryCheckinoutAll.action";
 	    params= new RequestParams();
-		params.addQueryStringParameter("purview",myAppVariable.getTusers().getPurview());
+		params.addQueryStringParameter("purview",user.getPurview());
 		params.addQueryStringParameter("name","");
 		params.addQueryStringParameter("queryname","0");
 	//	System.out.println(myAppVariable.getTusers().getPurview());
-		params.addQueryStringParameter("deptid",myAppVariable.getTusers().getDeptid()+"");
+		params.addQueryStringParameter("deptid",user.getDeptid()+"");
 		params.addQueryStringParameter("intFirst",intFirst+"");
 		params.addQueryStringParameter("recPerPage",recPerPage+"");
 		mThreadmy();
@@ -680,8 +692,8 @@ private 	RequestParams params;
 	url=HttpUtil.BASE_URL+"checkinout!queryCheckinoutAll.action";
 	params= new RequestParams();
 		params.addQueryStringParameter("name",query);
-		params.addQueryStringParameter("purview",myAppVariable.getTusers().getPurview());
-		params.addQueryStringParameter("deptid",myAppVariable.getTusers().getDeptid()+"");
+		params.addQueryStringParameter("purview",user.getPurview());
+		params.addQueryStringParameter("deptid",user.getDeptid()+"");
 		params.addQueryStringParameter("queryname","1");
 		params.addQueryStringParameter("intFirst",intFirst+"");
 		params.addQueryStringParameter("recPerPage",recPerPage+"");

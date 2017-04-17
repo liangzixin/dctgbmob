@@ -13,17 +13,32 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.reflect.TypeToken;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.HttpHandler;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+import com.scme.order.model.Checkinout;
 import com.scme.order.model.Dydh;
 import com.scme.order.model.Tusers;
+import com.scme.order.service.BaseService;
 import com.scme.order.service.DydhService;
 import com.scme.order.service.FoodsService;
 import com.scme.order.service.ProgressListener;
 import com.scme.order.service.UserService;
 import com.scme.order.util.CustomViewBinder;
+import com.scme.order.util.HttpUtil;
 import com.scme.order.util.MyAppVariable;
 import com.scme.order.util.Pictures;
 import com.scme.order.view.PopMenu;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,7 +57,7 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 
 	static String userNamel = "";
 	static int userId1 = 0;
-	static String purview = "";
+	//static String purview = "";
 	private Handler testHandler;
 	private ListView mainLzxListView;
 	private ListView mainLzxListView7;
@@ -66,6 +81,10 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 
 	private Context context = MainMenuActivity.this;
 	private PopMenu popMenu;
+	private HttpHandler<String> handler;
+	//	private HttpUtils httpUtils= new HttpUtils();
+	private    String url=null;
+	private 	RequestParams params;
 
 	@InjectView(R.id.btn_title1)
 	TextView button1;
@@ -98,10 +117,11 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 		mainLzxListViewDydh = (ListView) findViewById(R.id.lvDydhBirthday);
 		myAppVariable = (MyAppVariable) getApplication(); //获得自定义的应用程序MyAppVariable
 		Tusers users0 = myAppVariable.getTusers();
-		purview = users0.getPurview();
+		//purview = users0.getPurview();
 		textView = (TextView) findViewById(R.id.tvMainUserName);
 
-		textView.setText("昆明市东川区企业退休人员管理办公室移动OA  " + users0.getUserName());
+		//textView.setText("昆明市东川区企业退休人员管理办公室移动OA  " + users0.getUserName());
+		textView.setText("昆明市东川区企业退休人员管理办公室移动OA  " + "***");
 //
 //		if(Thread.State.NEW == mThread.getState()) {
 //
@@ -119,7 +139,8 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 		button3.setOnClickListener(onViewClick);
 		button4.setOnClickListener(onViewClick);
 		button5.setOnClickListener(onViewClick);
-		btn_app_sy();
+		//btn_app_sy();
+		getBirthday();
 	}
 //
 //	private Thread mThread = new Thread() {
@@ -461,5 +482,59 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 			startActivity(intent);
 		}
 	}
+	private void getBirthday() {
+        url= HttpUtil.BASE_URL + "user!queryTodayBirthday.action";
+		params= new RequestParams();
+		HttpUtils httpUtils= new HttpUtils();
+		// 不缓存，设置缓存0秒。
+		httpUtils.configCurrentHttpCacheExpiry(0*1000);
+		handler= httpUtils.send(HttpRequest.HttpMethod.GET, url, params,new RequestCallBack<String>() {
+			@Override
+			public void onSuccess(ResponseInfo<String> responseInfo) {
 
+				if (responseInfo.result != null) {
+					progressDialog.dismiss();
+					JSONObject myobject =null;
+					String listArray=null;
+					try {
+
+						myobject = new JSONObject(responseInfo.result);
+//						count=myobject.getInt("count");
+						listArray=myobject.getString("checkinoutlist");
+						checkinoutList= BaseService.getGson().fromJson(listArray, new TypeToken<List<Checkinout>>() {}.getType());
+						System.out.println(checkinoutList.size());
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+
+
+					pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
+
+					tolpage.setText("记录数："+count);
+					nowpage.setText("页码："+(intFirst+1)+"/"+pages);
+
+					if(count>recPerPage) {
+						mListView.setPullLoadEnable(true);
+					}else{
+						mListView.setPullLoadEnable(false);
+					}
+
+					myAdapter = new MyAdapter(checkinoutList, 1);
+
+					mListView.setAdapter(myAdapter);
+
+					mListView.setXListViewListener(CheckinoutListFyActivity.this);
+					mListView.setOnItemClickListener(CheckinoutListFyActivity.this);
+
+				}
+			}
+
+			@Override
+			public void onFailure(HttpException e, String s) {
+				progressDialog.dismiss();
+				Toast.makeText(CheckinoutListFyActivity.this, "数据加载失败！！！", Toast.LENGTH_SHORT).show();
+			}
+		});
+
+	}
 }
