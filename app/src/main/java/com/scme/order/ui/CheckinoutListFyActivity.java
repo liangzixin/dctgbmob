@@ -47,7 +47,6 @@ import com.scme.order.model.Checkinout;
 import com.scme.order.model.Tusers;
 import com.scme.order.service.BaseService;
 import com.scme.order.service.BranchService;
-import com.scme.order.service.QingjiaService;
 import com.scme.order.service.TxxxService;
 import com.scme.order.service.UserService;
 import com.scme.order.util.GetDate;
@@ -144,6 +143,7 @@ private 	RequestParams params;
 		ButterKnife.inject(this);
 		myAppVariable=(MyAppVariable)getApplication(); //获得自定义的应用程序MyAppVariable
         otherquery=myAppVariable.getOtherquery();
+		user = myAppVariable.getTusers();
 		mListView = (XListView) findViewById(R.id.lvcheckinouts);
 		progressDialog = new ProgressDialog(this);
 		progressDialog.setMessage("数据加载中  请稍后...");
@@ -337,8 +337,8 @@ private 	RequestParams params;
 
 					spinner3.setAdapter(adapter);
 
-			//		setSpinnerItemSelectedByValue(spinner3, user.getName());
-//					provincePosition = position;    //记录当前省级序号，留给下面修改县级适配器时用
+				//	setSpinnerItemSelectedByValue(spinner3, user.getName());
+				//	provincePosition = position;    //记录当前省级序号，留给下面修改县级适配器时用
 				}
 
 				@Override
@@ -698,28 +698,31 @@ private 	RequestParams params;
 			params.addQueryStringParameter("branchid",spinner1.getSelectedItemPosition()+"");
 		//	map.put("branchid", spinner1.getSelectedItemPosition()+"");
 		} else {
+			params.addQueryStringParameter("branchid","0");
 
-			map.put("branchid", "0");
 		}
 
 		if (mCheckBox2.isChecked()) {
-			map.put("name", spinner3.getSelectedItem().toString());
+			params.addQueryStringParameter("name",spinner3.getSelectedItem().toString());
+
 		} else {
-			map.put("name", "");
+			params.addQueryStringParameter("name","");
 		}
 
 		if (mCheckBox3.isChecked()) {
-			map.put("searchnd", spinner4.getSelectedItem().toString());
+			params.addQueryStringParameter("searchnd",spinner4.getSelectedItem().toString());
+
 		} else {
-			map.put("searchnd", "0");
+			params.addQueryStringParameter("searchnd","0");
 		}
 		if (mCheckBox4.isChecked()) {
-			map.put("weekl",spinner5.getSelectedItemPosition()+"");
+			params.addQueryStringParameter("weekl",spinner5.getSelectedItemPosition()+"");
+		;
 		} else {
-			map.put("weekl", "-1");
+			params.addQueryStringParameter("weekl","-1");
 		}
-		params.addQueryStringParameter("purview",myAppVariable.getTusers().getPurview());
-		params.addQueryStringParameter("deptid",myAppVariable.getTusers().getDeptid()+"");
+		params.addQueryStringParameter("purview",user.getPurview());
+		params.addQueryStringParameter("deptid",user.getDeptid()+"");
 		params.addQueryStringParameter("queryname","1");
 		params.addQueryStringParameter("intFirst",intFirst+"");
 		params.addQueryStringParameter("recPerPage",recPerPage+"");
