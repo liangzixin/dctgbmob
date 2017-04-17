@@ -120,8 +120,8 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 		//purview = users0.getPurview();
 		textView = (TextView) findViewById(R.id.tvMainUserName);
 
-		//textView.setText("昆明市东川区企业退休人员管理办公室移动OA  " + users0.getUserName());
-		textView.setText("昆明市东川区企业退休人员管理办公室移动OA  " + "***");
+		textView.setText("昆明市东川区企业退休人员管理办公室移动OA  " + users0.getUserName());
+		//textView.setText("昆明市东川区企业退休人员管理办公室移动OA  " + "***");
 //
 //		if(Thread.State.NEW == mThread.getState()) {
 //
@@ -141,6 +141,7 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 		button5.setOnClickListener(onViewClick);
 		//btn_app_sy();
 		getBirthday();
+		//myHandler.sendMessage(myHandler.obtainMessage());
 	}
 //
 //	private Thread mThread = new Thread() {
@@ -447,7 +448,7 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 
 		@Override
 		public void handleMessage(Message msg) {
-			progressDialog.dismiss();
+		//	progressDialog.dismiss();
 
 			usersSimpleAdapter = new SimpleAdapter(MainMenuActivity.this, mainLzxList, R.layout.users_birthday_list,
 					new String[]{"foodsImage", "branchid", "username", "tel", "workerid", "type"},
@@ -483,7 +484,10 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 		}
 	}
 	private void getBirthday() {
-        url= HttpUtil.BASE_URL + "user!queryTodayBirthday.action";
+		progressDialog = new ProgressDialog(this);
+		progressDialog.setMessage("数据加载中  请稍后...");
+		progressDialog.show();
+        url= HttpUtil.BASE_URL + "user!queryTodayAnd7.action";
 		params= new RequestParams();
 		HttpUtils httpUtils= new HttpUtils();
 		// 不缓存，设置缓存0秒。
@@ -493,46 +497,57 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 			public void onSuccess(ResponseInfo<String> responseInfo) {
 
 				if (responseInfo.result != null) {
-					progressDialog.dismiss();
+						progressDialog.dismiss();
 					JSONObject myobject =null;
 					String listArray=null;
 					try {
 
 						myobject = new JSONObject(responseInfo.result);
 //						count=myobject.getInt("count");
-						listArray=myobject.getString("checkinoutlist");
-						checkinoutList= BaseService.getGson().fromJson(listArray, new TypeToken<List<Checkinout>>() {}.getType());
-						System.out.println(checkinoutList.size());
+						listArray=myobject.getString("userslist");
+						users= BaseService.getGson().fromJson(listArray, new TypeToken<List<Tusers>>() {}.getType());
+						System.out.println(users.size());
 					} catch (JSONException e) {
 						e.printStackTrace();
 					}
 
+					if (users.size() > 0) {
+//						mainTextView=(TextView)findViewById(R.id.tvUserDay);
+////						mainTextView.setText("日");
+//						mainTextView.setText("今日过生日职工");
+						for (int i = 0; i < users.size(); i++) {
+							//在线程中完成数据请求
+							HashMap<String, Object> map = new HashMap<String, Object>();
+//							System.out.println("是否为空:"+users.get(i).getPicName());
+							Pictures pic = new Pictures();
+							if (users.get(i).getPicName() == null || users.get(i).getPicName().length() <= 0) {
+//								System.out.println("是为空:"+users.get(i).getPicName());
+								Bitmap bmp = pic.getMenuPic("icon_laucher.gif");
+								map.put("foodsImage", bmp);
+							} else {
 
-					pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
+//								System.out.println("是不为空:"+users.get(i).getPicName());
+								Bitmap bmp = pic.getMenuPic(users.get(i).getPicName());
+								map.put("foodsImage", bmp);
+							}
 
-					tolpage.setText("记录数："+count);
-					nowpage.setText("页码："+(intFirst+1)+"/"+pages);
-
-					if(count>recPerPage) {
-						mListView.setPullLoadEnable(true);
-					}else{
-						mListView.setPullLoadEnable(false);
+							map.put("username", users.get(i).getUserName());
+							map.put("branchid", users.get(i).getAddress());
+							map.put("tel", users.get(i).getBirday());
+							map.put("workerid", users.get(i).getId());
+							map.put("type", "1");
+							mainLzxList.add(map);
+						}
 					}
 
-					myAdapter = new MyAdapter(checkinoutList, 1);
-
-					mListView.setAdapter(myAdapter);
-
-					mListView.setXListViewListener(CheckinoutListFyActivity.this);
-					mListView.setOnItemClickListener(CheckinoutListFyActivity.this);
-
 				}
+				myHandler.sendMessage(myHandler.obtainMessage());
 			}
 
 			@Override
 			public void onFailure(HttpException e, String s) {
 				progressDialog.dismiss();
-				Toast.makeText(CheckinoutListFyActivity.this, "数据加载失败！！！", Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainMenuActivity.this, "数据加载失败！！！", Toast.LENGTH_SHORT).show();
 			}
 		});
 
