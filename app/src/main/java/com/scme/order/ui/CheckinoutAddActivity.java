@@ -387,8 +387,8 @@ public String IsSingle(String status) {
                                 datePicker.getMonth() + 1,
                                 datePicker.getDayOfMonth()));
                         sb.append(" ");
-                        sb.append(timePicker.setCurrentHour())
-                                .append(":").append(timePicker.setCurrentMinute()).append(":00");
+                        sb.append(timePicker.getCurrentHour())
+                                .append(":").append(timePicker.getCurrentMinute()).append(":00");
 
                         etStartTime.setText(sb);
 
