@@ -23,14 +23,9 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
-import com.scme.order.model.Checkinout;
-import com.scme.order.model.Dydh;
 import com.scme.order.model.Tusers;
 import com.scme.order.service.BaseService;
-import com.scme.order.service.DydhService;
-import com.scme.order.service.FoodsService;
 import com.scme.order.service.ProgressListener;
-import com.scme.order.service.UserService;
 import com.scme.order.util.CustomViewBinder;
 import com.scme.order.util.HttpUtil;
 import com.scme.order.util.MyAppVariable;
@@ -60,20 +55,14 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 	//static String purview = "";
 	private Handler testHandler;
 	private ListView mainLzxListView;
-	private ListView mainLzxListView7;
-	private ListView mainLzxListViewDydh;
+
 	private List<HashMap<String, Object>> mainLzxList = new ArrayList<HashMap<String, Object>>();
-	private List<HashMap<String, Object>> mainLzxList7 = new ArrayList<HashMap<String, Object>>();
-	private List<HashMap<String, Object>> mainLzxListDydh = new ArrayList<HashMap<String, Object>>();
+
 
 	private ProgressDialog progressDialog;
 
 	private List<Tusers> users;
-	private List<Tusers> users7;
-	private List<Dydh> dydhs;
-	private FoodsService foodsService = new FoodsService();
-	private UserService userService = new UserService();
-	private DydhService dydhService = new DydhService();
+
 
 	private SimpleAdapter usersSimpleAdapter;
 
@@ -113,15 +102,15 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 
 
 		mainLzxListView = (ListView) findViewById(R.id.lvSeletFoodsType);
-		mainLzxListView7 = (ListView) findViewById(R.id.lv7DayBirthday);
-		mainLzxListViewDydh = (ListView) findViewById(R.id.lvDydhBirthday);
+
 		myAppVariable = (MyAppVariable) getApplication(); //获得自定义的应用程序MyAppVariable
-		Tusers users0 = myAppVariable.getTusers();
+	//	Tusers users0 = myAppVariable.getTusers();
 		//purview = users0.getPurview();
 		textView = (TextView) findViewById(R.id.tvMainUserName);
-
-		textView.setText("昆明市东川区企业退休人员管理办公室移动OA  " + users0.getUserName());
-		//textView.setText("昆明市东川区企业退休人员管理办公室移动OA  " + "***");
+       	String name="";
+		if(myAppVariable.getTusers().getName()!=null) name=myAppVariable.getTusers().getName();
+		textView.setText("昆明市东川区企业退休人员管理办公室移动OA  " +name);
+	//	textView.setText("昆明市东川区企业退休人员管理办公室移动OA  " + "***");
 //
 //		if(Thread.State.NEW == mThread.getState()) {
 //
@@ -333,105 +322,104 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 	}
 
 	public void btn_app_sy() {
-		progressDialog = new ProgressDialog(this);
-		progressDialog.setMessage("数据加载中  请稍后...");
-		progressDialog.show();
-		Thread t = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					mainLzxList.clear();//清空一遍List
-					mainLzxList7.clear();//清空一遍List
-					mainLzxListDydh.clear();//清空一遍List
-					//  foods=foodsService.QueryAllFoods();
-					users = userService.queryTodayBirthday();
-					users7 = userService.queryToday7Birthday();
-					dydhs = dydhService.queryTodayBirthday();
-//					Thread.sleep(500);
-					if (users.size() > 0) {
-//						mainTextView=(TextView)findViewById(R.id.tvUserDay);
-////						mainTextView.setText("日");
-//						mainTextView.setText("今日过生日职工");
-						for (int i = 0; i < users.size(); i++) {
-							//在线程中完成数据请求
-							HashMap<String, Object> map = new HashMap<String, Object>();
-//							System.out.println("是否为空:"+users.get(i).getPicName());
-							Pictures pic = new Pictures();
-							if (users.get(i).getPicName() == null || users.get(i).getPicName().length() <= 0) {
-//								System.out.println("是为空:"+users.get(i).getPicName());
-								Bitmap bmp = pic.getMenuPic("icon_laucher.gif");
-								map.put("foodsImage", bmp);
-							} else {
-
-//								System.out.println("是不为空:"+users.get(i).getPicName());
-								Bitmap bmp = pic.getMenuPic(users.get(i).getPicName());
-								map.put("foodsImage", bmp);
-							}
-
-							map.put("username", users.get(i).getUserName());
-							map.put("branchid", users.get(i).getBranch().getSubname1(2));
-							map.put("tel", users.get(i).getBirday());
-							map.put("workerid", users.get(i).getId());
-							map.put("type", "1");
-							mainLzxList.add(map);
-						}
-					}
-					if (users7.size() > 0) {
-
-
-						for (int i = 0; i < users7.size(); i++) {
-							//在线程中完成数据请求
-							HashMap<String, Object> map7 = new HashMap<String, Object>();
-							Pictures pic = new Pictures();
-							if (users7.get(i).getPicName() == null || users7.get(i).getPicName().length() <= 0) {
-//								System.out.println("是为空:"+users.get(i).getPicName());
-								Bitmap bmp = pic.getMenuPic("icon_laucher.gif");
-								map7.put("foodsImage", bmp);
-							} else {
-
-//								System.out.println("是不为空:"+users.get(i).getPicName());
-								Bitmap bmp = pic.getMenuPic(users7.get(i).getPicName());
-								map7.put("foodsImage", bmp);
-							}
-
-							map7.put("username", users7.get(i).getUserName());
-							map7.put("branchid", users7.get(i).getBranch().getSubname1(2));
-							map7.put("tel", users7.get(i).getBirday());
-							map7.put("workerid", users7.get(i).getId());
-							map7.put("type", "1");
-							mainLzxList.add(map7);
-						}
-					}
-					if (dydhs.size() > 0) {
-//						mainTextView = (TextView) findViewById(R.id.textView2);
-//						mainTextView.setText("今日是入党周年的党员");
-
-						for (int i = 0; i < dydhs.size(); i++) {
-							//在线程中完成数据请求
-							HashMap<String, Object> map = new HashMap<String, Object>();
-							Pictures pic = new Pictures();
-							Bitmap bmp = pic.getMenuPic("icon_laucher.gif");
-							map.put("foodsImage", bmp);
-							map.put("idd", i + 1);
-							map.put("username", dydhs.get(i).getName());
-							map.put("branchid", dydhs.get(i).getZbmz().getZbmz().substring(4, 10));
-							map.put("tel", dydhs.get(i).getRdsj());
-							map.put("workerid", dydhs.get(i).getId());
-							map.put("type", "2");
-							mainLzxList.add(map);
-						}
-					}
-
-
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				myHandler.sendMessage(myHandler.obtainMessage());
-				//		myHandler.sendMessage(myHandler.obtainMessage());
-			}
-		});
-		t.start();
+//		progressDialog = new ProgressDialog(this);
+//		progressDialog.setMessage("数据加载中  请稍后...");
+//		progressDialog.show();
+//		Thread t = new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				try {
+//					mainLzxList.clear();//清空一遍List
+//
+//					//  foods=foodsService.QueryAllFoods();
+//					users = userService.queryTodayBirthday();
+//					users7 = userService.queryToday7Birthday();
+//					dydhs = dydhService.queryTodayBirthday();
+////					Thread.sleep(500);
+//					if (users.size() > 0) {
+////						mainTextView=(TextView)findViewById(R.id.tvUserDay);
+//////						mainTextView.setText("日");
+////						mainTextView.setText("今日过生日职工");
+//						for (int i = 0; i < users.size(); i++) {
+//							//在线程中完成数据请求
+//							HashMap<String, Object> map = new HashMap<String, Object>();
+////							System.out.println("是否为空:"+users.get(i).getPicName());
+//							Pictures pic = new Pictures();
+//							if (users.get(i).getPicName() == null || users.get(i).getPicName().length() <= 0) {
+////								System.out.println("是为空:"+users.get(i).getPicName());
+//								Bitmap bmp = pic.getMenuPic("icon_laucher.gif");
+//								map.put("foodsImage", bmp);
+//							} else {
+//
+////								System.out.println("是不为空:"+users.get(i).getPicName());
+//								Bitmap bmp = pic.getMenuPic(users.get(i).getPicName());
+//								map.put("foodsImage", bmp);
+//							}
+//
+//							map.put("username", users.get(i).getUserName());
+//							map.put("branchid", users.get(i).getBranch().getSubname1(2));
+//							map.put("tel", users.get(i).getBirday());
+//							map.put("workerid", users.get(i).getId());
+//							map.put("type", "1");
+//							mainLzxList.add(map);
+//						}
+//					}
+//					if (users7.size() > 0) {
+//
+//
+//						for (int i = 0; i < users7.size(); i++) {
+//							//在线程中完成数据请求
+//							HashMap<String, Object> map7 = new HashMap<String, Object>();
+//							Pictures pic = new Pictures();
+//							if (users7.get(i).getPicName() == null || users7.get(i).getPicName().length() <= 0) {
+////								System.out.println("是为空:"+users.get(i).getPicName());
+//								Bitmap bmp = pic.getMenuPic("icon_laucher.gif");
+//								map7.put("foodsImage", bmp);
+//							} else {
+//
+////								System.out.println("是不为空:"+users.get(i).getPicName());
+//								Bitmap bmp = pic.getMenuPic(users7.get(i).getPicName());
+//								map7.put("foodsImage", bmp);
+//							}
+//
+//							map7.put("username", users7.get(i).getUserName());
+//							map7.put("branchid", users7.get(i).getBranch().getSubname1(2));
+//							map7.put("tel", users7.get(i).getBirday());
+//							map7.put("workerid", users7.get(i).getId());
+//							map7.put("type", "1");
+//							mainLzxList.add(map7);
+//						}
+//					}
+//					if (dydhs.size() > 0) {
+////						mainTextView = (TextView) findViewById(R.id.textView2);
+////						mainTextView.setText("今日是入党周年的党员");
+//
+//						for (int i = 0; i < dydhs.size(); i++) {
+//							//在线程中完成数据请求
+//							HashMap<String, Object> map = new HashMap<String, Object>();
+//							Pictures pic = new Pictures();
+//							Bitmap bmp = pic.getMenuPic("icon_laucher.gif");
+//							map.put("foodsImage", bmp);
+//							map.put("idd", i + 1);
+//							map.put("username", dydhs.get(i).getName());
+//							map.put("branchid", dydhs.get(i).getZbmz().getZbmz().substring(4, 10));
+//							map.put("tel", dydhs.get(i).getRdsj());
+//							map.put("workerid", dydhs.get(i).getId());
+//							map.put("type", "2");
+//							mainLzxList.add(map);
+//						}
+//					}
+//
+//
+//				} catch (Exception e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				myHandler.sendMessage(myHandler.obtainMessage());
+//				//		myHandler.sendMessage(myHandler.obtainMessage());
+//			}
+//		});
+//		t.start();
 
 //		usersSimpleAdapter = new SimpleAdapter(MainMenuActivity.this, mainLzxList, R.layout.users_birthday_list,
 //				new String[]{"foodsImage", "branchid", "username", "tel", "workerid", "type"},

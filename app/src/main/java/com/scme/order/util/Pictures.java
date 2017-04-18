@@ -1,17 +1,5 @@
 package com.scme.order.util;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -24,8 +12,18 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Environment;
-import android.util.Log;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 public class Pictures {
@@ -45,8 +43,12 @@ public class Pictures {
 	 * @return
 	 */
 	public static Bitmap getMenuPic(String picName){
+		System.out.println("我的图片picName="+picName);
 		if(picName==null || picName.equals("")){
-//			BitmapFactory.decodeResource(res, R.drawable.blank);
+
+//		BitmapFactory.decodeResource(res, R.drawable.ic_launcher);
+			picName="icon_laucher.gif";
+		//	Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher); // 不存在设置默认图片
 		}
 		File pic = new File(PIC_LOCAL_PATH + picName);
 		Bitmap bitmap = null;
@@ -116,7 +118,7 @@ public class Pictures {
 			bos.close();
 			return true;
 		} catch (Exception ex) {
-			Log.v("---------saveFileBUG---------", ex.getMessage());
+		//	Log.v("---------saveFileBUG---------", ex.getMessage());
 			return false;
 		}
 	}

@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -363,12 +362,15 @@ public String IsSingle(String status) {
             datePicker.init(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), null);
 
             timePicker.setIs24HourView(true);
-            timePicker.setCurrentHour(cal.get(Calendar.HOUR_OF_DAY));
-            timePicker.setCurrentMinute(Calendar.MINUTE);
-
+            int hours=cal.get(Calendar.HOUR_OF_DAY);
+            int minutes=cal.get(Calendar.MINUTE);
+            timePicker.setCurrentHour(hours);
+            timePicker.setCurrentMinute(minutes);
+            int currentapiVersion=android.os.Build.VERSION.SDK_INT;
+            System.out.println("获取当前系统版本"+currentapiVersion);
             if (v.getId() == R.id.Checkinout_Time1) {
                 final int inType = etStartTime.getInputType();
-                etStartTime.setInputType(InputType.TYPE_NULL);
+          //      etStartTime.setInputType(InputType.TYPE_NULL);
                 etStartTime.onTouchEvent(event);
                 etStartTime.setInputType(inType);
                 etStartTime.setSelection(etStartTime.getText().length());
@@ -385,8 +387,8 @@ public String IsSingle(String status) {
                                 datePicker.getMonth() + 1,
                                 datePicker.getDayOfMonth()));
                         sb.append(" ");
-                        sb.append(timePicker.getCurrentHour())
-                                .append(":").append(timePicker.getCurrentMinute()).append(":00");
+                        sb.append(timePicker.setCurrentHour())
+                                .append(":").append(timePicker.setCurrentMinute()).append(":00");
 
                         etStartTime.setText(sb);
 

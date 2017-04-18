@@ -75,7 +75,7 @@ public class CheckinoutListFyActivity extends BaseActivity implements IXListView
 	private Handler testHandler;
 	private int start = 0;
 	private static int refreshCnt = 0;
-	private List listbmmz = new ArrayList<String>() ;
+	private List listbmmz;
 	private List listbmmz0;
 	private List listuser;
 	private int branchid;
@@ -300,6 +300,7 @@ private 	RequestParams params;
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			listbmmz= new ArrayList<String>() ;
 					if(listbmmz0.size()>0) {
 			for(int i=0;i<listbmmz0.size();i++){
 				int ll=listbmmz0.get(i).toString().length();
@@ -842,7 +843,7 @@ private 	RequestParams params;
 // requestCode和resultCode必须与请求startActivityForResult()和返回setResult()的时候传入的值一致。
 		if (requestCode == 1 &&(resultCode ==CheckinoutAddActivity.RESULT_CODE||resultCode ==CheckinoutDetailActivity.RESULT_CODE)) {
 
-			geneCheckinoutItems();
+		//	geneCheckinoutItems();
 		}
 	}
 	/**
