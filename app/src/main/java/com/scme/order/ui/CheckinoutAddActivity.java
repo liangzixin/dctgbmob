@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -129,7 +130,7 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
         myAppVariable=(MyAppVariable)getApplication(); //获得自定义的应用程序MyAppVariable
         user=myAppVariable.getTusers();
         setSpinner();
-        etStartTime.setOnTouchListener(CheckinoutAddActivity.this);
+        etStartTime.setOnTouchListener(this);
         //选项1事件监听
         mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -256,8 +257,8 @@ private void getDepartments() {
 //
 //            System.out.println("开始----" + etStartTime.getText());
 //            System.out.println("结束----" + etEndTime.getText());
-            if ((etStartTime.getText().toString()).equals("请选择请假开始时间:")) {
-                Toast.makeText(this, "请选择请假开始时间！！！", Toast.LENGTH_SHORT).show();
+            if ((etStartTime.getText().toString()).equals("打卡日期:")) {
+                Toast.makeText(this, "请选择打卡日期！！！", Toast.LENGTH_SHORT).show();
                 return false;
             }
 
@@ -366,11 +367,20 @@ public String IsSingle(String status) {
             int minutes=cal.get(Calendar.MINUTE);
             timePicker.setCurrentHour(hours);
             timePicker.setCurrentMinute(minutes);
+            // 为TimePicker指定监听器
+//            timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+//                @Override
+//                public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+//                  //  setTitle(hourOfDay + "-" + minute);
+////                    etStartTime.setText("sb");
+//                    timePicker.setMinute(timePicker.getMinute());
+//                }
+//            });
             int currentapiVersion=android.os.Build.VERSION.SDK_INT;
             System.out.println("获取当前系统版本"+currentapiVersion);
             if (v.getId() == R.id.Checkinout_Time1) {
                 final int inType = etStartTime.getInputType();
-          //      etStartTime.setInputType(InputType.TYPE_NULL);
+             etStartTime.setInputType(InputType.TYPE_NULL);
                 etStartTime.onTouchEvent(event);
                 etStartTime.setInputType(inType);
                 etStartTime.setSelection(etStartTime.getText().length());
@@ -387,8 +397,8 @@ public String IsSingle(String status) {
                                 datePicker.getMonth() + 1,
                                 datePicker.getDayOfMonth()));
                         sb.append(" ");
-                        sb.append(timePicker.getCurrentHour())
-                                .append(":").append(timePicker.getCurrentMinute()).append(":00");
+                        sb.append(timePicker.getHour())
+                                .append(":").append(timePicker.getMinute()).append(":00");
 
                         etStartTime.setText(sb);
 
@@ -396,35 +406,11 @@ public String IsSingle(String status) {
 //
 //
 //
-//                        dialog.cancel();
+                       dialog.cancel();
+                     //   etStartTime.setText(sb);
                     }
                 });
 
-            } else if (v.getId() == R.id.Qingjia_Time2) {
-
-
-                builder.setTitle("选取结束时间");
-                builder.setPositiveButton("确  定", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        StringBuffer sb = new StringBuffer();
-                        sb.append(String.format("%d-%02d-%02d",
-                                datePicker.getYear(),
-                                datePicker.getMonth() + 1,
-                                datePicker.getDayOfMonth()));
-                        sb.append(" ");
-                        sb.append(timePicker.getCurrentHour())
-                                .append(":").append(timePicker.getCurrentMinute()).append(":00");
-
-                        double lg2=0;
-
-
-//
-                  //     dialog.cancel();
-                    }
-                });
             }
 
             Dialog dialog = builder.create();

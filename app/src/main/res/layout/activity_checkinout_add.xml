@@ -79,6 +79,7 @@
                 android:text="请选择打卡日期:"
                 material:floatingLabel="true"
                 android:editable="false"
+                android:timePickerMode="spinner"
                 />
         </LinearLayout>
 

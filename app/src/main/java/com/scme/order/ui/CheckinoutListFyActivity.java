@@ -698,6 +698,8 @@ private 	RequestParams params;
 		params.addQueryStringParameter("queryname","1");
 		params.addQueryStringParameter("intFirst",intFirst+"");
 		params.addQueryStringParameter("recPerPage",recPerPage+"");
+		params.addQueryStringParameter("searchnd","0");
+		params.addQueryStringParameter("weekl","-1");
 		otherquery=true;
 		mThreadmy();
 	}
