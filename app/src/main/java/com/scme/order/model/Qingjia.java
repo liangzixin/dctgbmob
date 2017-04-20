@@ -21,6 +21,8 @@ public class Qingjia {
 	private String leader2;
 	private double countday=0.0;
 	private int count;
+	private int userinfoid=0;
+	private int week=0;
 
 	public double getCountd() {
 		return countd;
@@ -161,5 +163,21 @@ public String getDjr() {
 			len=this.getBranch().getName().length();
 		}
 		return this.getBranch().getName().substring(0,len);
+	}
+
+	public int getUserinfoid() {
+		return userinfoid;
+	}
+
+	public void setUserinfoid(int userinfoid) {
+		this.userinfoid = userinfoid;
+	}
+
+	public int getWeek() {
+		return week;
+	}
+
+	public void setWeek(int week) {
+		this.week = week;
 	}
 }

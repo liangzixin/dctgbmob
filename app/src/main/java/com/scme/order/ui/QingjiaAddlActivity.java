@@ -10,17 +10,19 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.text.InputType;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.MaterialEditText;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
-import com.scme.order.model.Branch;
 import com.scme.order.model.Qingjia;
 import com.scme.order.model.Tusers;
 import com.scme.order.service.BranchService;
@@ -28,11 +30,8 @@ import com.scme.order.service.QingjiaService;
 import com.scme.order.service.UserService;
 import com.scme.order.util.GetDate;
 import com.scme.order.util.MyAppVariable;
-import android.widget.DatePicker;
-import android.widget.SpinnerAdapter;
-import android.widget.TimePicker;
-import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -53,6 +52,7 @@ public class QingjiaAddlActivity extends BaseActivity implements View.OnTouchLis
     private Spinner spinner;
     private Tusers user;
     private List listbmmz;
+    private List<Tusers> listuser0;
     private List listuser;
     private int branchid;
     private boolean str=false;
@@ -61,7 +61,7 @@ public class QingjiaAddlActivity extends BaseActivity implements View.OnTouchLis
     private ArrayAdapter<String> adapter1;
     private MyAppVariable myAppVariable;
     private GetDate getDate=new GetDate();
-    private static final String[] m={"请选择请假类型","事  假","病  假","公休假","探亲假","婚丧假","生育假","哺乳假","其  它"};
+    private static final String[] m={"请选择请假类型","事  假","病  假","公休假","探亲假","婚丧假","生育假","哺乳假","其  它","陪产假","培  训","出  差"};
     private Spinner provinceSpinner = null;  //省级（省、直辖市）
     private Spinner citySpinner = null;     //地级市
 //    private MaterialSpinner citySpinner = null;
@@ -214,6 +214,8 @@ public class QingjiaAddlActivity extends BaseActivity implements View.OnTouchLis
         testHandler.sendEmptyMessage(2);
         try {
             Map<String, String> map = new HashMap<String, String>();
+         int    userinfoid= listuser0.get(citySpinner.getSelectedItemPosition()).getUserinfoid();
+            map.put("userinfoid",userinfoid+"");
             map.put("name1", citySpinner.getSelectedItem().toString());
             map.put("time1", etStartTime.getText().toString());
             map.put("time2", etEndTime.getText().toString());
@@ -409,16 +411,22 @@ public String IsSingle(String status) {
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 //position为当前省级选中的值的序号
                 branchid=position+1;
+
                 try {
                     UserService userService=new UserService();
 //
-                    listuser=userService.QueryUserBranchId(branchid);
+                    listuser0=userService.QueryUserBranchIdOther(branchid);
 //
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-
+                if(listuser0.size()>0) {
+                    listuser=new ArrayList<String>();
+                    for (int k = 0; k < listuser0.size(); k++) {
+                        listuser.add(listuser0.get(k).getName());
+                    }
+                }
                 //将地级适配器的值改变为city[position]中的值
                 cityAdapter = new ArrayAdapter<String>(
                         QingjiaAddlActivity.this, android.R.layout.simple_spinner_item,  listuser);

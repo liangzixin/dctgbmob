@@ -98,7 +98,9 @@ public class CheckinoutListFyActivity extends BaseActivity implements IXListView
 	//private static final String[] m={"上大院管理服务站","下大院管理服务站","桂苑街管理服务站","落雪大院管理服务站","腊利大院管理服务站"};
 	//private static final String[] m1={"姓名","个人编号","身份证号","经办人","认证地点","认证日期","居住地","联系电话1","联系电话2"};
 	//private static final String[] m2={"name","grbh","sfzh","rz14zb","rz14dd","rzrj","czdz","lxdh1","lzdh2"};
-	private static final String[] m3={"第一周","第二周","第三周","第四周","第五周","第六周","第七周","第八周","第九周","第十周","第十一周","第十二周","第十三周","第十四周","第十五周","第十六周","第十七周","第十八周","第十九周"};
+	private static final String[] m3={"第一周","第二周","第三周","第四周","第五周","第六周","第七周","第八周","第九周","第十周","第十一周","第十二周","第十三周","第十四周","第十五周","第十六周","第十七周","第十八周","第十九周",
+			"第二十周","第二十一周","第二十二周","第二十三周","第二十四周","第二十五周","第二十六周","第二十七周","第二十八周","第二十九周","第三十周","第三十一周","第三十二周","第三十三周","第三十四周","第三十五周","第三十六周","第三十七周","第三十八周","第三十九周",
+			"第四十周","第四十一周","第四十二周","第四十三周","第四十四周","第四十五周","第四十六周","第四十七周","第四十八周","第四十九周","第五十周","第五十一周","第五十二周","第五十三周","第五十四周"};
 //	private String bmmz0="";
 //	private String name0="";
 //	private String rzjk0="";
@@ -695,6 +697,7 @@ private 	RequestParams params;
 		params.addQueryStringParameter("name",query);
 		params.addQueryStringParameter("purview",user.getPurview());
 		params.addQueryStringParameter("deptid",user.getDeptid()+"");
+		params.addQueryStringParameter("job",user.getJob()+"");
 		params.addQueryStringParameter("queryname","1");
 		params.addQueryStringParameter("intFirst",intFirst+"");
 		params.addQueryStringParameter("recPerPage",recPerPage+"");
@@ -739,6 +742,7 @@ private 	RequestParams params;
 		params.addQueryStringParameter("purview",user.getPurview());
 		params.addQueryStringParameter("deptid",user.getDeptid()+"");
 		params.addQueryStringParameter("queryname","1");
+		params.addQueryStringParameter("job",user.getJob()+"");
 		params.addQueryStringParameter("intFirst",intFirst+"");
 		params.addQueryStringParameter("recPerPage",recPerPage+"");
 		otherquery=true;

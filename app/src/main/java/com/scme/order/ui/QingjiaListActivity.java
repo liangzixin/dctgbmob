@@ -1,7 +1,5 @@
 package com.scme.order.ui;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
@@ -11,12 +9,9 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.support.v4.internal.view.SupportMenuItem;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -32,28 +27,36 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView;
 
-import com.google.android.gms.gcm.Task;
+import com.google.gson.reflect.TypeToken;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.HttpHandler;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 import com.scme.order.card.HeadlineBodyCard;
-import com.scme.order.model.Branch;
 import com.scme.order.model.Qingjia;
 import com.scme.order.model.Tusers;
+import com.scme.order.service.BaseService;
 import com.scme.order.service.BranchService;
 import com.scme.order.service.QingjiaService;
 import com.scme.order.service.UserService;
 import com.scme.order.util.GetDate;
+import com.scme.order.util.HttpUtil;
 import com.scme.order.util.MyAppVariable;
 import com.scme.order.view.XListView;
 import com.scme.order.view.XListView.IXListViewListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -112,6 +115,11 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 	private TextView qingjiafoodid;
 	int checkedcount = 0; //计数器，用于统计选中的个数
 	double lg5 = 0.0;
+	private  Boolean otherquery=false;
+	private HttpHandler<String> handler;
+	//	private HttpUtils httpUtils= new HttpUtils();
+	private    String url=null;
+	private RequestParams params;
 
 	RadioGroup mRadioGroup; //RadioGroup对象，用于显示答案
 	RadioButton mRadioButton_1; //RadioButton对象，用于显示选项1
@@ -134,6 +142,7 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 		setContentView(R.layout.activity_qingjia_list);
 		ButterKnife.inject(this);
 		myAppVariable = (MyAppVariable) getApplication(); //获得自定义的应用程序MyAppVariable
+		otherquery=myAppVariable.getOtherquery();
 		user = myAppVariable.getTusers();
 		query = myAppVariable.getQuery();
 		mListView = (XListView) findViewById(R.id.lvqingjias);
@@ -142,124 +151,168 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 		progressDialog.show();
 
 
-		if (Thread.State.NEW == mThread.getState()) {
+//		if (Thread.State.NEW == mThread.getState()) {
+//
+//			Intent intent = getIntent();
+//			if (Intent.ACTION_SEARCH.equals(intent.getAction()) || !query.equals("")) {
+//				if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+//					query = intent.getStringExtra(SearchManager.QUERY);
+//					myAppVariable.setQuery(query);
+//				}
+//				myAppVariable.setOtherquery(true);
+//				try {
+//					//	testHandler.sendEmptyMessage(2);
+//					doSearching(query);
+//				} catch (Exception e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//
+//
+//			} else {
+//				myAppVariable.setOtherquery(false);
+//				//
+//				geneQingjiaItems();
+//
+//				count = geneQingjiaItemsCount();
+//			}
+//
+//			mThread.start();
+//
+//		}
+		Intent intent = getIntent();
+		if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+			myAppVariable.setOtherquery(true);
+//			if (Intent.ACTION_SEARCH.equals(intent.getAction())||) {
+			String query = intent.getStringExtra(SearchManager.QUERY);
+			myAppVariable.setQuery(query);
 
-			Intent intent = getIntent();
-			if (Intent.ACTION_SEARCH.equals(intent.getAction()) || !query.equals("")) {
-				if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-					query = intent.getStringExtra(SearchManager.QUERY);
-					myAppVariable.setQuery(query);
-				}
-				myAppVariable.setOtherquery(true);
-				try {
-					//	testHandler.sendEmptyMessage(2);
-					doSearching(query);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-
-			} else {
-				myAppVariable.setOtherquery(false);
-				//
-				geneQingjiaItems();
-
-				count = geneQingjiaItemsCount();
+			try {
+				doSearching(query);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
+		}else if(otherquery){
 
-			mThread.start();
+			myAppVariable.setOtherquery(true);
+			String query =myAppVariable.getQuery();
 
+			try {
+				doSearching(query);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else{
+			myAppVariable.setOtherquery(false);
+			geneQingjiaItems();
 		}
 
 
 	}
+	private void mThreadmy() {
+//	 HttpHandler<String> handler;
+		HttpUtils httpUtils= new HttpUtils();
+		// 不缓存，设置缓存0秒。
+		httpUtils.configCurrentHttpCacheExpiry(0*1000);
+		handler= httpUtils.send(HttpRequest.HttpMethod.GET, url, params,new RequestCallBack<String>() {
+			@Override
+			public void onSuccess(ResponseInfo<String> responseInfo) {
 
-	private Thread mThread = new Thread() {
-		public void run() {
-			Log.d("TAG", "mThread run");
-			Looper.prepare();
-			testHandler = new Handler() {
-				public void handleMessage(Message msg) {
-
-					switch (msg.what) {
-						//handle message here
-						case 1:
-							pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
-
-							tolpage.setText("记录数：" + count);
-							nowpage.setText("页码：" + (intFirst + 1) + "/" + pages);
-
-							if (count > recPerPage * (intFirst + 1)) {
-								mListView.setPullLoadEnable(true);
-							} else {
-								mListView.setPullLoadEnable(false);
-							}
-
-							myAdapter = new MyAdapter(qingjiaList, 1);
-
-
-							View view = (LinearLayout) getLayoutInflater().inflate(R.layout.qingjia_fooder, null);
-							qingjiafoodid = (TextView) view.findViewById(R.id.qingjia_foodid);
-							qingjiafoodid.setText("合   计:  " + qingjiacountday + " 　天");
-							mListView.addFooterView(view);
-//				}
-							mListView.setAdapter(myAdapter);
-
-							mListView.setXListViewListener(QingjiaListActivity.this);
-							mListView.setOnItemClickListener(QingjiaListActivity.this);
-							break;
-						case 2:
-
-							break;
-
-					}
+				if (responseInfo.result != null) {
 					progressDialog.dismiss();
+					JSONObject myobject =null;
+					String listArray=null;
+					try {
+
+						myobject = new JSONObject(responseInfo.result);
+						count=myobject.getInt("count");
+						listArray=myobject.getString("qingjiaList");
+						qingjiaList= BaseService.getGson().fromJson(listArray, new TypeToken<List<Qingjia>>() {}.getType());
+						System.out.println(qingjiaList.size());
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+
+
+					pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
+
+					tolpage.setText("记录数："+count);
+					nowpage.setText("页码："+(intFirst+1)+"/"+pages);
+
+					if(count>recPerPage) {
+						mListView.setPullLoadEnable(true);
+					}else{
+						mListView.setPullLoadEnable(false);
+					}
+
+					myAdapter = new MyAdapter(qingjiaList, 1);
+
+					mListView.setAdapter(myAdapter);
+
+					mListView.setXListViewListener(QingjiaListActivity.this);
+					mListView.setOnItemClickListener(QingjiaListActivity.this);
+
 				}
-			};
-			testHandler.sendEmptyMessage(1);
-			Looper.loop();
+			}
 
-		}
+			@Override
+			public void onFailure(HttpException e, String s) {
+				progressDialog.dismiss();
+				Toast.makeText(QingjiaListActivity.this, "数据加载失败！！！", Toast.LENGTH_SHORT).show();
+			}
+		});
 
-	};
-
-	/**
-	 * 数据加载完之后消除Loding对话框
-	 */
-//	private Handler myHandler = new Handler(){
-//		@SuppressLint("HandlerLeak")
-//		@Override
-//		public void handleMessage(Message msg) {
-//			pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
+	}
+//	private Thread mThread = new Thread() {
+//		public void run() {
+//			Log.d("TAG", "mThread run");
+//			Looper.prepare();
+//			testHandler = new Handler() {
+//				public void handleMessage(Message msg) {
 //
-//			tolpage.setText("记录数："+count);
-//			nowpage.setText("页码："+(intFirst+1)+"/"+pages);
+//					switch (msg.what) {
+//						//handle message here
+//						case 1:
+//							pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
 //
-//			if(count>recPerPage*(intFirst+1)) {
-//				mListView.setPullLoadEnable(true);
-//			}else{
-//				mListView.setPullLoadEnable(false);
-//			}
+//							tolpage.setText("记录数：" + count);
+//							nowpage.setText("页码：" + (intFirst + 1) + "/" + pages);
 //
-//			myAdapter = new MyAdapter(qingjiaList, 1);
+//							if (count > recPerPage * (intFirst + 1)) {
+//								mListView.setPullLoadEnable(true);
+//							} else {
+//								mListView.setPullLoadEnable(false);
+//							}
+//
+//							myAdapter = new MyAdapter(qingjiaList, 1);
 //
 //
-//			View view = (LinearLayout) getLayoutInflater().inflate(R.layout.qingjia_fooder, null);
-//			qingjiafoodid = (TextView) view.findViewById(R.id.qingjia_foodid);
-//			qingjiafoodid.setText("合   计:  " + qingjiacountday + " 　天");
-//			mListView.addFooterView(view);
+//							View view = (LinearLayout) getLayoutInflater().inflate(R.layout.qingjia_fooder, null);
+//							qingjiafoodid = (TextView) view.findViewById(R.id.qingjia_foodid);
+//							qingjiafoodid.setText("合   计:  " + qingjiacountday + " 　天");
+//							mListView.addFooterView(view);
 ////				}
-//			mListView.setAdapter(myAdapter);
+//							mListView.setAdapter(myAdapter);
 //
-//			mListView.setXListViewListener(QingjiaListActivity.this);
-//			mListView.setOnItemClickListener(QingjiaListActivity.this);
+//							mListView.setXListViewListener(QingjiaListActivity.this);
+//							mListView.setOnItemClickListener(QingjiaListActivity.this);
+//							break;
+//						case 2:
 //
-//			progressDialog.dismiss();
+//							break;
 //
-//			super.handleMessage(msg);
+//					}
+//					progressDialog.dismiss();
+//				}
+//			};
+//			testHandler.sendEmptyMessage(1);
+//			Looper.loop();
+//
 //		}
+//
 //	};
+
+
 	/*
 创建菜单项
  */
@@ -270,7 +323,14 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 		menu.getItem(2).setVisible(false);
 		menu.getItem(1).setEnabled(true);
 		menu.getItem(1).setVisible(true);
-		menu.getItem(1).setTitle(R.string.add);
+		if(user.getPurview().equals("系统")) {
+			menu.getItem(1).setEnabled(true);
+			menu.getItem(1).setVisible(true);
+			menu.getItem(1).setTitle(R.string.add);
+		}else {
+			menu.getItem(1).setVisible(false);
+		}
+
 		menu.getItem(4).setVisible(true);
 		SupportMenuItem searchItem = (SupportMenuItem) menu
 				.findItem(R.id.action_search);
@@ -510,12 +570,16 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 	*转到另外页面
 	 */
 	private void geneQingjiaItems() {
-		try {
-			QingjiaService qingjiaService = new QingjiaService();
-			qingjiaList = qingjiaService.QueryAllQingjias(intFirst, recPerPage);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		url= HttpUtil.BASE_URL+"qingjia!queryAllQingjias.action";
+		params= new RequestParams();
+		params.addQueryStringParameter("purview",user.getPurview());
+		params.addQueryStringParameter("name1","");
+		params.addQueryStringParameter("queryname","0");
+		//	System.out.println(myAppVariable.getTusers().getPurview());
+		params.addQueryStringParameter("deptid",user.getDeptid()+"");
+		params.addQueryStringParameter("intFirst",intFirst+"");
+		params.addQueryStringParameter("recPerPage",recPerPage+"");
+		mThreadmy();
 	}
 
 	/*
@@ -742,37 +806,24 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 	}
 
 	private void doSearching(String query) throws Exception {
-		QingjiaService qingjiaService = new QingjiaService();
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("name1", query);
-		map.put("intFirst",intFirst+"");
-		map.put("recPerPage",recPerPage+"");
 
-		Map map1=qingjiaService.queryOtherCount(map);
-		count=(int)map1.get("count");
-		qingjiacountday=(double)map1.get("countday");
+		intFirst=0;
+		recPerPage=20;
+		url= HttpUtil.BASE_URL+"qingjia!queryAllQingjias.action";
+		params= new RequestParams();
+		params.addQueryStringParameter("name1", query);
+		params.addQueryStringParameter("purview",user.getPurview());
+		params.addQueryStringParameter("deptid",user.getDeptid()+"");
+		params.addQueryStringParameter("job",user.getJob()+"");
+		params.addQueryStringParameter("queryname","1");
+		params.addQueryStringParameter("intFirst",intFirst+"");
+		params.addQueryStringParameter("recPerPage",recPerPage+"");
+		params.addQueryStringParameter("searchnd","0");
 
 
-		qingjiaList = qingjiaService.queryQingjiaOther(map);
+		otherquery=true;
+		mThreadmy();
 
-		if(qingjiaList!=null) {
-
-			myAppVariable.setQingjias(qingjiaList);
-
-		} else{
-			new AlertDialog.Builder(this).setTitle("没有查到请假记录！").setPositiveButton("确定", new OnClickListener() {
-
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					// TODO Auto-generated method stub
-					Intent intent = new Intent();
-
-					intent.setClass(QingjiaListActivity.this, QingjiaListActivity.class);
-					startActivity(intent);
-
-				}
-			}).show();
-		}
 
 	}
 	/*
