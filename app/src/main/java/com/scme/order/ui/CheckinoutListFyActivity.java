@@ -490,6 +490,7 @@ private 	RequestParams params;
 		params.addQueryStringParameter("deptid",user.getDeptid()+"");
 		params.addQueryStringParameter("intFirst",intFirst+"");
 		params.addQueryStringParameter("recPerPage",recPerPage+"");
+		params.addQueryStringParameter("job",user.getJob()+"");
 		mThreadmy();
 
 

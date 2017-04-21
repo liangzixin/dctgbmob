@@ -27,6 +27,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -78,7 +79,7 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 	private Context context = QingjiaListActivity.this;
 	private MyAdapter myAdapter;
 	private ArrayAdapter<String> adapter;
-	private int intFirst = 0;
+	private int intFirst =0;
 	private int recPerPage = 20;
 	private String query = "";
 	private int count = 0;
@@ -146,9 +147,9 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 		user = myAppVariable.getTusers();
 		query = myAppVariable.getQuery();
 		mListView = (XListView) findViewById(R.id.lvqingjias);
-		progressDialog = new ProgressDialog(QingjiaListActivity.this);
-		progressDialog.setMessage("数据加载中  请稍后...");
-		progressDialog.show();
+//		progressDialog = new ProgressDialog(QingjiaListActivity.this);
+//		progressDialog.setMessage("数据加载中  请稍后...");
+//		progressDialog.show();
 
 
 //		if (Thread.State.NEW == mThread.getState()) {
@@ -198,7 +199,7 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 			String query =myAppVariable.getQuery();
 
 			try {
-				doSearching(query);
+				doSearchingOther();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -206,10 +207,16 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 			myAppVariable.setOtherquery(false);
 			geneQingjiaItems();
 		}
+		View view = (LinearLayout) getLayoutInflater().inflate(R.layout.qingjia_fooder, null);
+		qingjiafoodid = (TextView) view.findViewById(R.id.qingjia_foodid);
 
+		mListView.addFooterView(view);
 
 	}
 	private void mThreadmy() {
+		progressDialog = new ProgressDialog(QingjiaListActivity.this);
+		progressDialog.setMessage("数据加载中  请稍后...");
+		progressDialog.show();
 //	 HttpHandler<String> handler;
 		HttpUtils httpUtils= new HttpUtils();
 		// 不缓存，设置缓存0秒。
@@ -226,6 +233,7 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 
 						myobject = new JSONObject(responseInfo.result);
 						count=myobject.getInt("count");
+						qingjiacountday=myobject.getInt("countday");
 						listArray=myobject.getString("qingjiaList");
 						qingjiaList= BaseService.getGson().fromJson(listArray, new TypeToken<List<Qingjia>>() {}.getType());
 						System.out.println(qingjiaList.size());
@@ -238,20 +246,28 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 
 					tolpage.setText("记录数："+count);
 					nowpage.setText("页码："+(intFirst+1)+"/"+pages);
-
+					qingjiafoodid.setText("合   计:  " + qingjiacountday + " 　天");
 					if(count>recPerPage) {
 						mListView.setPullLoadEnable(true);
 					}else{
 						mListView.setPullLoadEnable(false);
 					}
+//                 if(qingjiaList.size()>0){
+//					 for(int i=0;i<qingjiaList.size();i++){
+//						 Qingjia qingjia=(Qingjia)qingjiaList.get(i);
+//						 qingjiacountday=qingjiacountday+qingjia.getCountday();
+//					 }
+//				 }
+
 
 					myAdapter = new MyAdapter(qingjiaList, 1);
+
 
 					mListView.setAdapter(myAdapter);
 
 					mListView.setXListViewListener(QingjiaListActivity.this);
 					mListView.setOnItemClickListener(QingjiaListActivity.this);
-
+					onLoad();
 				}
 			}
 
@@ -484,59 +500,61 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 						@Override
 						public void onClick(DialogInterface dialog,
 											int which) {
-							map = new HashMap<String, String>();
-
-							if (mCheckBox1.isChecked()) {
-
-								map.put("branchname", spinner1.getSelectedItem().toString());
-							} else {
-
-								map.put("branchname", "");
-							}
-
-							if (mCheckBox2.isChecked()) {
-								map.put("name", spinner2.getSelectedItem().toString());
-								map.put("name1", spinner3.getSelectedItem().toString());
-
-
-							} else {
-								map.put("name", "");
-								map.put("name1", "");
-							}
-
-							if (mCheckBox3.isChecked()) {
-								map.put("searchnd", spinner4.getSelectedItem().toString());
-							} else {
-								map.put("searchnd", "");
-
-							}
-
-
-							try {
-								intFirst = 0;
-								map.put("intFirst", intFirst + "");
-								QingjiaService qingjiaService = new QingjiaService();
-								Map map1 = qingjiaService.queryOtherCount(map);
-								count = (int) map1.get("count");
-								qingjiacountday = (double) map1.get("countday");
-//								qingjiacountday=qingjiacount.getCountday();
-								qingjiaList = qingjiaService.queryQingjiaOther(map);
-							} catch (Exception e) {
-								// TODO: handle exception
-
-							}
-
-							myAppVariable.setOtherquery(true);
-							myAppVariable.setMap(map);
-							pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
-
-							tolpage.setText("记录数：" + count);
-							nowpage.setText("页码：" + (intFirst + 1) + "/" + pages);
-							myAdapter = new MyAdapter(qingjiaList, 1);
-							mListView.setAdapter(myAdapter);
-							mListView.setPullLoadEnable(true);
-							mListView.setOnItemClickListener(QingjiaListActivity.this);
-							onLoad();
+							doSearchingOther();
+//
+//									map = new HashMap<String, String>();
+//
+//							if (mCheckBox1.isChecked()) {
+//
+//								map.put("branchname", spinner1.getSelectedItem().toString());
+//							} else {
+//
+//								map.put("branchname", "");
+//							}
+//
+//							if (mCheckBox2.isChecked()) {
+//								map.put("name", spinner2.getSelectedItem().toString());
+//								map.put("name1", spinner3.getSelectedItem().toString());
+//
+//
+//							} else {
+//								map.put("name", "");
+//								map.put("name1", "");
+//							}
+//
+//							if (mCheckBox3.isChecked()) {
+//								map.put("searchnd", spinner4.getSelectedItem().toString());
+//							} else {
+//								map.put("searchnd", "");
+//
+//							}
+//
+//
+//							try {
+//								intFirst = 0;
+//								map.put("intFirst", intFirst + "");
+//								QingjiaService qingjiaService = new QingjiaService();
+//								Map map1 = qingjiaService.queryOtherCount(map);
+//								count = (int) map1.get("count");
+//								qingjiacountday = (double) map1.get("countday");
+////								qingjiacountday=qingjiacount.getCountday();
+//								qingjiaList = qingjiaService.queryQingjiaOther(map);
+//							} catch (Exception e) {
+//								// TODO: handle exception
+//
+//							}
+//
+//							myAppVariable.setOtherquery(true);
+//							myAppVariable.setMap(map);
+//							pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
+//
+//							tolpage.setText("记录数：" + count);
+//							nowpage.setText("页码：" + (intFirst + 1) + "/" + pages);
+//							myAdapter = new MyAdapter(qingjiaList, 1);
+//							mListView.setAdapter(myAdapter);
+//							mListView.setPullLoadEnable(true);
+//							mListView.setOnItemClickListener(QingjiaListActivity.this);
+				//			onLoad();
 //							} else {
 //								intFirst = pages;
 //								mListView.setPullLoadEnable(false);
@@ -573,12 +591,14 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 		url= HttpUtil.BASE_URL+"qingjia!queryAllQingjias.action";
 		params= new RequestParams();
 		params.addQueryStringParameter("purview",user.getPurview());
-		params.addQueryStringParameter("name1","");
+		params.addQueryStringParameter("name","");
 		params.addQueryStringParameter("queryname","0");
 		//	System.out.println(myAppVariable.getTusers().getPurview());
-		params.addQueryStringParameter("deptid",user.getDeptid()+"");
+		params.addQueryStringParameter("deptid",user.getBranchid()+"");
 		params.addQueryStringParameter("intFirst",intFirst+"");
 		params.addQueryStringParameter("recPerPage",recPerPage+"");
+		params.addQueryStringParameter("job",user.getJob()+"");
+		params.addQueryStringParameter("searchnd","0");
 		mThreadmy();
 	}
 
@@ -586,18 +606,30 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 *根据查询条件转到另外页面
  */
 	private void geneQingjiaOther() {
-		map = new HashMap<String, String>();
+		url= HttpUtil.BASE_URL+"qingjia!queryAllQingjias.action";
+		params= new RequestParams();
+		params.addQueryStringParameter("purview",user.getPurview());
+		params.addQueryStringParameter("name",myAppVariable.getQuery());
+		params.addQueryStringParameter("queryname","0");
+		//	System.out.println(myAppVariable.getTusers().getPurview());
+		params.addQueryStringParameter("deptid",user.getBranchid()+"");
+		params.addQueryStringParameter("intFirst",intFirst+"");
+		params.addQueryStringParameter("recPerPage",recPerPage+"");
+		params.addQueryStringParameter("job",user.getJob()+"");
+		params.addQueryStringParameter("searchnd","0");
+		mThreadmy();
+	//	map = new HashMap<String, String>();
 
-		String name1 = myAppVariable.getQuery();
-		map.put("name1", name1);
-		map.put("intFirst", intFirst + "");
-		map.put("recPerPage", recPerPage + "");
-		try {
-			QingjiaService qingjiaService = new QingjiaService();
-			qingjiaList = qingjiaService.queryQingjiaOther(map);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		String name1 = myAppVariable.getQuery();
+//		map.put("name1", name1);
+//		map.put("intFirst", intFirst + "");
+//		map.put("recPerPage", recPerPage + "");
+//		try {
+//			QingjiaService qingjiaService = new QingjiaService();
+//			qingjiaList = qingjiaService.queryQingjiaOther(map);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	private int geneQingjiaItemsCount() {
@@ -625,12 +657,13 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 
 	@Override
 	public void onRefresh() {
-		testHandler.sendEmptyMessage(2);
+	//	testHandler.sendEmptyMessage(2);
 		start = ++refreshCnt;
 		if (intFirst >= 1 && pages != 1) {
 			intFirst--;
 			if (myAppVariable.getOtherquery()) {
-				geneQingjiaOther();
+			//	geneQingjiaOther();
+				doSearchingOther();
 			} else {
 				geneQingjiaItems();
 			}
@@ -647,11 +680,12 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 
 	@Override
 	public void onLoadMore() {
-		testHandler.sendEmptyMessage(2);
+	//	testHandler.sendEmptyMessage(2);
 		if ((intFirst + 1) < pages && pages != 1) {
 			intFirst++;
 			if (myAppVariable.getOtherquery()) {
-				geneQingjiaOther();
+				//geneQingjiaOther();
+				doSearchingOther();
 			} else {
 				geneQingjiaItems();
 			}
@@ -787,7 +821,7 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 
 				longtime.setText(qingjia.getCountd() + "");
 
-				qingjiafoodid.setText("合   计:   " + qingjiacountday + " 　天");
+				//qingjiafoodid.setText("合   计:   " + qingjiacountday + " 　天");
 
 
 			}
@@ -807,13 +841,12 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 
 	private void doSearching(String query) throws Exception {
 
-		intFirst=0;
-		recPerPage=20;
+
 		url= HttpUtil.BASE_URL+"qingjia!queryAllQingjias.action";
 		params= new RequestParams();
-		params.addQueryStringParameter("name1", query);
+		params.addQueryStringParameter("name", query);
 		params.addQueryStringParameter("purview",user.getPurview());
-		params.addQueryStringParameter("deptid",user.getDeptid()+"");
+		params.addQueryStringParameter("deptid",user.getBranchid()+"");
 		params.addQueryStringParameter("job",user.getJob()+"");
 		params.addQueryStringParameter("queryname","1");
 		params.addQueryStringParameter("intFirst",intFirst+"");
@@ -821,6 +854,50 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 		params.addQueryStringParameter("searchnd","0");
 
 
+		otherquery=true;
+		mThreadmy();
+
+
+	}
+	private void doSearchingOther() {
+
+
+		url= HttpUtil.BASE_URL+"qingjia!queryAllQingjias.action";
+		params= new RequestParams();
+		if (mCheckBox1.isChecked()) {
+
+			params.addQueryStringParameter("branchid", spinner1.getSelectedItemPosition()+1+"");
+							} else {
+			params.addQueryStringParameter("branchid", "0");
+							}
+
+							if (mCheckBox2.isChecked()) {
+								params.addQueryStringParameter("name", spinner3.getSelectedItem().toString());
+
+							} else {
+								params.addQueryStringParameter("name", "");
+
+							}
+
+							if (mCheckBox3.isChecked()) {
+					//			String aaa=spinner4.getSelectedItem().toString();
+						//		System.out.println("aaaaaaa"+aaa);
+						params.addQueryStringParameter("searchnd", spinner4.getSelectedItem().toString());
+				   	//	params.addQueryStringParameter("searchnd", "2017");
+							} else {
+								params.addQueryStringParameter("searchnd", "0");
+
+							}
+
+		params.addQueryStringParameter("purview",user.getPurview());
+		params.addQueryStringParameter("deptid",user.getBranchid()+"");
+		params.addQueryStringParameter("job",user.getJob()+"");
+		params.addQueryStringParameter("queryname","1");
+		params.addQueryStringParameter("intFirst",intFirst+"");
+		params.addQueryStringParameter("recPerPage",recPerPage+"");
+
+
+		myAppVariable.setOtherquery(true);
 		otherquery=true;
 		mThreadmy();
 
@@ -885,7 +962,8 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 //						tv.setText(inputPwd);
 						if (intFirst < pages) {
 							if(myAppVariable.getOtherquery()){
-								geneQingjiaOther();
+							//	geneQingjiaOther();
+								doSearchingOther();
 							}else {
 								geneQingjiaItems();
 							}

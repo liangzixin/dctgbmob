@@ -7,10 +7,10 @@ android {
 
     defaultConfig {
         applicationId "com.scme.order"
-        minSdkVersion 23
+        minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
-        versionName "6.6"
+        versionName "6.8"
         multiDexEnabled true
     }
 
