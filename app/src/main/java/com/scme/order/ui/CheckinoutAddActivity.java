@@ -190,6 +190,7 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
                 if (responseInfo.result != null) {
                     progressDialog.dismiss();
                     Toast.makeText(CheckinoutAddActivity.this, "打卡添加成功！！！", Toast.LENGTH_SHORT).show();
+                    listuser1=null;
                     Intent intent = new Intent();
                    // intent.putExtra("result", txtContent.getText().toString());
                     setResult(RESULT_CODE, intent);// 设置resultCode，onActivityResult()中能获取到
@@ -397,8 +398,8 @@ public String IsSingle(String status) {
                                 datePicker.getMonth() + 1,
                                 datePicker.getDayOfMonth()));
                         sb.append(" ");
-                        sb.append(timePicker.getHour())
-                                .append(":").append(timePicker.getMinute()).append(":00");
+                        sb.append(timePicker.getCurrentHour())
+                                .append(":").append(timePicker.getCurrentMinute()).append(":00");
 
                         etStartTime.setText(sb);
 
