@@ -29,54 +29,14 @@ repositories {
 dependencies {
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.0'
     androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
-    //        compile project(':libs')
 
-    //  compile files('libs/pinyin4j-1.1.0.jar')
-
-    //    compile 'com.android.support:appcompat-v7:21.0.3'
-
-    //    compile 'com.android.support:cardview-v7:21.0.3'
-
-    //    compile('com.android.support:recyclerview-v7:21.0.3') {
-
-    //            exclude module: 'support-v4'
-
-    //    }
-
-    //    compile 'com.jakewharton:butterknife:6.0.0'
-
-    //
     compile project(':percent-support-extends')
-    //    compile 'com.android.support:design:24.0.0-alpha1'
 
-    //    compile 'com.android.support:cardview-v7:24.0.0-alpha1'
-
-    //    compile 'com.android.support:recyclerview-v7:24.0.0-alpha1'
-
-    //    compile files('src/main/lib/android-support-v7-recyclerview.jar')
-
-    //    compile 'com.squareup:android-times-square:1.6.5@aar'
-
-    //    compile 'com.google.android.gms:play-services:8.4.0'
-
-    //    compile 'com.android.support:appcompat-v7:24.0.0-alpha2'
-
-    //  compile files('src/main/libs/pinyin4j-1.1.0.jar')
     compile files('src/main/libs/httpmime-4.2.5.jar')
     compile files('src/main/libs/json-lib-2.2.3-jdk15.jar')
     compile files('src/main/libs/org.apache.http.legacy.jar')
     compile files('src/main/libs/xUtils.jar')
-    // compile 'com.android.support:support-v4:25.3.1'
-    // compile 'com.google.android.gms:play-services-maps:9.4.0'
 
-    // compile 'com.google.android.gms:play-services-location:9.4.0'
-    // compile 'com.google.firebase:firebase-ads:9.0.2'
-    //  classpath 'com.google.gms:google-services:3.0.0'
-    //compile 'com.google.firebase:firebase-server-sdk:3.0.3'
-
-    //  compile 'com.google.firebase:firebase-admin:4.1.7'
-    // compile 'com.google.gms:google-services:3.0.0'
-    //classpath 'com.google.gms:google-services:3.0.0'
     compile 'com.google.code.findbugs:jsr305:2.0.1'
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.google.android.gms:play-services-maps:11.0.4'
