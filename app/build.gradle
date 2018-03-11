@@ -29,7 +29,7 @@ repositories {
 dependencies {
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.0'
     androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
-
+    compile project(':panellistlibrary')
     compile project(':percent-support-extends')
 
     compile files('src/main/libs/httpmime-4.2.5.jar')
