@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -23,6 +24,7 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.scme.order.adpater.MyPanelListAdapter;
 import com.scme.order.model.Tusers;
 import com.scme.order.service.BaseService;
 import com.scme.order.service.ProgressListener;
@@ -38,9 +40,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import sysu.zyb.panellistlibrary.PanelListLayout;
 
 /**
 // * 主菜单
@@ -54,9 +58,9 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 	static int userId1 = 0;
 	//static String purview = "";
 	private Handler testHandler;
-	private ListView mainLzxListView;
+//	private ListView mainLzxListView;
 
-	private List<HashMap<String, Object>> mainLzxList = new ArrayList<HashMap<String, Object>>();
+	private List<Map<String, Object>> mainLzxList = new ArrayList<Map<String, Object>>();
 
 
 	private ProgressDialog progressDialog;
@@ -75,6 +79,16 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 	private    String url=null;
 	private 	RequestParams params;
 
+
+	private PanelListLayout pl_root;
+	private ListView lv_content;
+
+	private MyPanelListAdapter adapter;
+
+	//private List<Map<String, String>> contentList = new ArrayList<>();
+
+	private List<String> columnList;
+
 	@InjectView(R.id.btn_title1)
 	TextView button1;
 	@InjectView(R.id.btn_title2)
@@ -85,12 +99,12 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 	TextView button4;
 	@InjectView(R.id.btn_title5)
 	TextView button5;
-	@InjectView(R.id.tvUserDay)
-	TextView mainTextView;
-	@InjectView(R.id.textView1)
-	TextView mainTextView7;
-	@InjectView(R.id.textView2)
-	TextView textView2;
+//	@InjectView(R.id.tvUserDay)
+//	TextView mainTextView;
+//	@InjectView(R.id.textView1)
+//	TextView mainTextView7;
+//	@InjectView(R.id.textView2)
+//	TextView textView2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -101,69 +115,117 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 		ButterKnife.inject(this);
 
 
-		mainLzxListView = (ListView) findViewById(R.id.lvSeletFoodsType);
+	//	mainLzxListView = (ListView) findViewById(R.id.lvSeletFoodsType);
 
 		myAppVariable = (MyAppVariable) getApplication(); //获得自定义的应用程序MyAppVariable
-	//	Tusers users0 = myAppVariable.getTusers();
-		//purview = users0.getPurview();
+
 		textView = (TextView) findViewById(R.id.tvMainUserName);
        	String name="";
 		if(myAppVariable.getTusers().getName()!=null) name=myAppVariable.getTusers().getName();
 		textView.setText("昆明市东川区企业退休人员管理办公室移动OA  " +name);
-	//	textView.setText("昆明市东川区企业退休人员管理办公室移动OA  " + "***");
-//
-//		if(Thread.State.NEW == mThread.getState()) {
-//
-//			try {
-//
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//			mThread.start();
-//
-//		}
+
 
 		button1.setOnClickListener(onViewClick);
 		button2.setOnClickListener(onViewClick);
 		button3.setOnClickListener(onViewClick);
 		button4.setOnClickListener(onViewClick);
 		button5.setOnClickListener(onViewClick);
-		//btn_app_sy();
-		getBirthday();
-		//myHandler.sendMessage(myHandler.obtainMessage());
-	}
-//
-//	private Thread mThread = new Thread() {
-//		public void run() {
-////			Log.d("TAG", "mThread run");
-//			Looper.prepare();
-//			testHandler = new Handler() {
-//				public void handleMessage(Message msg) {
-////					Log.d("TAG", "worker thread:" + Thread.currentThread().getName());
-////					System.out.println("我的线程："+msg.what);
-//					switch (msg.what) {
-//						//handle message here
-//						case 1:
-//							progressDialog.dismiss();
-////							btn_app_sy();
-////                            showView(user);
-////							setSpinner();
-//							break;
-//							//send message here
-//						case 2:
-//							break;
-//
-//					}
-//
-//				}
-//			};
-//			testHandler.sendEmptyMessage(1);
-//			Looper.loop();
-//
-//		}
-//
-//	};
+		initView();
+		initContentDataList();
 
+
+	}
+
+	private void initView() {
+
+		pl_root = (PanelListLayout) findViewById(R.id.id_pl_root);
+		lv_content = (ListView) findViewById(R.id.id_lv_content);
+
+		//设置listView为多选模式，长按自动触发
+		lv_content.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+	//	lv_content.setMultiChoiceModeListener(new MultiChoiceModeCallback());
+
+		//listView的点击监听
+		lv_content.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//				ListView listView = (ListView) parent;
+//				HashMap<String, String> map = (HashMap<String, String>) listView.getItemAtPosition(position);
+				Map<String,Object> map =null;
+				map=mainLzxList.get(position);
+				int workerid = Integer.parseInt(String.valueOf(map.get("id")));
+
+				myAppVariable.setTxxxid(workerid);
+
+				if (map.get("type").equals("1")) {
+					Intent intent = new Intent();
+					intent.setClass(MainMenuActivity.this, UserDetailActivity.class);
+					startActivity(intent);
+				} else {
+					Intent intent = new Intent();
+					intent.setClass(MainMenuActivity.this, DydhDetailActivity.class);
+					startActivity(intent);
+				}
+			}
+		});
+	}
+
+	public class CustomRefreshListener implements SwipeRefreshLayout.OnRefreshListener{
+		@Override
+		public void onRefresh() {
+			// you can do sth here, for example: make a toast:
+			Toast.makeText(MainMenuActivity.this, "已经到顶了！", Toast.LENGTH_SHORT).show();
+			// don`t forget to call this
+			adapter.getSwipeRefreshLayout().setRefreshing(false);
+		}
+	}
+
+	/** 生成一份横向表头的内容
+	 *
+	 * @return List<String>
+	 */
+	private List<String> getRowDataList(){
+		List<String> rowDataList = new ArrayList<>();
+		rowDataList.add("头像");
+		rowDataList.add("姓名");
+		rowDataList.add("科室");
+		rowDataList.add("生日(入党日)");
+		rowDataList.add("电码号码");
+			return rowDataList;
+	}
+
+	/**
+	 * 初始化content数据
+	 */
+	private void initContentDataList() {
+		getBirthday();
+
+	}
+
+	private void initColumnDataList(){
+		columnList = new ArrayList<>(mainLzxList.size());
+		for (int i = 0;i<mainLzxList.size();i++){
+			columnList.add(String.valueOf(i));
+		}
+	}
+
+	/**
+	 * 更新content数据
+	 */
+	private void changeContentDataList() {
+		mainLzxList.clear();
+//		for (int i = 1; i < 500; i++) {
+//			Map<String, String> data = new HashMap<>();
+//			data.put("1", "第" + i + "第一个");
+//			data.put("2", "第" + i + "第二个");
+//			data.put("3", "第" + i + "第三个");
+//			data.put("4", "第" + i + "第四个");
+//			data.put("5", "第" + i + "第五个");
+//			data.put("6", "第" + i + "第六个");
+//			data.put("7", "第" + i + "第七个");
+//			mainLzxList.add(data);
+//		}
+	}
 	// 弹出菜单监听器
 	AdapterView.OnItemClickListener popmenuItemClickListener = new AdapterView.OnItemClickListener() {
 		@Override
@@ -322,112 +384,6 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 	}
 
 	public void btn_app_sy() {
-//		progressDialog = new ProgressDialog(this);
-//		progressDialog.setMessage("数据加载中  请稍后...");
-//		progressDialog.show();
-//		Thread t = new Thread(new Runnable() {
-//			@Override
-//			public void run() {
-//				try {
-//					mainLzxList.clear();//清空一遍List
-//
-//					//  foods=foodsService.QueryAllFoods();
-//					users = userService.queryTodayBirthday();
-//					users7 = userService.queryToday7Birthday();
-//					dydhs = dydhService.queryTodayBirthday();
-////					Thread.sleep(500);
-//					if (users.size() > 0) {
-////						mainTextView=(TextView)findViewById(R.id.tvUserDay);
-//////						mainTextView.setText("日");
-////						mainTextView.setText("今日过生日职工");
-//						for (int i = 0; i < users.size(); i++) {
-//							//在线程中完成数据请求
-//							HashMap<String, Object> map = new HashMap<String, Object>();
-////							System.out.println("是否为空:"+users.get(i).getPicName());
-//							Pictures pic = new Pictures();
-//							if (users.get(i).getPicName() == null || users.get(i).getPicName().length() <= 0) {
-////								System.out.println("是为空:"+users.get(i).getPicName());
-//								Bitmap bmp = pic.getMenuPic("icon_laucher.gif");
-//								map.put("foodsImage", bmp);
-//							} else {
-//
-////								System.out.println("是不为空:"+users.get(i).getPicName());
-//								Bitmap bmp = pic.getMenuPic(users.get(i).getPicName());
-//								map.put("foodsImage", bmp);
-//							}
-//
-//							map.put("username", users.get(i).getUserName());
-//							map.put("branchid", users.get(i).getBranch().getSubname1(2));
-//							map.put("tel", users.get(i).getBirday());
-//							map.put("workerid", users.get(i).getId());
-//							map.put("type", "1");
-//							mainLzxList.add(map);
-//						}
-//					}
-//					if (users7.size() > 0) {
-//
-//
-//						for (int i = 0; i < users7.size(); i++) {
-//							//在线程中完成数据请求
-//							HashMap<String, Object> map7 = new HashMap<String, Object>();
-//							Pictures pic = new Pictures();
-//							if (users7.get(i).getPicName() == null || users7.get(i).getPicName().length() <= 0) {
-////								System.out.println("是为空:"+users.get(i).getPicName());
-//								Bitmap bmp = pic.getMenuPic("icon_laucher.gif");
-//								map7.put("foodsImage", bmp);
-//							} else {
-//
-////								System.out.println("是不为空:"+users.get(i).getPicName());
-//								Bitmap bmp = pic.getMenuPic(users7.get(i).getPicName());
-//								map7.put("foodsImage", bmp);
-//							}
-//
-//							map7.put("username", users7.get(i).getUserName());
-//							map7.put("branchid", users7.get(i).getBranch().getSubname1(2));
-//							map7.put("tel", users7.get(i).getBirday());
-//							map7.put("workerid", users7.get(i).getId());
-//							map7.put("type", "1");
-//							mainLzxList.add(map7);
-//						}
-//					}
-//					if (dydhs.size() > 0) {
-////						mainTextView = (TextView) findViewById(R.id.textView2);
-////						mainTextView.setText("今日是入党周年的党员");
-//
-//						for (int i = 0; i < dydhs.size(); i++) {
-//							//在线程中完成数据请求
-//							HashMap<String, Object> map = new HashMap<String, Object>();
-//							Pictures pic = new Pictures();
-//							Bitmap bmp = pic.getMenuPic("icon_laucher.gif");
-//							map.put("foodsImage", bmp);
-//							map.put("idd", i + 1);
-//							map.put("username", dydhs.get(i).getName());
-//							map.put("branchid", dydhs.get(i).getZbmz().getZbmz().substring(4, 10));
-//							map.put("tel", dydhs.get(i).getRdsj());
-//							map.put("workerid", dydhs.get(i).getId());
-//							map.put("type", "2");
-//							mainLzxList.add(map);
-//						}
-//					}
-//
-//
-//				} catch (Exception e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//				myHandler.sendMessage(myHandler.obtainMessage());
-//				//		myHandler.sendMessage(myHandler.obtainMessage());
-//			}
-//		});
-//		t.start();
-
-//		usersSimpleAdapter = new SimpleAdapter(MainMenuActivity.this, mainLzxList, R.layout.users_birthday_list,
-//				new String[]{"foodsImage", "branchid", "username", "tel", "workerid", "type"},
-//				new int[]{R.id.ivFoodsItem, R.id.tvUsersBranchid, R.id.tvUsersName, R.id.tvUsersTel, R.id.tvWorkerId, R.id.tvType});
-//		mainLzxListView.setAdapter(usersSimpleAdapter);//线程执行完后显示视图
-//		mainLzxListView.setOnItemClickListener(MainMenuActivity.this);
-//
-//		usersSimpleAdapter.setViewBinder(new CustomViewBinder());
 
 
 	}
@@ -438,14 +394,20 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 		public void handleMessage(Message msg) {
 		//	progressDialog.dismiss();
 
-			usersSimpleAdapter = new SimpleAdapter(MainMenuActivity.this, mainLzxList, R.layout.users_birthday_list,
-					new String[]{"foodsImage", "branchid", "username", "tel", "workerid", "type"},
-					new int[]{R.id.ivFoodsItem, R.id.tvUsersBranchid, R.id.tvUsersName, R.id.tvUsersTel, R.id.tvWorkerId, R.id.tvType});
-			mainLzxListView.setAdapter(usersSimpleAdapter);//线程执行完后显示视图
-			mainLzxListView.setOnItemClickListener(MainMenuActivity.this);
-
-			usersSimpleAdapter.setViewBinder(new CustomViewBinder());
-
+//			usersSimpleAdapter = new SimpleAdapter(MainMenuActivity.this, mainLzxList, R.layout.users_birthday_list,
+//					new String[]{"foodsImage", "branchid", "username", "tel", "workerid", "type"},
+//					new int[]{R.id.ivFoodsItem, R.id.tvUsersBranchid, R.id.tvUsersName, R.id.tvUsersTel, R.id.tvWorkerId, R.id.tvType});
+//			mainLzxListView.setAdapter(usersSimpleAdapter);//线程执行完后显示视图
+//			mainLzxListView.setOnItemClickListener(MainMenuActivity.this);
+//
+//			usersSimpleAdapter.setViewBinder(new CustomViewBinder());
+			adapter = new MyPanelListAdapter(MainMenuActivity.this, pl_root, lv_content, R.layout.item_content, mainLzxList);
+			adapter.setInitPosition(mainLzxList.size());
+			adapter.setSwipeRefreshEnabled(true);
+			adapter.setRowDataList(getRowDataList());
+			adapter.setTitle("序号");
+			adapter.setOnRefreshListener(new CustomRefreshListener());
+			pl_root.setAdapter(adapter);
 
 			super.handleMessage(msg);
 		}
@@ -454,22 +416,22 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		// TODO Auto-generated method stub
-		ListView listView = (ListView) parent;
-		HashMap<String, String> map = (HashMap<String, String>) listView.getItemAtPosition(position);
-
-		int workerid = Integer.parseInt(String.valueOf(map.get("workerid")));
-
-		myAppVariable.setTxxxid(workerid);
-//		if ( parent.getId()== R.id.lvSeletFoodsType|| parent.getId()==R.id.lv7DayBirthday) {
-		if (map.get("type").equals("1")) {
-			Intent intent = new Intent();
-			intent.setClass(this, UserDetailActivity.class);
-			startActivity(intent);
-		} else {
-			Intent intent = new Intent();
-			intent.setClass(this, DydhDetailActivity.class);
-			startActivity(intent);
-		}
+//		ListView listView = (ListView) parent;
+//		HashMap<String, String> map = (HashMap<String, String>) listView.getItemAtPosition(position);
+//
+//		int workerid = Integer.parseInt(String.valueOf(map.get("workerid")));
+//
+//		myAppVariable.setTxxxid(workerid);
+//
+//		if (map.get("type").equals("1")) {
+//			Intent intent = new Intent();
+//			intent.setClass(this, UserDetailActivity.class);
+//			startActivity(intent);
+//		} else {
+//			Intent intent = new Intent();
+//			intent.setClass(this, DydhDetailActivity.class);
+//			startActivity(intent);
+//		}
 	}
 	private void getBirthday() {
 		progressDialog = new ProgressDialog(this);
@@ -500,9 +462,7 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 					}
 
 					if (users.size() > 0) {
-//						mainTextView=(TextView)findViewById(R.id.tvUserDay);
-////						mainTextView.setText("日");
-//						mainTextView.setText("今日过生日职工");
+
 						for (int i = 0; i < users.size(); i++) {
 							//在线程中完成数据请求
 							HashMap<String, Object> map = new HashMap<String, Object>();
@@ -521,9 +481,10 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 
 							map.put("username", users.get(i).getUserName());
 							map.put("branchid", users.get(i).getAddress());
-							map.put("tel", users.get(i).getBirday());
-							map.put("workerid", users.get(i).getId());
-							map.put("type", "1");
+							map.put("birday", users.get(i).getBirday());
+							map.put("tel", users.get(i).getTel());
+							map.put("id", users.get(i).getJob()+"");
+							map.put("type",users.get(i).getSingle());
 							mainLzxList.add(map);
 						}
 					}

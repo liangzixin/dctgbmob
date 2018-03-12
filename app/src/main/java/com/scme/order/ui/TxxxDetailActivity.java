@@ -20,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.MaterialEditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -35,11 +36,14 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.litao.android.lib.entity.PhotoEntry;
 import com.scme.order.adpater.ChooseAdapter;
+import com.scme.order.adpater.MyPanelListAdapter;
+import com.scme.order.adpater.MyRzxxListAdapter;
 import com.scme.order.common.T;
 import com.scme.order.holder.PhotoHolder;
 import com.scme.order.interfaces.ItemClickListener;
 import com.scme.order.model.Photo;
 import com.scme.order.model.Photoimage;
+import com.scme.order.model.Rzxx;
 import com.scme.order.model.Tusers;
 import com.scme.order.model.Txxx;
 import com.scme.order.service.BaseService;
@@ -55,10 +59,14 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import sysu.zyb.panellistlibrary.PanelListLayout;
 
 import static android.support.v7.widget.RecyclerView.SCROLL_STATE_DRAGGING;
 import static android.support.v7.widget.RecyclerView.SCROLL_STATE_IDLE;
@@ -104,7 +112,15 @@ private HttpHandler<String> handler;
     private StaggeredGridLayoutManager StaggeredGridLayoutManager;
 
     private static final String[] m={"请选择认证方式","填表认证","本人认证","代认证","入户认证","视频认证"};
-    private static final String[] m1={"请选择认证时间","201703","201704","201705","201706","201707"};
+    private static final String[] m1={"请选择认证时间","201803","201804","201805","201806","201807"};
+
+    private PanelListLayout pl_rootrzxx;
+    private ListView lv_contentrzxx;
+
+    private MyRzxxListAdapter adapterrzxx;
+
+   private Set<Rzxx> listrzxx =new HashSet<Rzxx>();
+
 
     @InjectView(R.id.img_1) ImageView img1;
     @InjectView(R.id.img_2) ImageView img2;
@@ -145,6 +161,9 @@ private HttpHandler<String> handler;
 
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_multiple_choice);
 
+        pl_rootrzxx = (PanelListLayout) findViewById(R.id.id_pl_rootrzxx);
+        lv_contentrzxx = (ListView) findViewById(R.id.id_lv_contentrzxx);
+
         spinner.setAdapter(adapter);
 
         assert recyclerViewlzx != null;
@@ -161,6 +180,7 @@ private HttpHandler<String> handler;
 
 //            doSearching(txxxid);
        txxx=myAppVariable.getTxxx();
+        listrzxx=txxx.getRzxx();
         showView(txxx);
         setGridLayoutRecyclerView();
         progressDialog.dismiss();
@@ -175,14 +195,9 @@ private HttpHandler<String> handler;
                     progressDialog.dismiss();
                     JSONObject myobject =null;
                     String listArray=null;
-//                    try {
 
-//                        myobject = new JSONObject(responseInfo.result);
-//                        listArray=myobject.getString("txxx");
                         txxx= BaseService.getGson().fromJson(responseInfo.result.toString(), new TypeToken<Txxx>() {}.getType());
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
+
 
 
 
@@ -212,24 +227,13 @@ private HttpHandler<String> handler;
         recyclerView.setLayoutManager(gridLayoutManager);
 
 
-//        mPhotoAdapter = new ChooseAdapter(this);
-//        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 5));
-//        mRecyclerView.setAdapter(mPhotoAdapter);
-//        mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(5, 2, true));
+
         // 创建数据集
         List<PhotoEntry> listData = new ArrayList<PhotoEntry>();
         for (int i = 0; i < 6; ++i) {
             PhotoEntry uBean = new PhotoEntry();
                        uBean.setImageId(i);
-//            switch (i){
-//                case 0:  uBean.setPath("退休人员头像"); break;
-//                case 1:  uBean.setPath("身份证正面"); break;
-//                case 2:  uBean.setPath("身份证反面"); break;
-//                case 3:  uBean.setPath("填表扫描图"); break;
-//                case 4:  uBean.setPath("复印件描图"); break;
-//                case 5:  uBean.setPath("视频认证截图"); break;
-//                default :  break;
-//            }
+
 
             listData.add(uBean);
         }
@@ -255,13 +259,6 @@ private HttpHandler<String> handler;
 //                mPhotoAdapter = new ChooseAdapter(context);
                 startActivity(new Intent(TxxxDetailActivity.this, PhotosActivity.class));
 
-//                T.showShort(context, "亲格还运行呢？？？？" + postion);
-                //   EventBus.getDefault().postSticky(new EventEntry(mPhotoAdapter.getData(),EventEntry.SELECTED_PHOTOS_ID));
-                //       EventBus.getDefault().postSticky(new EventEntry(myadapter.g,EventEntry.SELECTED_PHOTOS_ID));
-//                Intent in = new Intent();
-//                in.putExtra( "text", tv.getText() );
-//                in.setClassName( getApplicationContext(), "PhotosActivity.class" );
-//                startActivityForResult( in, 0 );
             }
 
             @Override
@@ -279,41 +276,7 @@ private HttpHandler<String> handler;
         // 设置Adapter
         recyclerView.setAdapter(mPhotoAdapter);
     }
-//    protected void setLinstener() {
-//
-//        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrollStateChanged(RecyclerView recyclerView,
-//                                             int scrollState) {
-//                updateState(scrollState);
-//            }
 
-//            @Override
-//            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
-//                String s = "";
-//                if (type == 0) {
-//                    s = "可见Item数量：" + layoutManager.getChildCount() + "\n"
-//                            + "可见Item第一个Position："
-//                            + layoutManager.findFirstVisibleItemPosition()
-//                            + "\n" + "可见Item最后一个Position："
-//                            + layoutManager.findLastVisibleItemPosition();
-//
-//                } else if (type == 1) {
-//                    s = "可见Item数量：" + gridLayoutManager.getChildCount() + "\n"
-//                            + "可见Item第一个Position："
-//                            + gridLayoutManager.findFirstVisibleItemPosition()
-//                            + "\n" + "可见Item最后一个Position："
-//                            + gridLayoutManager.findLastVisibleItemPosition();
-//                } else {
-//                    s = "可见Item数量："
-//                            + StaggeredGridLayoutManager.getChildCount();
-//
-//                }
-//                tv.setText(s);
-//            }
-//        });
-//
-//    }
     private void updateState(int scrollState) {
         String stateName = "Undefined";
         switch (scrollState) {
@@ -392,18 +355,18 @@ private HttpHandler<String> handler;
         lxdh2.setText(txxx.getLxdh2());
         lxdh3.setText(txxx.getLxdh3());
 //        rz13jk.setText(txxx.getRz13jk());
-       rz13sj.setText(txxx.getRz14sj());
-        rz13zb.setText(txxx.getRz14zb());
-       rz13dd.setText(txxx.getRz14dd());
-        if(txxx.getRz14jk().equals("")){
-            spinner.setSelection(0);
-        }else if(txxx.getRz14jk().equals("填表认证")){
-            spinner.setSelection(1);
-        }else if(txxx.getRz14jk().equals("本人认证")){
-            spinner.setSelection(2);
-        }else if(txxx.getRz14jk().equals("代认证")){
-            spinner.setSelection(3);
-        }
+//       rz13sj.setText(txxx.getRz14sj());
+//        rz13zb.setText(txxx.getRz14zb());
+//       rz13dd.setText(txxx.getRz14dd());
+//        if(txxx.getRz14jk().equals("")){
+//            spinner.setSelection(0);
+//        }else if(txxx.getRz14jk().equals("填表认证")){
+//            spinner.setSelection(1);
+//        }else if(txxx.getRz14jk().equals("本人认证")){
+//            spinner.setSelection(2);
+//        }else if(txxx.getRz14jk().equals("代认证")){
+//            spinner.setSelection(3);
+//        }
 
 
         potolist= new ArrayList<>();
@@ -432,14 +395,14 @@ private HttpHandler<String> handler;
             photoimage.setSubject("身份证反面");
             potolist.add(photoimage);
         }
-        if(!txxx.getTbsm().equals("")){
-            Photoimage photoimage=new Photoimage();
-            i=i+1;
-            photoimage.setId(i);
-            photoimage.setPath(txxx.getTbsm());
-            photoimage.setSubject("填表认证扫描图");
-            potolist.add(photoimage);
-        }
+//        if(!txxx.getTbsm().equals("")){
+//            Photoimage photoimage=new Photoimage();
+//            i=i+1;
+//            photoimage.setId(i);
+//            photoimage.setPath(txxx.getTbsm());
+//            photoimage.setSubject("填表认证扫描图");
+//            potolist.add(photoimage);
+//        }
         if(!txxx.getSfzfyj().equals("")){
             Photoimage photoimage=new Photoimage();
             i=i+1;
@@ -448,14 +411,14 @@ private HttpHandler<String> handler;
             photoimage.setSubject("身份证复印件扫描图");
             potolist.add(photoimage);
         }
-        if(!txxx.getSbjt().equals("")){
-            Photoimage photoimage=new Photoimage();
-            i=i+1;
-            photoimage.setId(i);
-            photoimage.setPath(txxx.getSbjt());
-            photoimage.setSubject("视频认证截图");
-            potolist.add(photoimage);
-        }
+//        if(!txxx.getSbjt().equals("")){
+//            Photoimage photoimage=new Photoimage();
+//            i=i+1;
+//            photoimage.setId(i);
+//            photoimage.setPath(txxx.getSbjt());
+//            photoimage.setSubject("视频认证截图");
+//            potolist.add(photoimage);
+//        }
 
         for (int j = 0; j <potolist.size(); j++) {
 
@@ -500,34 +463,7 @@ private HttpHandler<String> handler;
           //      menu.getItem(1).setVisible(false);
          //   }
         }
-//        SupportMenuItem searchItem = (SupportMenuItem) menu
-//                .findItem(R.id.action_search);
-//
-//        SearchView searchView = (SearchView) MenuItemCompat
-//                .getActionView(searchItem);
-//
-//        SearchManager searchManager = (SearchManager)TxxxDetailActivity.this
-//                .getSystemService(Context.SEARCH_SERVICE);
-//        searchView.setSearchableInfo(searchManager
-//                .getSearchableInfo(TxxxDetailActivity.this.getComponentName()));
-//
-//        searchItem
-//                .setSupportOnActionExpandListener(new MenuItemCompat.OnActionExpandListener() {
-//
-//                    @Override
-//                    public boolean onMenuItemActionExpand(MenuItem item) {
-////                        Toast.makeText(TxxxDetailActivity.this, "扩张了", Toast.LENGTH_SHORT).show();
-////                        System.out.println("扩张了");
-//                        return true;
-//                    }
-//
-//                    @Override
-//                    public boolean onMenuItemActionCollapse(MenuItem item) {
-////                        Toast.makeText(TxxxDetailActivity.this, "收缩了", Toast.LENGTH_SHORT).show();
-////                        System.out.println("收缩了");
-//                        return true;
-//                    }
-//                });
+
 
         return super.onCreateOptionsMenu(menu);
 //        return  true;
@@ -541,19 +477,9 @@ private HttpHandler<String> handler;
             progressDialog = new ProgressDialog(this);
             progressDialog.setMessage("认证提交中  请稍后...");
             progressDialog.show();
-//            if (!url.equals("")) {
-//            filepath= Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator;
-//
-//            FileInputStream fis = null;//文件输入流
-//            try {
-//                fis = new FileInputStream(new File(filepath));
-//            } catch (FileNotFoundException e) {
-//                e.printStackTrace();
-//            }
-                httpUtils = new HttpUtils();
-//            httpUtils.SetRequestHeader("Content-Type","text/xml; charset=utf-8");
 
-//          mSelectedPhotos=Entries.photos;
+                httpUtils = new HttpUtils();
+
                 RequestParams params = new RequestParams();
 //            }
 
@@ -573,8 +499,7 @@ private HttpHandler<String> handler;
                                 imgstmppath.add(tmepName);
                     list.add(new File(tmepName));
                         params.addBodyParameter("upload[" + i + "]", new File(tmepName));
-//                    }else{
-//                        params.addBodyParameter("upload[" + i + "]",new File(tmepName1));
+
                     }
 
                 }
@@ -644,59 +569,7 @@ private HttpHandler<String> handler;
                     Toast.makeText(TxxxDetailActivity.this, "认证失败！", Toast.LENGTH_SHORT).show();
                 }
             });
-//            Thread t = new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    try {
-////                            String name="";
-//                        String rzjk = "";
-//                        String rzzb = "";
-//                        String rzdd = "";
-////
-//                        rzjk = spinner.getSelectedItem().toString();
-////                            rzsj=spinner1.getSelectedItem().toString();
-//                        rzzb = tusers.getUserName();
-//                        rzdd = tusers.getBranch().getName();
-//                        Map<String, String> map = new HashMap<String, String>();
-//                        map.put("name", name.getText().toString());
-//                        map.put("sfzh", sfzh.getText().toString());
-//                        map.put("hkdz", hkdz.getText().toString());
-//                        map.put("czdz", czdz.getText().toString());
-//                        map.put("lxdh1", lxdh1.getText().toString());
-//                        map.put("lxdh2", lxdh2.getText().toString());
-//                        map.put("lxdh3", lxdh3.getText().toString());
-//                        map.put("rzjk", rzjk);
-////
-//                        map.put("rzzb", rzzb);
-//                        map.put("rzdd", rzdd);
-//
-//                       TxxxService txxxService = new TxxxService();
-//
-//                        txxxService.updateTxxxId(map);
-////
-//                    } catch (Exception e) {
-//                        // TODO Auto-generated catch block
-//                        e.printStackTrace();
-//                    }
-//                    myHandler.sendMessage(myHandler.obtainMessage());
-//                }
-//            });
-//            t.start();
-////                Toast.makeText(this,"认证成功", Toast.LENGTH_SHORT).show();
-////                return true;
-//            new AlertDialog.Builder(this).setTitle("认证提交成功！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//
-//                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//                    // TODO Auto-generated method stub
-//                    Intent intent = new Intent();
-//                    //	intent.setClass(SelectEatsFoodsListActivity.this, MainActivity.class);
-//                    //	intent.setClass(EatListActivity.this, MainActivity.class);
-//                    intent.setClass(TxxxDetailActivity.this, TxxxDetailActivity.class);
-//                    startActivity(intent);
-//                }
-//            }).show();
-//
+
         }
 
 

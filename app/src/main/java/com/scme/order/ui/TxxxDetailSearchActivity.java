@@ -171,18 +171,18 @@ public class TxxxDetailSearchActivity extends BaseActivity implements OnItemSele
         lxdh2.setText(txxx.getLxdh2());
         lxdh3.setText(txxx.getLxdh3());
 //        rz13jk.setText(txxx.getRz13jk());
-       rz13sj.setText(txxx.getRz13sj());
-        rz13zb.setText(txxx.getRz13zb());
-       rz13dd.setText(txxx.getRz13dd());
-        if(txxx.getRz13jk().equals("")){
-            spinner.setSelection(0);
-        }else if(txxx.getRz13jk().equals("填表认证")){
-            spinner.setSelection(1);
-        }else if(txxx.getRz13jk().equals("本人认证")){
-            spinner.setSelection(2);
-        }else if(txxx.getRz13jk().equals("代认证")){
-            spinner.setSelection(3);
-        }
+//       rz13sj.setText(txxx.getRz13sj());
+//        rz13zb.setText(txxx.getRz13zb());
+//       rz13dd.setText(txxx.getRz13dd());
+//        if(txxx.getRz13jk().equals("")){
+//            spinner.setSelection(0);
+//        }else if(txxx.getRz13jk().equals("填表认证")){
+//            spinner.setSelection(1);
+//        }else if(txxx.getRz13jk().equals("本人认证")){
+//            spinner.setSelection(2);
+//        }else if(txxx.getRz13jk().equals("代认证")){
+//            spinner.setSelection(3);
+//        }
 
     }
 
@@ -204,7 +204,7 @@ public class TxxxDetailSearchActivity extends BaseActivity implements OnItemSele
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.menu_txxxdetailmain, menu);
 
-        if((tusers.getPurview().equals("社保")||tusers.getPurview().equals("系统"))&&txxx.getRz13jk().equals("")){
+        if((tusers.getPurview().equals("社保")||tusers.getPurview().equals("系统"))&&txxx.getRzzb().equals("")){
             menu.getItem(1).setEnabled(true);
 //            Toast.makeText(this,"aa", Toast.LENGTH_SHORT).show();
         }else{

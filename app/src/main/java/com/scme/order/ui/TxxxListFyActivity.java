@@ -84,7 +84,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 	private Spinner spinner2;
 	private static final String[] m={"上大院管理服务站","下大院管理服务站","桂苑街管理服务站","落雪大院管理服务站","腊利大院管理服务站"};
 	private static final String[] m1={"姓名","个人编号","身份证号","经办人","认证地点","认证日期","居住地","联系电话1","联系电话2"};
-	private static final String[] m2={"name","grbh","sfzh","rz14zb","rz14dd","rzrj","czdz","lxdh1","lzdh2"};
+	private static final String[] m2={"name","grbh","sfzh","rzzb","rzdd","rzrj","czdz","lxdh1","lzdh2"};
 	private String bmmz0="";
 	private String name0="";
 	private String rzjk0="";
@@ -370,69 +370,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 							}
 							otherquery=true;
 							mThreadmy();
-//							map= new HashMap<String, Object>();
-//
-//							if (mCheckBox1.isChecked()) {
-//
-//								map.put("branchname", spinner1.getSelectedItem().toString());
-//							}else{
-//
-//								map.put("branchname", "");
-//							}
-//
-//							if (mCheckBox2.isChecked()) {
-//                                  map.put("name0",m2[spinner2.getSelectedItemPosition()].toString());
-//								  map.put("name1",mTextView.getText().toString());
-//
-//
-//
-//							}else{
-//								map.put("name0", "");
-//								map.put("name", "");
-//							}
-//
-//							if (mCheckBox3.isChecked()) {
-//								int spin1 = mRadioGroup.getCheckedRadioButtonId();
-////								RadioButton radioButton = （RadioButton）findViewById（mradioGroup.getCheckedRadioButtonId()）;
-////
-////								System.out.println("-------------->"+text);
-//								switch (spin1) {
-//									case R.id.radioButton1:
-//										map.put("rzjk0", "已认证");
-//										break;
-//									case R.id.radioButton2:
-//										map.put("rzjk0", "未认证");
-//										break;
-//									case R.id.radioButton3:
-//										map.put("swsj", "死亡");
-//										break;
-//								}
-//							}else{
-//								map.put("rzjk0", "");
-//								map.put("swsj", "");
-//							}
-//
-//
-//							try {
-//
-//								TxxxService txxxService = new TxxxService();
-//								count= txxxService.queryTxxxOtherCount(map);
-//								txxxList = txxxService.queryTxxxOther(map);
-//							} catch (Exception e) {
-//								// TODO: handle exception
-//
-//							}
-//
-//							otherquery=true;
-//							pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
-//
-//							tolpage.setText("记录数："+count);
-//								nowpage.setText("页码：" + (intFirst+1)+ "/" + pages);
-//								myAdapter = new MyAdapter(txxxList, 1);
-//								mListView.setAdapter(myAdapter);
-//								mListView.setPullLoadEnable(true);
-//								onLoad();
-//
+
 						}
 					})
 					// 为对话框设置一个“取消”按钮
@@ -465,52 +403,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 		params.addQueryStringParameter("intFirst",intFirst+"");
 		params.addQueryStringParameter("recPerPage",recPerPage+"");
 		mThreadmy();
-//		handler = httpUtils.send(HttpRequest.HttpMethod.GET, url, params,new RequestCallBack<String>() {
-//			@Override
-//			public void onSuccess(ResponseInfo<String> responseInfo) {
-//
-//				if (responseInfo.result != null) {
-//					progressDialog.dismiss();
-//					JSONObject myobject =null;
-//					String listArray=null;
-//					try {
-//
-//						 myobject = new JSONObject(responseInfo.result);
-//						count=myobject.getInt("count");
-//						 listArray=myobject.getString("txxxlist");
-//						txxxList= BaseService.getGson().fromJson(listArray, new TypeToken<List<Txxx>>() {}.getType());
-//					} catch (JSONException e) {
-//						e.printStackTrace();
-//					}
-//
-//
-//					pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
-//
-//					tolpage.setText("记录数："+count);
-//					nowpage.setText("页码："+(intFirst+1)+"/"+pages);
-//
-//					if(count>recPerPage) {
-//						mListView.setPullLoadEnable(true);
-//					}else{
-//						mListView.setPullLoadEnable(false);
-//					}
-//
-//					myAdapter = new MyAdapter(txxxList, 1);
-//
-//					mListView.setAdapter(myAdapter);
-//
-//					mListView.setXListViewListener(TxxxListFyActivity.this);
-//					mListView.setOnItemClickListener(TxxxListFyActivity.this);
-//
-//				}
-//			}
-//
-//			@Override
-//			public void onFailure(HttpException e, String s) {
-//				progressDialog.dismiss();
-//				Toast.makeText(TxxxListFyActivity.this, "数据加载失败！！！", Toast.LENGTH_SHORT).show();
-//			}
-//		});
+
 
 	}
 	/*
@@ -678,7 +571,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 //				grbh.setText(txxx.getGrbh());
 				name.setText(txxx.getName());
 				sfzh.setText(txxx.getSfzh());
-				rz.setText(IsCheckOut(txxx.getRz14jk()));
+				rz.setText(IsCheckOut(txxx.getRzzb()));
 
 			} else {
 

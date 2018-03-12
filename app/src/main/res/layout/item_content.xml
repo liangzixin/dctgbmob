@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sysu.zyb.panellistlibrary.CheckableLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+      android:gravity="center">
+
+    <ImageView
+        android:id="@+id/id_tv_01"
+        android:layout_width="85dp"
+        android:layout_height="90dp"
+
+      android:src="@drawable/foods_image_loding" />
+
+
+
+    <TextView
+        android:id="@+id/id_tv_02"
+        android:layout_width="70dp"
+        android:padding="1dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        tools:text="02"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:id="@+id/id_tv_03"
+        android:layout_width="100dp"
+        android:padding="1dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        tools:text="03"/>
+    <TextView
+        android:id="@+id/id_tv_04"
+        android:layout_width="100dp"
+        android:padding="1dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        tools:text="04"/>
+    <TextView
+        android:id="@+id/id_tv_05"
+        android:layout_width="100dp"
+        android:padding="1dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+
+        tools:text="05"/>
+
+</sysu.zyb.panellistlibrary.CheckableLinearLayout>

@@ -1,6 +1,9 @@
 package com.scme.order.model;
 
 
+import java.util.List;
+import java.util.Set;
+
 public class Txxx implements java.io.Serializable {
 	private int id;
 	private int bmbh;
@@ -16,18 +19,10 @@ public class Txxx implements java.io.Serializable {
 	private String swsj;
 	private String dfsj;
 	private String rz12;
-	private String rz13jk;
-	private String rz13sj;
-	private String rz13zb;
-	private String rz13dd;
-	private String rz14jk;
-	private String rz14sj;
-	private String rz14zb;
-	private String rz14dd;
-	private String rz15jk;
-	private String rz15sj;
-	private String rz15zb;
-	private String rz15dd;
+
+	private String rzzb;
+	private String rzdd;
+
 
 	private String remark;
 //	private Date  rzrj;
@@ -37,9 +32,10 @@ public class Txxx implements java.io.Serializable {
 	private String photo="";
 	private String sfzzm="";
 	private String sfzfm="";
-	private String sbjt="";
-	private String tbsm="";
+
 	private String sfzfyj="";
+
+	private Set rzxx;
 
 	public void setId(int id) {
 		this.id = id;
@@ -125,30 +121,7 @@ public class Txxx implements java.io.Serializable {
 	public String getRz12() {
 		return rz12;
 	}
-	public void setRz13jk(String rz13jk) {
-		this.rz13jk = rz13jk;
-	}
-	public String getRz13jk() {
-		return rz13jk;
-	}
-	public void setRz13sj(String rz13sj) {
-		this.rz13sj = rz13sj;
-	}
-	public String getRz13sj() {
-		return rz13sj;
-	}
-	public void setRz13zb(String rz13zb) {
-		this.rz13zb = rz13zb;
-	}
-	public String getRz13zb() {
-		return rz13zb;
-	}
-	public void setRz13dd(String rz13dd) {
-		this.rz13dd = rz13dd;
-	}
-	public String getRz13dd() {
-		return rz13dd;
-	}
+
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
@@ -161,66 +134,7 @@ public class Txxx implements java.io.Serializable {
 	public Branch getBranch() {
 		return branch;
 	}
-//	public void setRzrj(Date rzrj) {
-//		this.rzrj = rzrj;
-//	}
-//	public Date getRzrj() {
-//		return rzrj;
-//	}
-	public void setRz14jk(String rz14jk) {
-		this.rz14jk = rz14jk;
-	}
-	public String getRz14jk() {
-		return rz14jk;
-	}
-	public void setRz14sj(String rz14sj) {
-		this.rz14sj = rz14sj;
-	}
-	public String getRz14sj() {
-		return rz14sj;
-	}
-	public void setRz14zb(String rz14zb) {
-		this.rz14zb = rz14zb;
-	}
-	public String getRz14zb() {
-		return rz14zb;
-	}
-	public void setRz14dd(String rz14dd) {
-		this.rz14dd = rz14dd;
-	}
-	public String getRz14dd() {
-		return rz14dd;
-	}
-	public void setSendok(String sendok) {
-		this.sendok = sendok;
-	}
-	public String getSendok() {
-		return sendok;
-	}
-	public String getRz15jk() {
-		return rz15jk;
-	}
-	public void setRz15jk(String rz15jk) {
-		this.rz15jk = rz15jk;
-	}
-	public String getRz15sj() {
-		return rz15sj;
-	}
-	public void setRz15sj(String rz15sj) {
-		this.rz15sj = rz15sj;
-	}
-	public String getRz15zb() {
-		return rz15zb;
-	}
-	public void setRz15zb(String rz15zb) {
-		this.rz15zb = rz15zb;
-	}
-	public String getRz15dd() {
-		return rz15dd;
-	}
-	public void setRz15dd(String rz15dd) {
-		this.rz15dd = rz15dd;
-	}
+
 	public String getSubname1(int len){
 		if(this.getBranch().getName().length()>=4)
 		{
@@ -263,21 +177,6 @@ public class Txxx implements java.io.Serializable {
 		this.sfzfm = sfzfm;
 	}
 
-	public String getSbjt() {
-		return sbjt;
-	}
-
-	public void setSbjt(String sbjt) {
-		this.sbjt = sbjt;
-	}
-
-	public String getTbsm() {
-		return tbsm;
-	}
-
-	public void setTbsm(String tbsm) {
-		this.tbsm = tbsm;
-	}
 
 	public String getSfzfyj() {
 		return sfzfyj;
@@ -285,5 +184,30 @@ public class Txxx implements java.io.Serializable {
 
 	public void setSfzfyj(String sfzfyj) {
 		this.sfzfyj = sfzfyj;
+	}
+
+	public String getRzzb() {
+		return rzzb;
+	}
+
+	public void setRzzb(String rzzb) {
+		this.rzzb = rzzb;
+	}
+
+	public String getRzdd() {
+		return rzdd;
+	}
+
+	public void setRzdd(String rzdd) {
+		this.rzdd = rzdd;
+	}
+
+
+	public Set getRzxx() {
+		return rzxx;
+	}
+
+	public void setRzxx(Set rzxx) {
+		this.rzxx = rzxx;
 	}
 }
