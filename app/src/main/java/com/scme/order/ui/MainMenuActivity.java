@@ -142,7 +142,7 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 		lv_content = (ListView) findViewById(R.id.id_lv_content);
 
 		//设置listView为多选模式，长按自动触发
-		lv_content.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+//		lv_content.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
 	//	lv_content.setMultiChoiceModeListener(new MultiChoiceModeCallback());
 
 		//listView的点击监听

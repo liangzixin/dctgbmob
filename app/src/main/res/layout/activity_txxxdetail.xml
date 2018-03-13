@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:material="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -5,7 +6,25 @@
     android:layout_height="match_parent"
     android:clipToPadding="false"
     tools:context=".TxxxDetailActivity">
+    <sysu.zyb.panellistlibrary.PanelListLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/id_pl_rootrzxx"
+        >
 
+        <ListView
+            android:id="@+id/id_lv_contentrzxx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fastScrollEnabled="false"
+
+            android:layout_marginBottom="40dp"
+            android:overScrollMode="never"
+
+            />
+
+    </sysu.zyb.panellistlibrary.PanelListLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -348,7 +367,9 @@
         <LinearLayout
             android:id="@+id/character_counter_multi"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+
+            >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -369,27 +390,7 @@
 
 
         </LinearLayout>
-        <sysu.zyb.panellistlibrary.PanelListLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/id_pl_rootrzxx"
-            android:layout_below="@+id/tvMainUserName"
 
-            >
-
-            <ListView
-                android:id="@+id/id_lv_contentrzxx"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fastScrollEnabled="false"
-
-                android:layout_marginBottom="40dp"
-                android:overScrollMode="never"
-
-                />
-
-        </sysu.zyb.panellistlibrary.PanelListLayout>
     <LinearLayout
         android:id="@+id/character_counter_multi1"
         android:layout_width="match_parent"
@@ -411,5 +412,5 @@
             android:background="@color/white"
             android:clipToPadding="false"/>
     </LinearLayout>
-    </LinearLayout>
+        </LinearLayout>
 </ScrollView>

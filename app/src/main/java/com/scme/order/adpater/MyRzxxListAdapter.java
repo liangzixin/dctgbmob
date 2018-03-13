@@ -44,7 +44,7 @@ public class MyRzxxListAdapter extends AbstractPanelListAdapter {
 
     private ListView lv_content;
     private int contentResourceId;
-    private Set<Rzxx> contentList =new HashSet<Rzxx>();
+    private List<Map<String,String>> contentList = new ArrayList<>();
 
     /**
      * constructor
@@ -56,7 +56,7 @@ public class MyRzxxListAdapter extends AbstractPanelListAdapter {
      * @param contentList content 部分的数据
      */
     public MyRzxxListAdapter(Context context, PanelListLayout pl_root, ListView lv_content,
-                             int contentResourceId, Set<Rzxx> contentList) {
+                             int contentResourceId,List<Map<String,String>> contentList) {
         super(context, pl_root, lv_content);
         this.context = context;
         this.lv_content = lv_content;
@@ -81,10 +81,10 @@ public class MyRzxxListAdapter extends AbstractPanelListAdapter {
      */
     private class ContentAdapter extends ArrayAdapter {
 
-        private Set<Rzxx> contentList;
+        private List<Map<String,String>> contentList;
         private int resourceId;
 
-        ContentAdapter(Context context, int resourceId, Set<Rzxx> contentList) {
+        ContentAdapter(Context context, int resourceId, List<Map<String,String>> contentList) {
             super(context, resourceId);
             this.contentList = contentList;
             this.resourceId = resourceId;
@@ -98,7 +98,7 @@ public class MyRzxxListAdapter extends AbstractPanelListAdapter {
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            final Map<String, Rzxx> data = contentList.get(position);
+            final Map<String,String> data =contentList.get(position);
             Log.d("ybz-get", "getView: Content getView");
             View view;
             ViewHolder viewHolder;
@@ -112,12 +112,16 @@ public class MyRzxxListAdapter extends AbstractPanelListAdapter {
                 viewHolder = (ViewHolder) view.getTag();
             }
 
-            viewHolder.tv_01.setText(data.get("rzxx").getRznd());
-            viewHolder.tv_02.setText(data.get("rzxx").getRzjk());
-            viewHolder.tv_03.setText(data.get("rzxx").getRzzb());
-            viewHolder.tv_04.setText(data.get("rzxx").getRzsj());
-            viewHolder.tv_05.setText(data.get("rzxx").getRzdd());
-
+//            viewHolder.tv_01.setText((String)data.get("rzdd"));
+//            viewHolder.tv_02.setText((String)data.get("rzdd"));
+//            viewHolder.tv_03.setText((String)data.get("rzdd"));
+//            viewHolder.tv_04.setText((String)data.get("rzdd"));
+//            viewHolder.tv_05.setText((String)data.get("rzdd"));
+            viewHolder.tv_01.setText(data.get("1"));
+            viewHolder.tv_02.setText(data.get("2"));
+            viewHolder.tv_03.setText(data.get("3"));
+            viewHolder.tv_04.setText(data.get("4"));
+            viewHolder.tv_05.setText(data.get("5"));
 
             if (lv_content.isItemChecked(position)){
                 view.setBackgroundColor(context.getResources().getColor(R.color.colorSelected));
