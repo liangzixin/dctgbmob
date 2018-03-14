@@ -302,7 +302,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:weightSum="1">
+            android:weightSum="1"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="78dp"
@@ -315,7 +316,7 @@
                 android:id="@+id/rzsj"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="0.91"
 
                 android:inputType="textNoSuggestions"
                 android:enabled="false"
@@ -326,7 +327,8 @@
         <LinearLayout
             android:id="@+id/character_counter_exceeding"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -351,7 +353,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            >
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -381,11 +383,11 @@
             android:background="#ffffff"
             android:layout_marginTop="0dp"
             android:textSize="16dp"
-            android:text="    认证年度    认证日期    认证方式     经办人  " />
+            android:text="  认证年度     认证日期       认证方式       经办人  " />
         <com.scme.order.view.XListView
             android:id="@+id/lvrzxxs"
             android:layout_width="fill_parent"
-            android:layout_height="200dp"
+            android:layout_height="100dp"
 
             />
 

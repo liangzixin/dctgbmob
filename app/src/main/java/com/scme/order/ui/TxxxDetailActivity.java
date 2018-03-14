@@ -84,7 +84,7 @@ import com.scme.order.view.XListView.IXListViewListener;
 //
 //import  android.support.v4.view.MenuItemCompat.OnActionExpandListener;
 
-public class TxxxDetailActivity extends BaseActivity implements IXListViewListener, OnItemSelectedListener{
+public class TxxxDetailActivity extends BaseActivity implements  OnItemSelectedListener{
     Context context =TxxxDetailActivity.this;
     private ProgressDialog progressDialog;
     private Txxx txxx;
@@ -185,12 +185,12 @@ private HttpHandler<String> handler;
         recyclerViewlzx.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         adapterlzx = new MultiTypeAdapter(this);
         adapterlzx.registerViewType(Photo.class, PhotoHolder.class);
-     //   recyclerViewlzx.setAdapter(adapterlzx);
+    recyclerViewlzx.setAdapter(adapterlzx);
         spinner.setOnItemSelectedListener(this);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("数据加载中  请稍后...");
-  //      progressDialog.show();
+        progressDialog.show();
 //        Intent intent = getIntent();
 
 //            doSearching(txxxid);
@@ -200,38 +200,13 @@ private HttpHandler<String> handler;
         myRzxxAdapter = new MyRzxxAdapter(listrzxx,1);
          mListRzxxView.setAdapter(myRzxxAdapter);
         mListRzxxView.setPullLoadEnable(true);
-    //    setGridLayoutRecyclerView();
+    setGridLayoutRecyclerView();
 
-//        adapterrzxx = new MyRzxxListAdapter(TxxxDetailActivity.this, pl_rootrzxx, lv_contentrzxx, R.layout.item_contentrzxx,listrzxx);
-//        adapterrzxx.setInitPosition(2);
-//        adapterrzxx.setSwipeRefreshEnabled(true);
-//        adapterrzxx.setRowDataList(getRowDataList());
-//        adapterrzxx.setTitle("序号");
-  //pl_rootrzxx.setAdapter(adapterrzxx);
-       // progressDialog.dismiss();
+
+        progressDialog.dismiss();
     }
-    private void initView() {
 
-        pl_rootrzxx = (PanelListLayout) findViewById(R.id.id_pl_rootrzxx);
-        lv_contentrzxx = (ListView) findViewById(R.id.id_lv_contentrzxx);
-        //设置listView为多选模式，长按自动触发
-     //   lv_contentrzxx.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
-        // lv_content.setMultiChoiceModeListener(new MultiChoiceModeCallback());
-    }  /**
-     * 初始化content数据
-     */
-    private void initContentDataList() {
-        for (int i = 1; i <=5; i++) {
-            Map<String, String> data = new HashMap<>();
-            data.put("1", "第" + i + "行第一个");
-            data.put("2", "第" + i + "行第二个");
-            data.put("3", "第" + i + "行第三个");
-            data.put("4", "第" + i + "行第四个");
-            data.put("5", "第" + i + "行第五个");
 
-            listrzxx.add(data);
-        }
-    }
 
     private void mThreadmy() {
 
@@ -476,29 +451,8 @@ private HttpHandler<String> handler;
 
 
     }
-    /** 生成一份横向表头的内容
-     *
-     * @return List<String>
-     */
-    private List<String> getRowDataList(){
-        List<String> rowDataList = new ArrayList<>();
-        rowDataList.add("头像");
-        rowDataList.add("姓名");
-        rowDataList.add("科室");
-        rowDataList.add("生日(入党日)");
-        rowDataList.add("电码号码");
-        return rowDataList;
-    }
 
-    @Override
-    public void onRefresh() {
 
-    }
-
-    @Override
-    public void onLoadMore() {
-
-    }
 
     public class CustomRefreshListener implements SwipeRefreshLayout.OnRefreshListener{
         @Override
@@ -531,25 +485,25 @@ private HttpHandler<String> handler;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        super.onCreateOptionsMenu(menu);
-//        getMenuInflater().inflate(R.menu.menu_txxxdetailmain, menu);
-//        menu.getItem(0).setVisible(false);
-//        menu.getItem(2).setVisible(false);
-////        Toast.makeText(TxxxDetailActivity.this, tusers.getPurview()+"与"+txxx.getRz13jk(), Toast.LENGTH_SHORT).show();
-//
-//        if(tusers.getPurview().equals("社保")||tusers.getPurview().equals("系统")) {
-//        //    if (txxx.getRz14jk().equals("")) {
-//                menu.getItem(1).setEnabled(true);
-//                menu.getItem(1).setVisible(true);
-//        //    } else {
-//          //      menu.getItem(1).setEnabled(false);
-//          //      menu.getItem(1).setVisible(false);
-//         //   }
-//        }
-//
-//
-//        return super.onCreateOptionsMenu(menu);
-        return  true;
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_txxxdetailmain, menu);
+        menu.getItem(0).setVisible(false);
+        menu.getItem(2).setVisible(false);
+//        Toast.makeText(TxxxDetailActivity.this, tusers.getPurview()+"与"+txxx.getRz13jk(), Toast.LENGTH_SHORT).show();
+
+        if(tusers.getPurview().equals("社保")||tusers.getPurview().equals("系统")) {
+        //    if (txxx.getRz14jk().equals("")) {
+                menu.getItem(1).setEnabled(true);
+                menu.getItem(1).setVisible(true);
+        //    } else {
+          //      menu.getItem(1).setEnabled(false);
+          //      menu.getItem(1).setVisible(false);
+         //   }
+        }
+
+
+        return super.onCreateOptionsMenu(menu);
+      //  return  true;
     }
 
     @Override
@@ -730,9 +684,9 @@ private HttpHandler<String> handler;
                 int height=display.getHeight();
                 Map<String,String> data =rzxxs.get(position);
                 if (position % 2 == 0) {//奇偶行背景色
-                    convertView.setBackgroundColor(convertView.getResources().getColor(R.color.palegreen));
+                    convertView.setBackgroundColor(convertView.getResources().getColor(R.color.white));
                 }else {
-                    convertView.setBackgroundColor(convertView.getResources().getColor(R.color.lightgreen));
+                    convertView.setBackgroundColor(convertView.getResources().getColor(R.color.white));
                 }
 ////			ImageView ivTab = (ImageView) convertView.findViewById(R.id.imgv_tables);
                 TextView rznd = (TextView) convertView.findViewById(R.id.rznd);
@@ -756,8 +710,8 @@ private HttpHandler<String> handler;
                 rzsj.setHeight((int)(height*0.04));
                 rzjk.setHeight((int)(height*0.04));
                 rzzb.setHeight((int)(height*0.04));
-
-                rznd.setText((String)data.get("rznd")+"");
+                String rznd0=String.valueOf(data.get("rznd"));
+                rznd.setText(Double.valueOf(rznd0).intValue()+"");
                 rzsj.setText((String)data.get("rzsj"));
                 rzjk.setText((String)data.get("rzjk"));
                 rzzb.setText((String)data.get("rzzb"));

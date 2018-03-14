@@ -66,8 +66,8 @@ public abstract class AbstractPanelListAdapter {
      * 标题的宽和高,同时也是列表头的宽和列表头的高
      */
     private int titleWidth =40;
-    private int titleHeight =90;
-    private int columnItemHeight =90;
+    private int titleHeight =100;
+    private int columnItemHeight = 100;
 
     private String title = "";
     private int titleBackgroundResource;
@@ -76,9 +76,8 @@ public abstract class AbstractPanelListAdapter {
 
     private String columnColor = "#607D8B";//default color of column
  private String titleColor = "#CFD8DC";//default color of title
-      private String textColor = "#FFFFFF";//default color of title
+    //    private String rowColor = "#FFFFFF";//default color of title
      private String rowColor = "#CDDC39";//default color of title
-
 
     private Drawable rowDivider;
     private Drawable columnDivider;

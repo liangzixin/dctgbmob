@@ -22,6 +22,7 @@
         android:layout_width="70dp"
         android:padding="1dp"
         android:layout_height="30dp"
+        android:layout_marginRight="@id/id_tv_01"
         android:gravity="center"
         tools:text="02"
         android:textColor="@color/black"
@@ -32,6 +33,8 @@
         android:padding="1dp"
         android:layout_height="30dp"
         android:gravity="center"
+
+        android:layout_marginRight="@id/id_tv_02"
         android:textColor="@color/black"
         tools:text="03"/>
     <TextView
@@ -41,6 +44,7 @@
         android:layout_height="30dp"
         android:gravity="center"
         android:textColor="@color/black"
+        android:layout_marginRight="@id/id_tv_03"
         tools:text="04"/>
     <TextView
         android:id="@+id/id_tv_05"
@@ -49,6 +53,7 @@
         android:layout_height="30dp"
         android:gravity="center"
         android:textColor="@color/black"
+        android:layout_marginRight="@id/id_tv_04"
         tools:text="05"/>
 
 </sysu.zyb.panellistlibrary.CheckableLinearLayout>

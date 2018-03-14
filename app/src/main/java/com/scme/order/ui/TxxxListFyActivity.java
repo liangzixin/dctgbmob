@@ -636,56 +636,6 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 	public void txxx_pages_sumbit_Event(View view) throws Exception
 	{
 
-//		System.out.println("workerid"+workerid);
-//		progressDialog2 = new ProgressDialog(this);
-//		progressDialog2.setMessage("订单提交中  请稍后...");
-//		progressDialog2.show();
-//		Thread t2=new Thread(new Runnable() {
-//			@Override
-//			public void run() {
-//				try {
-//					EatsService os=new EatsService();
-//					//EatsDetailsService ods=new EatsDetailsService();
-//					String strEatNum=etEatNum.getText().toString();
-//					Integer eatNum=Integer.parseInt(strEatNum);
-//					os.addEats(workerid, eatNum);//添加订单
-//
-//				} catch (Exception e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//				myHandler2.sendMessage(myHandler2.obtainMessage());
-//				//		myHandler.sendMessage(myHandler.obtainMessage());
-//			}
-//		});
-//		t2.start();
-		//t.join();
-
-//		new AlertDialog.Builder(this).setTitle("转到页码！").setView(textpage).setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//
-//			@Override
-//			public void onClick(DialogInterface dialog, int which) {
-//				// TODO Auto-generated method stub
-//				mHandler.postDelayed(new Runnable() {
-//					@Override
-//					public void run() {
-//						if (intFirst < pages) {
-//
-//							intFirst=this.getEditText();
-//							geneTxxxItems();
-//							nowpage.setText("页码：" + intFirst+ "/" + pages);
-//							myAdapter = new MyAdapter(txxxList, 1);
-//							mListView.setAdapter(myAdapter);
-//							mListView.setPullLoadEnable(true);
-//							onLoad();
-//						} else {
-//							intFirst = pages;
-//							mListView.setPullLoadEnable(false);
-//						}
-//					}
-//				}, 2000);
-//			}
-//		}).show();
 		LayoutInflater factory = LayoutInflater.from(TxxxListFyActivity.this);
 		final View textEntryView = factory.inflate(R.layout.dialogpage, null);
 		AlertDialog dlg = new AlertDialog.Builder(TxxxListFyActivity.this)

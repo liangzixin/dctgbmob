@@ -114,43 +114,6 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
 			}
 		});
 
-//		loginButton1.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v)  {
-//				userName=etUserName.getText().toString();
-//				userPwd=etPwd.getText().toString();
-//				try {
-//					 //转中文乱码
-//					 struserName = URLEncoder.encode(userName, "utf-8");
-//					 final UserService userService=new UserService();
-//
-//					  progressDialog = new ProgressDialog(LoginActivity.this);
-//				      progressDialog.setMessage("登录中  请稍后...");
-//				      progressDialog.show();
-//				      new Thread(new Runnable() {
-//				      @Override
-//				      public void run() {
-//				      try {
-//				    	  user=userService.login(struserName, userPwd);//在线程中完成数据请求
-//				      } catch (InterruptedException e) {
-//				      e.printStackTrace();
-//				       } catch (Exception e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//				      myHandler.sendMessage(myHandler.obtainMessage());
-//				      }
-//				      }).start();
-////					System.out.println("用户名0：");
-////					System.out.println("用户名："+user.getUserName());
-//				}
-//				catch (Exception e)
-//				{
-//					e.printStackTrace();
-//				}
-//			}
-//		});
 	}
 	private OnClickListener btnClickListener = new OnClickListener() {
 		@Override
