@@ -14,12 +14,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.MaterialEditText;
@@ -39,6 +43,7 @@ import com.litao.android.lib.entity.PhotoEntry;
 import com.scme.order.adpater.ChooseAdapter;
 import com.scme.order.adpater.MyPanelListAdapter;
 import com.scme.order.adpater.MyRzxxListAdapter;
+import com.scme.order.card.HeadlineBodyCard;
 import com.scme.order.common.T;
 import com.scme.order.holder.PhotoHolder;
 import com.scme.order.interfaces.ItemClickListener;
@@ -50,6 +55,7 @@ import com.scme.order.model.Txxx;
 import com.scme.order.service.BaseService;
 import com.scme.order.util.HttpUtil;
 import com.scme.order.util.MyAppVariable;
+import com.scme.order.view.XListView;
 import com.twiceyuan.commonadapter.library.adapter.MultiTypeAdapter;
 
 import org.greenrobot.eventbus.EventBus;
@@ -73,11 +79,12 @@ import sysu.zyb.panellistlibrary.PanelListLayout;
 import static android.support.v7.widget.RecyclerView.SCROLL_STATE_DRAGGING;
 import static android.support.v7.widget.RecyclerView.SCROLL_STATE_IDLE;
 import static android.support.v7.widget.RecyclerView.SCROLL_STATE_SETTLING;
-
+import com.scme.order.view.XListView;
+import com.scme.order.view.XListView.IXListViewListener;
 //
 //import  android.support.v4.view.MenuItemCompat.OnActionExpandListener;
 
-public class TxxxDetailActivity extends BaseActivity implements OnItemSelectedListener{
+public class TxxxDetailActivity extends BaseActivity implements IXListViewListener, OnItemSelectedListener{
     Context context =TxxxDetailActivity.this;
     private ProgressDialog progressDialog;
     private Txxx txxx;
@@ -124,6 +131,9 @@ private HttpHandler<String> handler;
    private Set<Map<String,String>> listrzxx0 =new HashSet<>();
     private List<Map<String,String>> listrzxx = new ArrayList<>();
 
+    private MyRzxxAdapter myRzxxAdapter;
+
+
     @InjectView(R.id.img_1) ImageView img1;
     @InjectView(R.id.img_2) ImageView img2;
     @InjectView(R.id.img_3) ImageView img3;
@@ -142,6 +152,7 @@ private HttpHandler<String> handler;
     @InjectView(R.id.rzdd) MaterialEditText rz13dd;
    @InjectView(R.id.recyclerView) RecyclerView   recyclerView;
     @InjectView(R.id.recyclerViewlzx) RecyclerView   recyclerViewlzx;
+   @InjectView(R.id.lvrzxxs)  XListView   mListRzxxView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,18 +164,19 @@ private HttpHandler<String> handler;
         ButterKnife.inject(this);
 
         //获得绑定参数
-        initView();
-        initContentDataList();
+//        initView();
+//        initContentDataList();
         myAppVariable=(MyAppVariable)getApplication(); //获得自定义的应用程序MyAppVariable
         tusers=myAppVariable.getTusers();
         txxxid=myAppVariable.getTxxxid();
+
         spinner = (Spinner) findViewById(R.id.rzjk);
 
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,m);
 
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_multiple_choice);
 
-
+     //  mListRzxxView.setPullLoadEnable(false);
 
 
         spinner.setAdapter(adapter);
@@ -173,7 +185,7 @@ private HttpHandler<String> handler;
         recyclerViewlzx.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         adapterlzx = new MultiTypeAdapter(this);
         adapterlzx.registerViewType(Photo.class, PhotoHolder.class);
-        recyclerViewlzx.setAdapter(adapterlzx);
+     //   recyclerViewlzx.setAdapter(adapterlzx);
         spinner.setOnItemSelectedListener(this);
 
         progressDialog = new ProgressDialog(this);
@@ -185,13 +197,17 @@ private HttpHandler<String> handler;
        txxx=myAppVariable.getTxxx();
         listrzxx0=txxx.getRzxx();
         showView(txxx);
-        setGridLayoutRecyclerView();
-        adapterrzxx = new MyRzxxListAdapter(TxxxDetailActivity.this, pl_rootrzxx, lv_contentrzxx, R.layout.item_contentrzxx,listrzxx);
-        adapterrzxx.setInitPosition(10);
-        adapterrzxx.setSwipeRefreshEnabled(true);
-        adapterrzxx.setRowDataList(getRowDataList());
-        adapterrzxx.setTitle("序号");
-  pl_rootrzxx.setAdapter(adapterrzxx);
+        myRzxxAdapter = new MyRzxxAdapter(listrzxx,1);
+         mListRzxxView.setAdapter(myRzxxAdapter);
+        mListRzxxView.setPullLoadEnable(true);
+    //    setGridLayoutRecyclerView();
+
+//        adapterrzxx = new MyRzxxListAdapter(TxxxDetailActivity.this, pl_rootrzxx, lv_contentrzxx, R.layout.item_contentrzxx,listrzxx);
+//        adapterrzxx.setInitPosition(2);
+//        adapterrzxx.setSwipeRefreshEnabled(true);
+//        adapterrzxx.setRowDataList(getRowDataList());
+//        adapterrzxx.setTitle("序号");
+  //pl_rootrzxx.setAdapter(adapterrzxx);
        // progressDialog.dismiss();
     }
     private void initView() {
@@ -400,7 +416,7 @@ private HttpHandler<String> handler;
 //            spinner.setSelection(3);
 //        }
 
-      //  listrzxx = new ArrayList<Map<String, String>>(listrzxx0);
+        listrzxx = new ArrayList<Map<String, String>>(listrzxx0);
         potolist= new ArrayList<>();
         int i=0;
         if(!txxx.getPhoto().equals("")){
@@ -473,6 +489,17 @@ private HttpHandler<String> handler;
         rowDataList.add("电码号码");
         return rowDataList;
     }
+
+    @Override
+    public void onRefresh() {
+
+    }
+
+    @Override
+    public void onLoadMore() {
+
+    }
+
     public class CustomRefreshListener implements SwipeRefreshLayout.OnRefreshListener{
         @Override
         public void onRefresh() {
@@ -559,12 +586,6 @@ private HttpHandler<String> handler;
                     }
 
                 }
-
-//
-
-
-
-
 
             if (spinner.getSelectedItemPosition() == 0) {
                 Toast.makeText(this, "请选择认证方式！！！", Toast.LENGTH_SHORT).show();
@@ -665,5 +686,89 @@ private HttpHandler<String> handler;
     }
 
 
+    /**
+     * 认证记录适配器
+     */
+    class MyRzxxAdapter extends BaseAdapter {
+
+        public List<Map<String,String>> rzxxs;//数据源
+        public int layoutId;//样式布局文件
+
+        public MyRzxxAdapter(List<Map<String,String>> rzxxs,int layoutId) {//构造函数
+            this.rzxxs =rzxxs;
+             this.layoutId=layoutId;
+                     }
+
+        public void setRzxxs(List<Map<String,String>> rzxxs) {
+            this.rzxxs = rzxxs;
+        }
+
+        @Override
+        public int getCount() {
+            // TODO Auto-generated method stub
+            return rzxxs.size();//返回个数
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return rzxxs.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            // TODO Auto-generated method stub
+            HeadlineBodyCard.ViewHolder vh;
+            if (convertView == null) {
+                convertView = getLayoutInflater().inflate(R.layout.rzxxlist_item, null);
+                Display display =getWindowManager().getDefaultDisplay();
+                int width = display.getWidth();
+                int height=display.getHeight();
+                Map<String,String> data =rzxxs.get(position);
+                if (position % 2 == 0) {//奇偶行背景色
+                    convertView.setBackgroundColor(convertView.getResources().getColor(R.color.palegreen));
+                }else {
+                    convertView.setBackgroundColor(convertView.getResources().getColor(R.color.lightgreen));
+                }
+////			ImageView ivTab = (ImageView) convertView.findViewById(R.id.imgv_tables);
+                TextView rznd = (TextView) convertView.findViewById(R.id.rznd);
+                TextView rzsj = (TextView) convertView.findViewById(R.id.rzsj);
+                TextView rzjk = (TextView) convertView.findViewById(R.id.rzjk);
+                TextView rzzb = (TextView) convertView.findViewById(R.id.rzzb);
+
+                rznd.setGravity(Gravity.CENTER);
+                rzsj.setGravity(Gravity.CENTER);
+                rzjk.setGravity(Gravity.CENTER);
+                rzzb.setGravity(Gravity.CENTER);
+
+
+                rznd.setWidth((int)(width*0.12));
+                rzsj.setWidth((int)(width*0.15));
+                rzjk.setWidth((int)(width*0.2));
+                rzzb.setWidth((int)(width*0.43));
+
+
+               rznd.setHeight((int)(height*0.04));
+                rzsj.setHeight((int)(height*0.04));
+                rzjk.setHeight((int)(height*0.04));
+                rzzb.setHeight((int)(height*0.04));
+
+                rznd.setText((String)data.get("rznd")+"");
+                rzsj.setText((String)data.get("rzsj"));
+                rzjk.setText((String)data.get("rzjk"));
+                rzzb.setText((String)data.get("rzzb"));
+
+
+            } else {
+
+            }
+
+            return convertView;
+        }
+    }
 
 }

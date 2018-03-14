@@ -6,25 +6,7 @@
     android:layout_height="match_parent"
     android:clipToPadding="false"
     tools:context=".TxxxDetailActivity">
-    <sysu.zyb.panellistlibrary.PanelListLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/id_pl_rootrzxx"
-        >
 
-        <ListView
-            android:id="@+id/id_lv_contentrzxx"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fastScrollEnabled="false"
-
-            android:layout_marginBottom="40dp"
-            android:overScrollMode="never"
-
-            />
-
-    </sysu.zyb.panellistlibrary.PanelListLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -390,6 +372,22 @@
 
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/sh"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:background="#ffffff"
+            android:layout_marginTop="0dp"
+            android:textSize="16dp"
+            android:text="    认证年度    认证日期    认证方式     经办人  " />
+        <com.scme.order.view.XListView
+            android:id="@+id/lvrzxxs"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+
+            />
 
     <LinearLayout
         android:id="@+id/character_counter_multi1"
