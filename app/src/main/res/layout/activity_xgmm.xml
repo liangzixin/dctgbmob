@@ -30,7 +30,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
                 android:textColor="#ff00ddff"
-                android:id="@+id/password1"
                 android:textSize="20dp"
                 android:text="旧密码："
                 android:layout_marginTop="10dp" />

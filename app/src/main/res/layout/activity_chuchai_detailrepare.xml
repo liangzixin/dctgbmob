@@ -14,7 +14,6 @@
         android:orientation="vertical"
         android:padding="16dp">
         <LinearLayout
-            android:id="@+id/normal_with_input_text_icon1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
@@ -32,7 +31,6 @@
                 />
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/normal_with_input_text_icon2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical">
@@ -53,7 +51,6 @@
 
     </LinearLayout>
         <LinearLayout
-            android:id="@+id/normal_with_input_text_icon3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
@@ -71,7 +68,6 @@
                 />
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/normal_with_input_text_icon5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
@@ -91,7 +87,6 @@
                 />
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/normal_with_input_text_icon9"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal">
@@ -120,7 +115,6 @@
                 app:ms_multiline="true" />
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/error3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -138,7 +132,6 @@
                 />
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/normal_with_hint_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -160,7 +153,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/normal_with_input_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -180,7 +172,6 @@
                 />
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/error2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -200,7 +191,6 @@
                 />
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/error"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -220,7 +210,6 @@
                 />
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/error1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -240,7 +229,6 @@
                 />
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/Chuchai_leader01"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

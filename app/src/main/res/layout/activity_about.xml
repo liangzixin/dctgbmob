@@ -30,7 +30,6 @@
         <include layout="@layout/divider_horizontal_inverse"/>
 
         <FullwidthEditText
-            android:id="@+id/about_edt_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/keyline_1"

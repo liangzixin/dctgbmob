@@ -14,9 +14,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="2">
-        <include
-            android:id="@+id/LinearLayoutHeader"
-            layout="@layout/header" />
+        <include layout="@layout/header" />
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -65,7 +63,6 @@
                     android:textColorHint="#ffbbbbbb"
                     android:textSize="15.0dip" />
                 <TextView
-                    android:id="@+id/inputQqId"
                     android:layout_width="wrap_content"
                     android:layout_height="35.0dip"
                     android:layout_alignLeft="@id/etUserName"
@@ -95,7 +92,6 @@
                     android:textSize="15.0dip" />
 
                 <TextView
-                    android:id="@+id/inputpassWord"
                     android:layout_width="wrap_content"
                     android:layout_height="35.0dip"
                     android:layout_marginTop="55dip"
@@ -197,7 +193,6 @@
 
 
             <TextView
-                android:id="@+id/btnLogin1"
 
                 android:layout_width="match_parent"
                 android:layout_height="18.0dip"
@@ -211,7 +206,6 @@
                 />
 
             <TextView
-                android:id="@+id/btnExit1"
 
                 android:layout_width="match_parent"
                 android:layout_height="21.0dip"

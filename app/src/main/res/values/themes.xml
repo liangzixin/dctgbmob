@@ -77,9 +77,6 @@
     </style>
 
     <!-- 无标题样式主题 -->
-    <style name="notitle">
-        <item name= "android:windowNoTitle" >true </item>
-    </style >
 
     <style name="spinnerstyle"  parent="android:Widget.Spinner">
         <item name= "android:prompt" >@string/search_other</item>

@@ -14,7 +14,6 @@
         android:padding="16dp">
 
         <LinearLayout
-            android:id="@+id/normal_with_input_text_icon2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
@@ -51,7 +50,6 @@
 
 
         <LinearLayout
-            android:id="@+id/normal_with_hint_text1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -69,7 +67,6 @@
                 />
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/normal_with_hint_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -87,7 +84,6 @@
                 />
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/normal_with_hint_text_icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal">
@@ -118,7 +114,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/normal_with_input_text_icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal">
@@ -148,7 +143,6 @@
 
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/normal_with_input_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -169,7 +163,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/error"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -190,7 +183,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/normal_with_hint_text_icon0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical">

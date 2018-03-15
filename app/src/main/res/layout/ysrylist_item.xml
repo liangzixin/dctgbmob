@@ -26,7 +26,6 @@
         android:textColor="#000000"
         android:text="姓名"/>
     <TextView
-        android:id="@+id/txxxid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="150dp"

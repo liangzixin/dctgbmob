@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="base">#44000000</color>
-    <color name="highlight">#44000ff0</color>
-    <color name="error">#E7492E</color>
-    <color name="hint">#340f0d0f</color>
-    <color name="arrow">#94000ff0</color>b3c289
-    <color name="floating_label">#17492E</color>
+    b3c289
     <color name="palegreen">#b3c289</color>b3c289
     <color name="lightgreen">#8eb037</color>
     <color name="colorPrimary">#3F51B5</color>

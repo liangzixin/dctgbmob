@@ -41,15 +41,12 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.litao.android.lib.entity.PhotoEntry;
 import com.scme.order.adpater.ChooseAdapter;
-import com.scme.order.adpater.MyPanelListAdapter;
-import com.scme.order.adpater.MyRzxxListAdapter;
 import com.scme.order.card.HeadlineBodyCard;
 import com.scme.order.common.T;
 import com.scme.order.holder.PhotoHolder;
 import com.scme.order.interfaces.ItemClickListener;
 import com.scme.order.model.Photo;
 import com.scme.order.model.Photoimage;
-import com.scme.order.model.Rzxx;
 import com.scme.order.model.Tusers;
 import com.scme.order.model.Txxx;
 import com.scme.order.service.BaseService;
@@ -66,7 +63,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -79,8 +75,6 @@ import sysu.zyb.panellistlibrary.PanelListLayout;
 import static android.support.v7.widget.RecyclerView.SCROLL_STATE_DRAGGING;
 import static android.support.v7.widget.RecyclerView.SCROLL_STATE_IDLE;
 import static android.support.v7.widget.RecyclerView.SCROLL_STATE_SETTLING;
-import com.scme.order.view.XListView;
-import com.scme.order.view.XListView.IXListViewListener;
 //
 //import  android.support.v4.view.MenuItemCompat.OnActionExpandListener;
 
@@ -126,7 +120,7 @@ private HttpHandler<String> handler;
     private PanelListLayout pl_rootrzxx;
     private ListView lv_contentrzxx;
 
-    private MyRzxxListAdapter adapterrzxx;
+
 
    private Set<Map<String,String>> listrzxx0 =new HashSet<>();
     private List<Map<String,String>> listrzxx = new ArrayList<>();
@@ -456,15 +450,6 @@ private HttpHandler<String> handler;
 
 
 
-    public class CustomRefreshListener implements SwipeRefreshLayout.OnRefreshListener{
-        @Override
-        public void onRefresh() {
-            // you can do sth here, for example: make a toast:
-            Toast.makeText(TxxxDetailActivity.this, "custom SwipeRefresh listener", Toast.LENGTH_SHORT).show();
-            // don`t forget to call this
-            adapterrzxx.getSwipeRefreshLayout().setRefreshing(false);
-        }
-    }
     public Photo mockPhoto(int seed) {
         Photo photo = new Photo();
         photo.path=potolist.get(seed).getPath();

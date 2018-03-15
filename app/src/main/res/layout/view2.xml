@@ -23,7 +23,6 @@
 
 
     <View
-        android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_below="@+id/top_right"

@@ -64,7 +64,6 @@
                 android:textSize="15.0dip" />
 
             <TextView
-                android:id="@+id/inputQqId"
                 android:layout_width="wrap_content"
                 android:layout_height="35.0dip"
                 android:layout_alignLeft="@id/etUserName"
@@ -94,7 +93,6 @@
                 android:textSize="15.0dip" />
 
             <TextView
-                android:id="@+id/inputpassWord"
                 android:layout_width="wrap_content"
                 android:layout_height="35.0dip"
                 android:layout_alignBottom="@id/headImg"
@@ -186,7 +184,6 @@
         android:layout_centerHorizontal="true"/>
 
     <TextView
-        android:id="@+id/btnLogin1"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="18.0dip"
@@ -200,7 +197,6 @@
         />
 
     <TextView
-        android:id="@+id/btnExit1"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="21.0dip"
