@@ -66,8 +66,8 @@ public abstract class AbstractPanelListAdapter {
      * 标题的宽和高,同时也是列表头的宽和列表头的高
      */
     private int titleWidth =40;
-    private int titleHeight =100;
-    private int columnItemHeight = 100;
+    private int titleHeight =80;
+    private int columnItemHeight =80;
 
     private String title = "";
     private int titleBackgroundResource;

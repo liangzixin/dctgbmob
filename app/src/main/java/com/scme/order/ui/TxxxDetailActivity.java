@@ -121,7 +121,7 @@ private HttpHandler<String> handler;
     private StaggeredGridLayoutManager StaggeredGridLayoutManager;
 
     private static final String[] m={"请选择认证方式","填表认证","本人认证","代认证","入户认证","视频认证"};
-    private static final String[] m1={"请选择认证时间","201803","201804","201805","201806","201807"};
+  //  private static final String[] m1={"请选择认证时间","201803","201804","201805","201806","201807"};
 
     private PanelListLayout pl_rootrzxx;
     private ListView lv_contentrzxx;
@@ -147,9 +147,9 @@ private HttpHandler<String> handler;
     @InjectView(R.id.lxdh2) MaterialEditText lxdh2;
     @InjectView(R.id.lxdh3) MaterialEditText lxdh3;
 //    @InjectView(R.id.rzjk) MaterialEditText rz13jk;
-    @InjectView(R.id.rzsj) MaterialEditText rz13sj;
-    @InjectView(R.id.rzzb) MaterialEditText rz13zb;
-    @InjectView(R.id.rzdd) MaterialEditText rz13dd;
+//    @InjectView(R.id.rzsj) MaterialEditText rz13sj;
+//    @InjectView(R.id.rzzb) MaterialEditText rz13zb;
+//    @InjectView(R.id.rzdd) MaterialEditText rz13dd;
    @InjectView(R.id.recyclerView) RecyclerView   recyclerView;
     @InjectView(R.id.recyclerViewlzx) RecyclerView   recyclerViewlzx;
    @InjectView(R.id.lvrzxxs)  XListView   mListRzxxView;
@@ -186,6 +186,7 @@ private HttpHandler<String> handler;
         adapterlzx = new MultiTypeAdapter(this);
         adapterlzx.registerViewType(Photo.class, PhotoHolder.class);
     recyclerViewlzx.setAdapter(adapterlzx);
+
         spinner.setOnItemSelectedListener(this);
 
         progressDialog = new ProgressDialog(this);
@@ -377,6 +378,7 @@ private HttpHandler<String> handler;
         lxdh1.setText(txxx.getLxdh1());
         lxdh2.setText(txxx.getLxdh2());
         lxdh3.setText(txxx.getLxdh3());
+        spinner.setSelection(0);
 //        rz13jk.setText(txxx.getRz13jk());
 //       rz13sj.setText(txxx.getRz14sj());
 //        rz13zb.setText(txxx.getRz14zb());
@@ -491,7 +493,7 @@ private HttpHandler<String> handler;
         menu.getItem(2).setVisible(false);
 //        Toast.makeText(TxxxDetailActivity.this, tusers.getPurview()+"与"+txxx.getRz13jk(), Toast.LENGTH_SHORT).show();
 
-        if(tusers.getPurview().equals("社保")||tusers.getPurview().equals("系统")) {
+        if((tusers.getPurview().equals("社保")||tusers.getPurview().equals("系统"))&txxx.getRzzb().equals("")) {
         //    if (txxx.getRz14jk().equals("")) {
                 menu.getItem(1).setEnabled(true);
                 menu.getItem(1).setVisible(true);
@@ -577,7 +579,7 @@ private HttpHandler<String> handler;
                 public void onSuccess(ResponseInfo<String> responseInfo) {
 
                     if (responseInfo.result != null) {
-                  //      progressDialog.dismiss();
+                     progressDialog.dismiss();
                         Toast.makeText(TxxxDetailActivity.this, "认证成功！", Toast.LENGTH_SHORT).show();
                         //    SharedPreferencesUtil.saveData(ProductinfoAddActivity.this, url, responseInfo.result);
                         PictureUtil.deleteImgTmp(imgstmppath);
@@ -596,7 +598,7 @@ private HttpHandler<String> handler;
 
                 @Override
                 public void onFailure(HttpException e, String s) {
-                 //   progressDialog.dismiss();
+                progressDialog.dismiss();
                     Toast.makeText(TxxxDetailActivity.this, "认证失败！", Toast.LENGTH_SHORT).show();
                 }
             });

@@ -19,10 +19,8 @@ public class Txxx implements java.io.Serializable {
 	private String swsj;
 	private String dfsj;
 	private String rz12;
-
 	private String rzzb;
 	private String rzdd;
-
 
 	private String remark;
 //	private Date  rzrj;
@@ -210,4 +208,6 @@ public class Txxx implements java.io.Serializable {
 	public void setRzxx(Set rzxx) {
 		this.rzxx = rzxx;
 	}
+
+
 }

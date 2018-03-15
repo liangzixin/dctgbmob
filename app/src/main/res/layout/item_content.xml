@@ -9,13 +9,9 @@
 
     <ImageView
         android:id="@+id/id_tv_01"
-        android:layout_width="85dp"
-        android:layout_height="90dp"
-
+        android:layout_width="80dp"
+        android:layout_height="85dp"
       android:src="@drawable/foods_image_loding" />
-
-
-
     <TextView
         android:id="@+id/id_tv_02"
         android:layout_width="70dp"
