@@ -1,6 +1,6 @@
 package com.scme.order.util;
 public class HttpUtil {
 
-public static final String BASE_URL = "http://www.dctgb.com:8086/";
+public static final String BASE_URL = "http://192.168.1.8";
 
 }
