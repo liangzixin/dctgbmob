@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.scme.order"
-        minSdkVersion 23
+        minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
         versionName "7.8"

@@ -65,9 +65,9 @@ public abstract class AbstractPanelListAdapter {
     /**
      * 标题的宽和高,同时也是列表头的宽和列表头的高
      */
-    private int titleWidth =40;
-    private int titleHeight =80;
-    private int columnItemHeight =80;
+    private int titleWidth =50;
+    private int titleHeight =65;
+    private int columnItemHeight =65;
 
     private String title = "";
     private int titleBackgroundResource;
@@ -639,11 +639,11 @@ public abstract class AbstractPanelListAdapter {
 
             if (convertView == null) {
                 view = new TextView(context);
-                ((TextView) view).setHeight(columnItemHeight);
+                //   ((TextView) view).setHeight(columnItemHeight);
                 //如果以上设置高度的代码无法生效，则使用下面的方式设置
-//                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(titleWidth,columnItemHeight);
-//                view.setLayoutParams(lp);
-//                view.getLayoutParams().height = columnItemHeight;
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(titleWidth,columnItemHeight);
+                view.setLayoutParams(lp);
+                view.getLayoutParams().height = columnItemHeight;
             } else {
                 view = convertView;
             }
