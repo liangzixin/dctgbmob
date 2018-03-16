@@ -35,6 +35,7 @@ import android.widget.Toast;
 
 import com.scme.order.card.HeadlineBodyCard;
 import com.scme.order.model.Tusers;
+import com.scme.order.model.Txxx;
 import com.scme.order.model.Ysry;
 import com.scme.order.service.YsryService;
 import com.scme.order.util.MyAppVariable;
@@ -478,12 +479,11 @@ public class YsryListActivity extends BaseActivity implements IXListViewListener
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		//
 		int ii= new Long(id).intValue();
-		myAppVariable.setTxxxid(ii);
-//		Toast.makeText(this, "序号: " + ii, Toast.LENGTH_SHORT).show();
+		myAppVariable.setYsry(new Ysry());
+		myAppVariable.setYsry((Ysry)ysryList.get(position-1));
+
 		Intent intent = new Intent();
-
 		intent.setClass(this, YsryDetailActivity.class);
-
 		startActivity(intent);
 	}
 

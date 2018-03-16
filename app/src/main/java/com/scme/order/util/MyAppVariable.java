@@ -21,6 +21,7 @@ public class MyAppVariable extends Application {
     private List list;
     private List<Qingjia> qingjias;
     private Txxx txxx;
+    private Ysry ysry;
     private Checkinout checkinout;
 
     public List<Placard> getListplacard() {
@@ -183,5 +184,13 @@ public class MyAppVariable extends Application {
 
     public void setCheckinout(Checkinout checkinout) {
         this.checkinout = checkinout;
+    }
+
+    public Ysry getYsry() {
+        return ysry;
+    }
+
+    public void setYsry(Ysry ysry) {
+        this.ysry = ysry;
     }
 }

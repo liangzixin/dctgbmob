@@ -103,33 +103,20 @@ public class YsryDetailActivity extends BaseActivity implements OnItemSelectedLi
 //        tusers=myAppVariable.getTusers();
 //        ysryid=myAppVariable.getYsryid();
 //        ysryid=14;
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("数据加载中  请稍后...");
-        progressDialog.show();
+//        progressDialog = new ProgressDialog(this);
+//        progressDialog.setMessage("数据加载中  请稍后...");
+//        progressDialog.show();
         Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             doSearching(query);
 
         }else {
-        Thread t=new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                        //获取餐桌列表数据
-                        YsryService ysryService = new YsryService();
 
-                        ysry = ysryService.queryYsryId(ysryid);
 
-                    } catch (Exception e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                    myHandler.sendMessage(myHandler.obtainMessage());
-                }
-            });
-            t.start();
-            }
+            ysry =myAppVariable.getYsry();
+        }
+
         if (isThemeLight()) {
             img1.setImageResource(R.drawable.ic_phone_grey600_24dp);
             img2.setImageResource(R.drawable.ic_phone_grey600_24dp);
@@ -144,6 +131,7 @@ public class YsryDetailActivity extends BaseActivity implements OnItemSelectedLi
         if (savedInstanceState == null) {
          //   medtError.setError("Username or Password is incorrect.");
         }
+        showView(ysry);
     }
     /**
      * 显示视图
