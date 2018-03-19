@@ -1,6 +1,6 @@
 package com.scme.order.util;
 public class HttpUtil {
 
-public static final String BASE_URL = "aaaa/";
+public static final String BASE_URL = "aaaaa/";
 
 }
