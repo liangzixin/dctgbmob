@@ -9,6 +9,7 @@ android {
     buildToolsVersion "25.0.2"
 
     defaultConfig {
+
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
@@ -18,6 +19,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
         }
     }
 }
@@ -26,7 +28,9 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     //    compile 'com.android.support:appcompat-v7:23.0.1'
-    compile 'com.android.support:support-v4:25.3.1'
+   // classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
+
+  compile 'com.android.support:support-v4:25.3.1'
 }
 
 def siteUrl = 'https://github.com/hongyangAndroid/android-percent-support-extend'                        // #CONFIG# // project homepage

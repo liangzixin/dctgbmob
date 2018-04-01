@@ -157,7 +157,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 //	 HttpHandler<String> handler;
 	 HttpUtils httpUtils= new HttpUtils();
 		// 不缓存，设置缓存0秒。
-		httpUtils.configCurrentHttpCacheExpiry(0*1000);
+	//	httpUtils.configCurrentHttpCacheExpiry(0*1000);
 		handler= httpUtils.send(HttpRequest.HttpMethod.GET, url, params,new RequestCallBack<String>() {
 				@Override
 				public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -262,7 +262,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 
 
 			LayoutInflater factory = LayoutInflater.from(TxxxListFyActivity.this);
-			final View loginForm = factory.inflate(R.layout.loginsearchother, null);
+			 View loginForm = factory.inflate(R.layout.loginsearchother, null);
 //			TableLayout loginForm = (TableLayout)getLayoutInflater(getActivity())
 //					.inflate( R.layout.loginsearchother, null);
 			spinner1 = (Spinner) loginForm.findViewById(R.id.spinner1);
@@ -347,12 +347,19 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 							params.addQueryStringParameter("intFirst",intFirst+"");
 							params.addQueryStringParameter("recPerPage",recPerPage+"");
 							if (mCheckBox1.isChecked()) {
+								params.addQueryStringParameter("mCheckBox1","1");
 									params.addQueryStringParameter("branchname",spinner1.getSelectedItem().toString());
+							}else{
+								params.addQueryStringParameter("mCheckBox1","0");
+
 							}
 							if (mCheckBox2.isChecked()) {
+								params.addQueryStringParameter("mCheckBox2","1");
 								params.addQueryStringParameter("name0",m2[spinner2.getSelectedItemPosition()].toString());
 								params.addQueryStringParameter("name1",mTextView.getText().toString());
-                          }
+                          }else{
+								params.addQueryStringParameter("mCheckBox2","0");
+							}
 							if (mCheckBox3.isChecked()) {
 								int spin1 = mRadioGroup.getCheckedRadioButtonId();
 
