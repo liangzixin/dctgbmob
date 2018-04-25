@@ -307,7 +307,7 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 				popMenu.showPopUp(v);
 			} else if (v.getId() == R.id.btn_title4) { // 弹出式菜单
 //				System.out.println("下拉菜单点击");
-				String[] str4 = new String[]{getString(R.string.fwk_dk), getString(R.string.fwk_cx), getString(R.string.fwk_jl), getString(R.string.fwk_hj)};
+				String[] str4 = new String[]{getString(R.string.fwk_dk), getString(R.string.fwk_cx), getString(R.string.fwk_jl), getString(R.string.fwk_hj), getString(R.string.fwk_topup)};
 				String str = "1";
 				popMenu = new PopMenu(context, str);
 				popMenu.addItems(str4);
@@ -334,7 +334,10 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 								startActivity(new Intent(MainMenuActivity.this, EatTotalActivity.class));
 
 								break;
+							case 4:
+								startActivity(new Intent(MainMenuActivity.this, EatTopupActivity.class));
 
+								break;
 						}
 					}
 				});

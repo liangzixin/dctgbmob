@@ -67,6 +67,7 @@
     <string name="fwk_cx">个人统计</string>
     <string name="fwk_jl">就餐记录</string>
     <string name="fwk_hj">合计</string>
+    <string name="fwk_topup">充值查询</string>
     <string name="sbk_tx">退休人员</string>
     <string name="sbk_ys">遗属人员</string>
     <string name="search_hint">姓名</string>
