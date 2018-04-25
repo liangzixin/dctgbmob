@@ -73,52 +73,57 @@
             />
 
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="#ff6666"
-        android:layout_alignParentBottom="true"
         android:gravity="center"
-        >
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
         <TextView
             android:id="@+id/tvFoodsOrderPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="15dp"
-            android:textColor="#000000"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
             android:background="#ff6666"
             android:text="姓名： "
-            android:textSize="20dp"
-            />
+            android:textColor="#000000"
+            android:textSize="20dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="150dp"
-            android:textColor="#000000"
-            android:textSize="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/tvFoodsOrderPrice"
             android:background="#ff6666"
-            android:text="份数：" />
+            android:text="份数："
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
         <EditText
             android:id="@+id/etEatNum"
-            android:layout_width="60dp"
-            android:layout_height="37dp"
-            android:layout_marginTop="5dp"
+            android:layout_width="50dp"
+            android:layout_height="45dp"
             android:layout_marginLeft="200dp"
+            android:layout_marginTop="8dp"
             android:inputType="number"
             android:textColor="#000000"
-            android:textSize="20dp"
-            />
+            android:textSize="23dp" />
+
         <Button
+            android:id="@+id/button2"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="260dp"
-            android:textColor="#000000"
-            android:textSize="20dp"
             android:onClick="eats_insert_sumbit_Event"
-            android:text="确  定"/>
+            android:text="订    餐"
+            android:textColor="#000000"
+            android:textSize="20dp" />
     </RelativeLayout>
     </RelativeLayout>
 

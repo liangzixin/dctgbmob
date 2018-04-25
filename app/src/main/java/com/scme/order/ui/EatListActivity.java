@@ -376,7 +376,7 @@ public class EatListActivity extends BaseActivity implements XListView.IXListVie
 					e.printStackTrace();
 				}
 		if(str) {
-			new AlertDialog.Builder(this).setTitle("打卡提交成功！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+			new AlertDialog.Builder(this).setTitle("订餐提交成功！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
@@ -402,7 +402,7 @@ public class EatListActivity extends BaseActivity implements XListView.IXListVie
 				}
 			}).show();
 		}else{
-			Toast.makeText(EatListActivity.this,"就餐打卡失败"+str, Toast.LENGTH_SHORT).show();
+			Toast.makeText(EatListActivity.this,"订餐提交失败"+str, Toast.LENGTH_SHORT).show();
 
 		}
 	}
