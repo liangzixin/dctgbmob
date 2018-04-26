@@ -35,6 +35,16 @@ public class Tusers implements java.io.Serializable {
 	private Branch branch;
 	private int deptid;
 	private int userinfoid;
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
+	private int amount;
 //	GetDate getDate=new GetDate();
 	// Constructors
 

@@ -210,7 +210,6 @@ public class UserListActivity extends BaseActivity implements IXListViewListener
 	};
 
 
-
 	/*
 创建菜单项
  */
