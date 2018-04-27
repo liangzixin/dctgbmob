@@ -2,9 +2,11 @@ package com.scme.order.ui;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,6 +31,7 @@ import com.scme.order.model.DiningcardJson;
 import com.scme.order.model.Tusers;
 import com.scme.order.service.DiningcardService;
 import com.scme.order.service.EatsService;
+import com.scme.order.service.UserService;
 import com.scme.order.util.MyAppVariable;
 
 import java.util.ArrayList;
@@ -70,6 +73,9 @@ public class EatTopupActivity extends BaseActivity implements OnItemClickListene
 	private Tusers user, user0;
 	private MyAppVariable myAppVariable;
 	private int userid;
+	private int branchid;
+	private String name;
+	private String purview="0";
 
 	/**
 	 * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -93,6 +99,8 @@ public class EatTopupActivity extends BaseActivity implements OnItemClickListene
 		myAppVariable = (MyAppVariable) getApplication(); //获得自定义的应用程序MyAppVariable
 		user0 = myAppVariable.getTusers();
 		userid = user0.getId();
+		branchid=user0.getBranchid();
+		if(user0.getPurview().equals("系统")||user0.getPurview().equals("食堂")){purview="1";}
 //
 //		workerid=MainMenuActivity.userId1;
 
@@ -104,19 +112,21 @@ public class EatTopupActivity extends BaseActivity implements OnItemClickListene
 				Intent intent = getIntent();
 				if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
 					String query = intent.getStringExtra(SearchManager.QUERY);
-
-					doSearching(query);
+					purview="2";
+				//	doSearching(query);
+					name=query;
+				//	geneTusersItems();
 					myAppVariable.setOtherquery(true);
 				} else {
 					myAppVariable.setOtherquery(false);
-					geneTusersItems();
+					//geneTusersItems();
 
-					count = geneTusersItemsCount();
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			geneTusersItems();
 			t.start();
 
 		}
@@ -127,38 +137,112 @@ public class EatTopupActivity extends BaseActivity implements OnItemClickListene
 	private Thread t = new Thread(new Runnable() {
 		@Override
 		public void run() {
-			try {
-				DiningcardService diningcardService = new DiningcardService();
-//		    	  TablesService tablesService=new TablesService();
-				//	 eatsList=diningcardService.QueryAllEats();
-				diningcardJson = diningcardService.QueryDiningcard(userid, intFirst, recPerPage);
-				eatsTopupList = diningcardJson.getDiningcard();
-				eattolnumfs = diningcardJson.getCount();
-				eattolnumje = diningcardJson.getSum();
-				for (int i = 0; i < eatsTopupList.size(); i++) {
-					Diningcard diningcard = (Diningcard) eatsTopupList.get(i);
-					//在线程中完成数据请求
-					HashMap<String, Object> map = new HashMap<String, Object>();
-
-					map.put("eatTotalid", eatsTopupList.size() - i);
-
-					map.put("ym", diningcard.getTopuptime().substring(0, 10));
-////
-					map.put("fs", diningcard.getUser().getName());
-					map.put("je", diningcard.getTopupamount());
-					map.put("operator", diningcard.getOperator());
-					eatsMapList.add(map);
-				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
+//			try {
+//				DiningcardService diningcardService = new DiningcardService();
+////		    	  TablesService tablesService=new TablesService();
+//				//	 eatsList=diningcardService.QueryAllEats();
+//				diningcardJson = diningcardService.QueryDiningcard(userid, intFirst, recPerPage);
+//				eatsTopupList = diningcardJson.getDiningcard();
+//				eattolnumfs = diningcardJson.getCount();
+//				eattolnumje = diningcardJson.getSum();
+//				for (int i = 0; i < eatsTopupList.size(); i++) {
+//					Diningcard diningcard = (Diningcard) eatsTopupList.get(i);
+//					//在线程中完成数据请求
+//					HashMap<String, Object> map = new HashMap<String, Object>();
+//
+//					map.put("eatTotalid", eatsTopupList.size() - i);
+//
+//					map.put("ym", diningcard.getTopuptime().substring(0, 10));
+//////
+//					map.put("fs", diningcard.getUser().getName());
+//					map.put("je", diningcard.getTopupamount());
+//					map.put("operator", diningcard.getOperator());
+//					eatsMapList.add(map);
+//				}
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//
 			myHandler.sendMessage(myHandler.obtainMessage());
 		}
 	});
 
+	private void doSearching(String query) throws Exception {
 
+		;
+		//map.put("name", query);
+		//map.put("intFirst",intFirst+"");
+		//map.put("recPerPagee",recPerPage+"");
+		DiningcardService diningcardService = new DiningcardService();
+//		    	  TablesService tablesService=new TablesService();
+		//	 eatsList=diningcardService.QueryAllEats();
+		diningcardJson = diningcardService.QueryDiningcard(1,purview,branchid,name, intFirst, recPerPage);
+		eatsTopupList = diningcardJson.getDiningcard();
+		eattolnumfs = diningcardJson.getCount();
+		eattolnumje = diningcardJson.getSum();
+		for (int i = 0; i < eatsTopupList.size(); i++) {
+			Diningcard diningcard = (Diningcard) eatsTopupList.get(i);
+			//在线程中完成数据请求
+			HashMap<String, Object> map=map = new HashMap<String, Object>();
+
+			map.put("eatTotalid", eatsTopupList.size() - i);
+
+			map.put("ym", diningcard.getTopuptime().substring(0, 10));
+////
+			map.put("fs", diningcard.getUser().getName());
+			map.put("je", diningcard.getTopupamount());
+			map.put("operator", diningcard.getOperator());
+			eatsMapList.add(map);
+		}
+
+//		if(eatsTopupList!=null) {
+//
+//			myAppVariable.setListuser(eatsTopupList);
+//
+//		} else{
+//			new AlertDialog.Builder(this).setTitle("没有查到请假记录！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//
+//				@Override
+//				public void onClick(DialogInterface dialog, int which) {
+//					// TODO Auto-generated method stub
+//					Intent intent = new Intent();
+//
+//					intent.setClass(UserListActivity.this, UserListActivity.class);
+//					startActivity(intent);
+//
+//				}
+//			}).show();
+//		}
+
+	}
+	private void geneTusersItems() {
+		try {
+			DiningcardService diningcardService = new DiningcardService();
+//		    	  TablesService tablesService=new TablesService();
+			//	 eatsList=diningcardService.QueryAllEats();
+			diningcardJson = diningcardService.QueryDiningcard(userid,purview,branchid,name,intFirst, recPerPage);
+			eatsTopupList = diningcardJson.getDiningcard();
+			eattolnumfs = diningcardJson.getCount();
+			eattolnumje = diningcardJson.getSum();
+			for (int i = 0; i < eatsTopupList.size(); i++) {
+				Diningcard diningcard = (Diningcard) eatsTopupList.get(i);
+				//在线程中完成数据请求
+				HashMap<String, Object> map=map = new HashMap<String, Object>();
+
+				map.put("eatTotalid", eatsTopupList.size() - i);
+
+				map.put("ym", diningcard.getTopuptime().substring(0, 10));
+////
+				map.put("fs", diningcard.getUser().getName());
+				map.put("je", diningcard.getTopupamount());
+				map.put("operator", diningcard.getOperator());
+				eatsMapList.add(map);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	/*
 创建菜单项
  */
@@ -184,9 +268,7 @@ public class EatTopupActivity extends BaseActivity implements OnItemClickListene
 				.getSystemService(Context.SEARCH_SERVICE);
 		searchView.setSearchableInfo(searchManager
 				.getSearchableInfo(EatTopupActivity.this.getComponentName()));
-
 		searchItem.setSupportOnActionExpandListener(new MenuItemCompat.OnActionExpandListener() {
-
 					@Override
 					public boolean onMenuItemActionExpand(MenuItem item) {
 //                        Toast.makeText(TusersDetailActivity.this, "扩张了", Toast.LENGTH_SHORT).show();

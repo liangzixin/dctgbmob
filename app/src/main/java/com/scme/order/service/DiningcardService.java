@@ -41,9 +41,9 @@ public class DiningcardService extends BaseService{
      * 查询所有订单
      * @return List<Diningcard> foods 订单对象集合
      */
-    public DiningcardJson QueryDiningcard(int userid,int intFrist,int recPerPage) throws IOException
+    public DiningcardJson QueryDiningcard(int userid,String purview,int branchid,String name,int intFrist,int recPerPage) throws IOException
     {
-        String path = HttpUtil.BASE_URL+"diningcard!queryDiningcard.action?userid="+userid+"&intFirst="+intFrist+"&recPerPage="+recPerPage;
+        String path = HttpUtil.BASE_URL+"diningcard!queryDiningcard.action?userid="+userid+"&intFirst="+intFrist+"&recPerPage="+recPerPage+"&purview="+purview+"&branchid="+branchid+"&name="+name;
         URL url;
         try {
             url = new URL(path);
@@ -68,6 +68,7 @@ public class DiningcardService extends BaseService{
         }
         return diningcardJson;
     }
+
 //    public Diningcard queryEatsId(int eatid) throws Exception
 //    {
 //

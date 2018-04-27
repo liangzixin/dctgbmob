@@ -7,79 +7,56 @@
         android:id="@+id/tvEatsItemEatid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="5dp"
         android:textColor="#ff33b5e5"
         android:text="序号"
-        android:layout_alignParentTop="true"
+
         android:textSize="15dp"
            />
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
 
-        />
 
     <TextView
         android:id="@+id/tvEatsItemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="30dp"
-        android:layout_toEndOf="@+id/tvEatsItemEatid"
+
+        android:layout_marginLeft="45dp"
+
         android:text="梁梁"
         android:textColor="#ff33b5e5"
         android:textSize="15dp"
         />
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
 
-        />
 
     <TextView
         android:id="@+id/tvEatsItemNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="30dp"
-        android:layout_toEndOf="@+id/tvEatsItemName"
+        android:layout_marginLeft="150dp"
+        android:gravity="center"
         android:text="份数"
         android:textColor="#ff33b5e5"
-        android:textSize="15dp"
-        />
+        android:textSize="15dp" />
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-
-        />
 
     <TextView
         android:id="@+id/tvEatsItemPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_toEndOf="@+id/tvEatsItemNumber"
+        android:layout_marginLeft="230dp"
+
         android:text="金额"
         android:textColor="#ff33b5e5"
         android:textSize="15dp"
         />
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
 
-        />
 
     <TextView
         android:id="@+id/tvEatsOperator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_toEndOf="@+id/tvEatsItemPrice"
+        android:layout_marginLeft="290dp"
+
         android:text="操作员"
         android:textColor="#ff33b5e5"
         android:textSize="15dp"
