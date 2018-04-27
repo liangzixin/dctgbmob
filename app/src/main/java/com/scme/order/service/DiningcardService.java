@@ -3,6 +3,7 @@ package com.scme.order.service;
 import com.google.gson.reflect.TypeToken;
 import com.scme.order.model.Diningcard;
 import com.scme.order.model.DiningcardJson;
+import com.scme.order.model.Tusers;
 import com.scme.order.util.HttpUtil;
 import com.scme.order.util.ToolsHandler;
 
@@ -67,6 +68,62 @@ public class DiningcardService extends BaseService{
             e.printStackTrace();
         }
         return diningcardJson;
+    }
+    public DiningcardJson queryDiningcardMap(Map map) {
+
+        String path = HttpUtil.BASE_URL + "diningcard!queryDiningcardMap.action";
+        json = loginPostData(path, map);
+//        System.out.println(json);
+       diningcardJson= getGson().fromJson(json,DiningcardJson.class);
+        return diningcardJson;
+    }
+    public String loginPostData(String path, Map<String,String> map) {
+        String json = "";
+        InputStream inputStream = null;
+        OutputStream outputStream = null;
+
+        try {
+            URL url = new URL(path);
+            HttpURLConnection connection = (HttpURLConnection) url
+                    .openConnection();
+            connection.setDoInput(true);
+            connection.setDoOutput(true);
+//            connection.setReadTimeout(50000);
+            connection.setRequestMethod("POST");
+            StringBuffer buffer = new StringBuffer();
+            if (map != null && !map.isEmpty()) {
+                for (Map.Entry<String, String> entry : map.entrySet()) {
+                    buffer.append(entry.getKey())
+                            .append("=")
+                            .append(URLEncoder.encode(entry.getValue(), "utf-8"))
+                            .append("&");
+                }
+                buffer.deleteCharAt(buffer.length() - 1);
+            }
+            byte[] data = buffer.toString().getBytes();
+            connection.setRequestProperty("Content-Type",
+                    "application/x-www-form-urlencoded");
+            connection.setRequestProperty("Content-Length",
+                    String.valueOf(data.length));
+            outputStream = connection.getOutputStream();
+            outputStream.write(data);
+            if (connection.getResponseCode() == 200) {
+                inputStream = connection.getInputStream();
+                ToolsHandler toolsHandler = new ToolsHandler();
+                byte[] data1 = toolsHandler.InputStreamToByte(inputStream);
+                json = new String(data1);
+//                return getContext(inputStream, "utf-8");
+//                           return  true;
+            }
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return json;
     }
 
 //    public Diningcard queryEatsId(int eatid) throws Exception

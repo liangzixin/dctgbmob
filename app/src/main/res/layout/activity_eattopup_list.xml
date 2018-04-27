@@ -12,12 +12,13 @@
         android:layout_marginTop="0dp"
         android:textSize="17dp"
         android:text="  序号     充值时间        姓  名     金额(元)    操作员 " />
-    <ListView 
+    <com.scme.order.view.XListView
         android:id="@+id/lvEats"
         android:layout_width="fill_parent"
-        android:layout_height="520dp"
-        android:layout_marginTop="25dp"
-
+        android:layout_height="510dp"
+        android:layout_marginTop="22dp"
+        android:dividerHeight="1px"
+        android:divider="#FF909090"
         />
 
     <RelativeLayout

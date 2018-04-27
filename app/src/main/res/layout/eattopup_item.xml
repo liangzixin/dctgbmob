@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="25dp"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
     <TextView
         android:id="@+id/tvEatsItemEatid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:textColor="#ff33b5e5"
         android:text="序号"
+        android:textColor="#ff33b5e5"
 
-        android:textSize="15dp"
-           />
+        android:textSize="15dp" />
 
 
     <TextView
@@ -24,8 +25,7 @@
 
         android:text="梁梁"
         android:textColor="#ff33b5e5"
-        android:textSize="15dp"
-        />
+        android:textSize="15dp" />
 
 
     <TextView
@@ -47,8 +47,7 @@
 
         android:text="金额"
         android:textColor="#ff33b5e5"
-        android:textSize="15dp"
-        />
+        android:textSize="15dp" />
 
 
     <TextView
@@ -59,7 +58,6 @@
 
         android:text="操作员"
         android:textColor="#ff33b5e5"
-        android:textSize="15dp"
-        />
+        android:textSize="15dp" />
 
 </RelativeLayout>

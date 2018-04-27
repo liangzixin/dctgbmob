@@ -10,10 +10,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.support.v4.internal.view.SupportMenuItem;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,8 +32,9 @@ import com.scme.order.model.Diningcard;
 import com.scme.order.model.DiningcardJson;
 import com.scme.order.model.Tusers;
 import com.scme.order.service.DiningcardService;
-import com.scme.order.service.EatsService;
 import com.scme.order.service.UserService;
+import com.scme.order.view.XListView;
+import com.scme.order.view.XListView.IXListViewListener;
 import com.scme.order.util.MyAppVariable;
 
 import java.util.ArrayList;
@@ -48,9 +51,9 @@ import java.util.Map;
 /**
  * 查看订单
  */
-public class EatTopupActivity extends BaseActivity implements OnItemClickListener, OnItemSelectedListener {
+public class EatTopupActivity extends BaseActivity implements IXListViewListener,AdapterView.OnItemClickListener,OnItemSelectedListener{
 
-	private ListView lvEats;
+	private XListView lvEats;
 	private TextView textView;
 	private ProgressDialog progressDialog;
 	private ProgressDialog progressDialog2;
@@ -74,9 +77,14 @@ public class EatTopupActivity extends BaseActivity implements OnItemClickListene
 	private MyAppVariable myAppVariable;
 	private int userid;
 	private int branchid;
-	private String name;
+	private String name="";
 	private String purview="0";
-
+	private Handler testHandler;
+	private int pages;
+	private int start = 0;
+	private static int refreshCnt = 0;
+	Map<String,String> map ;
+	Map<String,String> map0 ;
 	/**
 	 * ATTENTION: This was auto-generated to implement the App Indexing API.
 	 * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -89,10 +97,8 @@ public class EatTopupActivity extends BaseActivity implements OnItemClickListene
 //		actionBar.hide();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eattopup_list);
-		lvEats = (ListView) findViewById(R.id.lvEats);
-//		textView=(TextView) findViewById(id.tvFoodsOrderPrice);
-//		textView.setText("姓名： "+MainMenuActivity.userNamel);
-//		etEatNum=(EditText) findViewById(id.etEatNum);
+		lvEats = (XListView) findViewById(R.id.lvEats);
+
 		tvEatTolNums = (TextView) findViewById(R.id.tvEatTolNum);
 		tvEatTolprices = (TextView) findViewById(R.id.tvEatToltalprice);
 		tvEatTopuptotal = (TextView) findViewById(R.id.tvEattopuptotal);
@@ -137,34 +143,48 @@ public class EatTopupActivity extends BaseActivity implements OnItemClickListene
 	private Thread t = new Thread(new Runnable() {
 		@Override
 		public void run() {
-//			try {
-//				DiningcardService diningcardService = new DiningcardService();
-////		    	  TablesService tablesService=new TablesService();
-//				//	 eatsList=diningcardService.QueryAllEats();
-//				diningcardJson = diningcardService.QueryDiningcard(userid, intFirst, recPerPage);
-//				eatsTopupList = diningcardJson.getDiningcard();
-//				eattolnumfs = diningcardJson.getCount();
-//				eattolnumje = diningcardJson.getSum();
-//				for (int i = 0; i < eatsTopupList.size(); i++) {
-//					Diningcard diningcard = (Diningcard) eatsTopupList.get(i);
-//					//在线程中完成数据请求
-//					HashMap<String, Object> map = new HashMap<String, Object>();
-//
-//					map.put("eatTotalid", eatsTopupList.size() - i);
-//
-//					map.put("ym", diningcard.getTopuptime().substring(0, 10));
-//////
-//					map.put("fs", diningcard.getUser().getName());
-//					map.put("je", diningcard.getTopupamount());
-//					map.put("operator", diningcard.getOperator());
-//					eatsMapList.add(map);
-//				}
-//			} catch (Exception e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//
-			myHandler.sendMessage(myHandler.obtainMessage());
+			Log.d("TAG", "mThread run");
+			Looper.prepare();
+
+			testHandler = new Handler() {
+				public void handleMessage(Message msg) {
+					Log.d("TAG", "worker thread:" + Thread.currentThread().getName());
+//					System.out.println("我的线程："+msg.what);
+
+					switch (msg.what) {
+						//handle message here
+						case 1:
+							pages = (eattolnumfs  + recPerPage - 1) / recPerPage;
+
+						//	tolpage.setText("记录数："+eattolnumfs );
+					//		nowpage.setText("页码："+(intFirst+1)+"/"+pages);
+
+							if(eattolnumfs>recPerPage*(intFirst+1)) {
+								lvEats.setPullLoadEnable(true);
+							}else{
+								lvEats.setPullLoadEnable(false);
+							}
+							myHandler.sendMessage(myHandler.obtainMessage());
+						//	myAdapter = new UserListActivity.MyAdapter(userList, 1);
+
+						//	lvEats.setAdapter(myAdapter);
+
+							lvEats.setXListViewListener(EatTopupActivity.this);
+							lvEats.setOnItemClickListener(EatTopupActivity.this);
+
+
+							break;
+						//send message here
+						case 2:
+
+							break;
+					}
+					progressDialog.dismiss();
+				}
+			};
+
+			testHandler.sendEmptyMessage(1);
+			Looper.loop();
 		}
 	});
 
@@ -217,11 +237,18 @@ public class EatTopupActivity extends BaseActivity implements OnItemClickListene
 
 	}
 	private void geneTusersItems() {
+		map0 = new HashMap<String, String>();
+       map0.put("name", name);
+		//map=myAppVariable.getMap();
+		map0.put("intFirst",intFirst+"");
+		map0.put("recPerPage",recPerPage+"");
+		map0.put("userid",user0.getId()+"");
+		map0.put("branchid",user0.getBranchid()+"");
+		map0.put("purview",user0.getPurview());
+
 		try {
 			DiningcardService diningcardService = new DiningcardService();
-//		    	  TablesService tablesService=new TablesService();
-			//	 eatsList=diningcardService.QueryAllEats();
-			diningcardJson = diningcardService.QueryDiningcard(userid,purview,branchid,name,intFirst, recPerPage);
+			diningcardJson = diningcardService.queryDiningcardMap(map0);
 			eatsTopupList = diningcardJson.getDiningcard();
 			eattolnumfs = diningcardJson.getCount();
 			eattolnumje = diningcardJson.getSum();
@@ -230,7 +257,7 @@ public class EatTopupActivity extends BaseActivity implements OnItemClickListene
 				//在线程中完成数据请求
 				HashMap<String, Object> map=map = new HashMap<String, Object>();
 
-				map.put("eatTotalid", eatsTopupList.size() - i);
+				map.put("eatTotalid",(intFirst*recPerPage)+i+1+ "");
 
 				map.put("ym", diningcard.getTopuptime().substring(0, 10));
 ////
@@ -246,6 +273,7 @@ public class EatTopupActivity extends BaseActivity implements OnItemClickListene
 	/*
 创建菜单项
  */
+	@SuppressLint("RestrictedApi")
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
@@ -302,8 +330,8 @@ public class EatTopupActivity extends BaseActivity implements OnItemClickListene
 			lvEats.setAdapter(simpleAdapter);
 			super.handleMessage(msg);
 		tvEatTolNums.setText("总次数：" + eattolnumfs + " 次");
-			tvEatTolprices.setText("总金额: " + eattolnumje  + " 元");
-			tvEatTopuptotal.setText("余额: " +user0.getAmount()+ " 元");
+		tvEatTolprices.setText("总金额: " + eattolnumje  + " 元");
+		tvEatTopuptotal.setText("页码："+(intFirst+1)+"/"+pages);
 	}
 	};
 
@@ -341,7 +369,76 @@ public class EatTopupActivity extends BaseActivity implements OnItemClickListene
 			return Integer.parseInt(str);
 	}
 
+	@Override
+	public void onRefresh() {
+		testHandler.sendEmptyMessage(2);
 
+		start = ++refreshCnt;
+		if (intFirst >= 1&&pages!=1) {
+			intFirst--;
+			if (myAppVariable.getOtherquery()){
+				geneTusersOther();
+			} else {
+				geneTusersItems();
+			}
+			myHandler.sendMessage(myHandler.obtainMessage());
+//			nowpage.setText("页码：" + (intFirst + 1) + "/" + pages);
+//			myAdapter = new UserListActivity.MyAdapter(userList, 1);
+//			lvEats.setAdapter(myAdapter);
+			lvEats.setPullLoadEnable(true);
+			onLoad();
+		}else{
+			lvEats.setPullLoadEnable(false);
+		}
+
+	}
+
+	@Override
+	public void onLoadMore() {
+		progressDialog = new ProgressDialog(this);
+		progressDialog.setMessage("数据加载中  请稍后...");
+		progressDialog.show();
+		testHandler.sendEmptyMessage(2);
+
+		if ((intFirst+1) < pages&&pages!=1) {
+			intFirst++;
+			if (myAppVariable.getOtherquery()){
+				geneTusersOther();
+			} else {
+				geneTusersItems();
+			}
+			myHandler.sendMessage(myHandler.obtainMessage());
+			lvEats.setPullLoadEnable(true);
+			onLoad();
+		} else {
+			intFirst = pages;
+			lvEats.setPullLoadEnable(false);
+		}
+
+	}
+	private void onLoad() {
+
+		lvEats.stopRefresh();
+		lvEats.stopLoadMore();
+		lvEats.setRefreshTime("刚刚");
+
+	}
+	/*
+*根据查询条件转到另外页面
+ */
+	private void geneTusersOther() {
+		map = new HashMap<String, String>();
+//		map.put("name1", query);
+		map=myAppVariable.getMap();
+		map.put("intFirst",intFirst+"");
+		map.put("recPerPage",recPerPage+"");
+		try {
+//			UserService userService = new UserService();
+//			userList = userService.queryUserOther(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * 吃饭列表适配器
 	 */
