@@ -14,6 +14,8 @@ import java.util.Map;
 import org.json.JSONObject;
 
 import com.google.gson.reflect.TypeToken;
+import com.scme.order.model.DiningcardJson;
+import com.scme.order.model.EatsJson;
 import com.scme.order.model.Qingjia;
 import com.scme.order.model.Teats;
 import com.scme.order.model.EatTotal;
@@ -35,6 +37,7 @@ public class EatsService extends BaseService{
     private Double countmoney;
     private Map  map1=new HashMap<String,String>();
    private boolean  str=false;
+   private EatsJson eatsJson=null;
     /**
      * 根据职工的Id查询职工的信息
      * @param eatid
@@ -210,9 +213,9 @@ public class EatsService extends BaseService{
      * 查询今天订单
      * @return List<Teats> foods 订单对象集合
      */
-    public List<Teats> QueryTodayEats(int workerid,int intFrist,int recPerPage) throws IOException
+    public EatsJson QueryTodayEats(int intFrist, int recPerPage) throws IOException
     {
-        String path = HttpUtil.BASE_URL+"eats!queryTodayEats.action?workerid="+workerid+"&intFirst="+intFrist+"&recPerPage="+recPerPage+"";
+        String path = HttpUtil.BASE_URL+"eats!queryTodayEats.action?intFirst="+intFrist+"&recPerPage="+recPerPage+"";
         URL url;
         try {
             url = new URL(path);
@@ -226,13 +229,13 @@ public class EatsService extends BaseService{
                 ToolsHandler toolsHandler=new ToolsHandler();
                 byte[] data=toolsHandler.InputStreamToByte(is);
                 json=new String(data);
-                eatsList =getGson().fromJson(json, new TypeToken<List<Teats>>() {}.getType());
+                eatsJson=getGson().fromJson(json,EatsJson.class);
             }
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return eatsList;
+        return eatsJson;
     }
     /**
      * 查询今天订单

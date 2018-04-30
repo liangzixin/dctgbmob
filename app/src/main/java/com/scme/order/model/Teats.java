@@ -30,8 +30,6 @@ public class Teats implements java.io.Serializable {
 	private java.lang.String operator;
 	private java.lang.String unclear;
 	private java.lang.Integer eatid1=2;
-
-
 	private Branch branch;
 	private Tusers user;
 
@@ -68,20 +66,20 @@ public class Teats implements java.io.Serializable {
 
 //	DateProcessing dateProcessing=new DateProcessing();
 	/** default constructor */
-	public Teats() {
-	}
-
-	/** full constructor */
-	public Teats(Integer workerid, Integer eatnumber,
-				 Integer unitprice,Integer departmentid,String operator,String unclear) {
-		this.workerid = workerid;
-		this.eatnumber=eatnumber;
-       //this.eatdate1=eatdate1;
-		this.departmentid=departmentid;
-		this.operator=operator;
-		this.unclear=unclear;
-		this.unitprice=unitprice;
-	}
+//	public Teats() {
+//	}
+//
+//	/** full constructor */
+//	public Teats(Integer workerid, Integer eatnumber,
+//				 Integer unitprice,Integer departmentid,String operator,String unclear) {
+//		this.workerid = workerid;
+//		this.eatnumber=eatnumber;
+//       //this.eatdate1=eatdate1;
+//		this.departmentid=departmentid;
+//		this.operator=operator;
+//		this.unclear=unclear;
+//		this.unitprice=unitprice;
+//	}
 
 	public Integer getEatid() {
 		return eatid;

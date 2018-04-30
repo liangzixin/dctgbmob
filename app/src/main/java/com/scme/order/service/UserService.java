@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gson.reflect.TypeToken;
+import com.scme.order.model.CItem;
 import com.scme.order.model.Qingjia;
 import com.scme.order.model.Tfoods;
 import com.scme.order.model.Tusers;
@@ -26,6 +27,7 @@ public class UserService extends BaseService {
     private String json = "";
     private List<Tusers> users = null;
     private List list1 = null;
+    private List<CItem> list2 = null;
     private boolean str=false;
     private int count=0;
 
@@ -333,6 +335,30 @@ public class UserService extends BaseService {
             e.printStackTrace();
         }
         return list1;
+    }
+    public List<CItem> QueryUserIdName(int branchid) throws Exception {
+        String path = HttpUtil.BASE_URL + "user!queryUserIdName.action?branchid=" + branchid + "";
+        URL url;
+        try {
+            url = new URL(path);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(5000);
+            conn.setRequestMethod("POST");
+            if (200 == conn.getResponseCode()) {
+                //获取输入流
+                InputStream is = conn.getInputStream();
+                ToolsHandler toolsHandler = new ToolsHandler();
+                byte[] data = toolsHandler.InputStreamToByte(is);
+                json = new String(data);
+                System.out.println(json);
+                list2= getGson().fromJson(json, new TypeToken<List<CItem>>() {
+                }.getType());
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return list2;
     }
     public List<Tusers> QueryUserBranchIdOther(int branchid) throws Exception {
         String path = HttpUtil.BASE_URL + "user!queryUserBranchIdOther.action?branchid=" + branchid + "";

@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EatListActivity" >
@@ -17,114 +18,146 @@
         android:textColor="#000000"
         android:background="#ff33b5e5"
         android:layout_marginTop="0dp"
-        android:text="  序号     姓名             时间          份数     金额(元)        部门名称" />
+        android:text="  序号     姓名             时间          份数     金额(元)        操作员" />
 
     </RelativeLayout>
     <com.scme.order.view.XListView
         android:id="@+id/lvEats"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-
+        android:textSize="17dp"
         android:layout_marginTop="18dp"
         />
 
 
 
-
-    <RelativeLayout
-
-        android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:background="#ff33b5e5"
-        android:layout_marginBottom="48dp"
-        android:layout_alignParentBottom="true"
-        >
-        <Button
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:layout_marginLeft="5dp"
-            android:textColor="#000000"
-            android:onClick="eats_pages_sumbit_Event"
-            android:text="转到页码"
-            android:background="@drawable/button_zise"
-            />
-        <TextView
-            android:id="@+id/TolPage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:layout_marginLeft="95dp"
-            android:textColor="#000000"
-            android:textSize="17dp"
-            android:background="#ff33b5e5"
-
-            />
-        <TextView
-            android:id="@+id/NowPage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:layout_marginLeft="230dp"
-            android:textColor="#000000"
-            android:textSize="17dp"
-            android:background="#ff33b5e5"
-
-            />
-
-    </RelativeLayout>
-
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#ff6666"
-        android:gravity="center"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:background="#ff6666"
+        android:orientation="vertical"
+        android:id="@+id/eatadd"
+        >
 
-        <TextView
-            android:id="@+id/tvFoodsOrderPrice"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:background="#8eb037"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/topupamount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textColor="#000000"
+                android:textSize="17dp"
+
+                />
+
+            <TextView
+                android:id="@+id/TolPage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_toEndOf="@+id/topupamount"
+
+                android:textColor="#000000"
+
+                android:textSize="17dp" />
+
+            <TextView
+                android:id="@+id/Tolnumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_toEndOf="@+id/TolPage"
+
+                android:textColor="#000000"
+
+                android:textSize="17dp" />
+
+            <TextView
+                android:id="@+id/NowPage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_toEndOf="@+id/Tolnumber"
+
+                android:textColor="#000000"
+
+                android:textSize="17dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/eatadd1"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:background="#ff6666"
-            android:text="姓名： "
-            android:textColor="#000000"
-            android:textSize="20dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@+id/tvFoodsOrderPrice"
-            android:background="#ff6666"
-            android:text="份数："
-            android:textColor="#000000"
-            android:textSize="20dp" />
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/etEatNum"
-            android:layout_width="50dp"
-            android:layout_height="45dp"
-            android:layout_marginLeft="200dp"
-            android:layout_marginTop="8dp"
-            android:inputType="number"
-            android:textColor="#000000"
-            android:textSize="23dp" />
+            <fr.ganfra.materialspinner.MaterialSpinner
+                android:id="@+id/spinner1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:gravity="center_horizontal|center"
+                app:ms_arrowColor="#0000FF"
+                app:ms_arrowSize="16dp"
+                app:ms_floatingLabelColor="#00FF00"
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="260dp"
-            android:onClick="eats_insert_sumbit_Event"
-            android:text="订    餐"
-            android:textColor="#000000"
-            android:textSize="20dp" />
+                app:ms_floatingLabelText="部门名称"
+                app:ms_multiline="true" />
+
+            <fr.ganfra.materialspinner.MaterialSpinner
+                android:id="@+id/spinner2"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/spinner1"
+                app:ms_arrowColor="#0000FF"
+                app:ms_arrowSize="16dp"
+                app:ms_floatingLabelColor="#00FF00"
+                app:ms_floatingLabelText="姓    名"
+                app:ms_multiline="true" />
+
+            <fr.ganfra.materialspinner.MaterialSpinner
+                android:id="@+id/spinner3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/spinner2"
+                app:ms_arrowColor="#0000FF"
+                app:ms_arrowSize="16dp"
+                app:ms_floatingLabelColor="#00FF00"
+                app:ms_floatingLabelText="份数"
+
+                app:ms_multiline="true" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentRight="true"
+                android:layout_centerHorizontal="false"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/spinner3"
+                android:onClick="eats_insert_sumbit_Event"
+                android:text="订餐"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:enabled="false"
+                />
+
+
+        </RelativeLayout>
     </RelativeLayout>
-    </RelativeLayout>
+</RelativeLayout>
 
 

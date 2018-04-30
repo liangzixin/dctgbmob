@@ -37,6 +37,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.scme.order.card.HeadlineBodyCard;
+import com.scme.order.model.CItem;
 import com.scme.order.model.Teats;
 import com.scme.order.model.Tusers;
 import com.scme.order.service.BranchService;
@@ -70,10 +71,10 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 	private SimpleAdapter simpleAdapter;
 	private List<HashMap<String, Object>> eatsMapList = new ArrayList<HashMap<String, Object>>();
 	private List<Teats> eatsList;
-	private List listuser;
+	private List<CItem> listuser;
 	private int workerid = 0;
 	private int eattolnums = 0;
-	private EditText etEatNum;//人数
+//	private EditText etEatNum;//人数
 	private ListView eatsListView;
 	private TextView tvEatTolNums;
 	private TextView tvEatTolprices;
@@ -82,7 +83,7 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 	private MyAppVariable myAppVariable;
 	private MyAdapter myAdapter;
 	private ArrayAdapter<String> adapter;
-
+	private ArrayAdapter<CItem> adapter0;
 	private Tusers user;
 	private int count;
 	private Map param;
@@ -126,7 +127,7 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 		lvEats = (XListView) findViewById(R.id.lvEats);
 		textView = (TextView) findViewById(R.id.tvFoodsOrderPrice);
 
-		etEatNum = (EditText) findViewById(R.id.etEatNum);
+	//	etEatNum = (EditText) findViewById(R.id.etEatNum);
 		tvEatTolNums = (TextView) findViewById(R.id.tvEatTolNum);
 //		tvEatTolprices=( TextView)findViewById(R.id.tvEatTolprice);
 
@@ -173,6 +174,7 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 	/*
     创建菜单项
      */
+	@SuppressLint("RestrictedApi")
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
@@ -266,8 +268,8 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 					try {
 						UserService userService = new UserService();
 
-						listuser = userService.QueryUserBranchId(branchid);
-
+					//	listuser = userService.QueryUserBranchId(branchid);
+						listuser = userService.QueryUserIdName(branchid);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -275,11 +277,11 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 
 					//将地级适配器的值改变为city[position]中的值
 					spinner3 = (Spinner) loginForm.findViewById(R.id.spinner3);
-					adapter = new ArrayAdapter<String>(EatAllActivity.this, android.R.layout.simple_spinner_item, listuser);
+					adapter0 = new ArrayAdapter<CItem>(EatAllActivity.this, android.R.layout.simple_spinner_item, listuser);
 //
 					// 设置二级下拉列表的选项内容适配器
 
-					spinner3.setAdapter(adapter);
+					spinner3.setAdapter(adapter0);
 
 					setSpinnerItemSelectedByValue(spinner3, user.getName());
 //					provincePosition = position;    //记录当前省级序号，留给下面修改县级适配器时用
@@ -594,9 +596,9 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 				try {
 					EatsService os = new EatsService();
 					//EatsDetailsService ods=new EatsDetailsService();
-					String strEatNum = etEatNum.getText().toString();
-					Integer eatNum = Integer.parseInt(strEatNum);
-					os.addEats(workerid, eatNum);//添加订单
+			//		String strEatNum = etEatNum.getText().toString();
+				//	Integer eatNum = Integer.parseInt(strEatNum);
+			//		os.addEats(workerid, eatNum);//添加订单
 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block

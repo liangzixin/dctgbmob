@@ -16,6 +16,7 @@ import android.support.v4.internal.view.SupportMenuItem;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,14 +24,22 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.MaterialEditText;
 import android.widget.SimpleAdapter;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.scme.order.model.Diningcard;
 import com.scme.order.model.DiningcardJson;
 import com.scme.order.model.Tusers;
+import com.scme.order.service.BranchService;
 import com.scme.order.service.DiningcardService;
 import com.scme.order.service.UserService;
 import com.scme.order.view.XListView;
@@ -85,6 +94,17 @@ public class EatTopupActivity extends BaseActivity implements IXListViewListener
 	private static int refreshCnt = 0;
 	Map<String,String> map ;
 	Map<String,String> map0 ;
+	private Spinner spinner1;
+	private Spinner spinner2;
+	private Spinner spinner3;
+
+	private List listbmmz;
+	private List listuser;
+	private ArrayAdapter<String> adapter;
+	private CheckBox mCheckBox1;
+	private CheckBox mCheckBox2;
+	private CheckBox mCheckBox3;
+
 	/**
 	 * ATTENTION: This was auto-generated to implement the App Indexing API.
 	 * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -106,9 +126,7 @@ public class EatTopupActivity extends BaseActivity implements IXListViewListener
 		user0 = myAppVariable.getTusers();
 		userid = user0.getId();
 		branchid=user0.getBranchid();
-		if(user0.getPurview().equals("系统")||user0.getPurview().equals("食堂")){purview="1";}
-//
-//		workerid=MainMenuActivity.userId1;
+
 
 		progressDialog = new ProgressDialog(this);
 		progressDialog.setMessage("数据加载中  请稍后...");
@@ -118,14 +136,12 @@ public class EatTopupActivity extends BaseActivity implements IXListViewListener
 				Intent intent = getIntent();
 				if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
 					String query = intent.getStringExtra(SearchManager.QUERY);
-					purview="2";
-				//	doSearching(query);
+
 					name=query;
-				//	geneTusersItems();
+
 					myAppVariable.setOtherquery(true);
 				} else {
 					myAppVariable.setOtherquery(false);
-					//geneTusersItems();
 
 				}
 			} catch (Exception e) {
@@ -188,58 +204,209 @@ public class EatTopupActivity extends BaseActivity implements IXListViewListener
 		}
 	});
 
-	private void doSearching(String query) throws Exception {
 
-		;
-		//map.put("name", query);
-		//map.put("intFirst",intFirst+"");
-		//map.put("recPerPagee",recPerPage+"");
-		DiningcardService diningcardService = new DiningcardService();
-//		    	  TablesService tablesService=new TablesService();
-		//	 eatsList=diningcardService.QueryAllEats();
-		diningcardJson = diningcardService.QueryDiningcard(1,purview,branchid,name, intFirst, recPerPage);
-		eatsTopupList = diningcardJson.getDiningcard();
-		eattolnumfs = diningcardJson.getCount();
-		eattolnumje = diningcardJson.getSum();
-		for (int i = 0; i < eatsTopupList.size(); i++) {
-			Diningcard diningcard = (Diningcard) eatsTopupList.get(i);
-			//在线程中完成数据请求
-			HashMap<String, Object> map=map = new HashMap<String, Object>();
 
-			map.put("eatTotalid", eatsTopupList.size() - i);
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+	if (id == R.id.search_other) {
+			LayoutInflater factory = LayoutInflater.from(EatTopupActivity.this);
+			final View loginForm = factory.inflate(R.layout.loginsearchuser, null);
+			spinner1 = (Spinner) loginForm.findViewById(R.id.spinner1);
+			spinner1.setDropDownWidth(-2);
+//			//		//将可选内容与ArrayAdapter连接起来
+			try {
+				BranchService branchService=new BranchService();
+//
+				listbmmz=branchService.QueryBranch();
 
-			map.put("ym", diningcard.getTopuptime().substring(0, 10));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,listbmmz);
+
+//		//设置下拉列表的风格
+
+//		//将adapter 添加到spinner中
+			spinner1.setAdapter(adapter);
+			spinner1.setSelection(user0.getBranch().getId()-1);
+
+			spinner2 = (Spinner) loginForm.findViewById(R.id.spinner2);
+			spinner2.setDropDownWidth(-2);
+
+			spinner2.setAdapter(adapter);
+		spinner2.setSelection(user0.getBranch().getId()-1);
+			spinner2.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+				// 表示选项被改变的时候触发此方法，主要实现办法：动态改变地级适配器的绑定值
+				@Override
+				public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
+					//position为当前省级选中的值的序号
+					branchid = position + 1;
+					try {
+						UserService userService = new UserService();
+
+						listuser = userService.QueryUserBranchId(branchid);
+
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+					//将地级适配器的值改变为city[position]中的值
+					spinner3 = (Spinner) loginForm.findViewById(R.id.spinner3);
+					adapter = new ArrayAdapter<String>(EatTopupActivity.this, android.R.layout.simple_spinner_item, listuser);
+//
+					// 设置二级下拉列表的选项内容适配器
+
+					spinner3.setAdapter(adapter);
+
+					setSpinnerItemSelectedByValue(spinner3, user0.getName());
+//					provincePosition = position;    //记录当前省级序号，留给下面修改县级适配器时用
+				}
+
+				@Override
+				public void onNothingSelected(AdapterView<?> parent) {
+				}
+
+			});
+
+
+
+//			 mTextView = (TextView) loginForm.findViewById(R.id.textview);
+			mCheckBox1 = (CheckBox) loginForm.findViewById(R.id.checkBox1);
+			mCheckBox2 = (CheckBox) loginForm.findViewById(R.id.checkBox2);
+		    mCheckBox3 = (CheckBox) loginForm.findViewById(R.id.checkBox3);
+		  mCheckBox3.setVisibility(View.GONE);
+		  if(user0.getPurview().equals("系统")||user0.getPurview().equals("食堂")){
+		     spinner1.setEnabled(true);
+			  spinner2.setEnabled(true);
+		  }else{
+			  spinner1.setEnabled(false);
+			  spinner2.setEnabled(false);
+		  }
+
+
+			//选项1事件监听
+			mCheckBox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//
+				}
+			});
+
+			//选项2事件监听
+			mCheckBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+				}
+			});
+
+
+			new AlertDialog.Builder(this)
+					// 设置对话框的图标
+					.setIcon(R.drawable.icon_laucher)
+					// 设置对话框的标题
+					.setTitle("其它查询条件")
+					// 设置对话框显示的View对象
+					.setView(loginForm)
+					// 为对话框设置一个“确定”按钮
+
+					.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog,
+											int which) {
+							map= new HashMap<String, String>();
+							map.put("other","1");
+							if (mCheckBox1.isChecked()) {
+								map.put("mCheckBox1","1");
+								map.put("branchname", spinner1.getSelectedItem().toString());
+							}else{
+								map.put("mCheckBox1","0");
+								map.put("branchname", "");
+							}
+
+							if (mCheckBox2.isChecked()) {
+								map.put("mCheckBox2","1");
+								map.put("branchname",spinner2.getSelectedItem().toString());
+								map.put("name",spinner3.getSelectedItem().toString());
+							}else{
+								map.put("name", "");
+								map.put("mCheckBox2","0");
+							}
+
+
+							try {
+								intFirst = 0;
+								DiningcardService diningcardService = new DiningcardService();
+								diningcardJson = diningcardService.queryDiningcardMap(map);
+								eatsTopupList = diningcardJson.getDiningcard();
+								eattolnumfs = diningcardJson.getCount();
+								eattolnumje = diningcardJson.getSum();
+								eatsMapList = new ArrayList<HashMap<String, Object>>();
+								for (int i = 0; i < eatsTopupList.size(); i++) {
+									Diningcard diningcard = (Diningcard) eatsTopupList.get(i);
+									//在线程中完成数据请求
+									HashMap<String, Object> map=map = new HashMap<String, Object>();
+
+									map.put("eatTotalid",(intFirst*recPerPage)+i+1+ "");
+
+									map.put("ym", diningcard.getTopuptime().substring(0, 10));
 ////
-			map.put("fs", diningcard.getUser().getName());
-			map.put("je", diningcard.getTopupamount());
-			map.put("operator", diningcard.getOperator());
-			eatsMapList.add(map);
+									map.put("fs", diningcard.getUser().getName());
+									map.put("je", diningcard.getTopupamount());
+									map.put("operator", diningcard.getOperator());
+									eatsMapList.add(map);
+								}
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+							myAppVariable.setOtherquery(true);
+							myAppVariable.setMap(map);
+
+							lvEats.setPullLoadEnable(true);
+							lvEats.setOnItemClickListener(EatTopupActivity.this);
+
+							//	onLoad();
+							testHandler.sendEmptyMessage(1);
+							Looper.loop();
+							//	t.start();
+//							} else {
+//								intFirst = pages;
+//								mListView.setPullLoadEnable(false);
+//							}
+//输入的内容会在页面上显示来因为是做来测试，所以功能不是很全，只写了username没有学password
+//						}, 2000);
+
+							// 此处可执行登录处理
+						}
+					})
+					// 为对话框设置一个“取消”按钮
+					.setNegativeButton("取消", new DialogInterface.OnClickListener()
+					{
+						@Override
+						public void onClick(DialogInterface dialog,
+											int which)
+						{
+							// 取消登录，不做任何事情
+						}
+					})
+					// 创建并显示对话框
+					.create()
+					.show();
+
+
 		}
 
-//		if(eatsTopupList!=null) {
-//
-//			myAppVariable.setListuser(eatsTopupList);
-//
-//		} else{
-//			new AlertDialog.Builder(this).setTitle("没有查到请假记录！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//
-//				@Override
-//				public void onClick(DialogInterface dialog, int which) {
-//					// TODO Auto-generated method stub
-//					Intent intent = new Intent();
-//
-//					intent.setClass(UserListActivity.this, UserListActivity.class);
-//					startActivity(intent);
-//
-//				}
-//			}).show();
-//		}
 
+
+		return super.onOptionsItemSelected(item);
 	}
 	private void geneTusersItems() {
 		map0 = new HashMap<String, String>();
        map0.put("name", name);
-		//map=myAppVariable.getMap();
+		map0.put("other","0");
 		map0.put("intFirst",intFirst+"");
 		map0.put("recPerPage",recPerPage+"");
 		map0.put("userid",user0.getId()+"");
@@ -279,13 +446,15 @@ public class EatTopupActivity extends BaseActivity implements IXListViewListener
 		super.onCreateOptionsMenu(menu);
 		getMenuInflater().inflate(R.menu.menu_txxxdetailmain, menu);
 		menu.getItem(2).setVisible(false);
+		menu.getItem(3).setVisible(false);
+		menu.getItem(4).setVisible(true);
 		if(user0.getPurview().equals("系统")) {
 			menu.getItem(1).setEnabled(true);
 			menu.getItem(1).setTitle(R.string.add);
 			menu.getItem(1).setVisible(false);
-			menu.getItem(5).setVisible(true);
+			menu.getItem(5).setVisible(false);
 		}
-		menu.getItem(4).setVisible(true);
+
 		SupportMenuItem searchItem = (SupportMenuItem) menu
 				.findItem(R.id.action_search);
 
@@ -551,5 +720,21 @@ public class EatTopupActivity extends BaseActivity implements IXListViewListener
 	public void onNothingSelected(AdapterView<?> arg0) {
 		// TODO Auto-generated method stub
 
+	}
+	/**
+	 * 根据值, 设置spinner默认选中:
+	 * @param spinner
+	 * @param value
+	 */
+	public static void setSpinnerItemSelectedByValue(Spinner spinner,String value){
+		SpinnerAdapter apsAdapter= spinner.getAdapter(); //得到SpinnerAdapter对象
+		int k= apsAdapter.getCount();
+		for(int i=0;i<k;i++){
+			if(value.equals(apsAdapter.getItem(i).toString())){
+				spinner.setSelection(i,true);// 默认选中项
+//                System.out.println("默认:"+i);
+				break;
+			}
+		}
 	}
 }

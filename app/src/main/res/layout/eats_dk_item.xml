@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="280dp"
         android:textColor="#000000"
-        android:text="部门名称"/>
+        android:text="操作员"/>
 
 
 

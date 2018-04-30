@@ -66,7 +66,7 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 	private ProgressDialog progressDialog;
 
 	private List<Tusers> users;
-
+    private Tusers user;
 
 	private SimpleAdapter usersSimpleAdapter;
 
@@ -84,6 +84,7 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 	private ListView lv_content;
 
 	private MyPanelListAdapter adapter;
+	private int branchid=0;
 
 	//private List<Map<String, String>> contentList = new ArrayList<>();
 
@@ -121,7 +122,11 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 
 		textView = (TextView) findViewById(R.id.tvMainUserName);
        	String name="";
-		if(myAppVariable.getTusers().getName()!=null) name=myAppVariable.getTusers().getName();
+		if(myAppVariable.getTusers().getName()!=null){
+			user=myAppVariable.getTusers();
+			name=user.getName();
+			branchid=user.getBranchid();
+		}
 		textView.setText("昆明市东川区企业退休人员管理办公室移动OA  " +name);
 
 
@@ -130,6 +135,19 @@ public class MainMenuActivity extends Activity implements ProgressListener, Adap
 		button3.setOnClickListener(onViewClick);
 		button4.setOnClickListener(onViewClick);
 		button5.setOnClickListener(onViewClick);
+		if(branchid<12){
+			button1.setVisibility(View.VISIBLE);
+			button2.setVisibility(View.VISIBLE);
+			button3.setVisibility(View.VISIBLE);
+			button4.setVisibility(View.VISIBLE);
+			button5.setVisibility(View.VISIBLE);
+		}else{
+			button1.setVisibility(View.VISIBLE);
+			button2.setVisibility(View.GONE);
+			button3.setVisibility(View.GONE);
+			button4.setVisibility(View.VISIBLE);
+			button5.setVisibility(View.VISIBLE);
+		}
 		initView();
 		initContentDataList();
 
