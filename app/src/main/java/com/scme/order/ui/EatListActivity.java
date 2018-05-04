@@ -302,7 +302,7 @@ public class EatListActivity extends BaseActivity implements XListView.IXListVie
 		pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
 
 		tolpage.setText("人数："+count+" 人  ");
-		Tolnumber.setText("份数："+countfs+" 份  ");
+		Tolnumber.setText("份数："+countmoeny+" 份  ");
 		nowpage.setText("页码："+(intFrist+1)+"/"+pages);
 		topupamount.setText("余额："+amount+"元  ");
      //    eatNum=spinner3.getSelectedItemPosition()+1;
