@@ -229,19 +229,31 @@
             >
 
 
-                <MaterialEditText
-                    android:id="@+id/User_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="职工编号:"
-                    android:inputType="textNoSuggestions"
-                    android:singleLine="true"
-                    android:text="User_id"
-                    material:floatingLabel="true"
-                    android:editable="false"
+            <MaterialEditText
+                android:id="@+id/amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:editable="false"
+                android:hint="余额:"
+                android:inputType="textNoSuggestions"
+                android:singleLine="true"
+                android:text="0"
+                material:floatingLabel="true" />
+
+            <MaterialEditText
+                android:id="@+id/User_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:editable="false"
+                android:gravity="center"
+                android:hint="职工编号:"
+                android:inputType="textNoSuggestions"
+                android:singleLine="true"
+                android:text="User_id"
 
 
-                    />
+                material:floatingLabel="true" />
                 <MaterialEditText
                     android:id="@+id/User_pwd"
                     android:layout_width="wrap_content"

@@ -64,6 +64,8 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
 	private HttpUtils httpUtils;
 	private String url=null;
 	private HttpHandler<String> handler;
+    private final 	Message msg = new Message();
+
 //	private Button loginButton1;
 
 //	@SuppressLint("NewApi")
@@ -153,6 +155,7 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
 //					e.printStackTrace();
 //				}
 //					btn_app_sy();
+					myHandler.handleMessage(msg);
 					break;
 			}
 
@@ -162,30 +165,32 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
 			}
 		}
 	};
-	public void btn_app_sy() {
-		progressDialog = new ProgressDialog(this);
-		progressDialog.setMessage("数据加载中  请稍后...");
-		progressDialog.show();
-		Thread t = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					final UserService userService=new UserService();
-					user=userService.login(struserName, userPwd);//在线程中完成数据请求
-//					Thread.sleep(500);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				myHandler.sendMessage(myHandler.obtainMessage());
-				//		myHandler.sendMessage(myHandler.obtainMessage());
-			}
-		});
-		t.start();
-
-
-
-	}
+//	public void btn_app_sy() {
+//		progressDialog = new ProgressDialog(this);
+//		progressDialog.setMessage("数据加载中  请稍后...");
+//		progressDialog.show();
+//
+//		Thread t = new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				try {
+//					final UserService userService=new UserService();
+//					user=userService.login(struserName, userPwd);//在线程中完成数据请求
+//					msg.what =1;
+////					Thread.sleep(500);
+//				} catch (Exception e) {
+//					// TODO Auto-generated catch block
+//					msg.what =2;
+//					e.printStackTrace();
+//
+//				}
+//			//	myHandler.sendMessage(myHandler.obtainMessage());
+//				//		myHandler.sendMessage(myHandler.obtainMessage());
+//			}
+//		});
+//		t.start();
+//
+//	}
 	/**
 	 * 保存密码
 	 */
@@ -208,9 +213,10 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
         @SuppressLint("HandlerLeak")
 		@Override 
         public void handleMessage(Message msg) { 
-            progressDialog.dismiss(); 
-            if(user!=null)
-			 {
+      //      progressDialog.dismiss();
+			switch (msg.what) {
+				//handle message here
+				case 1:
 				//使SharedPreferences处于编辑状态
 				SharedPreferences.Editor editor=sharedPreferences.edit();
 				editor.putString("userName", etUserName.getText().toString());
@@ -221,47 +227,24 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
 					//提交数据
 					editor.commit();
 				}
-				
-//		        	Intent intent=new Intent();
-//		        	Bundle bundle=new Bundle();
-//					bundle.putString("userName", userName);
-				//	titleUserName=userName;//保存用户名
+
 				 titleUserName=user.getUserName();
 				 titleUserId=user.getId();
 				  myAppVariable=(MyAppVariable)getApplication(); //获得自定义的应用程序MyAppVariable
-//				 myAppVariable.getTusers().setPurview(user.getPurview());
-//				 myAppVariable.setPurview(user.getPurview());
+
 				 myAppVariable.setTusers(new Tusers());
 				 myAppVariable.setTusers(user);
-//				 Tusers tusers0=new Tusers();
-//				 tusers0=user;
-//				 tusers0.setUserName(user.getUserName().toString());
-//				 tusers0.setPurview(user.getPurview());
-//				 tusers0.setId(user.getId());
+
 				 Intent intentmy=new Intent(LoginActivity.this, MainMenuActivity.class);
-//
-//				 intent.setClass(LoginActivity.this, MainMenuActivity.class);
-//				 Intent intentmy=new Intent(LoginActivity.this, ItemActivity.class);
-//				 Bundle bundlemy=new Bundle();
-//
-//				 bundlemy.putSerializable("user0",tusers0);
-//				 intentmy.putExtras(bundlemy);
-				 startActivity(intentmy);
+					startActivity(intentmy);
 				 LoginActivity.this.finish();
-//					intent.putExtras(bundle);
-//				 	intent.setClass(LoginActivity.this, MainActivity.class);
-//					 intent.setClass(LoginActivity.this, MainMenuActivity.class);
-//					startActivity(intent);
-//				 intent.putExtra("contentId", mContentIds[position]);
-//				 intent.putExtra("title",mTitle[position]);
-//				 startActivity(intent);
-			 }
-			 else
-			 {
+				break;
+				case 2:
 					Toast.makeText(LoginActivity.this, R.string.test_no, Toast.LENGTH_SHORT).show();
+				break;
 			 }
-			user=null;
-            super.handleMessage(msg);
+
+       //    super.handleMessage(msg);
         } 
     };
 
@@ -277,7 +260,7 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
 			@Override
 			public void onSuccess(ResponseInfo<String> responseInfo) {
 				progressDialog.dismiss();
-				if (responseInfo.result !="0") {
+				if (!responseInfo.result.equals("0")) {
 
 					SharedPreferences.Editor editor=sharedPreferences.edit();
 					editor.putString("userName", etUserName.getText().toString());
@@ -293,22 +276,30 @@ public class LoginActivity extends Activity implements OnCheckedChangeListener {
 						user = BaseService.getGson().fromJson(responseInfo.result, new TypeToken<Tusers>() {
 						}.getType());
 
-					titleUserName=user.getUserName();
-					titleUserId=user.getId();
-					myAppVariable=(MyAppVariable)getApplication(); //获得自定义的应用程序MyAppVariable
-
-					myAppVariable.setTusers(user);
-					Intent intentmy=new Intent(LoginActivity.this, MainMenuActivity.class);
-					startActivity(intentmy);
-					finish();
-//					overridePendingTransition(R.anim.left_to_right_in, R.anim.left_to_right_out);
+//					titleUserName=user.getUserName();
+//					titleUserId=user.getId();
+//					myAppVariable=(MyAppVariable)getApplication(); //获得自定义的应用程序MyAppVariable
+//
+//					myAppVariable.setTusers(user);
+//					Intent intentmy=new Intent(LoginActivity.this, MainMenuActivity.class);
+//					startActivity(intentmy);
+//					finish();
+					msg.what=1;
+					myHandler.handleMessage(msg);
+				}else{
+					Toast.makeText(LoginActivity.this,"用户名或密码错误！！！", Toast.LENGTH_SHORT).show();
+					msg.what=2;
+					myHandler.handleMessage(msg);
 				}
 			}
 
 			@Override
 			public void onFailure(HttpException e, String s) {
-				Toast.makeText(LoginActivity.this, "数据请求失败", Toast.LENGTH_SHORT).show();
+				Toast.makeText(LoginActivity.this,"数据获取错误！！！", Toast.LENGTH_SHORT).show();
 				progressDialog.dismiss();
+				msg.what=2;
+				myHandler.handleMessage(msg);
+
 			}
 		});
 	}

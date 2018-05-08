@@ -87,6 +87,7 @@ public class UserDetailActivity extends BaseActivity  implements View.OnTouchLis
     @InjectView(R.id.User_Single)  MaterialSpinner usersingle;
     @InjectView(R.id.User_Sfzh) MaterialEditText usersfzh;
     @InjectView(R.id.User_id) MaterialEditText usersid;
+    @InjectView(R.id.amount) MaterialEditText amount;
     @InjectView(R.id.User_pwd) MaterialEditText userspwd;
     @InjectView(R.id.img_1) ImageView img1;
     @InjectView(R.id.normal1) LinearLayout llayout;
@@ -140,7 +141,6 @@ public class UserDetailActivity extends BaseActivity  implements View.OnTouchLis
                     switch (msg.what) {
                         //handle message here
                         case 1:
-
                             showView(user);
                             setSpinner();
                             progressDialog.dismiss();
@@ -204,9 +204,6 @@ public class UserDetailActivity extends BaseActivity  implements View.OnTouchLis
 //                Toast.makeText(this, "权限选择错误！！！", Toast.LENGTH_SHORT).show();
 //                return false;
 //            }
-
-
-
                         map = new HashMap<String, String>();
                         map.put("id", userid+ "");
                         map.put("name", username.getText().toString());
@@ -262,6 +259,7 @@ public class UserDetailActivity extends BaseActivity  implements View.OnTouchLis
         usertel.setText(user.getTel());
         usersfzh.setText(user.getWorkersfz());
         usersid.setText(user.getId()+"");
+        amount.setText(user.getAmount()+"");
         userspwd.setText(user.getPwd());
         userbirthday.setOnTouchListener(this);
 
@@ -277,8 +275,6 @@ public class UserDetailActivity extends BaseActivity  implements View.OnTouchLis
         progressDialog.show();
         testHandler.sendEmptyMessage(2);
         UserService userService = new UserService();
-
-
         try {
             str = userService.UpdateUser(map);
         } catch (Exception e) {
