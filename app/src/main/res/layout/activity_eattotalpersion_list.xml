@@ -11,7 +11,7 @@
         android:background="#ff33b5e5"
         android:layout_marginTop="0dp"
         android:textSize="16dp"
-        android:text="  序号    姓名         时间            份数    金额(元)   已交 " />
+        android:text="  序号      姓名             时间                 份数    金额(元) " />
     <ListView 
         android:id="@+id/lvEats"
         android:layout_width="fill_parent"

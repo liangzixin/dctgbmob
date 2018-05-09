@@ -157,62 +157,40 @@ public class EatListActivity extends BaseActivity implements IXListViewListener,
 		progressDialog = new ProgressDialog(this);
 		progressDialog.setMessage("数据加载中  请稍后...");
 		progressDialog.show();
-		if(Thread.State.NEW == mThread.getState()) {
-			try {
-				getdata1();
-				myspinner();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+		testHandler= new Handler(){
+
+			public void handleMessage(Message msg){
+				// call update gui method.
+				switch (msg.what) {
+					//handle message here
+					case 1:
+						getdata1();
+						myspinner();
+						getdata();
+						myview();
+						break;
+					case 2:
+//						getdata1();
+//						myspinner();
+//						getdata();
+//						myview();
+						break;
+				}
+				progressDialog.dismiss();
 			}
-			mThread.start();
-		}
-//	getdata1();
+		};
+
+//		getdata1();
 //		myspinner();
 //		getdata();
 //		myview();
 //		progressDialog.dismiss();
 		//mThread.start();
-	//	testHandler.sendEmptyMessage(1);
+		testHandler.sendEmptyMessage(1);
 
 	}
-	private Thread mThread = new Thread() {
-		public void run() {
-			Log.d("TAG", "mThread run");
-			Looper.prepare();
-			testHandler = new Handler() {
-				public void handleMessage(Message msg) {
-					Log.d("TAG", "worker thread:" + Thread.currentThread().getName());
-//					System.out.println("我的线程："+msg.what);
 
-					switch (msg.what) {
-						//handle message here
-						case 1:
-					//		getdata1();
-                     //      myspinner();
-		                getdata();
-		                 myview();
-
-							break;
-						case 2:
-							myspinner();
-							getdata();
-							myview();
-							break;
-					}
-					progressDialog.dismiss();
-				}
-			};
-//
-			testHandler.sendEmptyMessage(1);
-			Looper.loop();
-//			testHandler.sendEmptyMessage(2);
-//			Looper.loop();
-//			testHandler.sendEmptyMessage(3);
-//			Looper.loop();
-		}
-
-	};
 	private void myspinner(){
 
 		spinner1.setDropDownWidth(-2);
@@ -308,7 +286,7 @@ public class EatListActivity extends BaseActivity implements IXListViewListener,
 		});
 	}
 	private void myview() {
-		progressDialog.dismiss();
+//		progressDialog.dismiss();
 
 		pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
 
@@ -593,10 +571,10 @@ public class EatListActivity extends BaseActivity implements IXListViewListener,
 //					progressDialog.setMessage("数据加载中  请稍后...");
 //					progressDialog.show();
 
-//					testHandler.sendEmptyMessage(2);
-					myspinner();
-					getdata();
-					myview();
+					testHandler.sendEmptyMessage(1);
+//					myspinner();
+//					getdata();
+//					myview();
 				}
 			}).show();
 		}else{
@@ -785,7 +763,7 @@ public class EatListActivity extends BaseActivity implements IXListViewListener,
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == 200) {
 			Toast.makeText(EatListActivity.this,"删除成功!!!"+str, Toast.LENGTH_SHORT).show();
-		//	testHandler.sendEmptyMessage(1);
+			testHandler.sendEmptyMessage(1);
 		}
 	}
 }

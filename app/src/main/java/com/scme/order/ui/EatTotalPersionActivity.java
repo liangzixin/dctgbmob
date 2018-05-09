@@ -123,7 +123,7 @@ public class EatTotalPersionActivity  extends BaseActivity implements OnItemClic
 				map.put("fs", ((Double) list0.get(3)).intValue());
 				map.put("je", ((Double) list0.get(4)).intValue());
 				map.put("workerid", ((Double) list0.get(5)).intValue());
-				map.put("unclear", IsCheckOut(list0.get(1).toString()));
+		//		map.put("unclear", IsCheckOut(list0.get(1).toString()));
 				map.put("purview", purview);
 				eattolnumfs = eattolnumfs + ((Double) list0.get(3)).intValue();
 				eattolnumje = eattolnumje + ((Double) list0.get(4)).intValue();
@@ -154,7 +154,7 @@ public class EatTotalPersionActivity  extends BaseActivity implements OnItemClic
 							map.put("fs", ((Double) list0.get(3)).intValue());
 							map.put("je", ((Double) list0.get(4)).intValue());
 							map.put("workerid", ((Double) list0.get(5)).intValue());
-							map.put("unclear", IsCheckOut(list0.get(1).toString()));
+						//	map.put("unclear", IsCheckOut(list0.get(1).toString()));
 							map.put("purview", purview);
 							eattolnumfs = eattolnumfs + ((Double) list0.get(3)).intValue();
 							eattolnumje = eattolnumje + ((Double) list0.get(4)).intValue();
@@ -228,9 +228,9 @@ public class EatTotalPersionActivity  extends BaseActivity implements OnItemClic
 		public void handleMessage(Message msg) {
 			progressDialog.dismiss();
 			simpleAdapter = new SimpleAdapter(EatTotalPersionActivity.this, eatsMapList, R.layout.eatstotalpersion_item,
-					new String[]{"eatTotalid","name","ym", "fs", "je","unclear"},
+					new String[]{"eatTotalid","name","ym", "fs", "je"},
 					new int[]{R.id.tvEatsItemEatid, R.id.tvEatsItemName,R.id.tvEatsItemYmonth,
-							R.id.tvEatsItemNumber, R.id.tvEatsItemPrice,R.id.tvEatsItemUnclear});
+							R.id.tvEatsItemNumber, R.id.tvEatsItemPrice});
 			lvEats.setAdapter(simpleAdapter);
 			lvEats.setOnItemClickListener(EatTotalPersionActivity.this);
 //

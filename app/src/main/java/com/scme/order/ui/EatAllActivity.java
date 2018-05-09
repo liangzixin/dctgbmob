@@ -112,6 +112,7 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 	private Map map1 = new HashMap<String, Object>();
 	private static final String[] m = {"请选年度", "2014", "2015", "2016", "2017"};
 	private int branchid;
+	private Handler testHandler;
 	@InjectView(R.id.TolPage) TextView tolpage;
 	@InjectView(R.id.NowPage) TextView nowpage;
 
@@ -134,7 +135,31 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 		myAppVariable = (MyAppVariable) getApplication(); //获得自定义的应用程序MyAppVariable
 		user = myAppVariable.getTusers();
 		workerid = myAppVariable.getTusers().getId();
+		progressDialog = new ProgressDialog(this);
+		progressDialog.setMessage("数据加载中  请稍后...");
+		progressDialog.show();
+		testHandler= new Handler(){
 
+			public void handleMessage(Message msg){
+				// call update gui method.
+				switch (msg.what) {
+					//handle message here
+					case 1:
+				ini();
+						break;
+					case 2:
+
+						break;
+				}
+				progressDialog.dismiss();
+			}
+		};
+
+//		mHandler = new Handler();
+		testHandler.sendEmptyMessage(1);
+	}
+
+	private void ini(){
 		try {
 			EatsService eatsService = new EatsService();
 			map1 = eatsService.QueryAllEatsCount();
@@ -167,10 +192,8 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 		lvEats.setXListViewListener(this);
 		lvEats.setOnItemClickListener(this);
 		myAdapter = new MyAdapter(eatsList, 1);
-		mHandler = new Handler();
 
-	}
-
+	};
 	/*
     创建菜单项
      */
@@ -422,54 +445,57 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 
 	@Override
 	public void onRefresh() {
-		mHandler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
+		//mHandler.postDelayed(new Runnable() {
+//			@Override
+//			public void run() {
 				start = ++refreshCnt;
 				if (intFrist >= 1 && pages != 1) {
 					intFrist--;
-					try {
-						EatsService eatsService = new EatsService();
-						eatsList = eatsService.QueryAllEats(intFrist, recPerPage);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					nowpage.setText("页码：" + (intFrist + 1) + "/" + pages);
-					myAdapter = new MyAdapter(eatsList, 1);
-					lvEats.setAdapter(myAdapter);
-					lvEats.setPullLoadEnable(true);
+//					try {
+//						EatsService eatsService = new EatsService();
+//						eatsList = eatsService.QueryAllEats(intFrist, recPerPage);
+//					} catch (IOException e) {
+//						e.printStackTrace();
+//					}
+//					nowpage.setText("页码：" + (intFrist + 1) + "/" + pages);
+//					myAdapter = new MyAdapter(eatsList, 1);
+//					lvEats.setAdapter(myAdapter);
+//					lvEats.setPullLoadEnable(true);
 					onLoad();
+					testHandler.sendEmptyMessage(1);
+//					onLoad();
 				} else {
 					lvEats.setPullLoadEnable(false);
 				}
-			}
-		}, 2000);
+//			}
+	//	}, 2000);
 	}
 
 	@Override
 	public void onLoadMore() {
-		mHandler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
+//		mHandler.postDelayed(new Runnable() {
+//			@Override
+//			public void run() {
 				if ((intFrist + 1) < pages && pages != 1) {
 					intFrist++;
-					try {
-						EatsService eatsService = new EatsService();
-						eatsList = eatsService.QueryAllEats(intFrist, recPerPage);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					nowpage.setText("页码：" + (intFrist + 1) + "/" + pages);
-					myAdapter = new MyAdapter(eatsList, 1);
-					lvEats.setAdapter(myAdapter);
-					lvEats.setPullLoadEnable(true);
+//					try {
+//						EatsService eatsService = new EatsService();
+//						eatsList = eatsService.QueryAllEats(intFrist, recPerPage);
+//					} catch (IOException e) {
+//						e.printStackTrace();
+//					}
+//					nowpage.setText("页码：" + (intFrist + 1) + "/" + pages);
+//					myAdapter = new MyAdapter(eatsList, 1);
+//					lvEats.setAdapter(myAdapter);
+//					lvEats.setPullLoadEnable(true);
 					onLoad();
+					testHandler.sendEmptyMessage(1);
 				} else {
 					intFrist = pages;
 					lvEats.setPullLoadEnable(false);
 				}
-			}
-		}, 2000);
+//			}
+//		}, 2000);
 	}
 
 	private void onLoad() {
@@ -749,7 +775,7 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 //		System.out.println("就餐序号eatsId"+ii);
 		Intent intent = new Intent();
 		intent.setClass(this, EatDeleteDetailActivity.class);
-		startActivity(intent);
+		startActivityForResult(intent,100);
 
 	}
 
@@ -883,5 +909,12 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 	}
 		return chanfs;
 	}
-
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == 100) {
+			Toast.makeText(EatAllActivity.this,"删除成功!!!", Toast.LENGTH_SHORT).show();
+			testHandler.sendEmptyMessage(1);
+		}
+	}
 }
