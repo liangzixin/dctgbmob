@@ -34,7 +34,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
-
+import com.scme.order.view.XListView.IXListViewListener;
 
 import com.scme.order.card.HeadlineBodyCard;
 import com.scme.order.model.CItem;
@@ -72,7 +72,7 @@ import fr.ganfra.materialspinner.MaterialSpinner;
 /**
  * 查看订单
  * */
-public class EatListActivity extends BaseActivity implements XListView.IXListViewListener,OnItemClickListener, OnItemSelectedListener,SoundPool.OnLoadCompleteListener {
+public class EatListActivity extends BaseActivity implements IXListViewListener,OnItemClickListener, OnItemSelectedListener,SoundPool.OnLoadCompleteListener {
 
 	private XListView lvEats;
 //	private TextView textView;
@@ -128,7 +128,7 @@ public class EatListActivity extends BaseActivity implements XListView.IXListVie
 	private String name="";
 	@InjectView(R.id.topupamount) TextView topupamount;
 	@InjectView(R.id.TolPage) TextView tolpage;
-	@InjectView(R.id.Tolnumber) TextView Tolnumber;
+
 	@InjectView(R.id.NowPage) TextView nowpage;
 	@InjectView(R.id.spinner1)	MaterialSpinner spinner1;
 	@InjectView(R.id.spinner2)	MaterialSpinner spinner2;
@@ -154,54 +154,65 @@ public class EatListActivity extends BaseActivity implements XListView.IXListVie
 		user=myAppVariable.getTusers();
 		name=user.getName();
 		branchid=user.getBranchid()-1;
-//		progressDialog = new ProgressDialog(this);
-//		progressDialog.setMessage("数据加载中  请稍后...");
-//		progressDialog.show();
-		getdata1();
-		myspinner();
-		getdata();
-		myview();
+		progressDialog = new ProgressDialog(this);
+		progressDialog.setMessage("数据加载中  请稍后...");
+		progressDialog.show();
+		if(Thread.State.NEW == mThread.getState()) {
+			try {
+				getdata1();
+				myspinner();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			mThread.start();
+		}
+//	getdata1();
+//		myspinner();
+//		getdata();
+//		myview();
 //		progressDialog.dismiss();
 		//mThread.start();
+	//	testHandler.sendEmptyMessage(1);
 
 	}
-//	private Thread mThread = new Thread() {
-//		public void run() {
-//			Log.d("TAG", "mThread run");
-//			Looper.prepare();
+	private Thread mThread = new Thread() {
+		public void run() {
+			Log.d("TAG", "mThread run");
+			Looper.prepare();
+			testHandler = new Handler() {
+				public void handleMessage(Message msg) {
+					Log.d("TAG", "worker thread:" + Thread.currentThread().getName());
+//					System.out.println("我的线程："+msg.what);
+
+					switch (msg.what) {
+						//handle message here
+						case 1:
+					//		getdata1();
+                     //      myspinner();
+		                getdata();
+		                 myview();
+
+							break;
+						case 2:
+							myspinner();
+							getdata();
+							myview();
+							break;
+					}
+					progressDialog.dismiss();
+				}
+			};
 //
-//			testHandler = new Handler() {
-//				public void handleMessage(Message msg) {
-//					Log.d("TAG", "worker thread:" + Thread.currentThread().getName());
-////					System.out.println("我的线程："+msg.what);
-//
-//					switch (msg.what) {
-//						//handle message here
-//						case 1:
-//
-//						myspinner();
-//							break;
-//						//send message here
-//						case 2:
-//							getdata();
-//							break;
-//						case 3:
-//							myview();
-//							break;
-//					}
-//					progressDialog.dismiss();
-//				}
-//			};
-//
-//			testHandler.sendEmptyMessage(1);
-//			Looper.loop();
+			testHandler.sendEmptyMessage(1);
+			Looper.loop();
 //			testHandler.sendEmptyMessage(2);
-			//Looper.loop();
+//			Looper.loop();
 //			testHandler.sendEmptyMessage(3);
-		//	Looper.loop();
-//		}
-//
-//	};
+//			Looper.loop();
+		}
+
+	};
 	private void myspinner(){
 
 		spinner1.setDropDownWidth(-2);
@@ -297,17 +308,16 @@ public class EatListActivity extends BaseActivity implements XListView.IXListVie
 		});
 	}
 	private void myview() {
-
+		progressDialog.dismiss();
 
 		pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
 
-		tolpage.setText("人数："+count+" 人  ");
-		Tolnumber.setText("份数："+countmoeny+" 份  ");
+		tolpage.setText("   人份："+count+"人/"+countmoeny+"份   ");
+
 		nowpage.setText("页码："+(intFrist+1)+"/"+pages);
 		topupamount.setText("余额："+amount+"元  ");
      //    eatNum=spinner3.getSelectedItemPosition()+1;
 //			//		//将可选内容与ArrayAdapter连接起来
-
 
 		if(count>recPerPage*(intFrist+1)) {
 			lvEats.setPullLoadEnable(true);
@@ -320,11 +330,14 @@ public class EatListActivity extends BaseActivity implements XListView.IXListVie
 //		qingjiafoodid.setText("份   数:  "+countfs+" 　份"+"  金　　额:  "+countmoeny+" 　元");
 //		lvEats.addFooterView(view);
 		lvEats.setAdapter(myAdapter);
-
+     	myAdapter = new MyAdapter( eatsList, 1);
 		lvEats.setXListViewListener(this);
 		lvEats.setOnItemClickListener(this);
-		myAdapter = new MyAdapter( eatsList, 1);
-
+	if(intFrist!=0){
+		lvEats.setPullLoadEnable(true);
+	}
+		lvEats.setOnItemClickListener(EatListActivity.this);
+		onLoad();
 //		CItem CCA=(CItem)spinner2.getSelectedItem();
 //		amount=CCA.getAmount();
 
@@ -354,6 +367,7 @@ public class EatListActivity extends BaseActivity implements XListView.IXListVie
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("AAAA");
 	}
 	private void getdata() {
 
@@ -375,39 +389,40 @@ public class EatListActivity extends BaseActivity implements XListView.IXListVie
 	}
 	@Override
 	public void onRefresh() {
-		mHandler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
+
+	//	testHandler.sendEmptyMessage(2);
+
 				start = ++refreshCnt;
 				if (intFrist >= 1&&pages!=1) {
 					intFrist--;
 
-						getdata();
-					    myview();
+					testHandler.sendEmptyMessage(1);
+					//	getdata();
+					 //   myview();
 
-					onLoad();
+				//	onLoad();
 				}else{
 					lvEats.setPullLoadEnable(false);
+					onLoad();
 				}
-			}
-		}, 2000);
+
+
 	}
 	@Override
 	public void onLoadMore() {
-		mHandler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
+
 				if ((intFrist+1) < pages&&pages!=1) {
 					intFrist++;
-					getdata();
-					myview();
-					onLoad();
+					testHandler.sendEmptyMessage(1);
+					//getdata();
+				//	myview();
+					//onLoad();
 				} else {
 					intFrist = pages;
 					lvEats.setPullLoadEnable(false);
+					onLoad();
 				}
-			}
-		}, 2000);
+
 	}
 
 	private void onLoad() {
@@ -574,32 +589,12 @@ public class EatListActivity extends BaseActivity implements XListView.IXListVie
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub
+//					progressDialog = new ProgressDialog(EatListActivity.this);
+//					progressDialog.setMessage("数据加载中  请稍后...");
+//					progressDialog.show();
 
-//            int r1=getResourdIdByResourdName(context, ChangeName(myAppVariable.getTusers().getName()));
-//			int r2=getResourdIdByResourdName(context,Changefs(eatNum));
-//					System.out.println("姓名拼音："+r1);
-//					System.out.println("份数拼音："+r2);
-////					Object r1="R.raw."+ChangeName(myAppVariable.getTusers().getName());
-//					System.out.println("姓名拼音："+r1);
-//			if(r1!=0)		sid_background = soundPool.load(EatListActivity.this,r1, 1); //蟋蟀
-//					if(r1==0&&myAppVariable.getTusers().getName().equals("吕春红"))		sid_background = soundPool.load(EatListActivity.this,R.raw.luchunhong, 1); //蟋蟀
-//					if(r2!=0)		sid_chimp = soundPool.load(EatListActivity.this,r2, 1);//黑猩猩
-//
-//					onLoadComplete(soundPool, sid_background,1);
-//					onLoadComplete(soundPool, sid_chimp,1);
-//               finish();
-//					Intent intent = new Intent();
-//
-//					intent.setClass(EatListActivity.this, EatListActivity.class);
-//					startActivity(intent);
-//					testHandler.sendEmptyMessage(1);
-//					Looper.loop();
 //					testHandler.sendEmptyMessage(2);
-//					Looper.loop();
-//					testHandler.sendEmptyMessage(3);
-//					Looper.loop();
 					myspinner();
-
 					getdata();
 					myview();
 				}
@@ -670,7 +665,7 @@ public class EatListActivity extends BaseActivity implements XListView.IXListVie
 //		System.out.println("就餐序号eatsId"+ii);
 		Intent intent = new Intent();
 		intent.setClass(this, EatDeleteDetailActivity.class);
-		startActivity(intent);
+		startActivityForResult(intent,200);
 
 	}
 	@Override
@@ -783,6 +778,14 @@ public class EatListActivity extends BaseActivity implements XListView.IXListVie
 //                System.out.println("默认:"+i);
 				break;
 			}
+		}
+	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == 200) {
+			Toast.makeText(EatListActivity.this,"删除成功!!!"+str, Toast.LENGTH_SHORT).show();
+		//	testHandler.sendEmptyMessage(1);
 		}
 	}
 }

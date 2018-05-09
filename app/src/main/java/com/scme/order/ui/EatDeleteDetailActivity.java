@@ -173,6 +173,7 @@ public class EatDeleteDetailActivity extends BaseActivity {
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub
 					dodelete(txxxid);
+					finish();
 				}
 			}).show();
 			}
@@ -216,20 +217,20 @@ public class EatDeleteDetailActivity extends BaseActivity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if(str) {
-			new AlertDialog.Builder(this).setTitle("删除提交成功！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					// TODO Auto-generated method stub
-
-					startActivity(new Intent(EatDeleteDetailActivity.this, EatAllActivity.class));
-
-				}
-			}).show();
-		}else{
-			Toast.makeText(this, "删除提交错误！！！", Toast.LENGTH_SHORT).show();
-		}
+//		if(str) {
+//			new AlertDialog.Builder(this).setTitle("删除提交成功！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//
+//				@Override
+//				public void onClick(DialogInterface dialog, int which) {
+//					// TODO Auto-generated method stub
+//
+//					startActivity(new Intent(EatDeleteDetailActivity.this, EatAllActivity.class));
+//
+//				}
+//			}).show();
+//		}else{
+//			Toast.makeText(this, "删除提交错误！！！", Toast.LENGTH_SHORT).show();
+//		}
 
 	}
 

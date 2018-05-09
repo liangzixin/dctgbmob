@@ -164,7 +164,6 @@ public class UserListActivity extends BaseActivity implements IXListViewListener
 		public void run() {
 			Log.d("TAG", "mThread run");
 			Looper.prepare();
-
 			testHandler = new Handler() {
 				public void handleMessage(Message msg) {
 					Log.d("TAG", "worker thread:" + Thread.currentThread().getName());
@@ -183,19 +182,15 @@ public class UserListActivity extends BaseActivity implements IXListViewListener
 						}else{
 							mListView.setPullLoadEnable(false);
 						}
-
 						myAdapter = new MyAdapter(userList, 1);
 
 						mListView.setAdapter(myAdapter);
 
 						mListView.setXListViewListener(UserListActivity.this);
 						mListView.setOnItemClickListener(UserListActivity.this);
-
-
 							break;
 						//send message here
 						case 2:
-
 							break;
 					}
 					progressDialog.dismiss();
