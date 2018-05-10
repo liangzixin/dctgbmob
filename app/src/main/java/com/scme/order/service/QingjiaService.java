@@ -54,11 +54,10 @@ public class QingjiaService extends BaseService{
                 byte[] data=toolsHandler.InputStreamToByte(is);
                 json=new String(data);
                 System.out.println(json);
-                if(json!="0")
-                {
+
                     JSONObject jsonObject=new JSONObject(json);
                     str=jsonObject.getBoolean("str");
-                }
+
             }
         } catch (Exception e) {
             // TODO Auto-generated catch block

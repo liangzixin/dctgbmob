@@ -328,7 +328,7 @@ public class QingjiaDetailActivity extends BaseActivity implements View.OnTouchL
                     // TODO Auto-generated method stub
 
                     startActivity(new Intent(QingjiaDetailActivity.this,QingjiaListActivity.class));
-
+                    finish();
                 }
             }).show();
         }else{
@@ -489,6 +489,7 @@ public class QingjiaDetailActivity extends BaseActivity implements View.OnTouchL
                     public void onClick(DialogInterface dialog, int which) {
 
                         StringBuffer sb = new StringBuffer();
+
                         sb.append(String.format("%d-%02d-%02d",
                                 datePicker.getYear(),
                                 datePicker.getMonth() + 1,
