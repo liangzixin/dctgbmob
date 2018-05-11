@@ -9,6 +9,16 @@ import java.util.List;
 public class EatsJson implements java.io.Serializable{
  private    int count;
   private  int sum;
+    private int countje;
+    public int getCountje() {
+        return countje;
+    }
+
+    public void setCountje(int countje) {
+        this.countje = countje;
+    }
+
+
  private List<Teats> eats;
 
     public int getCount() {

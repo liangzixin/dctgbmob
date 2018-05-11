@@ -3,6 +3,7 @@ package com.scme.order.ui;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
@@ -10,15 +11,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.support.v4.internal.view.SupportMenuItem;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
+import android.text.InputType;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -28,16 +33,21 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.MaterialEditText;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.scme.order.card.HeadlineBodyCard;
 import com.scme.order.model.CItem;
+import com.scme.order.model.EatsJson;
 import com.scme.order.model.Teats;
 import com.scme.order.model.Tusers;
 import com.scme.order.service.BranchService;
@@ -50,6 +60,7 @@ import com.scme.order.view.XListView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,12 +68,14 @@ import java.util.Map;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
+import static java.util.Calendar.*;
+
 //import com.scme.order.service.EatsDetailsService;
 
 /**
  * 查看订单
  * */
-public class EatAllActivity extends BaseActivity implements XListView.IXListViewListener,OnItemClickListener, OnItemSelectedListener {
+public class EatAllActivity extends BaseActivity implements XListView.IXListViewListener,OnItemClickListener, OnItemSelectedListener,View.OnTouchListener {
 
 	private XListView lvEats;
 	private TextView textView;
@@ -87,15 +100,16 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 	private Tusers user;
 	private int count;
 	private Map param;
-	Map<String, Object> map;
+
 	private Handler mHandler;
 	private Spinner spinner1;
 	private Spinner spinner2;
 	private TextView mTextView;
 	private Spinner spinner3;
-	private Spinner spinner4;
+	//private Spinner spinner4;
 	private List listbmmz;
 	private int countfs;
+	private int countje;
 	private Double countmoeny;
 	private int intFrist = 0;
 	private int recPerPage = 20;
@@ -113,9 +127,12 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 	private static final String[] m = {"请选年度", "2014", "2015", "2016", "2017"};
 	private int branchid;
 	private Handler testHandler;
+	private EatsJson eatsJson;
+	private 	Map<String, String> map = new HashMap<String, String>();
 	@InjectView(R.id.TolPage) TextView tolpage;
 	@InjectView(R.id.NowPage) TextView nowpage;
-
+//	@InjectView(R.id.eat_ym)
+   private 	MaterialEditText eat_ym;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 //		actionBar=getActionBar();
@@ -128,7 +145,7 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 		lvEats = (XListView) findViewById(R.id.lvEats);
 		textView = (TextView) findViewById(R.id.tvFoodsOrderPrice);
 
-	//	etEatNum = (EditText) findViewById(R.id.etEatNum);
+		//	etEatNum = (EditText) findViewById(R.id.etEatNum);
 		tvEatTolNums = (TextView) findViewById(R.id.tvEatTolNum);
 //		tvEatTolprices=( TextView)findViewById(R.id.tvEatTolprice);
 
@@ -138,17 +155,37 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 		progressDialog = new ProgressDialog(this);
 		progressDialog.setMessage("数据加载中  请稍后...");
 		progressDialog.show();
-		testHandler= new Handler(){
 
-			public void handleMessage(Message msg){
+		try {
+			Intent intent = getIntent();
+			if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+				String query = intent.getStringExtra(SearchManager.QUERY);
+
+				doSearching(query);
+				myAppVariable.setOtherquery(true);
+			} else {
+				myAppVariable.setOtherquery(false);
+				getdata();
+				ini();
+
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		testHandler = new Handler() {
+
+			public void handleMessage(Message msg) {
 				// call update gui method.
 				switch (msg.what) {
 					//handle message here
 					case 1:
-				ini();
+						getdata();
+						ini();
 						break;
 					case 2:
-
+						getdata1();
+						ini();
 						break;
 				}
 				progressDialog.dismiss();
@@ -156,25 +193,44 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 		};
 
 //		mHandler = new Handler();
-		testHandler.sendEmptyMessage(1);
-	}
+//	testHandler.sendEmptyMessage(1);
 
-	private void ini(){
+	}
+	private void getdata(){
 		try {
 			EatsService eatsService = new EatsService();
-			map1 = eatsService.QueryAllEatsCount();
-			eatsList = eatsService.QueryAllEats(intFrist, recPerPage);
-			System.out.println("eatList.size()" + eatsList.size());
+			eatsJson = eatsService.QueryAllEats(intFrist, recPerPage);
+			eatsList= eatsJson.getEats();
+			count=eatsJson.getCount();
+			countje=eatsJson.getCountje();
+			countfs=eatsJson.getSum();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		count = (int) map1.get("count");
+	}
+	private void getdata1(){
+		try {
+			EatsService eatsService = new EatsService();
+			eatsJson = eatsService.queryEatsOther(map,intFrist, recPerPage);
+			eatsList= eatsJson.getEats();
+			count=eatsJson.getCount();
+			countje=eatsJson.getCountje();
+			countfs=eatsJson.getSum();
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	private void ini(){
+		progressDialog.dismiss();
+
 
 		pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
 
-		tolpage.setText("记录数：" + count);
+		tolpage.setText("次/份/元：" + count+"/"+countfs+"/"+countje);
 		nowpage.setText("页码：" + (intFrist + 1) + "/" + pages);
 
 		if (count > recPerPage * (intFrist + 1)) {
@@ -209,7 +265,7 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 			menu.getItem(2).setEnabled(false);
 			menu.getItem(1).setTitle(R.string.add);
 		}
-
+		menu.getItem(4).setVisible(true);
 		SupportMenuItem searchItem = (SupportMenuItem) menu
 				.findItem(R.id.action_search);
 
@@ -254,9 +310,11 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 		} else if (id == R.id.search_other) {
 
 			LayoutInflater factory = LayoutInflater.from(EatAllActivity.this);
-			final View loginForm = factory.inflate(R.layout.loginsearchchuchai, null);
+			final View loginForm = factory.inflate(R.layout.loginsearcheat, null);
 
 			spinner1 = (Spinner) loginForm.findViewById(R.id.spinner1);
+			eat_ym = (MaterialEditText) loginForm.findViewById(R.id.eat_ym);
+			eat_ym.setOnTouchListener(this);
 			spinner1.setDropDownWidth(-2);
 //			//		//将可选内容与ArrayAdapter连接起来
 			try {
@@ -317,10 +375,10 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 			});
 
 
-			adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, m);
-			spinner4 = (Spinner) loginForm.findViewById(R.id.spinner4);
-			spinner4.setAdapter(adapter);
-			spinner4.setDropDownWidth(-2);
+//			adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, m);
+//			spinner4 = (Spinner) loginForm.findViewById(R.id.spinner4);
+//			spinner4.setAdapter(adapter);
+//			spinner4.setDropDownWidth(-2);
 			//加载控件
 //			 mTextView = (TextView) loginForm.findViewById(R.id.textview);
 			mCheckBox1 = (CheckBox) loginForm.findViewById(R.id.checkBox1);
@@ -362,14 +420,14 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 						@Override
 						public void onClick(DialogInterface dialog,
 											int which) {
-							map = new HashMap<String, Object>();
+							map = new HashMap<String,String>();
 
 							if (mCheckBox1.isChecked()) {
 
 								map.put("branchname", spinner1.getSelectedItem().toString());
 							} else {
 
-								map.put("branchname", "未选");
+								map.put("branchname", "");
 							}
 
 							if (mCheckBox2.isChecked()) {
@@ -378,40 +436,43 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 
 
 							} else {
-								if (!mCheckBox1.isChecked()) map.put("branchname", "未选");
-								map.put("name", "未选");
+								if (!mCheckBox1.isChecked()) map.put("branchname", "");
+								map.put("name", "");
 							}
 
 							if (mCheckBox3.isChecked()) {
-								map.put("eatnd", spinner4.getSelectedItem().toString());
+								map.put("eatnd",eat_ym.getText().toString()+"");
 							} else {
-								map.put("eatnd", "未选");
+								map.put("eatnd", "");
 
 							}
 
 
-							try {
-								intFrist = 0;
-								EatsService eatsService = new EatsService();
-								map1 = eatsService.queryEatsOtherCount(map);
-								count = (int) map1.get("count");
-								countmoeny = (Double) map1.get("countmoney");
-								eatsList = eatsService.queryTeatsOther(map);
-							} catch (Exception e) {
-								// TODO: handle exception
-
-							}
-
-
+//							try {
+//								intFrist = 0;
+//								EatsService eatsService = new EatsService();
+//								map1 = eatsService.queryEatsOtherCount(map);
+//								count = (int) map1.get("count");
+//								countmoeny = (Double) map1.get("countmoney");
+//								eatsList = eatsService.queryTeatsOther(map);
+//							} catch (Exception e) {
+//								// TODO: handle exception
+//
+//							}
+//
+//
+//							myAppVariable.setOtherquery(true);
+//							pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
+//
+//							tolpage.setText("记录数：" + count);
+//							nowpage.setText("页码：" + (intFrist + 1) + "/" + pages);
+//							myAdapter = new MyAdapter(eatsList, 1);
+//							lvEats.setAdapter(myAdapter);
+//							lvEats.setPullLoadEnable(true);
+//							lvEats.setOnItemClickListener(EatAllActivity.this);
+//							getdata1();
 							myAppVariable.setOtherquery(true);
-							pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
-
-							tolpage.setText("记录数：" + count);
-							nowpage.setText("页码：" + (intFrist + 1) + "/" + pages);
-							myAdapter = new MyAdapter(eatsList, 1);
-							lvEats.setAdapter(myAdapter);
-							lvEats.setPullLoadEnable(true);
-							lvEats.setOnItemClickListener(EatAllActivity.this);
+							testHandler.sendEmptyMessage(2);
 							onLoad();
 //							} else {
 //								intFrist = pages;
@@ -451,19 +512,13 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 				start = ++refreshCnt;
 				if (intFrist >= 1 && pages != 1) {
 					intFrist--;
-//					try {
-//						EatsService eatsService = new EatsService();
-//						eatsList = eatsService.QueryAllEats(intFrist, recPerPage);
-//					} catch (IOException e) {
-//						e.printStackTrace();
-//					}
-//					nowpage.setText("页码：" + (intFrist + 1) + "/" + pages);
-//					myAdapter = new MyAdapter(eatsList, 1);
-//					lvEats.setAdapter(myAdapter);
-//					lvEats.setPullLoadEnable(true);
+					if(myAppVariable.getOtherquery()){
+						testHandler.sendEmptyMessage(2);
+					}else{
+						testHandler.sendEmptyMessage(1);
+					}
 					onLoad();
-					testHandler.sendEmptyMessage(1);
-//					onLoad();
+
 				} else {
 					lvEats.setPullLoadEnable(false);
 				}
@@ -478,18 +533,13 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 //			public void run() {
 				if ((intFrist + 1) < pages && pages != 1) {
 					intFrist++;
-//					try {
-//						EatsService eatsService = new EatsService();
-//						eatsList = eatsService.QueryAllEats(intFrist, recPerPage);
-//					} catch (IOException e) {
-//						e.printStackTrace();
-//					}
-//					nowpage.setText("页码：" + (intFrist + 1) + "/" + pages);
-//					myAdapter = new MyAdapter(eatsList, 1);
-//					lvEats.setAdapter(myAdapter);
-//					lvEats.setPullLoadEnable(true);
+					if(myAppVariable.getOtherquery()){
+						testHandler.sendEmptyMessage(2);
+					}else{
+						testHandler.sendEmptyMessage(1);
+					}
 					onLoad();
-					testHandler.sendEmptyMessage(1);
+
 				} else {
 					intFrist = pages;
 					lvEats.setPullLoadEnable(false);
@@ -821,22 +871,24 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 
 						if (intFrist < pages) {
 							if (myAppVariable.getOtherquery()) {
-								try {
-									eatsList = eatsService.QueryAllEats(intFrist, recPerPage);
-								} catch (IOException e) {
-									e.printStackTrace();
-								}
+//								try {
+								//	eatsList = eatsService.QueryAllEats(intFrist, recPerPage);
+									getdata();
+//								} catch (IOException e) {
+//									e.printStackTrace();
+//								}
 							} else {
-								try {
-									eatsList = eatsService.QueryAllEats(intFrist, recPerPage);
-								} catch (IOException e) {
-									e.printStackTrace();
-								}
+//								try {
+								getdata();
+								//	eatsList = eatsService.QueryAllEats(intFrist, recPerPage);
+//								} catch (IOException e) {
+//									e.printStackTrace();
+//								}
 							}
-							nowpage.setText("页码：" + (intFrist + 1) + "/" + pages);
-							myAdapter = new MyAdapter(eatsList, 1);
-							lvEats.setAdapter(myAdapter);
-							lvEats.setPullLoadEnable(true);
+//							nowpage.setText("页码：" + (intFrist + 1) + "/" + pages);
+//							myAdapter = new MyAdapter(eatsList, 1);
+//							lvEats.setAdapter(myAdapter);
+//							lvEats.setPullLoadEnable(true);
 							onLoad();
 						} else {
 							intFrist = pages;
@@ -916,5 +968,105 @@ public class EatAllActivity extends BaseActivity implements XListView.IXListView
 			Toast.makeText(EatAllActivity.this,"删除成功!!!", Toast.LENGTH_SHORT).show();
 			testHandler.sendEmptyMessage(1);
 		}
+	}
+	private void doSearching(String query) throws Exception {
+//		progressDialog = new ProgressDialog(this);
+//		progressDialog.setMessage("数据加载中  请稍后...");
+//		progressDialog.show();
+
+		map.put("name", query);
+		map.put("branchname", "");
+		map.put("eatyd", "");
+//		map.put("intFirst",intFrist+"");
+//		map.put("recPerPagee",recPerPage+"");
+		getdata1();
+		ini();
+	//	myAppVariable.setOtherquery(true);
+//		testHandler.sendEmptyMessage(1);
+//	//	count=eatsService.queryUserOtherCount(map);
+//
+//		userList = eatsService.queryUserOther(map);
+
+//		if(userList!=null) {
+//
+//			//myAppVariable.setListuser(userList);
+//
+//		} else{
+//			new AlertDialog.Builder(this).setTitle("没有查到请假记录！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//
+//				@Override
+//				public void onClick(DialogInterface dialog, int which) {
+//					// TODO Auto-generated method stub
+//					Intent intent = new Intent();
+//
+//				//	intent.setClass(UserListActivity.this, UserListActivity.class);
+//					startActivity(intent);
+//
+//				}
+//			}).show();
+//		}
+
+	}
+	@SuppressLint("WrongConstant")
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			View view = View.inflate(this, R.layout.date_time_dialog, null);
+			final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
+			final TimePicker timePicker = (android.widget.TimePicker) view.findViewById(R.id.time_picker);
+			timePicker.setVisibility(View.GONE);
+			LinearLayout ll = (LinearLayout) datePicker.getChildAt(0);
+			LinearLayout ll2 = (LinearLayout) ll.getChildAt(0);
+			ll2.getChildAt(2).setVisibility(View.GONE);
+
+			builder.setView(view);
+
+			Calendar cal = getInstance();
+			cal.setTimeInMillis(System.currentTimeMillis());
+			datePicker.init(cal.get(YEAR), cal.get(MONTH), 0, null);
+//
+//			timePicker.setIs24HourView(true);
+//			timePicker.setCurrentHour(cal.get(HOUR_OF_DAY));
+//			timePicker.setCurrentMinute(MINUTE);
+
+			if (v.getId() == R.id.eat_ym) {
+				final int inType = eat_ym.getInputType();
+				eat_ym.setInputType(InputType.TYPE_NULL);
+				eat_ym.onTouchEvent(event);
+				eat_ym.setInputType(inType);
+				eat_ym.setSelection(eat_ym.getText().length());
+
+				builder.setTitle("请选择年月");
+				builder.setPositiveButton("确  定", new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+
+						StringBuffer sb = new StringBuffer();
+						sb.append(String.format("  %d年%02d月  ",
+								datePicker.getYear(),
+								datePicker.getMonth() + 1));
+//						sb.append(" ");
+//						sb.append(timePicker.getCurrentHour())
+//								.append(":").append(timePicker.getCurrentMinute()).append(":00");
+
+						eat_ym.setText(sb);
+
+
+
+						dialog.cancel();
+					}
+				});
+
+			}
+
+
+			Dialog dialog = builder.create();
+			dialog.show();
+		}
+
+		return true;
 	}
 }

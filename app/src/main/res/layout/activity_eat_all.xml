@@ -12,7 +12,7 @@
         android:textColor="#000000"
         android:background="#ff33b5e5"
         android:layout_marginTop="0dp"
-        android:text="  序号1        姓名                 时间                  份数       金额(元)    " />
+        android:text="  序号        姓名                 时间                  份数       金额(元)    " />
     <com.scme.order.view.XListView
         android:id="@+id/lvEats"
         android:layout_width="fill_parent"
@@ -34,37 +34,40 @@
 
         >
         <Button
-            android:layout_width="80dp"
+            android:id="@+id/chuandao"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
             android:layout_marginLeft="5dp"
             android:textColor="#000000"
             android:onClick="eats_pages_sumbit_Event"
-            android:text="转到页码"
+            android:text="转到"
             android:background="@drawable/button_zise"
             />
+
         <TextView
             android:id="@+id/TolPage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
-            android:layout_marginLeft="95dp"
-            android:textColor="#000000"
-            android:textSize="17dp"
-            android:background="#ff33b5e5"
 
-            />
+            android:layout_toEndOf="@+id/chuandao"
+            android:background="#ff33b5e5"
+            android:textColor="#000000"
+
+            android:textSize="17dp" />
+
         <TextView
             android:id="@+id/NowPage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
-            android:layout_marginLeft="230dp"
-            android:textColor="#000000"
-            android:textSize="17dp"
-            android:background="#ff33b5e5"
 
-            />
+            android:layout_toEndOf="@+id/TolPage"
+            android:background="#ff33b5e5"
+            android:textColor="#000000"
+
+            android:textSize="17dp" />
 
     </RelativeLayout>
 

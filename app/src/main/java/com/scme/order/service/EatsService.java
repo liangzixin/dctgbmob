@@ -184,7 +184,7 @@ public class EatsService extends BaseService{
      * 查询所有订单
      * @return List<Teats> foods 订单对象集合
      */
-    public List<Teats> QueryAllEats(int intFrist,int recPerPage) throws IOException
+    public EatsJson QueryAllEats(int intFrist,int recPerPage) throws IOException
     {
         String path = HttpUtil.BASE_URL+"eats!queryAllEats.action?intFirst="+intFrist+"&recPerPage="+recPerPage+"";
         URL url;
@@ -201,13 +201,13 @@ public class EatsService extends BaseService{
                 byte[] data=toolsHandler.InputStreamToByte(is);
                 json=new String(data);
                 System.out.println(json);
-                eatsList =getGson().fromJson(json, new TypeToken<List<Teats>>() {}.getType());
+                eatsJson=getGson().fromJson(json,EatsJson.class);
             }
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return eatsList;
+        return eatsJson;
     }
     /**
      * 查询今天订单
@@ -414,25 +414,25 @@ public class EatsService extends BaseService{
      * */
 
 
-    public Map queryEatsOtherCount(Map map) throws Exception
+    public EatsJson queryEatsOther(Map map,int intFrist, int recPerPage) throws Exception
     {
 
-        String path=HttpUtil.BASE_URL+"eats!queryEatsOtherCount.action";
+        String path=HttpUtil.BASE_URL+"eats!queryTeatsOther.action?intFirst="+intFrist+"&recPerPage="+recPerPage+"";
 
-        json=loginPostData(path, map);
-        if(  json!="0")
-        {
-            JSONObject jsonObject=new JSONObject( json);
-            count=jsonObject.getInt("count");
-            countfs=jsonObject.getInt("countfs");
-            countmoney=jsonObject.getDouble("countmoney");
-        }
-        map1.put("count", count);
-        map1.put("countfs", countfs);
-        map1.put("countmoney",countmoney);
-        return map1;
+        eatsJson=loginPostData(path, map);
+//        if(  json!="0")
+//        {
+//            JSONObject jsonObject=new JSONObject( json);
+//            count=jsonObject.getInt("count");
+//            countfs=jsonObject.getInt("countfs");
+//            countmoney=jsonObject.getDouble("countmoney");
+//        }
+//        map1.put("count", count);
+//        map1.put("countfs", countfs);
+//        map1.put("countmoney",countmoney);
+        return eatsJson;
     }
-    public  String loginPostData(String path, Map<String, String> map) {
+    public EatsJson loginPostData(String path, Map<String, String> map) {
         String json="";
         InputStream inputStream = null;
         OutputStream outputStream = null;
@@ -467,6 +467,7 @@ public class EatsService extends BaseService{
                 ToolsHandler toolsHandler=new ToolsHandler();
                 byte[] data1=toolsHandler.InputStreamToByte(inputStream);
                 json=new String(data1);
+                eatsJson=getGson().fromJson(json,EatsJson.class);
 //                return getContext(inputStream, "utf-8");
 //                           return  true;
             }
@@ -478,23 +479,23 @@ public class EatsService extends BaseService{
             e.printStackTrace();
         }
 
-        return json;
+        return eatsJson;
     }
     /**
      * 根据其它条件查询职工的信息
      * @param
      * @return Ttables
      */
-    public List<Teats> queryTeatsOther(Map map)
-    {
-
-        String path=HttpUtil.BASE_URL+"eats!queryTeatsOther.action";
-
-        json=loginPostData(path, map);
-
-        eatsList=getGson().fromJson(json, new TypeToken<List<Teats>>() {}.getType());
-        return  eatsList;
-    }
+//    public List<Teats> queryTeatsOther(Map map)
+//    {
+//
+//        String path=HttpUtil.BASE_URL+"eats!queryTeatsOther.action";
+//
+//        json=loginPostData(path, map);
+//
+//        eatsList=getGson().fromJson(json, new TypeToken<List<Teats>>() {}.getType());
+//        return  eatsList;
+//    }
     /**
      * 添加请假　
      * @param
@@ -502,15 +503,13 @@ public class EatsService extends BaseService{
      */
     public boolean addEats(Map map) throws Exception
     {
-
-
-        String path=HttpUtil.BASE_URL+"eats!AddTeats.action";
-        String result =loginPostData(path, map);
+      boolean str=false;
+       String path=HttpUtil.BASE_URL+"eats!AddTeats.action";
+        eatsJson=loginPostData(path, map);
         try {
-            if( result!="0")
+            if( eatsJson.getCount()==1)
             {
-                JSONObject jsonObject=new JSONObject(result);
-                str=jsonObject.getBoolean("str");
+              str=true;
             }
 
         }   catch (Exception e) {
