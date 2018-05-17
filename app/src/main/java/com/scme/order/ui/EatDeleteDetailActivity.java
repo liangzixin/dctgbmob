@@ -29,6 +29,9 @@ import com.scme.order.util.MyAppVariable;
 import com.scme.order.util.Pictures;
 import com.scme.order.util.SerializableMap;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -140,7 +143,19 @@ public class EatDeleteDetailActivity extends BaseActivity {
 		getMenuInflater().inflate(R.menu.menu_txxxdetailmain, menu);
 		menu.getItem(0).setVisible(false);
 		menu.getItem(2).setVisible(false);
-		if((tusers.getPurview().equals("系统")||tusers.getPurview().equals("服务"))&&eats.getUnclear().equals("0")){
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+		Date ten = null;
+		Date now = null;
+		try {
+			ten = format.parse(eats.getEatdate().substring(0,10)+" 10:00");
+			now = new Date();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+
+		if((tusers.getPurview().equals("系统")||tusers.getPurview().equals("服务"))||(tusers.getId()==eats.getWorkerid()&&!ten.before(now))){
 			menu.getItem(1).setEnabled(true);
 			menu.getItem(1).setTitle(R.string.menu_delete);
 			menu.getItem(1).setVisible(true);
