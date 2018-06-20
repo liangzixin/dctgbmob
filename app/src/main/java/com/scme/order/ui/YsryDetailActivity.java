@@ -1,5 +1,6 @@
 package com.scme.order.ui;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
@@ -152,16 +153,20 @@ public class YsryDetailActivity extends BaseActivity implements OnItemSelectedLi
         lxdh2.setText(ysry.getA161());
         lxdh3.setText(ysry.getA162());
        grbh.setText(ysry.getA3());
-       rz13sj.setText(ysry.getA26());
-        rz13zb.setText(ysry.getA27());
-       rz13dd.setText(ysry.getA28());
-        if(ysry.getA25().equals("")){
+       rz13sj.setText(ysry.getRzsj());
+        rz13zb.setText(ysry.getRzzb());
+       rz13dd.setText(ysry.getRzdd());
+        if(ysry.getRzjk().equals("")){
             spinner.setSelection(0);
-        }else if(ysry.getA25().equals("填表认证")){
+        }else if(ysry.getRzjk().equals("填表认证")){
             spinner.setSelection(1);
-        }else if(ysry.getA25().equals("本人认证")){
+        }else if(ysry.getRzjk().equals("本人认证")){
             spinner.setSelection(2);
-        }else if(ysry.getA25().equals("代认证")){
+        }else if(ysry.getRzjk().equals("代认证")){
+            spinner.setSelection(3);
+        }else if(ysry.getRzjk().equals("入户认证")){
+            spinner.setSelection(3);
+        }else if(ysry.getRzjk().equals("视频认证")){
             spinner.setSelection(3);
         }
 
@@ -180,6 +185,7 @@ public class YsryDetailActivity extends BaseActivity implements OnItemSelectedLi
         }
     };
 
+    @SuppressLint("RestrictedApi")
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -187,7 +193,7 @@ public class YsryDetailActivity extends BaseActivity implements OnItemSelectedLi
         menu.getItem(2).setVisible(false);
 //        Toast.makeText(YsryDetailActivity.this, tusers.getPurview()+"与"+ysry.getRz13jk(), Toast.LENGTH_SHORT).show();
 
-        if((tusers.getPurview().equals("社保")||tusers.getPurview().equals("系统"))&&ysry.getA25().equals("")){
+        if((tusers.getPurview().equals("社保")||tusers.getPurview().equals("系统"))&&ysry.getRzjk().equals("")){
 //            if(tusers.getPurview().equals("社保")||tusers.getPurview().equals("系统")){
             menu.getItem(1).setEnabled(true);
 //            Toast.makeText(this,"0", Toast.LENGTH_SHORT).show();

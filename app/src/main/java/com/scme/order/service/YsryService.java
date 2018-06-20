@@ -2,6 +2,7 @@ package com.scme.order.service;
 
 import com.google.gson.reflect.TypeToken;
 import com.scme.order.model.Qingjia;
+import com.scme.order.model.Txxx;
 import com.scme.order.model.Ysry;
 import com.scme.order.util.HttpUtil;
 import com.scme.order.util.ToolsHandler;
@@ -163,8 +164,14 @@ public class YsryService extends BaseService{
                 ToolsHandler toolsHandler=new ToolsHandler();
                 byte[] data=toolsHandler.InputStreamToByte(is);
                 json=new String(data);
-                System.out.println(json);
-                ysrysList =getGson().fromJson(json, new TypeToken<List<Ysry>>() {}.getType());
+                JSONObject myobject =null;
+            //    System.out.println(json);
+                String listArray=null;
+              myobject = new JSONObject(json);
+                count=myobject.getInt("count");
+                listArray=myobject.getString("ysrylist");
+                ysrysList = BaseService.getGson().fromJson(listArray, new TypeToken<List<Ysry>>() {}.getType());
+                //   ysrysList =getGson().fromJson(json, new TypeToken<List<Ysry>>() {}.getType());
             }
         } catch (Exception e) {
             // TODO Auto-generated catch block

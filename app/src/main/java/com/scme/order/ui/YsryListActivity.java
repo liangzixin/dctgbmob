@@ -1,5 +1,6 @@
 package com.scme.order.ui;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
@@ -7,8 +8,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
 import android.support.v4.internal.view.SupportMenuItem;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
@@ -74,7 +77,7 @@ public class YsryListActivity extends BaseActivity implements IXListViewListener
 	private Spinner spinner2;
 	private static final String[] m={"上大院管理服务站","下大院管理服务站","桂苑街管理服务站","落雪大院管理服务站","腊利大院管理服务站"};
 	private static final String[] m1={"遗属人员","死亡职工","个人编号","身份证号","经办人","认证地点","认证时间","居住地","联系电话1","联系电话2"};
-	private static final String[] m2={"A5","A4","A3","A12","A27","A28","A26","A13","A14","lxdh1","lzdh2"};
+	private static final String[] m2={"A5","A4","A3","A12","rzzb","rzdd","rzsj","A13","A14","lxdh1","lzdh2"};
 	private String bmmz0="";
 	private String name0="";
 	private String rzjk0="";
@@ -126,11 +129,10 @@ public class YsryListActivity extends BaseActivity implements IXListViewListener
 		}else{
 			geneYsryItems();
 
-			count = geneYsryItemsCount();
+		count = geneYsryItemsCount();
 		}
 		System.out.println("count="+count);
 			pages = (count + recPerPag - 1) / recPerPag;       //计算出总的页数
-
 		tolpage.setText("记录数："+count);
 		nowpage.setText("页码："+(intFrist+1)+"/"+pages);
 
@@ -143,7 +145,7 @@ public class YsryListActivity extends BaseActivity implements IXListViewListener
 		myAdapter = new MyAdapter(ysryList, 1);
 
 		mListView.setAdapter(myAdapter);
-;
+
 		mListView.setXListViewListener(this);
 		mListView.setOnItemClickListener(this);
 
@@ -155,6 +157,7 @@ public class YsryListActivity extends BaseActivity implements IXListViewListener
 	/*
 创建菜单项
  */
+	@SuppressLint("RestrictedApi")
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
@@ -203,6 +206,7 @@ public class YsryListActivity extends BaseActivity implements IXListViewListener
 	}
 
 
+	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
@@ -309,17 +313,17 @@ public class YsryListActivity extends BaseActivity implements IXListViewListener
 
 								switch (spin1) {
 									case R.id.radioButton1:
-										map.put("a25", "已认证");
+										map.put("rzjk", "已认证");
 										break;
 									case R.id.radioButton2:
-										map.put("a25", "未认证");
+										map.put("rzjk", "未认证");
 										break;
 									case R.id.radioButton3:
 										map.put("a29", "死亡");
 										break;
 								}
 							}else{
-								map.put("a25", "");
+								map.put("rzjk", "");
 								map.put("a29", "");
 							}
 
@@ -580,7 +584,7 @@ public class YsryListActivity extends BaseActivity implements IXListViewListener
 
 				name.setText(ysry.getA5());
 				sfzh.setText(ysry.getA12());
-				rz.setText(IsCheckOut(ysry.getA25().toString()));
+				rz.setText(IsCheckOut(ysry.getRzjk().toString()));
 
 			} else {
 //				vh = (HeadlineBodyCard.ViewHolder) convertView.getTag();

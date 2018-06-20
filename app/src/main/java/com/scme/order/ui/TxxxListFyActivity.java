@@ -176,8 +176,6 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 						} catch (JSONException e) {
 							e.printStackTrace();
 						}
-
-
 						pages = (count + recPerPage - 1) / recPerPage;       //计算出总的页数
 
 						tolpage.setText("记录数："+count);
@@ -410,8 +408,6 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 		params.addQueryStringParameter("intFirst",intFirst+"");
 		params.addQueryStringParameter("recPerPage",recPerPage+"");
 		mThreadmy();
-
-
 	}
 	/*
 *根据查询条件转到另外页面

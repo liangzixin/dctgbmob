@@ -24,10 +24,10 @@ public class Ysry implements java.io.Serializable {
 	private String a17;
 	private String a18;
 	private String a19;
-	private String a25;
-	private String a26;
-	private String a27;
-	private String a28;
+	private String rzjk;
+	private String rzsj;
+	private String rzdd;
+	private String rzzb;
 	private Branch branch;
 	private int count;
 
@@ -49,37 +49,7 @@ public class Ysry implements java.io.Serializable {
 		this.a1 = a1;
 	}
 
-	public String getA25() {
-		return a25;
-	}
 
-	public void setA25(String a25) {
-		this.a25 = a25;
-	}
-
-	public String getA26() {
-		return a26;
-	}
-
-	public void setA26(String a26) {
-		this.a26 = a26;
-	}
-
-	public String getA27() {
-		return a27;
-	}
-
-	public void setA27(String a27) {
-		this.a27 = a27;
-	}
-
-	public String getA28() {
-		return a28;
-	}
-
-	public void setA28(String a28) {
-		this.a28 = a28;
-	}
 
 
 	public String getA160() {
@@ -263,4 +233,35 @@ public class Ysry implements java.io.Serializable {
 		return this.getBranch().getName().substring(0,len);
 	}
 
+	public String getRzjk() {
+		return rzjk;
+	}
+
+	public void setRzjk(String rzjk) {
+		this.rzjk = rzjk;
+	}
+
+	public String getRzsj() {
+		return rzsj;
+	}
+
+	public void setRzsj(String rzsj) {
+		this.rzsj = rzsj;
+	}
+
+	public String getRzdd() {
+		return rzdd;
+	}
+
+	public void setRzdd(String rzdd) {
+		this.rzdd = rzdd;
+	}
+
+	public String getRzzb() {
+		return rzzb;
+	}
+
+	public void setRzzb(String rzzb) {
+		this.rzzb = rzzb;
+	}
 }
