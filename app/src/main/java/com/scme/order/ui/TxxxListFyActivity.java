@@ -1,5 +1,6 @@
 package com.scme.order.ui;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
@@ -7,8 +8,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
 import android.support.v4.internal.view.SupportMenuItem;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
@@ -210,6 +213,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 	/*
 创建菜单项
  */
+	@SuppressLint("RestrictedApi")
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
@@ -252,6 +256,7 @@ public class TxxxListFyActivity extends BaseActivity implements IXListViewListen
 	}
 
 
+	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();

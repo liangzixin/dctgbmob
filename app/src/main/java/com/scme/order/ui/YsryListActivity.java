@@ -294,18 +294,20 @@ public class YsryListActivity extends BaseActivity implements IXListViewListener
 							if (mCheckBox1.isChecked()) {
 
 								map.put("branchname", spinner1.getSelectedItem().toString());
+								map.put("mCheckBox1","1");
 							}else{
-
+								map.put("mCheckBox1","0");
 								map.put("branchname", "");
 							}
 
 							if (mCheckBox2.isChecked()) {
                                   map.put("name0",m2[spinner2.getSelectedItemPosition()].toString());
 								  map.put("name1",mTextView.getText().toString());
-
+								map.put("mCheckBox2","1");
 							}else{
 								map.put("name1", "");
 								map.put("name", "");
+								map.put("mCheckBox2","0");
 							}
 
 							if (mCheckBox3.isChecked()) {
@@ -313,17 +315,17 @@ public class YsryListActivity extends BaseActivity implements IXListViewListener
 
 								switch (spin1) {
 									case R.id.radioButton1:
-										map.put("rzjk", "已认证");
+										map.put("rzjk0", "已认证");
 										break;
 									case R.id.radioButton2:
-										map.put("rzjk", "未认证");
+										map.put("rzjk0", "未认证");
 										break;
 									case R.id.radioButton3:
 										map.put("a29", "死亡");
 										break;
 								}
 							}else{
-								map.put("rzjk", "");
+								map.put("rzjk0", "");
 								map.put("a29", "");
 							}
 
@@ -612,7 +614,8 @@ public class YsryListActivity extends BaseActivity implements IXListViewListener
 
 		try {
 			ysryList = ysryService.queryYsryName(map);
-			count= ysryService.queryYsryOtherCount(map);
+//			count= ysryService.queryYsryOtherCount(map);
+			count=ysryList.size();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
