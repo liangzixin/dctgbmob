@@ -279,7 +279,6 @@ public class TxxxService extends BaseService {
         String json="";
         InputStream inputStream = null;
         OutputStream outputStream = null;
-
         try {
             URL url = new URL(path);
             HttpURLConnection connection = (HttpURLConnection) url
