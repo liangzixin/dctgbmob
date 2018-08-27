@@ -1,5 +1,6 @@
 package com.scme.order.ui;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -69,7 +70,7 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
     private MyAppVariable myAppVariable;
 
     private GetDate getDate=new GetDate();
-    private static final String[] m={"请选择打卡类型","早上上班卡","早上下班卡","下午上班卡","下午下班卡"};
+    private static final String[] m={"请选择打卡类型","早上上班卡","早上下班卡","下午上班卡","下午下班卡","早上上下班卡","下午上下班卡","一天"};
    private static final String[] listbmmz={"综合科","财务科","管理服务科","社会保险科","信访科","上大院管理服务站","腊利大院管理服务站","落雪大院管理服务站","下大院管理服务站","桂苑街管理服务站","驻昆办事处"};
     private Spinner provinceSpinner = null;  //省级（省、直辖市）
     private Spinner citySpinner = null;     //地级市
@@ -78,6 +79,8 @@ public class CheckinoutAddActivity extends BaseActivity implements View.OnTouchL
     private int allbranchid=0;
     private int zgbranch=0;
     private String aa=" ";
+   private String checktype="";
+    private String starttime0="";
 
 
 
@@ -309,7 +312,8 @@ private void getDepartments() {
         }
 
 
-        params.addQueryStringParameter("checkinouttime", etStartTime.getText().toString());
+        params.addQueryStringParameter("checkinouttime", starttime0);
+        params.addQueryStringParameter("checktype",checktype);
         params.addQueryStringParameter("allbranchid",allbranchid+"");
         params.addQueryStringParameter("zgbranch",zgbranch+"");
         url = HttpUtil.BASE_URL+"checkinout!checkinoutAdd.action";
@@ -349,25 +353,30 @@ public String IsSingle(String status) {
     }
 
 
+    @SuppressLint("WrongConstant")
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            View view = View.inflate(this, R.layout.date_time_dialog, null);
+            View view = View.inflate(this, R.layout.date_type_dialog, null);
             final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
-            final TimePicker timePicker = (TimePicker) view.findViewById(R.id.time_picker);
+            final MaterialSpinner checkinouttype=  (MaterialSpinner) view.findViewById(R.id.checkinout_type);
+          //  final TimePicker timePicker = (TimePicker) view.findViewById(R.id.time_picker);
             builder.setView(view);
 
             Calendar cal = Calendar.getInstance();
             cal.setTimeInMillis(System.currentTimeMillis());
             datePicker.init(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), null);
 
-            timePicker.setIs24HourView(true);
-            int hours=cal.get(Calendar.HOUR_OF_DAY);
-            int minutes=cal.get(Calendar.MINUTE);
-            timePicker.setCurrentHour(hours);
-            timePicker.setCurrentMinute(minutes);
+
+            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,m);
+            checkinouttype.setAdapter(adapter);
+//            timePicker.setIs24HourView(true);
+//            int hours=cal.get(Calendar.HOUR_OF_DAY);
+//            int minutes=cal.get(Calendar.MINUTE);
+//            timePicker.setCurrentHour(hours);
+//            timePicker.setCurrentMinute(minutes);
             // 为TimePicker指定监听器
 //            timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
 //                @Override
@@ -392,21 +401,22 @@ public String IsSingle(String status) {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
+                     if(checkinouttype.getSelectedItemPosition()==0){
+
+                         Toast.makeText(CheckinoutAddActivity.this, "请选择打卡类型！！！", Toast.LENGTH_SHORT).show();
+                         return;
+                     }
                         StringBuffer sb = new StringBuffer();
                         sb.append(String.format("%d-%02d-%02d",
                                 datePicker.getYear(),
                                 datePicker.getMonth() + 1,
                                 datePicker.getDayOfMonth()));
+                        starttime0=sb.toString();
                         sb.append(" ");
-                        sb.append(timePicker.getCurrentHour())
-                                .append(":").append(timePicker.getCurrentMinute()).append(":00");
+                        sb.append( checkinouttype.getSelectedItem().toString());
 
                         etStartTime.setText(sb);
-
-//                        double lg2=0;
-//
-//
-//
+                        checktype= checkinouttype.getSelectedItemPosition()+"";
                        dialog.cancel();
                      //   etStartTime.setText(sb);
                     }
