@@ -173,6 +173,8 @@ public class QingjiaDetailActivity extends BaseActivity implements View.OnTouchL
         if((user.getName().equals(qingjia.getName1())&&qingjia.getState()==0)||user.getPurview().equals("系统")) {
             menu.getItem(2).setEnabled(true);
             menu.getItem(2).setVisible(true);
+            menu.getItem(3).setTitle("签 收");
+            menu.getItem(3).setVisible(true);
         }
         boolean branchleader=false;
         boolean branchleader1=false;

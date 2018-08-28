@@ -289,10 +289,11 @@ private void getDepartments() {
         params = new RequestParams();
         if(zgbranch==0) {
             int userid = 0;
+            int userinfoid = 0;
 //        testHandler.sendEmptyMessage(2);
             try {
-                userid = listuser0.get(citySpinner.getSelectedItemPosition()).getUserinfoid();
-
+                userinfoid = listuser0.get(citySpinner.getSelectedItemPosition()).getUserinfoid();
+                userid = listuser0.get(citySpinner.getSelectedItemPosition()).getId();
                 System.out.println("个人序号:" + userid);
 
             } catch (Exception e) {
@@ -300,6 +301,7 @@ private void getDepartments() {
                 e.printStackTrace();
             }
             params.addQueryStringParameter("userid", userid + "");
+            params.addQueryStringParameter("userinfoid", userinfoid + "");
         }else if(zgbranch==2){
             if(listuser1.size()>0){
                 for(int i=0;i<listuser1.size();i++){

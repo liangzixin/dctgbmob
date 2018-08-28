@@ -11,7 +11,7 @@
         android:background="#ff33b5e5"
         android:layout_marginTop="0dp"
         android:textSize="16dp"
-        android:text="  序号   部门名称   姓  名         时  间           天数　已批" />
+        android:text="&#160;&#160;序号&#160;&#160;&#160;&#160;部门名称&#160;&#160;&#160;姓  名&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 时  间&#160;&#160;&#160;&#160;&#160;&#160;天数&#160;&#160;&#160;&#160;&#160;&#160;已批" />
 
     <com.scme.order.view.XListView
         android:id="@+id/lvqingjias"

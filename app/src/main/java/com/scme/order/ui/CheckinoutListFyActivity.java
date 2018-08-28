@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.support.v4.internal.view.SupportMenuItem;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -489,6 +490,7 @@ private 	RequestParams params;
 		params.addQueryStringParameter("name","");
 		params.addQueryStringParameter("queryname","0");
 	//	System.out.println(myAppVariable.getTusers().getPurview());
+		params.addQueryStringParameter("branchid","0");
 		params.addQueryStringParameter("deptid",user.getDeptid()+"");
 		params.addQueryStringParameter("intFirst",intFirst+"");
 		params.addQueryStringParameter("recPerPage",recPerPage+"");
@@ -851,9 +853,16 @@ private 	RequestParams params;
 // 当otherActivity中返回数据的时候，会响应此方法
 // requestCode和resultCode必须与请求startActivityForResult()和返回setResult()的时候传入的值一致。
 		if (requestCode == 1 &&(resultCode ==CheckinoutAddActivity.RESULT_CODE||resultCode ==CheckinoutDetailActivity.RESULT_CODE)) {
-
-		//	geneCheckinoutItems();
+			myAppVariable.setOtherquery(false);
+			geneCheckinoutItems();
 		}
+	}
+	@Override
+	protected void onResume() {
+	//	Log.d(TAG, "-->onResume");
+		// 有奖分享处理
+
+		super.onResume();
 	}
 	/**
 	 * 根据值, 设置spinner默认选中:

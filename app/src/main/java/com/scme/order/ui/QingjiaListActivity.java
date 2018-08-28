@@ -593,7 +593,7 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 		params.addQueryStringParameter("purview",user.getPurview());
 		params.addQueryStringParameter("name","");
 		params.addQueryStringParameter("queryname","0");
-		//	System.out.println(myAppVariable.getTusers().getPurview());
+		params.addQueryStringParameter("branchid","0");
 		params.addQueryStringParameter("deptid",user.getBranchid()+"");
 		params.addQueryStringParameter("intFirst",intFirst+"");
 		params.addQueryStringParameter("recPerPage",recPerPage+"");
@@ -897,7 +897,7 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 		params.addQueryStringParameter("recPerPage",recPerPage+"");
 
 
-		myAppVariable.setOtherquery(true);
+	//	myAppVariable.setOtherquery(true);
 		otherquery=true;
 		mThreadmy();
 
@@ -1013,5 +1013,12 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 				break;
 			}
 		}
+	}
+	@Override
+	protected void onResume() {
+		//	Log.d(TAG, "-->onResume");
+		// 有奖分享处理
+
+		super.onResume();
 	}
 }

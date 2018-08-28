@@ -9,10 +9,10 @@ android {
     defaultConfig {
         applicationId "com.scme.order"
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 25
         versionCode 10
-        versionName "10.10"
+        versionName "10.11"
         multiDexEnabled true
     }
     buildTypes {
