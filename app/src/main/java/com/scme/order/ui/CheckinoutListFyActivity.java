@@ -8,8 +8,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
 import android.support.v4.internal.view.SupportMenuItem;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
@@ -282,6 +284,7 @@ private 	RequestParams params;
 	}
 
 
+	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
@@ -859,10 +862,17 @@ private 	RequestParams params;
 	}
 	@Override
 	protected void onResume() {
-	//	Log.d(TAG, "-->onResume");
+		//	Log.d(TAG, "-->onResume");
 		// 有奖分享处理
 
 		super.onResume();
+	}
+	@Override
+	protected void onStart() {
+		//	Log.d(TAG, "-->onResume");
+		// 有奖分享处理
+		myAppVariable.setOtherquery(false);
+		super.onStart();
 	}
 	/**
 	 * 根据值, 设置spinner默认选中:

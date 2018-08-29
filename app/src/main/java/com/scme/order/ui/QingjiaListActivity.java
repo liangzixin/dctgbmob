@@ -1021,4 +1021,11 @@ public class QingjiaListActivity extends BaseActivity implements IXListViewListe
 
 		super.onResume();
 	}
+	@Override
+	protected void onStart() {
+		//	Log.d(TAG, "-->onResume");
+		// 有奖分享处理
+		myAppVariable.setOtherquery(false);
+		super.onStart();
+	}
 }
