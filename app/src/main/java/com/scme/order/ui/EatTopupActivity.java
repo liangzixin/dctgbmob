@@ -397,7 +397,11 @@ public class EatTopupActivity extends BaseActivity implements IXListViewListener
 					.show();
 
 
-		}
+		}else if(id == R.id.action_txxxdetail_mainrz){
+		Intent intent = new Intent();
+		intent.setClass(this, CheckinoutAddActivity.class);
+		startActivityForResult(intent, 1);
+	}
 
 
 
@@ -448,10 +452,10 @@ public class EatTopupActivity extends BaseActivity implements IXListViewListener
 		menu.getItem(2).setVisible(false);
 		menu.getItem(3).setVisible(false);
 		menu.getItem(4).setVisible(true);
-		if(user0.getPurview().equals("系统")) {
+		if(user0.getPurview().equals("系统")||user0.getPurview().equals("食堂")) {
 			menu.getItem(1).setEnabled(true);
 			menu.getItem(1).setTitle(R.string.add);
-			menu.getItem(1).setVisible(false);
+			menu.getItem(1).setVisible(true);
 			menu.getItem(5).setVisible(false);
 		}
 
