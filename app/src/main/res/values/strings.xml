@@ -45,6 +45,7 @@
     <string name="title_eattotalActivity">合计</string>
     <string name="title_eattopupActivity">充值查询</string>
     <string name="title_eattopupAddActivity">充值添加</string>
+    <string name="title_eattopupDeleteActivity">充值删除</string>
     <string name="title_activity_txxx">退休信息</string>
     <string name="title_activity_checkinout">打卡信息</string>
     <string name="title_activity_txxxdetail">详细信息</string>

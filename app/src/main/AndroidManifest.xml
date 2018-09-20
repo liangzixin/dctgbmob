@@ -199,6 +199,10 @@
                android:label="@string/title_eattopupAddActivity"
                android:parentActivityName=".EatTopupActivity"/>
            <activity
+               android:name=".EatDeleteTopupActivity"
+               android:label="@string/title_eattopupAddActivity"
+               android:parentActivityName=".EatTopupActivity"/>
+           <activity
                android:name=".DeveloperModeActivity"
                android:label="@string/title_activity_developer_mode"
                android:parentActivityName=".MainActivity"/>

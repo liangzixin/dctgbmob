@@ -708,16 +708,12 @@ public class EatTopupActivity extends BaseActivity implements IXListViewListener
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		// TODO Auto-generated method stub
-//		HashMap<String, String> map = (HashMap<String, String>) eatsListView.getItemAtPosition(arg2);
-//		Object OBtabId = map.get("foodsId");//取得点击列表项的Id
-//		int foodsId = (Integer) OBtabId;
-//		System.out.println("============foodsId" + foodsId);
-//		Intent intent = new Intent();
-//		Bundle bundle = new Bundle();
-//		bundle.putInt("foodsId", foodsId);
-//		intent.putExtras(bundle);
-//		intent.setClass(this, FoodsDetailedActivity.class);
-//		startActivity(intent);
+		int ii = new Long(arg3).intValue();
+		myAppVariable.setTxxxid(ii);
+//		System.out.println("就餐序号eatsId"+ii);
+		Intent intent = new Intent();
+		intent.setClass(this, EatDeleteDetailActivity.class);
+		startActivityForResult(intent,200);
 	}
 
 	@Override

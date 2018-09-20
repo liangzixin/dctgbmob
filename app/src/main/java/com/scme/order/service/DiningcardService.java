@@ -25,7 +25,7 @@ public class DiningcardService extends BaseService{
     private String json="";
     private List<Diningcard> diningcardList=null;
     private DiningcardJson diningcardJson;
-    private  Diningcard eat;
+    private  Diningcard diningcard;
     private List list;
     private List eatsTotalList=null;
     private  int count;
@@ -149,32 +149,32 @@ public class DiningcardService extends BaseService{
 
         return str;
     }
-//    public Diningcard queryEatsId(int eatid) throws Exception
-//    {
-//
-//        String path = HttpUtil.BASE_URL+"eats!queryUseEatsId.action?eatid="+eatid+"";
-//        URL url;
-//        try {
-//            url = new URL(path);
-//            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//            conn.setReadTimeout(5000);
-//            conn.setRequestMethod("POST");
-//            if (200 == conn.getResponseCode())
-//            {
-//                //获取输入流
-//                InputStream is = conn.getInputStream();
-//                ToolsHandler toolsHandler=new ToolsHandler();
-//                byte[] data=toolsHandler.InputStreamToByte(is);
-//                json=new String(data);
-//                System.out.println(json);
-//                eat=getGson().fromJson(json, new TypeToken<Diningcard>() {}.getType());
-//            }
-//        } catch (Exception e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-//        return eat;
-//    }
+    public Diningcard queryDiningcardId(int id) throws Exception
+    {
+
+        String path = HttpUtil.BASE_URL+"eats!queryDiningcardId.action?id="+id+"";
+        URL url;
+        try {
+            url = new URL(path);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(5000);
+            conn.setRequestMethod("POST");
+            if (200 == conn.getResponseCode())
+            {
+                //获取输入流
+                InputStream is = conn.getInputStream();
+                ToolsHandler toolsHandler=new ToolsHandler();
+                byte[] data=toolsHandler.InputStreamToByte(is);
+                json=new String(data);
+                System.out.println(json);
+                diningcard=getGson().fromJson(json, new TypeToken<Diningcard>() {}.getType());
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return diningcard;
+    }
 //    /**
 //     * 添加订单
 //     * @param workerid 餐桌Id
