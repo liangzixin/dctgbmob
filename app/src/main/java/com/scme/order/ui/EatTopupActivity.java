@@ -399,7 +399,7 @@ public class EatTopupActivity extends BaseActivity implements IXListViewListener
 
 		}else if(id == R.id.action_txxxdetail_mainrz){
 		Intent intent = new Intent();
-		intent.setClass(this, CheckinoutAddActivity.class);
+		intent.setClass(this, EatTopupAddActivity.class);
 		startActivityForResult(intent, 1);
 	}
 

@@ -125,7 +125,30 @@ public class DiningcardService extends BaseService{
 
         return json;
     }
+    /**
+     * 添加充值　
+     * @param
+     * @return Ttables
+     */
+    public boolean AddEattopup(Map map) throws Exception
+    {
 
+        String path=HttpUtil.BASE_URL+"diningcard!AddEattopup.action";
+        String result =loginPostData(path, map);
+        try {
+            if( result!="0")
+            {
+                JSONObject jsonObject=new JSONObject(result);
+                str=jsonObject.getBoolean("str");
+            }
+
+        }   catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return str;
+    }
 //    public Diningcard queryEatsId(int eatid) throws Exception
 //    {
 //

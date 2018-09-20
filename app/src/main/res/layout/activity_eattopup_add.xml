@@ -47,27 +47,40 @@
 
                 app:ms_multiline="true" />
 
-
-
         </LinearLayout>
 
+
+
         <LinearLayout
+            android:id="@+id/content3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="0dp">
 
-
-
-            <MaterialEditText
-                android:id="@+id/Qingjia_Content"
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/productinfo_lxr0"
+                style="@style/text_title"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:hint="请输入充值金额（元）"
+                android:orientation="vertical"
+                android:text="充值金额（元）"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/eattopupnumber"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/select_edittext"
                 android:inputType="numberSigned"
-                android:singleLine="true"
-                android:scrollbars="vertical"
-                material:floatingLabel="true"
+                android:paddingLeft="5dp"
+                android:text=""
+                android:textSize="25dp"
+                android:maxLength="4"
                 />
+
         </LinearLayout>
 
 

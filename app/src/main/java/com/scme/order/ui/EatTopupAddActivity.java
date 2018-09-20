@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,18 +18,22 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.MaterialEditText;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.scme.order.model.Diningcard;
 import com.scme.order.model.Qingjia;
 import com.scme.order.model.Tusers;
 import com.scme.order.service.BranchService;
+import com.scme.order.service.DiningcardService;
 import com.scme.order.service.QingjiaService;
 import com.scme.order.service.UserService;
 import com.scme.order.util.GetDate;
+import com.scme.order.util.InputFilterMinMax;
 import com.scme.order.util.MyAppVariable;
 
 import java.util.ArrayList;
@@ -44,7 +49,7 @@ import fr.ganfra.materialspinner.MaterialSpinner;
 //
 //import  android.support.v4.view.MenuItemCompat.OnActionExpandListener;
 
-public class EatTopupAddActivity extends BaseActivity implements View.OnTouchListener {
+public class EatTopupAddActivity extends BaseActivity {
     private ProgressDialog progressDialog;
     private Qingjia qingjia;
     private Handler testHandler;
@@ -71,10 +76,7 @@ public class EatTopupAddActivity extends BaseActivity implements View.OnTouchLis
     ArrayAdapter<String> cityAdapter = null;    //地级适配器
     ArrayAdapter<String> countyAdapter = null;    //县级适配器
     static int provincePosition = 3;
-
-
-
-    @InjectView(R.id.Qingjia_Content) MaterialEditText topupnumber;
+    @InjectView(R.id.eattopupnumber)   EditText eattopupnumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,14 +99,9 @@ public class EatTopupAddActivity extends BaseActivity implements View.OnTouchLis
 
             }
         mThread.start();
-
-
-
-
-
-
         myAppVariable=(MyAppVariable)getApplication(); //获得自定义的应用程序MyAppVariable
         user=myAppVariable.getTusers();
+
         setSpinner();
     }
 
@@ -120,8 +117,8 @@ public class EatTopupAddActivity extends BaseActivity implements View.OnTouchLis
                         //handle message here
                         case 1:
 
-                        etStartTime.setOnTouchListener(EatTopupAddActivity.this);
-                            etEndTime.setOnTouchListener(EatTopupAddActivity.this);
+//                        etStartTime.setOnTouchListener(EatTopupAddActivity.this);
+//                            etEndTime.setOnTouchListener(EatTopupAddActivity.this);
 //
                             progressDialog.dismiss();
                             //send message here
@@ -162,15 +159,15 @@ public class EatTopupAddActivity extends BaseActivity implements View.OnTouchLis
 
         if (id == R.id.action_txxxdetail_mainrz) {
 
-            if (topupnumber.getText().toString().equals("")) {
-                Toast.makeText(this, "错误！请填写请假事由", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-              addqingjia();
 
+
+    //       CharSequence  aa= eattopupnumber
+//            if (eattopupnumber.getText().toString().equals("")) {
+           //     Toast.makeText(this, "错误！请正确填写充值金额！！", Toast.LENGTH_SHORT).show();
+//                return false;
+//            }
+              addeattopup();
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -179,169 +176,42 @@ public class EatTopupAddActivity extends BaseActivity implements View.OnTouchLis
      * 添加请假
      *
      * */
-    public void addqingjia() {
+    public void addeattopup() {
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("添加提交中  请稍后...");
+        progressDialog.setMessage("充值提交中  请稍后...");
         progressDialog.show();
         testHandler.sendEmptyMessage(2);
         try {
             Map<String, String> map = new HashMap<String, String>();
-         int    userinfoid= listuser0.get(citySpinner.getSelectedItemPosition()).getUserinfoid();
-            map.put("userinfoid",userinfoid+"");
-            map.put("name1", citySpinner.getSelectedItem().toString());
-            map.put("time1", etStartTime.getText().toString());
-            map.put("time2", etEndTime.getText().toString());
-
-            map.put("bmbh", provinceSpinner.getSelectedItemId() + 1 + "");
-            map.put("content", topupnumber.getText().toString());
-            map.put("djr", user.getName());
-            map.put("type1", qingjiatype.getSelectedItemPosition() + "");
-//
-            QingjiaService qingjiaService = new QingjiaService();
-
-            str = qingjiaService.AddQingjia(map);
+         int   userid= listuser0.get(citySpinner.getSelectedItemPosition()).getId();
+            map.put("diningcard.userid",userid+"");
+            map.put("diningcard.topupamount", eattopupnumber.getText().toString());
+            map.put("diningcard.operator",user.getName());
+            DiningcardService  diningcardService = new DiningcardService();
+            str = diningcardService.AddEattopup(map);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
         if(str) {
-            new AlertDialog.Builder(this).setTitle("请假添加成功！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            new AlertDialog.Builder(this).setTitle("充值成功！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     // TODO Auto-generated method stub
 
-                    startActivity(new Intent(EatTopupAddActivity.this,QingjiaListActivity.class));
+                    startActivity(new Intent(EatTopupAddActivity.this,EatTopupActivity.class));
 
                 }
             }).show();
         }else{
-            Toast.makeText(this, "请假添加失败！！！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "充值失败！！！", Toast.LENGTH_SHORT).show();
         }
 
     }
 
-public String IsSingle(String status) {
-        String str = "";
-        if (status.equals("0"))
-        str = "否";
-        else
-        str = "是";
-        return str;
-        }
-    public String IsState(String state) {
-        String str = "";
-        if (state.equals("1"))
-            str = "是";
-        else
-            str = "否";
-        return str;
-    }
 
-
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            View view = View.inflate(this, R.layout.date_time_dialog, null);
-            final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
-            final TimePicker timePicker = (TimePicker) view.findViewById(R.id.time_picker);
-            builder.setView(view);
-
-            Calendar cal = Calendar.getInstance();
-            cal.setTimeInMillis(System.currentTimeMillis());
-            datePicker.init(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), null);
-
-            timePicker.setIs24HourView(true);
-            timePicker.setCurrentHour(cal.get(Calendar.HOUR_OF_DAY));
-            timePicker.setCurrentMinute(Calendar.MINUTE);
-
-            if (v.getId() == R.id.Qingjia_Time1) {
-                final int inType = etStartTime.getInputType();
-                etStartTime.setInputType(InputType.TYPE_NULL);
-                etStartTime.onTouchEvent(event);
-                etStartTime.setInputType(inType);
-                etStartTime.setSelection(etStartTime.getText().length());
-
-                builder.setTitle("选取起始时间");
-                builder.setPositiveButton("确  定", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        StringBuffer sb = new StringBuffer();
-                        sb.append(String.format("%d-%02d-%02d",
-                                datePicker.getYear(),
-                                datePicker.getMonth() + 1,
-                                datePicker.getDayOfMonth()));
-                        sb.append(" ");
-                        sb.append(timePicker.getCurrentHour())
-                                .append(":").append(timePicker.getCurrentMinute()).append(":00");
-
-                        etStartTime.setText(sb);
-
-                        double lg2=0;
-
-                        if(etStartTime.getText().toString()!=null&&etEndTime.getText().toString()!=null)
-                        {
-
-                            lg2=getDate.dateDiff(etStartTime.getText().toString(),etEndTime.getText().toString());
-
-                        }
-
-                        qingjialongtime.setText(lg2+" 天");
 //
-                        etEndTime.requestFocus();
-
-                        dialog.cancel();
-                    }
-                });
-
-            } else if (v.getId() == R.id.Qingjia_Time2) {
-                int inType = etEndTime.getInputType();
-                etEndTime.setInputType(InputType.TYPE_NULL);
-                etEndTime.onTouchEvent(event);
-                etEndTime.setInputType(inType);
-                etEndTime.setSelection(etEndTime.getText().length());
-
-                builder.setTitle("选取结束时间");
-                builder.setPositiveButton("确  定", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        StringBuffer sb = new StringBuffer();
-                        sb.append(String.format("%d-%02d-%02d",
-                                datePicker.getYear(),
-                                datePicker.getMonth() + 1,
-                                datePicker.getDayOfMonth()));
-                        sb.append(" ");
-                        sb.append(timePicker.getCurrentHour())
-                                .append(":").append(timePicker.getCurrentMinute()).append(":00");
-                        etEndTime.setText(sb);
-                        double lg2=0;
-
-                        if(etStartTime.getText().toString()!=null&&etEndTime.getText().toString()!=null)
-                        {
-
-                            lg2=getDate.dateDiff(etStartTime.getText().toString(),etEndTime.getText().toString());
-
-                        }
-
-                        qingjialongtime.setText(lg2+" 天");
-//
-                       dialog.cancel();
-                    }
-                });
-            }
-
-            Dialog dialog = builder.create();
-            dialog.show();
-        }
-
-        return true;
-    }
 
     /*
    * 设置下拉框
@@ -350,7 +220,7 @@ public String IsSingle(String status) {
         provinceSpinner = ( MaterialSpinner) findViewById(R.id.spin_province);
        citySpinner = ( MaterialSpinner) findViewById(R.id.spin_city);
 //        countySpinner = (Spinner) findViewById(R.id.spin_county);
-
+        eattopupnumber.setFilters(new InputFilter[]{ new InputFilterMinMax("-500", "500")});
         //绑定适配器和值
         provinceAdapter = new ArrayAdapter<String>(EatTopupAddActivity.this,
                 android.R.layout.simple_spinner_item,listbmmz);
