@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,9 +14,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.scme.order.model.Diningcard;
 import com.scme.order.model.Teats;
 import com.scme.order.model.Tusers;
+import com.scme.order.service.DiningcardService;
 import com.scme.order.service.EatsService;
 import com.scme.order.util.GetDate;
 import com.scme.order.util.MyAppVariable;
@@ -42,7 +46,7 @@ public class EatDeleteTopupActivity extends BaseActivity {
 	private Handler testHandler;
 	private String purview;
 	private int workerid;
-	private Teats eats;
+	private Diningcard diningcard;
 	private String ymonth;
 	private Tusers tusers;
 	private MyAppVariable myAppVariable;
@@ -53,11 +57,9 @@ public class EatDeleteTopupActivity extends BaseActivity {
 //	@InjectView(R.id.tvEatTotalId)	TextView tvEatTotalId;
 	@InjectView(R.id.tvEatTotalName)	TextView tvEatTotalName;
 	@InjectView(R.id.tvEatTotalYmonth)	TextView tvEatTotalYmonth;
-
 	@InjectView(R.id.tvEatTotalPrice)	TextView tvEatTotalPrice;
-
 	@InjectView(R.id.tvDjr)	TextView tvdjr;
-	@InjectView(R.id.ivUserPic)	ImageView ivEatTotalPic;
+//	@InjectView(R.id.ivUserPic)	ImageView ivEatTotalPic;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,13 +83,11 @@ public class EatDeleteTopupActivity extends BaseActivity {
 		if(Thread.State.NEW == mThread.getState()) {
 		      try {
 		    	//获取餐桌列表数据
-				 EatsService eatsService=new EatsService();
+				 DiningcardService diningcardService=new DiningcardService();
 				  System.out.println("eatid:"+txxxid);
-			        eats=eatsService.queryEatsId(txxxid);
-
+				  diningcard=diningcardService.querydiningcardId(txxxid);
 				  System.out.println("权限:"+purview);
 //				  System.out.println("已交:"+map.getMap().get("unclear"));
-
 		       } catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -108,7 +108,7 @@ public class EatDeleteTopupActivity extends BaseActivity {
 						//handle message here
 						case 1:
 
-							showView(bmp, eats);
+							showView(diningcard);
 //							setSpinner();
 						break;
 							//send message here
@@ -139,14 +139,14 @@ public class EatDeleteTopupActivity extends BaseActivity {
 		Date ten = null;
 		Date now = null;
 		try {
-			ten = format.parse(eats.getEatdate().substring(0,10)+" 10:00");
+			ten = format.parse(diningcard.getTopuptime().substring(0,10)+" 10:00");
 			now = new Date();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 
 
-		if((tusers.getPurview().equals("系统")||tusers.getPurview().equals("服务"))||(tusers.getId()==eats.getWorkerid()&&!ten.before(now))){
+		if((tusers.getPurview().equals("系统")||tusers.getPurview().equals("服务"))||(tusers.getId()==diningcard.getUserid()&&!ten.before(now))){
 			menu.getItem(1).setEnabled(true);
 			menu.getItem(1).setTitle(R.string.menu_delete);
 			menu.getItem(1).setVisible(true);
@@ -164,10 +164,8 @@ public class EatDeleteTopupActivity extends BaseActivity {
 		int id = item.getItemId();
 
 		if (id == R.id.action_txxxdetail_mainrz) {
-
-
-			new AlertDialog.Builder(this).setTitle("删除就餐记录")
-					.setMessage("真要删除职工:"+eats.getUser().getName()+"本条就餐记录吗???").setNegativeButton("取消", new DialogInterface.OnClickListener() {
+			new AlertDialog.Builder(this).setTitle("删除充值记录")
+					.setMessage("真要删除职工:"+diningcard.getUser().getName()+"本条充值记录吗???").setNegativeButton("取消", new DialogInterface.OnClickListener() {
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
@@ -179,7 +177,7 @@ public class EatDeleteTopupActivity extends BaseActivity {
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub
 					dodelete(txxxid);
-					finish();
+				//	finish();
 				}
 			}).show();
 			}
@@ -189,22 +187,22 @@ public class EatDeleteTopupActivity extends BaseActivity {
 	}
 	/**
 	 * 显示视图
-	 * @param bmp 职工的图片
-	 * @param eats 职工的对象
+	 * @param
+	 * @param diningcard 职工的对象
 	 * */
-	public void showView(Bitmap bmp,Teats eats)
+	public void showView(Diningcard diningcard)
 	{
 //		tvEatTotalId.setText("序号："+eats.getEatid());
-		tvEatTotalName.setText("姓名："+eats.getUser().getName());
-		tvEatTotalYmonth.setText("就餐时间：" + getDate.getHour(eats.getEatdate()));
+		tvEatTotalName.setText("姓名："+diningcard.getUser().getName());
+	tvEatTotalYmonth.setText("充值时间：" +diningcard.getTopuptime());
 
-		tvEatTotalPrice.setText("金额："+eats.getEatnumber()*eats.getUnitprice()+"  元");
+		tvEatTotalPrice.setText("充值金额："+diningcard.getTopupamount()+"  元");
 
-		tvdjr.setText("登记人："+eats.getOperator());
+		tvdjr.setText("登记人："+diningcard.getOperator());
 //		tvEatTotalUncvlear.setText("是否已交："+purview);
-		Pictures pic=new Pictures();
+	//	Pictures pic=new Pictures();
 //	  bmp=pic.getMenuPic(eats.getUser().getPicName());
-		ivEatTotalPic.setImageBitmap(bmp);
+	//	ivEatTotalPic.setImageBitmap(bmp);
 	}
 	/**
 	 * 删除记录
@@ -215,28 +213,26 @@ public class EatDeleteTopupActivity extends BaseActivity {
 		progressDialog.setMessage("删除提交中  请稍后...");
 		progressDialog.show();
 		testHandler.sendEmptyMessage(2);
-
 		try {
-			EatsService eatService = new EatsService();
-
-			str=eatService.DeleteEats(txxxid);
+			DiningcardService diningcardService = new DiningcardService();
+			str=diningcardService.DeleteTopup(txxxid);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-//		if(str) {
-//			new AlertDialog.Builder(this).setTitle("删除提交成功！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//
-//				@Override
-//				public void onClick(DialogInterface dialog, int which) {
-//					// TODO Auto-generated method stub
-//
-//					startActivity(new Intent(EatDeleteDetailActivity.this, EatAllActivity.class));
-//
-//				}
-//			}).show();
-//		}else{
-//			Toast.makeText(this, "删除提交错误！！！", Toast.LENGTH_SHORT).show();
-//		}
+		if(str) {
+			new AlertDialog.Builder(this).setTitle("删除提交成功！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+
+					startActivity(new Intent(EatDeleteTopupActivity.this, EatAllActivity.class));
+
+				}
+			}).show();
+		}else{
+			Toast.makeText(this, "删除提交错误！！！", Toast.LENGTH_SHORT).show();
+		}
 
 	}
 

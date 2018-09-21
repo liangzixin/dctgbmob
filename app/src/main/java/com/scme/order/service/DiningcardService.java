@@ -3,6 +3,7 @@ package com.scme.order.service;
 import com.google.gson.reflect.TypeToken;
 import com.scme.order.model.Diningcard;
 import com.scme.order.model.DiningcardJson;
+import com.scme.order.model.Teats;
 import com.scme.order.model.Tusers;
 import com.scme.order.util.HttpUtil;
 import com.scme.order.util.ToolsHandler;
@@ -61,7 +62,6 @@ public class DiningcardService extends BaseService{
                 System.out.println(json);
             //    diningcardList =getGson().fromJson(json, new TypeToken<List<Diningcard>>() {}.getType());
                 diningcardJson=getGson().fromJson(json,DiningcardJson.class);
-
             }
         } catch (Exception e) {
             // TODO Auto-generated catch block
@@ -149,10 +149,10 @@ public class DiningcardService extends BaseService{
 
         return str;
     }
-    public Diningcard queryDiningcardId(int id) throws Exception
+    public Diningcard querydiningcardId(int id) throws Exception
     {
 
-        String path = HttpUtil.BASE_URL+"eats!queryDiningcardId.action?id="+id+"";
+        String path = HttpUtil.BASE_URL+"diningcard!querydiningcardId.action?id="+id+"";
         URL url;
         try {
             url = new URL(path);
@@ -175,6 +175,37 @@ public class DiningcardService extends BaseService{
         }
         return diningcard;
     }
+    /**
+     * 根据职工的Id查询职工的信息
+     * @param id
+     * @return Ttables
+     */
+//    public Diningcard querydiningcardId(int id) throws Exception
+//    {
+//
+//        String path = HttpUtil.BASE_URL+"eats!querydiningcardId.action?id="+id+"";
+//        URL url;
+//        try {
+//            url = new URL(path);
+//            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//            conn.setReadTimeout(5000);
+//            conn.setRequestMethod("POST");
+//            if (200 == conn.getResponseCode())
+//            {
+//                //获取输入流
+//                InputStream is = conn.getInputStream();
+//                ToolsHandler toolsHandler=new ToolsHandler();
+//                byte[] data=toolsHandler.InputStreamToByte(is);
+//                json=new String(data);
+//                System.out.println(json);
+//                diningcard=getGson().fromJson(json, new TypeToken<Diningcard>() {}.getType());
+//            }
+//        } catch (Exception e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//        return diningcard;
+//    }
 //    /**
 //     * 添加订单
 //     * @param workerid 餐桌Id
@@ -189,30 +220,30 @@ public class DiningcardService extends BaseService{
 //        conn.setRequestMethod("POST");
 //        System.out.println("----------"+ conn.getResponseCode());
 //    }
-//    public boolean DeleteEats(int workerid) throws Exception
-//    {
-//       boolean str=false;
-//        String path=HttpUtil.BASE_URL+"eats!DeleteEats.action?eatid="+workerid+"";
-//        URL url = new URL(path);
-//        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//        conn.setReadTimeout(5000);
-//        conn.setRequestMethod("POST");
-//        if (200 == conn.getResponseCode())
-//        {
-//            //获取输入流
-//            InputStream is = conn.getInputStream();
-//            ToolsHandler toolsHandler=new ToolsHandler();
-//            byte[] data=toolsHandler.InputStreamToByte(is);
-//            json=new String(data);
-//            System.out.println(json);
-//            if(json!="0")
-//            {
-//                JSONObject jsonObject=new JSONObject(json);
-//                str=jsonObject.getBoolean("str");
-//            }
-//        }
-//        return str;
-//    }
+    public boolean DeleteTopup(int id) throws Exception
+    {
+       boolean str=false;
+        String path=HttpUtil.BASE_URL+"diningcard!DeleteTopup.action?id="+id+"";
+        URL url = new URL(path);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setReadTimeout(5000);
+        conn.setRequestMethod("POST");
+        if (200 == conn.getResponseCode())
+        {
+            //获取输入流
+            InputStream is = conn.getInputStream();
+            ToolsHandler toolsHandler=new ToolsHandler();
+            byte[] data=toolsHandler.InputStreamToByte(is);
+            json=new String(data);
+            System.out.println(json);
+            if(json!="0")
+            {
+                JSONObject jsonObject=new JSONObject(json);
+                str=jsonObject.getBoolean("str");
+            }
+        }
+        return str;
+    }
 //    /**
 //     * 查询最新订单Id
 //     * @param

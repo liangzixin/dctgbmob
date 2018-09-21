@@ -435,6 +435,7 @@ public class EatTopupActivity extends BaseActivity implements IXListViewListener
 				map.put("fs", diningcard.getUser().getName());
 				map.put("je", diningcard.getTopupamount());
 				map.put("operator", diningcard.getOperator());
+				map.put("id", diningcard.getId());
 				eatsMapList.add(map);
 			}
 		} catch (Exception e) {
@@ -497,9 +498,9 @@ public class EatTopupActivity extends BaseActivity implements IXListViewListener
 		public void handleMessage(Message msg) {
 			progressDialog.dismiss();
 			simpleAdapter = new SimpleAdapter(EatTopupActivity.this, eatsMapList, R.layout.eattopup_item,
-					new String[]{"eatTotalid", "ym", "fs", "je","operator"},
+					new String[]{"eatTotalid", "ym", "fs", "je","operator","id"},
 					new int[]{R.id.tvEatsItemEatid, R.id.tvEatsItemName,
-							R.id.tvEatsItemNumber, R.id.tvEatsItemPrice, R.id.tvEatsOperator});
+							R.id.tvEatsItemNumber, R.id.tvEatsItemPrice, R.id.tvEatsOperator,R.id.tvId});
 			lvEats.setAdapter(simpleAdapter);
 			super.handleMessage(msg);
 		tvEatTolNums.setText("总次数：" + eattolnumfs + " 次");
@@ -709,10 +710,11 @@ public class EatTopupActivity extends BaseActivity implements IXListViewListener
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		// TODO Auto-generated method stub
 		int ii = new Long(arg3).intValue();
-		myAppVariable.setTxxxid(ii);
+		int ii0=Integer.parseInt(eatsMapList.get(ii).get("id").toString());
+		myAppVariable.setTxxxid(ii0);
 //		System.out.println("就餐序号eatsId"+ii);
 		Intent intent = new Intent();
-		intent.setClass(this, EatDeleteDetailActivity.class);
+		intent.setClass(this, EatDeleteTopupActivity.class);
 		startActivityForResult(intent,200);
 	}
 

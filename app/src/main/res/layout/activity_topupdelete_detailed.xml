@@ -20,17 +20,17 @@
         android:layout_marginLeft="180dp" />
 
     <TextView
+        android:id="@+id/tvEatTotalYmonth"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="47dp"
-        android:textSize="18dp"
-        android:textColor="#ff6666"
-        android:text="年月"
-        android:id="@+id/tvEatTotalYmonth"
-        android:maxWidth="150dp"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="false"
         android:layout_below="@+id/tvEatTotalName"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginTop="47dp"
+        android:maxWidth="150dp"
+        android:text="年月"
+        android:textColor="#ff6666"
+        android:textSize="18dp" />
 
     <TextView
         android:id="@+id/tvEatTotalPrice"
@@ -56,7 +56,7 @@
         android:layout_below="@+id/tvEatTotalPrice"
         android:layout_centerHorizontal="true" />
 
-    <ImageView
+    <!--ImageView
         android:layout_width="80dp"
         android:layout_height="100dp"
         android:id="@+id/ivUserPic"
@@ -64,7 +64,7 @@
         android:layout_toStartOf="@+id/button"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
-        android:layout_above="@+id/tvEatTotalYmonth" />
+        android:layout_above="@+id/tvEatTotalYmonth" />-->
 
     <RelativeLayout
         android:layout_width="fill_parent"
