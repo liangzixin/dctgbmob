@@ -226,7 +226,7 @@ public class EatDeleteTopupActivity extends BaseActivity {
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub
 
-					startActivity(new Intent(EatDeleteTopupActivity.this, EatAllActivity.class));
+					startActivity(new Intent(EatDeleteTopupActivity.this, EatTopupActivity.class));
 
 				}
 			}).show();
